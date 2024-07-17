@@ -2,6 +2,7 @@ from PyQt6.QtCore import QObject, pyqtSignal, QThread
 import conexion as con
 from model.user import User
 
+
 class LoginThread(QThread):
     login_result = pyqtSignal(bool)
 
@@ -12,13 +13,17 @@ class LoginThread(QThread):
     def run(self):
         db = con.Conexion().conectar()
         cursor = db.cursor()
-        res = cursor.execute("SELECT * FROM users WHERE user_dni = ? AND password = ?", (self.user._user_dni, self.user._password))
+        res = cursor.execute(
+            "SELECT * FROM users WHERE user_dni = ? AND password = ?",
+            (self.user._user_dni, self.user._password),
+        )
         fila = res.fetchone()
         if fila:
             self.login_result.emit(True)
         else:
             self.login_result.emit(False)
         db.close()
+
 
 class UserData(QObject):
     login_result = pyqtSignal(bool)
