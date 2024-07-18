@@ -32,7 +32,7 @@ class Login:
 
     def handle_login_result(self, success):
         if success:
-            self.login.lblMSG.setText("Exitoso")
+            self.login.lblMSG.setText("Login exitoso")
             self.conexion = Conexion()
             self.conexion.actualizar_estado_facturas()
             self.main = MainWindow()
