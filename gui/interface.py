@@ -8,7 +8,8 @@ class MyInterface(QMainWindow, Ui_MainWindow):
         self.setupUi(self)
         self.setWindowTitle("Interface Menu")
         
-        
+       
+
         self.students_2.clicked.connect(self.switch_to_studentsPage)
         
         self.payments_2.clicked.connect(self.switch_to_paymentsPage)
@@ -16,13 +17,13 @@ class MyInterface(QMainWindow, Ui_MainWindow):
         self.reports_2.clicked.connect(self.switch_to_reportsPage)
         
     def switch_to_studentsPage(self):
-        self.stackedWidget.setCurrentIndex(0)
+        self.content.setCurrentIndex(0)
         
     def switch_to_paymentsPage(self):
-        self.stackedWidget.setCurrentIndex(1)
+        self.content.setCurrentIndex(1)
     
     def switch_to_reportsPage(self):
-        self.stackedWidget.setCurrentIndex(2)
+        self.content.setCurrentIndex(2)
         
 if __name__ == "__main__":
     app = QApplication([])

@@ -14,7 +14,7 @@
    <string>Inicio de sesión</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(0, 85, 127);</string>
+   <string notr="true">background-color:#1770b3;</string>
   </property>
   <widget class="QLabel" name="logoIcon">
    <property name="geometry">
