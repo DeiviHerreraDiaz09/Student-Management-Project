@@ -41,9 +41,7 @@ class Ui_MainWindow(object):
 "padding-left:10px;\n"
 "border-top-left-radius:10px;\n"
 "border-bottom-left-radius:10px;\n"
-"cursor: pointer;\n" 
 "}\n"
-
 "\n"
 "\n"
 "QLabel{\n"
@@ -181,7 +179,42 @@ class Ui_MainWindow(object):
         font.setFamily("Euphemia")
         font.setPointSize(9)
         self.principal_content.setFont(font)
-        self.principal_content.setStyleSheet("background-color:#F5FBFF;\n"
+        self.principal_content.setStyleSheet("\n"
+"\n"
+"QTabWidget::pane {\n"
+"    border: 1px solid #CCCCCC;\n"
+"    border-radius:5px;\n"
+"    background:#F5FBFF;\n"
+"}\n"
+"\n"
+"\n"
+"QTabBar::tab {\n"
+"    background: #E0E0E0;\n"
+"    border: 1px solid #CCCCCC;\n"
+"    padding: 5px;\n"
+"    font-family: Ehupemia;\n"
+"    font-size: 12px;\n"
+"    color: #000000;\n"
+"}\n"
+"\n"
+"QTabBar::tab:selected {\n"
+"    background: #FFFFFF;\n"
+"    border-bottom-color: #FFFFFF;\n"
+"    font-weight: bold;\n"
+"    color: #0e436c;\n"
+"}\n"
+"\n"
+"QTabBar::tab:!selected {\n"
+"    background: #E0E0E0;\n"
+"    margin-top: 2px;\n"
+"    color: #888888;\n"
+"}\n"
+"\n"
+"\n"
+"QTabBar::tab:hover {\n"
+"    background: #D0D0D0;\n"
+"    color:#0b3454;\n"
+"}\n"
 "\n"
 "\n"
 "\n"
@@ -241,7 +274,8 @@ class Ui_MainWindow(object):
         font.setFamily("Euphemia")
         font.setPointSize(10)
         self.box.setFont(font)
-        self.box.setStyleSheet("background-color: rgb(255, 255, 255);")
+        self.box.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+"color: rgb(11, 52, 84);")
         self.box.setObjectName("box")
         self.button_search = QtWidgets.QPushButton(parent=self.box_filter)
         self.button_search.setMinimumSize(QtCore.QSize(30, 30))
@@ -317,7 +351,6 @@ class Ui_MainWindow(object):
         self.list_student_table.setRowCount(1)
         self.list_student_table.setObjectName("list_student_table")
         self.list_student_table.setColumnCount(6)
-        
         item = QtWidgets.QTableWidgetItem()
         item.setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         item.setBackground(QtGui.QColor(255, 255, 255))
@@ -404,7 +437,8 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(9)
         self.box_dni.setFont(font)
-        self.box_dni.setStyleSheet("background-color: rgb(255, 255, 255);")
+        self.box_dni.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+"color: rgb(11, 52, 84);")
         self.box_dni.setObjectName("box_dni")
         self.button_searchDNI = QtWidgets.QPushButton(parent=self.box_search)
         self.button_searchDNI.setMinimumSize(QtCore.QSize(30, 30))

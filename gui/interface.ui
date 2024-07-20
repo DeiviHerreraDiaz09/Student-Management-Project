@@ -107,7 +107,7 @@ font-weight:bold
             <string/>
            </property>
            <property name="pixmap">
-            <pixmap resource="resources.qrc">:/icons/assets/icons/icons8-computer-50.png</pixmap>
+            <pixmap resource="../../../Downloads/dashboard/resources.qrc">:/icons/assets/icons/icons8-computer-50.png</pixmap>
            </property>
           </widget>
          </item>
@@ -171,7 +171,7 @@ font-weight:bold
             <string>Estudiantes</string>
            </property>
            <property name="icon">
-            <iconset resource="resources.qrc">
+            <iconset resource="../../../Downloads/dashboard/resources.qrc">
              <normaloff>:/icons/assets/icons/profile_white.png</normaloff>
              <normalon>:/icons/assets/icons/profile.png</normalon>:/icons/assets/icons/profile_white.png</iconset>
            </property>
@@ -203,7 +203,7 @@ font-weight:bold
             <string>Pagos</string>
            </property>
            <property name="icon">
-            <iconset resource="resources.qrc">
+            <iconset resource="../../../Downloads/dashboard/resources.qrc">
              <normaloff>:/icons/assets/icons/icons8-transaction-96.png</normaloff>
              <normalon>:/icons/assets/icons/icons8-transaction-96-blue.png</normalon>:/icons/assets/icons/icons8-transaction-96.png</iconset>
            </property>
@@ -235,7 +235,7 @@ font-weight:bold
             <string>Reportes</string>
            </property>
            <property name="icon">
-            <iconset resource="resources.qrc">
+            <iconset resource="../../../Downloads/dashboard/resources.qrc">
              <normaloff>:/icons/assets/icons/icons8-report-100.png</normaloff>
              <normalon>:/icons/assets/icons/icons8-report-100-blue.png</normalon>:/icons/assets/icons/icons8-report-100.png</iconset>
            </property>
@@ -282,7 +282,7 @@ font-weight:bold
           <string>Salir</string>
          </property>
          <property name="icon">
-          <iconset resource="resources.qrc">
+          <iconset resource="../../../Downloads/dashboard/resources.qrc">
            <normaloff>:/icons/assets/icons/log_out_white.png</normaloff>:/icons/assets/icons/log_out_white.png</iconset>
          </property>
          <property name="iconSize">
@@ -364,7 +364,42 @@ font-weight:bold
               </font>
              </property>
              <property name="styleSheet">
-              <string notr="true">background-color:#F5FBFF;
+              <string notr="true">
+
+QTabWidget::pane {
+    border: 1px solid #CCCCCC;
+	border-radius:5px;
+	background:#F5FBFF;
+}
+
+
+QTabBar::tab {
+    background: #E0E0E0;
+    border: 1px solid #CCCCCC;
+    padding: 5px;
+    font-family: Ehupemia;
+    font-size: 12px;
+    color: #000000;
+}
+
+QTabBar::tab:selected {
+    background: #FFFFFF;
+    border-bottom-color: #FFFFFF;
+    font-weight: bold;
+    color: #0e436c;
+}
+
+QTabBar::tab:!selected {
+    background: #E0E0E0;
+    margin-top: 2px;
+    color: #888888;
+}
+
+
+QTabBar::tab:hover {
+    background: #D0D0D0;
+    color:#0b3454;
+}
 
 
 
@@ -487,7 +522,8 @@ margin-top:12px;</string>
                          </font>
                         </property>
                         <property name="styleSheet">
-                         <string notr="true">background-color: rgb(255, 255, 255);</string>
+                         <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(11, 52, 84);</string>
                         </property>
                         <property name="placeholderText">
                          <string>Ingrese el nombre del estudiante</string>
@@ -516,7 +552,7 @@ border-radius:6px;
                          <string/>
                         </property>
                         <property name="icon">
-                         <iconset resource="resources.qrc">
+                         <iconset resource="../../../Downloads/dashboard/resources.qrc">
                           <normaloff>:/icons/assets/icons/Search.svg</normaloff>:/icons/assets/icons/Search.svg</iconset>
                         </property>
                        </widget>
@@ -841,7 +877,8 @@ QTableWidget::item:alternate {
                           </font>
                          </property>
                          <property name="styleSheet">
-                          <string notr="true">background-color: rgb(255, 255, 255);</string>
+                          <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(11, 52, 84);</string>
                          </property>
                          <property name="placeholderText">
                           <string>Ingrese el DNI </string>
@@ -870,7 +907,7 @@ border-radius:6px;
                           <string/>
                          </property>
                          <property name="icon">
-                          <iconset resource="resources.qrc">
+                          <iconset resource="../../../Downloads/dashboard/resources.qrc">
                            <normaloff>:/icons/assets/icons/Search.svg</normaloff>:/icons/assets/icons/Search.svg</iconset>
                          </property>
                         </widget>
@@ -1400,6 +1437,7 @@ QTableWidget::item:alternate {
   </widget>
  </widget>
  <resources>
+  <include location="../../../Downloads/dashboard/resources.qrc"/>
   <include location="resources.qrc"/>
  </resources>
  <connections>
