@@ -320,6 +320,7 @@ class Ui_MainWindow(object):
 "\n"
 "QTableWidget::item {\n"
 "    padding: 1px;\n"
+"    color: black;\n"
 "}\n"
 "\n"
 "QTableWidget::item:selected {\n"
