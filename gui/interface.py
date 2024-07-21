@@ -16,6 +16,9 @@ class MyInterface(QMainWindow, Ui_MainWindow):
         self.payments_2.clicked.connect(self.switch_to_paymentsPage)
         self.reports_2.clicked.connect(self.switch_to_reportsPage)
 
+   
+
+        self.button_add.clicked.connect(self.switch_to_registerStudent)
 
         self.student_data = StudentData()
         self.student_data.data_fetched.connect(self.update_table)
@@ -41,6 +44,9 @@ class MyInterface(QMainWindow, Ui_MainWindow):
     
     def switch_to_reportsPage(self):
         self.content.setCurrentIndex(2)
+
+    def switch_to_registerStudent(self):
+        self.principal_content.setCurrentIndex(2)
 
 if __name__ == "__main__":
     app = QApplication([])
