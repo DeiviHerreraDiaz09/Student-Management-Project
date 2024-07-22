@@ -203,6 +203,7 @@ class Ui_MainWindow(object):
 "    padding: 1px;\n"
 "      background-color: #e9f4fd;\n"
 "     color: #000080; \n"
+"    text-align:center;\n"
 "}\n"
 "\n"
 "QTableWidget::item:selected {\n"
@@ -226,6 +227,7 @@ class Ui_MainWindow(object):
 "\n"
 "\n"
 "")
+        self.list_student_table.setEditTriggers(QtWidgets.QAbstractItemView.EditTrigger.NoEditTriggers)
         self.list_student_table.setDragDropMode(QtWidgets.QAbstractItemView.DragDropMode.NoDragDrop)
         self.list_student_table.setShowGrid(True)
         self.list_student_table.setGridStyle(QtCore.Qt.PenStyle.SolidLine)
@@ -859,6 +861,30 @@ class Ui_MainWindow(object):
 "color:white;")
         self.registerButton.setObjectName("registerButton")
         self.verticalLayout.addWidget(self.registerButton, 0, QtCore.Qt.AlignmentFlag.AlignHCenter|QtCore.Qt.AlignmentFlag.AlignVCenter)
+        self.message = QtWidgets.QLabel(parent=self.form_new_student)
+        font = QtGui.QFont()
+        font.setFamily("Euphemia")
+        font.setPointSize(9)
+        font.setBold(True)
+        font.setWeight(75)
+        self.message.setFont(font)
+        self.message.setStyleSheet("font-family: Euphemia;\n"
+"color:red;")
+        self.message.setText("")
+        self.message.setObjectName("message")
+        self.verticalLayout.addWidget(self.message, 0, QtCore.Qt.AlignmentFlag.AlignHCenter)
+        self.message_ok = QtWidgets.QLabel(parent=self.form_new_student)
+        font = QtGui.QFont()
+        font.setFamily("Euphemia")
+        font.setPointSize(9)
+        font.setBold(True)
+        font.setWeight(75)
+        self.message_ok.setFont(font)
+        self.message_ok.setStyleSheet("font-family: Euphemia;\n"
+"color:green;")
+        self.message_ok.setText("")
+        self.message_ok.setObjectName("message_ok")
+        self.verticalLayout.addWidget(self.message_ok, 0, QtCore.Qt.AlignmentFlag.AlignHCenter)
         self.contentRegister.addWidget(self.form_new_student)
         self.gridLayout_8.addLayout(self.contentRegister, 0, 0, 1, 1)
         self.principal_content.addTab(self.registerStudent, "")
@@ -1014,7 +1040,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
         self.content.setCurrentIndex(0)
-        self.principal_content.setCurrentIndex(2)
+        self.principal_content.setCurrentIndex(0)
         self.exit.toggled['bool'].connect(MainWindow.close) # type: ignore
         self.button_searchDNI.clicked.connect(self.box_dni.undo) # type: ignore
         self.button_search.clicked.connect(self.box.undo) # type: ignore
@@ -1042,8 +1068,6 @@ class Ui_MainWindow(object):
         item.setText(_translate("MainWindow", "N° Facturas"))
         __sortingEnabled = self.list_student_table.isSortingEnabled()
         self.list_student_table.setSortingEnabled(False)
-        item = self.list_student_table.item(0, 0)
-        item.setText(_translate("MainWindow", "1013106777"))
         self.list_student_table.setSortingEnabled(__sortingEnabled)
         self.principal_content.setTabText(self.principal_content.indexOf(self.ListStudents), _translate("MainWindow", "Lista Estudiantes"))
         self.tittle_info.setText(_translate("MainWindow", "Información del estudiante"))

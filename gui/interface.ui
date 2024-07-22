@@ -149,7 +149,7 @@ QTabBar::tab:hover {
 </string>
              </property>
              <property name="currentIndex">
-              <number>2</number>
+              <number>0</number>
              </property>
              <widget class="QWidget" name="ListStudents">
               <property name="styleSheet">
@@ -388,6 +388,7 @@ QTableWidget::item {
     padding: 1px;
  	 background-color: #e9f4fd;
      color: #000080; 
+	text-align:center;
 }
 
 QTableWidget::item:selected {
@@ -411,6 +412,9 @@ QTableWidget::item:alternate {
 
 
 </string>
+                  </property>
+                  <property name="editTriggers">
+                   <set>QAbstractItemView::NoEditTriggers</set>
                   </property>
                   <property name="dragDropMode">
                    <enum>QAbstractItemView::NoDragDrop</enum>
@@ -524,7 +528,7 @@ QTableWidget::item:alternate {
                   </column>
                   <item row="0" column="0">
                    <property name="text">
-                    <string>1013106777</string>
+                    <string/>
                    </property>
                    <property name="textAlignment">
                     <set>AlignCenter</set>
@@ -1786,6 +1790,44 @@ color:white;</string>
                       </property>
                      </widget>
                     </item>
+                    <item alignment="Qt::AlignHCenter">
+                     <widget class="QLabel" name="message">
+                      <property name="font">
+                       <font>
+                        <family>Euphemia</family>
+                        <pointsize>9</pointsize>
+                        <weight>75</weight>
+                        <bold>true</bold>
+                       </font>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">font-family: Euphemia;
+color:red;</string>
+                      </property>
+                      <property name="text">
+                       <string/>
+                      </property>
+                     </widget>
+                    </item>
+                    <item alignment="Qt::AlignHCenter">
+                     <widget class="QLabel" name="message_ok">
+                      <property name="font">
+                       <font>
+                        <family>Euphemia</family>
+                        <pointsize>9</pointsize>
+                        <weight>75</weight>
+                        <bold>true</bold>
+                       </font>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">font-family: Euphemia;
+color:green;</string>
+                      </property>
+                      <property name="text">
+                       <string/>
+                      </property>
+                     </widget>
+                    </item>
                    </layout>
                   </widget>
                  </item>
@@ -2108,6 +2150,8 @@ font-weight:bold
  <resources>
   <include location="../../../Downloads/dashboard/resources.qrc"/>
   <include location="../../../Downloads/dashboard/resources.qrc"/>
+  <include location="../../../Downloads/dashboard/resources.qrc"/>
+  <include location="../../../../Downloads/dashboard/resources.qrc"/>
  </resources>
  <connections>
   <connection>

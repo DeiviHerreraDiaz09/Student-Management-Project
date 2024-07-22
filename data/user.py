@@ -23,6 +23,8 @@ class LoginThread(QThread):
         else:
             self.login_result.emit(False)
         db.close()
+    
+    
 
 
 class UserData(QObject):

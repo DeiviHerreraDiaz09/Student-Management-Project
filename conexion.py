@@ -11,7 +11,6 @@ class Conexion:
             self.creartablas()
             self.crearTriggers()
             self.crearAdmin()
-            self.crearEstudiante()
         except sqlite3.Error as e:
             print(f"Error al conectar con la base de datos: {e}")
         except Exception as ex:
@@ -40,6 +39,7 @@ class Conexion:
                     grade TEXT NOT NULL,
                     tutor_dni TEXT NOT NULL,
                     tutor_name TEXT NOT NULL,
+                    address TEXT NOT NULL,
                     tutor_email TEXT NOT NULL,
                     tutor_phone TEXT NOT NULL 
                 )
@@ -156,43 +156,7 @@ class Conexion:
         finally:
             cursor.close()
 
-    def crearEstudiante(self):
-        try:
-            cursor = self.con.cursor()
-            cursor.execute(
-                """
-                INSERT INTO students (
-                    student_dni,
-                    student_name,
-                    date_of_birth,
-                    grade,
-                    tutor_dni,
-                    tutor_name,
-                    tutor_email,
-                    tutor_phone
-                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-            """,
-                (
-                    "1033679469",
-                    "Deivi Herrera Diaz",
-                    "01/06/2004",
-                    "Técnologo",
-                    "52301734",
-                    "Maria Ana Belen",
-                    "M@g.com",
-                    "3125824142",
-                ),
-            )
-            print("Estudiante creado correctamente")
-            self.con.commit()
-        except sqlite3.IntegrityError as e:
-            print(f"Error de integridad: {e}")
-        except sqlite3.Error as e:
-            print(f"Error al insertar Estudiante: {e}")
-        except Exception as ex:
-            print(f"Otro error: {ex}")
-        finally:
-            cursor.close()
+    
 
     def actualizar_estado_facturas(self):
         try:
