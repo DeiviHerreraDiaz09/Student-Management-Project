@@ -93,7 +93,7 @@ class Conexion:
                     INSERT INTO invoices (description, total_amount, remaining_amount, due_date, created_at, status, student_dni_fk)
                     VALUES (
                         'Factura mensual',
-                        100,  -- o el monto que corresponda
+                        100, 
                         100,
                         date('now', '+1 month'),
                         date('now'),

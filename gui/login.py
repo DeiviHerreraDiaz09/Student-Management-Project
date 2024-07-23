@@ -8,8 +8,10 @@ from conexion import Conexion
 class Login:
     def __init__(self):
         self.login = uic.loadUi("gui/login.ui")
-        pixmap = QtGui.QPixmap("./assets/img/logo.png")
-        self.login.logoIcon.setPixmap(pixmap)
+        user = QtGui.QPixmap("./assets/img/user.png")
+        book = QtGui.QPixmap("./assets/img/bookIcon.png")
+        self.login.iconUser.setPixmap(user)
+        self.login.bookIcon_2.setPixmap(book)
         self.initGUI()
         self.login.lblMSG.setText("")
         self.login.show()
