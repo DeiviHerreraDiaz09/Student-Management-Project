@@ -11,6 +11,7 @@ class MainWindow:
         self.interface.show()
         self.app.exec()
 
+
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     main_window = MainWindow()

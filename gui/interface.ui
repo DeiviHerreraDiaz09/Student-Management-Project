@@ -302,7 +302,7 @@ border-radius:6px;
                          <string/>
                         </property>
                         <property name="icon">
-                         <iconset resource="../../../dashboard/resources.qrc">
+                         <iconset>
                           <normaloff>:/icons/assets/icons/Search.svg</normaloff>:/icons/assets/icons/Search.svg</iconset>
                         </property>
                        </widget>
@@ -673,7 +673,7 @@ border-radius:6px;
                           <string/>
                          </property>
                          <property name="icon">
-                          <iconset resource="../../../dashboard/resources.qrc">
+                          <iconset>
                            <normaloff>:/icons/assets/icons/Search.svg</normaloff>:/icons/assets/icons/Search.svg</iconset>
                          </property>
                         </widget>
@@ -735,7 +735,9 @@ color: rgb(11, 52, 84);
                            </property>
                            <property name="styleSheet">
                             <string notr="true">background-color: rgb(255, 255, 255);
-border:1px solid  #a8a8a8;</string>
+border:1px solid  #a8a8a8;
+color: rgb(11, 52, 84);
+</string>
                            </property>
                            <property name="text">
                             <string/>
@@ -778,7 +780,9 @@ border:1px solid  #a8a8a8;</string>
                            </property>
                            <property name="styleSheet">
                             <string notr="true">background-color: rgb(255, 255, 255);
-border:1px solid  #a8a8a8;</string>
+border:1px solid  #a8a8a8;
+color: rgb(11, 52, 84);
+</string>
                            </property>
                            <property name="readOnly">
                             <bool>true</bool>
@@ -818,7 +822,9 @@ border:1px solid  #a8a8a8;</string>
                            </property>
                            <property name="styleSheet">
                             <string notr="true">background-color: rgb(255, 255, 255);
-border:1px solid  #a8a8a8;</string>
+border:1px solid  #a8a8a8;
+color: rgb(11, 52, 84);
+</string>
                            </property>
                            <property name="readOnly">
                             <bool>true</bool>
@@ -871,7 +877,9 @@ border:1px solid  #a8a8a8;</string>
                            </property>
                            <property name="styleSheet">
                             <string notr="true">background-color: rgb(255, 255, 255);
-border:1px solid  #a8a8a8;</string>
+border:1px solid  #a8a8a8;
+color: rgb(11, 52, 84);
+</string>
                            </property>
                            <property name="readOnly">
                             <bool>true</bool>
@@ -911,7 +919,9 @@ border:1px solid  #a8a8a8;</string>
                            </property>
                            <property name="styleSheet">
                             <string notr="true">background-color: rgb(255, 255, 255);
-border:1px solid  #a8a8a8;</string>
+border:1px solid  #a8a8a8;
+color: rgb(11, 52, 84);
+</string>
                            </property>
                            <property name="readOnly">
                             <bool>true</bool>
@@ -951,7 +961,9 @@ border:1px solid  #a8a8a8;</string>
                            </property>
                            <property name="styleSheet">
                             <string notr="true">background-color: rgb(255, 255, 255);
-border:1px solid  #a8a8a8;</string>
+border:1px solid  #a8a8a8;
+color: rgb(11, 52, 84);
+</string>
                            </property>
                            <property name="readOnly">
                             <bool>true</bool>
@@ -1004,7 +1016,9 @@ border:1px solid  #a8a8a8;</string>
                            </property>
                            <property name="styleSheet">
                             <string notr="true">background-color: rgb(255, 255, 255);
-border:1px solid  #a8a8a8;</string>
+border:1px solid  #a8a8a8;
+color: rgb(11, 52, 84);
+</string>
                            </property>
                            <property name="readOnly">
                             <bool>true</bool>
@@ -2013,7 +2027,7 @@ font-weight:bold
             <string/>
            </property>
            <property name="pixmap">
-            <pixmap resource="../../../dashboard/resources.qrc">:/icons/assets/icons/icons8-computer-50.png</pixmap>
+            <pixmap>:/icons/assets/icons/icons8-computer-50.png</pixmap>
            </property>
           </widget>
          </item>
@@ -2077,7 +2091,7 @@ font-weight:bold
             <string>Estudiantes</string>
            </property>
            <property name="icon">
-            <iconset resource="../../../dashboard/resources.qrc">
+            <iconset>
              <normaloff>:/icons/assets/icons/profile_white.png</normaloff>
              <normalon>:/icons/assets/icons/profile.png</normalon>:/icons/assets/icons/profile_white.png</iconset>
            </property>
@@ -2109,7 +2123,7 @@ font-weight:bold
             <string>Pagos</string>
            </property>
            <property name="icon">
-            <iconset resource="../../../dashboard/resources.qrc">
+            <iconset>
              <normaloff>:/icons/assets/icons/icons8-transaction-96.png</normaloff>
              <normalon>:/icons/assets/icons/icons8-transaction-96-blue.png</normalon>:/icons/assets/icons/icons8-transaction-96.png</iconset>
            </property>
@@ -2141,7 +2155,7 @@ font-weight:bold
             <string>Reportes</string>
            </property>
            <property name="icon">
-            <iconset resource="../../../dashboard/resources.qrc">
+            <iconset>
              <normaloff>:/icons/assets/icons/icons8-report-100.png</normaloff>
              <normalon>:/icons/assets/icons/icons8-report-100-blue.png</normalon>:/icons/assets/icons/icons8-report-100.png</iconset>
            </property>
@@ -2188,7 +2202,7 @@ font-weight:bold
           <string>Salir</string>
          </property>
          <property name="icon">
-          <iconset resource="../../../dashboard/resources.qrc">
+          <iconset>
            <normaloff>:/icons/assets/icons/log_out_white.png</normaloff>:/icons/assets/icons/log_out_white.png</iconset>
          </property>
          <property name="iconSize">

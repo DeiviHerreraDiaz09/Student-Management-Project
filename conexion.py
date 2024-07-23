@@ -156,8 +156,6 @@ class Conexion:
         finally:
             cursor.close()
 
-    
-
     def actualizar_estado_facturas(self):
         try:
             cursor = self.con.cursor()
