@@ -269,7 +269,8 @@ margin-top:12px;</string>
                         </property>
                         <property name="styleSheet">
                          <string notr="true">background-color: rgb(255, 255, 255);
-color: rgb(11, 52, 84);</string>
+color: rgb(11, 52, 84);
+border:1px solid  #a8a8a8;</string>
                         </property>
                         <property name="placeholderText">
                          <string>Ingrese el nombre del estudiante</string>
@@ -301,7 +302,7 @@ border-radius:6px;
                          <string/>
                         </property>
                         <property name="icon">
-                         <iconset resource="../../../Downloads/dashboard/resources.qrc">
+                         <iconset resource="../../../dashboard/resources.qrc">
                           <normaloff>:/icons/assets/icons/Search.svg</normaloff>:/icons/assets/icons/Search.svg</iconset>
                         </property>
                        </widget>
@@ -639,7 +640,8 @@ QTableWidget::item:alternate {
                          </property>
                          <property name="styleSheet">
                           <string notr="true">background-color: rgb(255, 255, 255);
-color: rgb(11, 52, 84);</string>
+color: rgb(11, 52, 84);
+border:1px solid  #a8a8a8;</string>
                          </property>
                          <property name="placeholderText">
                           <string>Ingrese el DNI </string>
@@ -671,7 +673,7 @@ border-radius:6px;
                           <string/>
                          </property>
                          <property name="icon">
-                          <iconset resource="../../../Downloads/dashboard/resources.qrc">
+                          <iconset resource="../../../dashboard/resources.qrc">
                            <normaloff>:/icons/assets/icons/Search.svg</normaloff>:/icons/assets/icons/Search.svg</iconset>
                          </property>
                         </widget>
@@ -732,7 +734,8 @@ color: rgb(11, 52, 84);
                             </font>
                            </property>
                            <property name="styleSheet">
-                            <string notr="true">background-color: rgb(255, 255, 255);</string>
+                            <string notr="true">background-color: rgb(255, 255, 255);
+border:1px solid  #a8a8a8;</string>
                            </property>
                            <property name="text">
                             <string/>
@@ -774,7 +777,8 @@ color: rgb(11, 52, 84);
                             </font>
                            </property>
                            <property name="styleSheet">
-                            <string notr="true">background-color: rgb(255, 255, 255);</string>
+                            <string notr="true">background-color: rgb(255, 255, 255);
+border:1px solid  #a8a8a8;</string>
                            </property>
                            <property name="readOnly">
                             <bool>true</bool>
@@ -813,7 +817,8 @@ color: rgb(11, 52, 84);
                             </font>
                            </property>
                            <property name="styleSheet">
-                            <string notr="true">background-color: rgb(255, 255, 255);</string>
+                            <string notr="true">background-color: rgb(255, 255, 255);
+border:1px solid  #a8a8a8;</string>
                            </property>
                            <property name="readOnly">
                             <bool>true</bool>
@@ -865,7 +870,8 @@ color: rgb(11, 52, 84);
                             </font>
                            </property>
                            <property name="styleSheet">
-                            <string notr="true">background-color: rgb(255, 255, 255);</string>
+                            <string notr="true">background-color: rgb(255, 255, 255);
+border:1px solid  #a8a8a8;</string>
                            </property>
                            <property name="readOnly">
                             <bool>true</bool>
@@ -904,7 +910,8 @@ color: rgb(11, 52, 84);
                             </font>
                            </property>
                            <property name="styleSheet">
-                            <string notr="true">background-color: rgb(255, 255, 255);</string>
+                            <string notr="true">background-color: rgb(255, 255, 255);
+border:1px solid  #a8a8a8;</string>
                            </property>
                            <property name="readOnly">
                             <bool>true</bool>
@@ -943,7 +950,8 @@ color: rgb(11, 52, 84);
                             </font>
                            </property>
                            <property name="styleSheet">
-                            <string notr="true">background-color: rgb(255, 255, 255);</string>
+                            <string notr="true">background-color: rgb(255, 255, 255);
+border:1px solid  #a8a8a8;</string>
                            </property>
                            <property name="readOnly">
                             <bool>true</bool>
@@ -995,7 +1003,8 @@ color: rgb(11, 52, 84);
                             </font>
                            </property>
                            <property name="styleSheet">
-                            <string notr="true">background-color: rgb(255, 255, 255);</string>
+                            <string notr="true">background-color: rgb(255, 255, 255);
+border:1px solid  #a8a8a8;</string>
                            </property>
                            <property name="readOnly">
                             <bool>true</bool>
@@ -1035,7 +1044,8 @@ color: rgb(11, 52, 84);
                            </property>
                            <property name="styleSheet">
                             <string notr="true">background-color: rgb(255, 255, 255);
-color: ;</string>
+color: rgb(11, 52, 84);
+border:1px solid  #a8a8a8;</string>
                            </property>
                            <property name="readOnly">
                             <bool>true</bool>
@@ -1275,6 +1285,9 @@ QTableWidget::item:alternate {
                              <bold>true</bold>
                             </font>
                            </property>
+                           <property name="styleSheet">
+                            <string notr="true">color: rgb(11, 52, 84);</string>
+                           </property>
                            <property name="text">
                             <string>DNI</string>
                            </property>
@@ -1297,6 +1310,11 @@ QTableWidget::item:alternate {
                              <pointsize>10</pointsize>
                             </font>
                            </property>
+                           <property name="styleSheet">
+                            <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(11, 52, 84);
+border:1px solid  #a8a8a8;</string>
+                           </property>
                            <property name="placeholderText">
                             <string>Ingrese el DNI</string>
                            </property>
@@ -1316,6 +1334,9 @@ QTableWidget::item:alternate {
                              <weight>75</weight>
                              <bold>true</bold>
                             </font>
+                           </property>
+                           <property name="styleSheet">
+                            <string notr="true">color: rgb(11, 52, 84);</string>
                            </property>
                            <property name="text">
                             <string>Nombre del estudiante</string>
@@ -1340,7 +1361,9 @@ QTableWidget::item:alternate {
                             </font>
                            </property>
                            <property name="styleSheet">
-                            <string notr="true">background-color: rgb(255, 255, 255);</string>
+                            <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(11, 52, 84);
+border:1px solid  #a8a8a8;</string>
                            </property>
                            <property name="text">
                             <string/>
@@ -1368,6 +1391,9 @@ QTableWidget::item:alternate {
                              <bold>true</bold>
                             </font>
                            </property>
+                           <property name="styleSheet">
+                            <string notr="true">color: rgb(11, 52, 84);</string>
+                           </property>
                            <property name="text">
                             <string>Fecha de nacimiento</string>
                            </property>
@@ -1390,6 +1416,11 @@ QTableWidget::item:alternate {
                              <pointsize>10</pointsize>
                             </font>
                            </property>
+                           <property name="styleSheet">
+                            <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(11, 52, 84);
+border:1px solid  #a8a8a8;</string>
+                           </property>
                           </widget>
                          </widget>
                         </item>
@@ -1410,6 +1441,9 @@ QTableWidget::item:alternate {
                              <weight>75</weight>
                              <bold>true</bold>
                             </font>
+                           </property>
+                           <property name="styleSheet">
+                            <string notr="true">color: rgb(11, 52, 84);</string>
                            </property>
                            <property name="text">
                             <string>Grado</string>
@@ -1432,6 +1466,11 @@ QTableWidget::item:alternate {
                             <font>
                              <pointsize>10</pointsize>
                             </font>
+                           </property>
+                           <property name="styleSheet">
+                            <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(11, 52, 84);
+border:1px solid  #a8a8a8;</string>
                            </property>
                            <item>
                             <property name="text">
@@ -1510,6 +1549,9 @@ QTableWidget::item:alternate {
                              <bold>true</bold>
                             </font>
                            </property>
+                           <property name="styleSheet">
+                            <string notr="true">color: rgb(11, 52, 84);</string>
+                           </property>
                            <property name="text">
                             <string>DNI del tutor</string>
                            </property>
@@ -1533,7 +1575,9 @@ QTableWidget::item:alternate {
                             </font>
                            </property>
                            <property name="styleSheet">
-                            <string notr="true">background-color: rgb(255, 255, 255);</string>
+                            <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(11, 52, 84);
+border:1px solid  #a8a8a8;</string>
                            </property>
                            <property name="readOnly">
                             <bool>false</bool>
@@ -1558,6 +1602,9 @@ QTableWidget::item:alternate {
                              <bold>true</bold>
                             </font>
                            </property>
+                           <property name="styleSheet">
+                            <string notr="true">color: rgb(11, 52, 84);</string>
+                           </property>
                            <property name="text">
                             <string>Nombre del tutor</string>
                            </property>
@@ -1581,7 +1628,9 @@ QTableWidget::item:alternate {
                             </font>
                            </property>
                            <property name="styleSheet">
-                            <string notr="true">background-color: rgb(255, 255, 255);</string>
+                            <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(11, 52, 84);
+border:1px solid  #a8a8a8;</string>
                            </property>
                            <property name="readOnly">
                             <bool>false</bool>
@@ -1613,6 +1662,9 @@ QTableWidget::item:alternate {
                              <bold>true</bold>
                             </font>
                            </property>
+                           <property name="styleSheet">
+                            <string notr="true">color: rgb(11, 52, 84);</string>
+                           </property>
                            <property name="text">
                             <string>Correo del tutor</string>
                            </property>
@@ -1636,7 +1688,9 @@ QTableWidget::item:alternate {
                             </font>
                            </property>
                            <property name="styleSheet">
-                            <string notr="true">background-color: rgb(255, 255, 255);</string>
+                            <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(11, 52, 84);
+border:1px solid  #a8a8a8;</string>
                            </property>
                            <property name="readOnly">
                             <bool>false</bool>
@@ -1661,6 +1715,9 @@ QTableWidget::item:alternate {
                              <bold>true</bold>
                             </font>
                            </property>
+                           <property name="styleSheet">
+                            <string notr="true">color: rgb(11, 52, 84);</string>
+                           </property>
                            <property name="text">
                             <string>Direción</string>
                            </property>
@@ -1684,7 +1741,9 @@ QTableWidget::item:alternate {
                             </font>
                            </property>
                            <property name="styleSheet">
-                            <string notr="true">background-color: rgb(255, 255, 255);</string>
+                            <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(11, 52, 84);
+border:1px solid  #a8a8a8;</string>
                            </property>
                            <property name="readOnly">
                             <bool>false</bool>
@@ -1735,7 +1794,9 @@ QTableWidget::item:alternate {
                             </font>
                            </property>
                            <property name="styleSheet">
-                            <string notr="true">background-color: rgb(255, 255, 255);</string>
+                            <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(11, 52, 84);
+border:1px solid  #a8a8a8;</string>
                            </property>
                            <property name="readOnly">
                             <bool>false</bool>
@@ -1952,7 +2013,7 @@ font-weight:bold
             <string/>
            </property>
            <property name="pixmap">
-            <pixmap resource="../../../Downloads/dashboard/resources.qrc">:/icons/assets/icons/icons8-computer-50.png</pixmap>
+            <pixmap resource="../../../dashboard/resources.qrc">:/icons/assets/icons/icons8-computer-50.png</pixmap>
            </property>
           </widget>
          </item>
@@ -2016,7 +2077,7 @@ font-weight:bold
             <string>Estudiantes</string>
            </property>
            <property name="icon">
-            <iconset resource="../../../Downloads/dashboard/resources.qrc">
+            <iconset resource="../../../dashboard/resources.qrc">
              <normaloff>:/icons/assets/icons/profile_white.png</normaloff>
              <normalon>:/icons/assets/icons/profile.png</normalon>:/icons/assets/icons/profile_white.png</iconset>
            </property>
@@ -2048,7 +2109,7 @@ font-weight:bold
             <string>Pagos</string>
            </property>
            <property name="icon">
-            <iconset resource="../../../Downloads/dashboard/resources.qrc">
+            <iconset resource="../../../dashboard/resources.qrc">
              <normaloff>:/icons/assets/icons/icons8-transaction-96.png</normaloff>
              <normalon>:/icons/assets/icons/icons8-transaction-96-blue.png</normalon>:/icons/assets/icons/icons8-transaction-96.png</iconset>
            </property>
@@ -2080,7 +2141,7 @@ font-weight:bold
             <string>Reportes</string>
            </property>
            <property name="icon">
-            <iconset resource="../../../Downloads/dashboard/resources.qrc">
+            <iconset resource="../../../dashboard/resources.qrc">
              <normaloff>:/icons/assets/icons/icons8-report-100.png</normaloff>
              <normalon>:/icons/assets/icons/icons8-report-100-blue.png</normalon>:/icons/assets/icons/icons8-report-100.png</iconset>
            </property>
@@ -2127,7 +2188,7 @@ font-weight:bold
           <string>Salir</string>
          </property>
          <property name="icon">
-          <iconset resource="../../../Downloads/dashboard/resources.qrc">
+          <iconset resource="../../../dashboard/resources.qrc">
            <normaloff>:/icons/assets/icons/log_out_white.png</normaloff>:/icons/assets/icons/log_out_white.png</iconset>
          </property>
          <property name="iconSize">
@@ -2148,10 +2209,11 @@ font-weight:bold
   </widget>
  </widget>
  <resources>
+  <include location="../../../dashboard/resources.qrc"/>
+  <include location="../../../dashboard/resources.qrc"/>
+  <include location="../../../dashboard/resources.qrc"/>
+  <include location="../../../dashboard/resources.qrc"/>
   <include location="../../../Downloads/dashboard/resources.qrc"/>
-  <include location="../../../Downloads/dashboard/resources.qrc"/>
-  <include location="../../../Downloads/dashboard/resources.qrc"/>
-  <include location="../../../../Downloads/dashboard/resources.qrc"/>
  </resources>
  <connections>
   <connection>

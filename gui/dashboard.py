@@ -154,7 +154,8 @@ class Ui_MainWindow(object):
         font.setPointSize(10)
         self.box.setFont(font)
         self.box.setStyleSheet("background-color: rgb(255, 255, 255);\n"
-"color: rgb(11, 52, 84);")
+"color: rgb(11, 52, 84);\n"
+"border:1px solid  #a8a8a8;")
         self.box.setObjectName("box")
         self.button_search = QtWidgets.QPushButton(parent=self.box_filter)
         self.button_search.setMinimumSize(QtCore.QSize(30, 30))
@@ -324,7 +325,8 @@ class Ui_MainWindow(object):
         font.setPointSize(9)
         self.box_dni.setFont(font)
         self.box_dni.setStyleSheet("background-color: rgb(255, 255, 255);\n"
-"color: rgb(11, 52, 84);")
+"color: rgb(11, 52, 84);\n"
+"border:1px solid  #a8a8a8;")
         self.box_dni.setObjectName("box_dni")
         self.button_searchDNI = QtWidgets.QPushButton(parent=self.box_search)
         self.button_searchDNI.setMinimumSize(QtCore.QSize(30, 30))
@@ -369,7 +371,8 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(10)
         self.input_student_name.setFont(font)
-        self.input_student_name.setStyleSheet("background-color: rgb(255, 255, 255);")
+        self.input_student_name.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+"border:1px solid  #a8a8a8;")
         self.input_student_name.setText("")
         self.input_student_name.setReadOnly(True)
         self.input_student_name.setObjectName("input_student_name")
@@ -390,7 +393,8 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(10)
         self.input_date.setFont(font)
-        self.input_date.setStyleSheet("background-color: rgb(255, 255, 255);")
+        self.input_date.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+"border:1px solid  #a8a8a8;")
         self.input_date.setReadOnly(True)
         self.input_date.setObjectName("input_date")
         self.info1.addWidget(self.date_student)
@@ -410,7 +414,8 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(10)
         self.input_grade.setFont(font)
-        self.input_grade.setStyleSheet("background-color: rgb(255, 255, 255);")
+        self.input_grade.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+"border:1px solid  #a8a8a8;")
         self.input_grade.setReadOnly(True)
         self.input_grade.setObjectName("input_grade")
         self.info1.addWidget(self.grade_student)
@@ -435,7 +440,8 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(10)
         self.input_tutor_name.setFont(font)
-        self.input_tutor_name.setStyleSheet("background-color: rgb(255, 255, 255);")
+        self.input_tutor_name.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+"border:1px solid  #a8a8a8;")
         self.input_tutor_name.setReadOnly(True)
         self.input_tutor_name.setObjectName("input_tutor_name")
         self.info2.addWidget(self.tutor_name)
@@ -455,7 +461,8 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(10)
         self.input_dni.setFont(font)
-        self.input_dni.setStyleSheet("background-color: rgb(255, 255, 255);")
+        self.input_dni.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+"border:1px solid  #a8a8a8;")
         self.input_dni.setReadOnly(True)
         self.input_dni.setObjectName("input_dni")
         self.info2.addWidget(self.dni_tutor)
@@ -475,7 +482,8 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(10)
         self.input_email.setFont(font)
-        self.input_email.setStyleSheet("background-color: rgb(255, 255, 255);")
+        self.input_email.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+"border:1px solid  #a8a8a8;")
         self.input_email.setReadOnly(True)
         self.input_email.setObjectName("input_email")
         self.info2.addWidget(self.email_tutor)
@@ -500,7 +508,8 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(10)
         self.input_address.setFont(font)
-        self.input_address.setStyleSheet("background-color: rgb(255, 255, 255);")
+        self.input_address.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+"border:1px solid  #a8a8a8;")
         self.input_address.setReadOnly(True)
         self.input_address.setObjectName("input_address")
         self.info3.addWidget(self.addres)
@@ -521,7 +530,8 @@ class Ui_MainWindow(object):
         font.setPointSize(10)
         self.input_phone.setFont(font)
         self.input_phone.setStyleSheet("background-color: rgb(255, 255, 255);\n"
-"color: ;")
+"color: rgb(11, 52, 84);\n"
+"border:1px solid  #a8a8a8;")
         self.input_phone.setReadOnly(True)
         self.input_phone.setObjectName("input_phone")
         self.info3.addWidget(self.phone_tutor)
@@ -645,6 +655,7 @@ class Ui_MainWindow(object):
         font.setBold(True)
         font.setWeight(75)
         self.label_dni.setFont(font)
+        self.label_dni.setStyleSheet("color: rgb(11, 52, 84);")
         self.label_dni.setObjectName("label_dni")
         self.lineEdit_dni = QtWidgets.QLineEdit(parent=self.DNI)
         self.lineEdit_dni.setMinimumSize(QtCore.QSize(0, 35))
@@ -652,6 +663,9 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(10)
         self.lineEdit_dni.setFont(font)
+        self.lineEdit_dni.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+"color: rgb(11, 52, 84);\n"
+"border:1px solid  #a8a8a8;")
         self.lineEdit_dni.setObjectName("lineEdit_dni")
         self.values_part1.addWidget(self.DNI)
         self.student_name_2 = QtWidgets.QSplitter(parent=self.layoutWidget_2)
@@ -664,6 +678,7 @@ class Ui_MainWindow(object):
         font.setBold(True)
         font.setWeight(75)
         self.label_studentName_2.setFont(font)
+        self.label_studentName_2.setStyleSheet("color: rgb(11, 52, 84);")
         self.label_studentName_2.setObjectName("label_studentName_2")
         self.input_student_name_2 = QtWidgets.QLineEdit(parent=self.student_name_2)
         self.input_student_name_2.setMinimumSize(QtCore.QSize(250, 35))
@@ -671,7 +686,9 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(10)
         self.input_student_name_2.setFont(font)
-        self.input_student_name_2.setStyleSheet("background-color: rgb(255, 255, 255);")
+        self.input_student_name_2.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+"color: rgb(11, 52, 84);\n"
+"border:1px solid  #a8a8a8;")
         self.input_student_name_2.setText("")
         self.input_student_name_2.setReadOnly(False)
         self.input_student_name_2.setObjectName("input_student_name_2")
@@ -686,6 +703,7 @@ class Ui_MainWindow(object):
         font.setBold(True)
         font.setWeight(75)
         self.label_date_birth.setFont(font)
+        self.label_date_birth.setStyleSheet("color: rgb(11, 52, 84);")
         self.label_date_birth.setObjectName("label_date_birth")
         self.dateEdit = QtWidgets.QDateEdit(parent=self.dateBirth)
         self.dateEdit.setMinimumSize(QtCore.QSize(0, 35))
@@ -693,6 +711,9 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(10)
         self.dateEdit.setFont(font)
+        self.dateEdit.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+"color: rgb(11, 52, 84);\n"
+"border:1px solid  #a8a8a8;")
         self.dateEdit.setObjectName("dateEdit")
         self.values_part1.addWidget(self.dateBirth)
         self.layoutWidget_3 = QtWidgets.QWidget(parent=self.values)
@@ -710,6 +731,7 @@ class Ui_MainWindow(object):
         font.setBold(True)
         font.setWeight(75)
         self.label_grade_2.setFont(font)
+        self.label_grade_2.setStyleSheet("color: rgb(11, 52, 84);")
         self.label_grade_2.setObjectName("label_grade_2")
         self.options_grade = QtWidgets.QComboBox(parent=self.gradeStudent)
         self.options_grade.setMinimumSize(QtCore.QSize(0, 35))
@@ -717,6 +739,9 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(10)
         self.options_grade.setFont(font)
+        self.options_grade.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+"color: rgb(11, 52, 84);\n"
+"border:1px solid  #a8a8a8;")
         self.options_grade.setObjectName("options_grade")
         self.options_grade.addItem("")
         self.options_grade.addItem("")
@@ -741,6 +766,7 @@ class Ui_MainWindow(object):
         font.setBold(True)
         font.setWeight(75)
         self.label_dni_tutor_2.setFont(font)
+        self.label_dni_tutor_2.setStyleSheet("color: rgb(11, 52, 84);")
         self.label_dni_tutor_2.setObjectName("label_dni_tutor_2")
         self.input_dni_2 = QtWidgets.QLineEdit(parent=self.dni_tutor_2)
         self.input_dni_2.setMinimumSize(QtCore.QSize(0, 35))
@@ -748,7 +774,9 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(10)
         self.input_dni_2.setFont(font)
-        self.input_dni_2.setStyleSheet("background-color: rgb(255, 255, 255);")
+        self.input_dni_2.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+"color: rgb(11, 52, 84);\n"
+"border:1px solid  #a8a8a8;")
         self.input_dni_2.setReadOnly(False)
         self.input_dni_2.setObjectName("input_dni_2")
         self.values_part2.addWidget(self.dni_tutor_2)
@@ -762,6 +790,7 @@ class Ui_MainWindow(object):
         font.setBold(True)
         font.setWeight(75)
         self.label_tutor_name_2.setFont(font)
+        self.label_tutor_name_2.setStyleSheet("color: rgb(11, 52, 84);")
         self.label_tutor_name_2.setObjectName("label_tutor_name_2")
         self.input_tutor_name_2 = QtWidgets.QLineEdit(parent=self.tutor_name_2)
         self.input_tutor_name_2.setMinimumSize(QtCore.QSize(250, 35))
@@ -769,7 +798,9 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(10)
         self.input_tutor_name_2.setFont(font)
-        self.input_tutor_name_2.setStyleSheet("background-color: rgb(255, 255, 255);")
+        self.input_tutor_name_2.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+"color: rgb(11, 52, 84);\n"
+"border:1px solid  #a8a8a8;")
         self.input_tutor_name_2.setReadOnly(False)
         self.input_tutor_name_2.setObjectName("input_tutor_name_2")
         self.values_part2.addWidget(self.tutor_name_2)
@@ -788,6 +819,7 @@ class Ui_MainWindow(object):
         font.setBold(True)
         font.setWeight(75)
         self.label_email_tutor_2.setFont(font)
+        self.label_email_tutor_2.setStyleSheet("color: rgb(11, 52, 84);")
         self.label_email_tutor_2.setObjectName("label_email_tutor_2")
         self.input_email_2 = QtWidgets.QLineEdit(parent=self.email_tutor_2)
         self.input_email_2.setMinimumSize(QtCore.QSize(0, 35))
@@ -795,7 +827,9 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(10)
         self.input_email_2.setFont(font)
-        self.input_email_2.setStyleSheet("background-color: rgb(255, 255, 255);")
+        self.input_email_2.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+"color: rgb(11, 52, 84);\n"
+"border:1px solid  #a8a8a8;")
         self.input_email_2.setReadOnly(False)
         self.input_email_2.setObjectName("input_email_2")
         self.values_part3.addWidget(self.email_tutor_2)
@@ -809,6 +843,7 @@ class Ui_MainWindow(object):
         font.setBold(True)
         font.setWeight(75)
         self.label_address_2.setFont(font)
+        self.label_address_2.setStyleSheet("color: rgb(11, 52, 84);")
         self.label_address_2.setObjectName("label_address_2")
         self.input_address_2 = QtWidgets.QLineEdit(parent=self.addres_2)
         self.input_address_2.setMinimumSize(QtCore.QSize(250, 35))
@@ -816,7 +851,9 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(10)
         self.input_address_2.setFont(font)
-        self.input_address_2.setStyleSheet("background-color: rgb(255, 255, 255);")
+        self.input_address_2.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+"color: rgb(11, 52, 84);\n"
+"border:1px solid  #a8a8a8;")
         self.input_address_2.setReadOnly(False)
         self.input_address_2.setObjectName("input_address_2")
         self.values_part3.addWidget(self.addres_2)
@@ -838,7 +875,9 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(10)
         self.input_phone_2.setFont(font)
-        self.input_phone_2.setStyleSheet("background-color: rgb(255, 255, 255);")
+        self.input_phone_2.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+"color: rgb(11, 52, 84);\n"
+"border:1px solid  #a8a8a8;")
         self.input_phone_2.setReadOnly(False)
         self.input_phone_2.setObjectName("input_phone_2")
         self.values_part3.addWidget(self.phone_tutor_2)
