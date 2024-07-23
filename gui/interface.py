@@ -4,7 +4,6 @@ from data.student import StudentData, CreateStudent, SearchStudent
 from model.student import Student
 import conexion as con
 
-
 class MyInterface(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super().__init__()
@@ -13,6 +12,10 @@ class MyInterface(QMainWindow, Ui_MainWindow):
         self.list_student_table.setColumnCount(6)
         self.list_student_table.setHorizontalHeaderLabels(
             ["DNI", "Nombre", "Grado", "Tutor", "Teléfono Tutor", "Nº Facturas"]
+        )
+        self.history_table.setColumnCount(6)
+        self.history_table.setHorizontalHeaderLabels(
+            ["Nº Factura", "Descripción", "Fecha Generación", "Fecha Vencimiento", "Monto total", "Estado"]
         )
         self.students_2.clicked.connect(self.switch_to_studentsPage)
         self.payments_2.clicked.connect(self.switch_to_paymentsPage)
@@ -136,6 +139,7 @@ class MyInterface(QMainWindow, Ui_MainWindow):
         self.input_email.clear()
         self.input_address.clear()
         self.input_phone.clear()
+        self.history_table.setRowCount(0)
 
     def search_student_by_dni(self):
         dni = self.box_dni.text()
@@ -144,14 +148,22 @@ class MyInterface(QMainWindow, Ui_MainWindow):
             db = con.Conexion().conectar()
             cursor = db.cursor()
             cursor.execute(
-                "SELECT student_name, date_of_birth, grade, tutor_dni, tutor_name, tutor_email, address, tutor_phone FROM students WHERE student_dni = ?",
-                (dni,),
+                """
+                SELECT s.student_name, s.date_of_birth, s.grade, s.tutor_dni, s.tutor_name, s.tutor_email, s.address, s.tutor_phone, 
+                       f.invoice_id, f.description, f.created_at, f.due_date, f.total_amount, f.status
+                FROM students s
+                LEFT JOIN invoices f ON s.student_dni = f.student_dni_fk
+                WHERE s.student_dni = ?
+                """,
+                (dni,)
             )
-            student = cursor.fetchone()
+            rows = cursor.fetchall()
             db.close()
 
-            if student:
+            if rows:
                 print("Usuario encontrado")
+                self.message_error.clear()
+                student = rows[0]
                 self.input_student_name.setText(student[0])
                 self.input_date.setText(student[1])
                 self.input_grade.setText(student[2])
@@ -160,13 +172,21 @@ class MyInterface(QMainWindow, Ui_MainWindow):
                 self.input_email.setText(student[5])
                 self.input_address.setText(student[6])
                 self.input_phone.setText(student[7])
+
+                self.history_table.setRowCount(0)
+                for row in rows:
+                    row_position = self.history_table.rowCount()
+                    self.history_table.insertRow(row_position)
+                    for column_number, cell_data in enumerate(row[8:]):
+                        self.history_table.setItem(row_position, column_number, QTableWidgetItem(str(cell_data)))
+
             else:
                 self.message_error.setText("Estudiante no encontrado")
+                print("Usuario no encontrado")
                 self.clear_data_searchStudent()
         else:
             self.message_error.setText("Por favor ingrese un DNI válido")
             print("DNI vacío")
-
 
 if __name__ == "__main__":
     app = QApplication([])

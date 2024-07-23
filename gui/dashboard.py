@@ -1113,8 +1113,6 @@ class Ui_MainWindow(object):
         self.content.setCurrentIndex(0)
         self.principal_content.setCurrentIndex(1)
         self.exit.toggled['bool'].connect(MainWindow.close) # type: ignore
-        self.button_searchDNI.clicked.connect(self.box_dni.undo) # type: ignore
-        self.button_search.clicked.connect(self.box.undo) # type: ignore
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):

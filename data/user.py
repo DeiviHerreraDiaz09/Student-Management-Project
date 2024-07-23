@@ -14,8 +14,8 @@ class LoginThread(QThread):
         db = con.Conexion().conectar()
         cursor = db.cursor()
         res = cursor.execute(
-            "SELECT * FROM users WHERE user_dni = ? AND password = ?",
-            (self.user._user_dni, self.user._password),
+            "SELECT * FROM users WHERE user_name = ? AND password = ?",
+            (self.user._user_name, self.user._password),
         )
         fila = res.fetchone()
         if fila:

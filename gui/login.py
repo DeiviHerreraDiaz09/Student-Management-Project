@@ -17,15 +17,15 @@ class Login:
         self.login.show()
 
     def ingresar(self):
-        if len(self.login.txtDNI.text()) < 2:
+        if len(self.login.txtUser.text()) < 2:
             self.login.lblMSG.setText("Ingrese un usuario Válido")
-            self.login.txtDNI.setFocus()
+            self.login.txtUser.setFocus()
         elif len(self.login.txtPassword.text()) < 3:
             self.login.lblMSG.setText("Ingrese una contraseña Válida")
             self.login.txtPassword.setFocus()
         else:
             user = User(
-                user_dni=self.login.txtDNI.text(),
+                user_name=self.login.txtUser.text(),
                 password=self.login.txtPassword.text(),
             )
             self.user_data = UserData()

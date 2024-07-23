@@ -20,9 +20,9 @@
   <widget class="QLabel" name="label_3">
    <property name="geometry">
     <rect>
-     <x>520</x>
+     <x>490</x>
      <y>230</y>
-     <width>51</width>
+     <width>91</width>
      <height>21</height>
     </rect>
    </property>
@@ -36,7 +36,7 @@
     <string notr="true">color: rgb(0, 0, 0);</string>
    </property>
    <property name="text">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:600; color:#146496;&quot;&gt;DNI:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:600; color:#146496;&quot;&gt;Usuario:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_4">
@@ -58,7 +58,7 @@
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:600; color:#146496;&quot;&gt;Contraseña:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="txtDNI">
+  <widget class="QLineEdit" name="txtUser">
    <property name="geometry">
     <rect>
      <x>580</x>
@@ -182,7 +182,7 @@ border: 1px solid black;
     <string/>
    </property>
    <property name="pixmap">
-    <pixmap resource="../../../../Desktop/img.qrc">:/xy/user.png</pixmap>
+    <pixmap>:/xy/user.png</pixmap>
    </property>
    <property name="scaledContents">
     <bool>true</bool>
@@ -239,7 +239,7 @@ background-color: rgb(255, 255, 255);
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap resource="../../../../Desktop/img.qrc">:/xy/R.png</pixmap>
+      <pixmap>:/xy/R.png</pixmap>
      </property>
      <property name="scaledContents">
       <bool>true</bool>
