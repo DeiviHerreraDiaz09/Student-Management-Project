@@ -161,11 +161,10 @@ class MyInterface(QMainWindow, Ui_MainWindow):
                 self.input_address.setText(student[6])
                 self.input_phone.setText(student[7])
             else:
-                self.message.setText("Estudiante no encontrado")
-                print("Usuario no encontrado")
+                self.message_error.setText("Estudiante no encontrado")
                 self.clear_data_searchStudent()
         else:
-            self.message.setText("Por favor ingrese un DNI válido")
+            self.message_error.setText("Por favor ingrese un DNI válido")
             print("DNI vacío")
 
 

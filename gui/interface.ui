@@ -149,7 +149,7 @@ QTabBar::tab:hover {
 </string>
              </property>
              <property name="currentIndex">
-              <number>0</number>
+              <number>1</number>
              </property>
              <widget class="QWidget" name="ListStudents">
               <property name="styleSheet">
@@ -302,7 +302,7 @@ border-radius:6px;
                          <string/>
                         </property>
                         <property name="icon">
-                         <iconset>
+                         <iconset resource="../../../dashboard/resources.qrc">
                           <normaloff>:/icons/assets/icons/Search.svg</normaloff>:/icons/assets/icons/Search.svg</iconset>
                         </property>
                        </widget>
@@ -673,10 +673,42 @@ border-radius:6px;
                           <string/>
                          </property>
                          <property name="icon">
-                          <iconset>
+                          <iconset resource="../../../dashboard/resources.qrc">
                            <normaloff>:/icons/assets/icons/Search.svg</normaloff>:/icons/assets/icons/Search.svg</iconset>
                          </property>
                         </widget>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLabel" name="message_error">
+                        <property name="minimumSize">
+                         <size>
+                          <width>0</width>
+                          <height>20</height>
+                         </size>
+                        </property>
+                        <property name="maximumSize">
+                         <size>
+                          <width>16777215</width>
+                          <height>20</height>
+                         </size>
+                        </property>
+                        <property name="font">
+                         <font>
+                          <family>Euphemia</family>
+                          <pointsize>9</pointsize>
+                          <weight>75</weight>
+                          <bold>true</bold>
+                         </font>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true">font-family: Euphemia;
+color:red;
+</string>
+                        </property>
+                        <property name="text">
+                         <string/>
+                        </property>
                        </widget>
                       </item>
                      </layout>
@@ -2027,7 +2059,7 @@ font-weight:bold
             <string/>
            </property>
            <property name="pixmap">
-            <pixmap>:/icons/assets/icons/icons8-computer-50.png</pixmap>
+            <pixmap resource="../../../dashboard/resources.qrc">:/icons/assets/icons/icons8-computer-50.png</pixmap>
            </property>
           </widget>
          </item>
@@ -2091,7 +2123,7 @@ font-weight:bold
             <string>Estudiantes</string>
            </property>
            <property name="icon">
-            <iconset>
+            <iconset resource="../../../dashboard/resources.qrc">
              <normaloff>:/icons/assets/icons/profile_white.png</normaloff>
              <normalon>:/icons/assets/icons/profile.png</normalon>:/icons/assets/icons/profile_white.png</iconset>
            </property>
@@ -2123,7 +2155,7 @@ font-weight:bold
             <string>Pagos</string>
            </property>
            <property name="icon">
-            <iconset>
+            <iconset resource="../../../dashboard/resources.qrc">
              <normaloff>:/icons/assets/icons/icons8-transaction-96.png</normaloff>
              <normalon>:/icons/assets/icons/icons8-transaction-96-blue.png</normalon>:/icons/assets/icons/icons8-transaction-96.png</iconset>
            </property>
@@ -2155,7 +2187,7 @@ font-weight:bold
             <string>Reportes</string>
            </property>
            <property name="icon">
-            <iconset>
+            <iconset resource="../../../dashboard/resources.qrc">
              <normaloff>:/icons/assets/icons/icons8-report-100.png</normaloff>
              <normalon>:/icons/assets/icons/icons8-report-100-blue.png</normalon>:/icons/assets/icons/icons8-report-100.png</iconset>
            </property>
@@ -2202,7 +2234,7 @@ font-weight:bold
           <string>Salir</string>
          </property>
          <property name="icon">
-          <iconset>
+          <iconset resource="../../../dashboard/resources.qrc">
            <normaloff>:/icons/assets/icons/log_out_white.png</normaloff>:/icons/assets/icons/log_out_white.png</iconset>
          </property>
          <property name="iconSize">
@@ -2227,7 +2259,7 @@ font-weight:bold
   <include location="../../../dashboard/resources.qrc"/>
   <include location="../../../dashboard/resources.qrc"/>
   <include location="../../../dashboard/resources.qrc"/>
-  <include location="../../../Downloads/dashboard/resources.qrc"/>
+  <include location="../../../dashboard/resources.qrc"/>
  </resources>
  <connections>
   <connection>
