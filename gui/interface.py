@@ -149,7 +149,7 @@ class MyInterface(QMainWindow, Ui_MainWindow):
                             row_number, column_number, QTableWidgetItem(str(cell_data))
                         )
             else:
-                print("No se encontraron estudiantes con ese nombre")
+                self.message_error_name.setText("No se encontraron estudiantes con ese nombre")
                 self.update_table(self.original_data) 
         else:
             self.update_table(self.original_data)  

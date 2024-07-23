@@ -149,7 +149,7 @@ QTabBar::tab:hover {
 </string>
              </property>
              <property name="currentIndex">
-              <number>1</number>
+              <number>0</number>
              </property>
              <widget class="QWidget" name="ListStudents">
               <property name="styleSheet">
@@ -364,6 +364,27 @@ color:white;</string>
                      </widget>
                     </item>
                    </layout>
+                  </widget>
+                  <widget class="QLabel" name="message_error_name">
+                   <property name="font">
+                    <font>
+                     <family>Euphemia</family>
+                     <pointsize>9</pointsize>
+                     <weight>75</weight>
+                     <bold>true</bold>
+                    </font>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">font-family: Euphemia;
+color:red;
+</string>
+                   </property>
+                   <property name="text">
+                    <string/>
+                   </property>
+                   <property name="margin">
+                    <number>2</number>
+                   </property>
                   </widget>
                  </widget>
                  <widget class="QTableWidget" name="list_student_table">
@@ -1159,9 +1180,6 @@ border:1px solid  #a8a8a8;</string>
 
 QTableWidget::item {
     padding: 1px;
- 	 background-color: #e9f4fd;
-     color: #000080; 
-	text-align:center;
 }
 
 QTableWidget::item:selected {
@@ -2264,54 +2282,5 @@ font-weight:bold
   <include location="../../../dashboard/resources.qrc"/>
   <include location="../../../dashboard/resources.qrc"/>
  </resources>
- <connections>
-  <connection>
-   <sender>exit</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>MainWindow</receiver>
-   <slot>close()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>78</x>
-     <y>670</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>99</x>
-     <y>679</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>button_searchDNI</sender>
-   <signal>clicked()</signal>
-   <receiver>box_dni</receiver>
-   <slot>undo()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>370</x>
-     <y>306</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>305</x>
-     <y>302</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>button_search</sender>
-   <signal>clicked()</signal>
-   <receiver>box</receiver>
-   <slot>undo()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>447</x>
-     <y>219</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>396</x>
-     <y>219</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>
