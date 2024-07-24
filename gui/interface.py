@@ -1,8 +1,8 @@
-from gui.dashboard import Ui_MainWindow
+from Services.studentService import StudentData, CreateStudent, SearchStudent
 from PyQt6.QtWidgets import QApplication, QMainWindow, QTableWidgetItem
-from data.student import StudentData, CreateStudent, SearchStudent
+from gui.dashboard import Ui_MainWindow
 from model.student import Student
-import conexion as con
+import DB.conexion as con
 
 
 class MyInterface(QMainWindow, Ui_MainWindow):

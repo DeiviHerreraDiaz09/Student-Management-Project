@@ -1,13 +1,13 @@
-from PyQt6 import uic, QtGui
-from data.user import UserData
-from model.user import User
+from Services.userService import UserData
 from gui.main import MainWindow
-from conexion import Conexion
+from DB.conexion import Conexion
+from PyQt6 import uic, QtGui
+from model.user import User
 
 
 class Login:
     def __init__(self):
-        self.login = uic.loadUi("gui/login.ui")
+        self.login = uic.loadUi("gui/UI/login.ui")
         user = QtGui.QPixmap("./assets/img/user.png")
         book = QtGui.QPixmap("./assets/img/bookIcon.png")
         self.login.iconUser.setPixmap(user)
