@@ -1,11 +1,13 @@
 from datetime import datetime
 import sqlite3
+import sys
 import os
+
 
 class Conexion:
     def __init__(self):
         try:
-            db_path = os.path.join("DB", "schoolDB")
+            db_path = os.path.join(sys._MEIPASS, "DB", "schoolDB") if getattr(sys, 'frozen', False) else os.path.join("DB", "schoolDB")
             self.con = sqlite3.connect(db_path)
             self.creartablas()
             self.crearTriggers()
@@ -22,7 +24,7 @@ class Conexion:
             cursor.execute(
                 """
                 CREATE TABLE IF NOT EXISTS users (
-                    user_dni TEXT PRIMARY KEY UNIQUE,
+                    user_id TEXT PRIMARY KEY UNIQUE AUTOINCREMENT,
                     user_name TEXT NOT NULL,
                     user_email TEXT NOT NULL,
                     password TEXT NOT NULL,
@@ -33,7 +35,7 @@ class Conexion:
             cursor.execute(
                 """
                 CREATE TABLE IF NOT EXISTS students (
-                    student_dni TEXT PRIMARY KEY UNIQUE,
+                    student_id TEXT PRIMARY KEY UNIQUE AUTOINCREMENT,
                     student_name TEXT NOT NULL,
                     date_of_birth TEXT NOT NULL,
                     grade TEXT NOT NULL,
@@ -176,17 +178,17 @@ class Conexion:
                 ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             """,
                 (
-                    "5678",  
-                    "Juan Perez", 
-                    "2010-05-15", 
-                    "1 primaria", 
-                    2023, 
-                    "8765", 
-                    "Maria Perez",  
-                    "Calle Falsa 123",  
-                    "maria.perez@example.com",  
-                    "123456789" 
-                )
+                    "5678",
+                    "Juan Perez",
+                    "2010-05-15",
+                    "1 primaria",
+                    2023,
+                    "8765",
+                    "Maria Perez",
+                    "Calle Falsa 123",
+                    "maria.perez@example.com",
+                    "123456789",
+                ),
             )
             print("Estudiante creado correctamente")
             self.con.commit()
@@ -265,6 +267,7 @@ class Conexion:
 
     def conectar(self):
         return self.con
+
 
 if __name__ == "__main__":
     conexion = Conexion()

@@ -1,10 +1,10 @@
 from PyQt6.QtWidgets import QApplication
-from gui.login import Login
+from gui.interface2 import MyInterface
 
 
 def main():
     app = QApplication([])
-    login = Login()
+    login = MyInterface()
     app.exec()
 
 

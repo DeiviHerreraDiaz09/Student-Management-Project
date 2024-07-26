@@ -1,6 +1,8 @@
 from PyQt6.QtCore import QObject, pyqtSignal, QThread
 from model.user import User
 import conexion as con
+import os
+import sys
 
 
 class LoginThread(QThread):
@@ -35,3 +37,9 @@ class UserData(QObject):
 
     def handle_login_result(self, success):
         self.login_result.emit(success)
+
+
+def resolver_ruta(ruta_relativa):
+        if hasattr(sys, '_MEIPASS'):
+            return os.path.join(sys._MEIPASS, ruta_relativa)
+        return os.path.join(os.path.abspath('.'), ruta_relativa)

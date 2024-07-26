@@ -1,6 +1,6 @@
 from Services.studentService import StudentData, CreateStudent, SearchStudent
 from PyQt6.QtWidgets import QApplication, QMainWindow, QTableWidgetItem
-from gui.dashboard import Ui_MainWindow
+from gui.UI.dashboard import Ui_MainWindow
 from model.student import Student
 import conexion as con
 

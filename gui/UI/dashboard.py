@@ -7,6 +7,7 @@
 
 
 from PyQt6 import QtCore, QtGui, QtWidgets
+from Services.userService import resolver_ruta
 
 
 class Ui_MainWindow(object):
@@ -179,7 +180,7 @@ class Ui_MainWindow(object):
         self.button_search.setText("")
         icon = QtGui.QIcon()
         icon.addPixmap(
-            QtGui.QPixmap("./assets/img/Search.svg"),
+            QtGui.QPixmap(resolver_ruta("./assets/img/Search.svg")),
             QtGui.QIcon.Mode.Normal,
             QtGui.QIcon.State.Off,
         )
@@ -1109,7 +1110,7 @@ class Ui_MainWindow(object):
         self.icon.setMinimumSize(QtCore.QSize(50, 50))
         self.icon.setMaximumSize(QtCore.QSize(50, 50))
         self.icon.setText("")
-        self.icon.setPixmap(QtGui.QPixmap("./assets/img/icons8-computer-50.png"))
+        self.icon.setPixmap(QtGui.QPixmap(resolver_ruta("./assets/img/icons8-computer-50.png")))
         self.icon.setObjectName("icon")
         self.tittle_dashboard.addWidget(self.icon)
         self.tittle = QtWidgets.QLabel(parent=self.icon_complete_widget)
@@ -1140,12 +1141,12 @@ class Ui_MainWindow(object):
         self.students_2.setFont(font)
         icon1 = QtGui.QIcon()
         icon1.addPixmap(
-            QtGui.QPixmap("./assets/img/profile_white.png"),
+            QtGui.QPixmap(resolver_ruta("./assets/img/profile_white.png")),
             QtGui.QIcon.Mode.Normal,
             QtGui.QIcon.State.Off,
         )
         icon1.addPixmap(
-            QtGui.QPixmap("./assets/img/profile.png"),
+            QtGui.QPixmap(resolver_ruta("./assets/img/profile.png")),
             QtGui.QIcon.Mode.Normal,
             QtGui.QIcon.State.On,
         )
@@ -1164,12 +1165,12 @@ class Ui_MainWindow(object):
         self.payments_2.setFont(font)
         icon2 = QtGui.QIcon()
         icon2.addPixmap(
-            QtGui.QPixmap("./assets/img/icons8-transaction-96.png"),
+            QtGui.QPixmap(resolver_ruta("./assets/img/icons8-transaction-96.png")),
             QtGui.QIcon.Mode.Normal,
             QtGui.QIcon.State.Off,
         )
         icon2.addPixmap(
-            QtGui.QPixmap("./assets/img/icons8-transaction-96-blue.png"),
+            QtGui.QPixmap(resolver_ruta("./assets/img/icons8-transaction-96-blue.png")),
             QtGui.QIcon.Mode.Normal,
             QtGui.QIcon.State.On,
         )
@@ -1188,12 +1189,12 @@ class Ui_MainWindow(object):
         self.reports_2.setFont(font)
         icon3 = QtGui.QIcon()
         icon3.addPixmap(
-            QtGui.QPixmap("./assets/img/icons8-report-100.png"),
+            QtGui.QPixmap(resolver_ruta("./assets/img/icons8-report-100.png")),
             QtGui.QIcon.Mode.Normal,
             QtGui.QIcon.State.Off,
         )
         icon3.addPixmap(
-            QtGui.QPixmap("./assets/img/icons8-report-100-blue.png"),
+            QtGui.QPixmap(resolver_ruta("./assets/img/icons8-report-100-blue.png")),
             QtGui.QIcon.Mode.Normal,
             QtGui.QIcon.State.On,
         )
@@ -1220,7 +1221,7 @@ class Ui_MainWindow(object):
         self.exit.setFont(font)
         icon4 = QtGui.QIcon()
         icon4.addPixmap(
-            QtGui.QPixmap("./assets/img/log_out_white.png"),
+            QtGui.QPixmap(resolver_ruta("assets/img/log_out_white.png")),
             QtGui.QIcon.Mode.Normal,
             QtGui.QIcon.State.Off,
         )
