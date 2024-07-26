@@ -7,12 +7,15 @@ import os
 class Conexion:
     def __init__(self):
         try:
-            db_path = os.path.join(sys._MEIPASS, "DB", "schoolDB") if getattr(sys, 'frozen', False) else os.path.join("DB", "schoolDB")
+            db_path = (
+                os.path.join(sys._MEIPASS, "DB", "schoolDB")
+                if getattr(sys, "frozen", False)
+                else os.path.join("DB", "schoolDB")
+            )
             self.con = sqlite3.connect(db_path)
             self.creartablas()
             self.crearTriggers()
             self.crearAdmin()
-            self.crearEstudiante()
         except sqlite3.Error as e:
             print(f"Error al conectar con la base de datos: {e}")
         except Exception as ex:
@@ -24,7 +27,7 @@ class Conexion:
             cursor.execute(
                 """
                 CREATE TABLE IF NOT EXISTS users (
-                    user_id TEXT PRIMARY KEY UNIQUE AUTOINCREMENT,
+                    user_id INTEGER PRIMARY KEY AUTOINCREMENT,
                     user_name TEXT NOT NULL,
                     user_email TEXT NOT NULL,
                     password TEXT NOT NULL,
@@ -35,7 +38,7 @@ class Conexion:
             cursor.execute(
                 """
                 CREATE TABLE IF NOT EXISTS students (
-                    student_id TEXT PRIMARY KEY UNIQUE AUTOINCREMENT,
+                    student_id INTEGER PRIMARY KEY AUTOINCREMENT,
                     student_name TEXT NOT NULL,
                     date_of_birth TEXT NOT NULL,
                     grade TEXT NOT NULL,
@@ -44,7 +47,8 @@ class Conexion:
                     tutor_name TEXT NOT NULL,
                     address TEXT NOT NULL,
                     tutor_email TEXT NOT NULL,
-                    tutor_phone TEXT NOT NULL
+                    tutor_phone TEXT NOT NULL,
+                    status TEXT NOT NULL
                 )
             """
             )
@@ -58,8 +62,8 @@ class Conexion:
                     due_date TEXT NOT NULL,
                     created_at TEXT NOT NULL,
                     status TEXT NOT NULL,
-                    student_dni_fk TEXT NOT NULL,
-                    FOREIGN KEY (student_dni_fk) REFERENCES students(student_dni)
+                    student_id_fk INTEGER NOT NULL,
+                    FOREIGN KEY (student_id_fk) REFERENCES students(student_id)
                 )
             """
             )
@@ -93,7 +97,7 @@ class Conexion:
                 AFTER INSERT ON students
                 FOR EACH ROW
                 BEGIN
-                    INSERT INTO invoices (description, total_amount, remaining_amount, due_date, created_at, status, student_dni_fk)
+                    INSERT INTO invoices (description, total_amount, remaining_amount, due_date, created_at, status, student_id_fk)
                     VALUES (
                         'Factura mensual',
                         100, 
@@ -101,7 +105,7 @@ class Conexion:
                         date('now', '+1 month'),
                         date('now'),
                         'pendiente',
-                        NEW.student_dni
+                        NEW.student_id
                     );
                 END;
             """
@@ -138,64 +142,31 @@ class Conexion:
             cursor = self.con.cursor()
             cursor.execute(
                 """
-                INSERT INTO users (
-                    user_dni,
-                    user_name,
-                    user_email,
-                    password,
-                    role
-                ) VALUES (?, ?, ?, ?, ?)
-            """,
-                ("1234", "Admin", "d@g.com", "1234", "Administrador"),
+                SELECT COUNT(*) FROM users WHERE user_email = ?
+                """,
+                ("d@g.com",),
             )
-            print("Admin creado correctamente")
-            self.con.commit()
-        except sqlite3.IntegrityError as e:
-            print(f"Error de integridad: {e}")
-        except sqlite3.Error as e:
-            print(f"Error al insertar admin: {e}")
-        except Exception as ex:
-            print(f"Otro error: {ex}")
-        finally:
-            cursor.close()
+            admin_count = cursor.fetchone()[0]
 
-    def crearEstudiante(self):
-        try:
-            cursor = self.con.cursor()
-            cursor.execute(
-                """
-                INSERT INTO students (
-                    student_dni,
-                    student_name,
-                    date_of_birth,
-                    grade,
-                    year_progress,
-                    tutor_dni,
-                    tutor_name,
-                    address,
-                    tutor_email,
-                    tutor_phone
-                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-            """,
-                (
-                    "5678",
-                    "Juan Perez",
-                    "2010-05-15",
-                    "1 primaria",
-                    2023,
-                    "8765",
-                    "Maria Perez",
-                    "Calle Falsa 123",
-                    "maria.perez@example.com",
-                    "123456789",
-                ),
-            )
-            print("Estudiante creado correctamente")
+            if admin_count == 0:
+                cursor.execute(
+                    """
+                    INSERT INTO users (
+                        user_name,
+                        user_email,
+                        password,
+                        role
+                    ) VALUES (?, ?, ?, ?)
+                """,
+                    ("Admin", "d@g.com", "1234", "Administrador"),
+                )
+                print("Admin creado correctamente")
+            else:
+                print("El administrador ya existe")
+
             self.con.commit()
-        except sqlite3.IntegrityError as e:
-            print(f"Error de integridad: {e}")
         except sqlite3.Error as e:
-            print(f"Error al insertar estudiante: {e}")
+            print(f"Error al verificar o insertar admin: {e}")
         except Exception as ex:
             print(f"Otro error: {ex}")
         finally:
@@ -239,23 +210,23 @@ class Conexion:
 
             cursor.execute(
                 """
-                SELECT student_dni, grade, year_progress
+                SELECT student_id, grade, year_progress
                 FROM students
                 """
             )
 
             students = cursor.fetchall()
 
-            for student_dni, grade, year_progress in students:
+            for student_id, grade, year_progress in students:
                 if int(year_progress) < current_year and grade in grade_mapping:
                     new_grade = grade_mapping[grade]
                     cursor.execute(
                         """
                         UPDATE students
                         SET grade = ?, year_progress = ?
-                        WHERE student_dni = ?
+                        WHERE student_id = ?
                         """,
-                        (new_grade, current_year, student_dni),
+                        (new_grade, current_year, student_id),
                     )
 
             self.con.commit()

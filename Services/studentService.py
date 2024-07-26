@@ -14,7 +14,7 @@ class StudentData(QThread):
         db = con.Conexion().conectar()
         cursor = db.cursor()
         cursor.execute(
-            "SELECT student_dni, student_name, grade, tutor_name, tutor_phone, count(invoices.invoice_id)FROM students INNER JOIN invoices on student_dni = invoices.student_dni_fk GROUP BY student_dni ORDER BY count(invoices.invoice_id) DESC"
+            "SELECT student_id, student_name, grade, tutor_name, tutor_phone, count(invoices.invoice_id)FROM students INNER JOIN invoices on student_id = invoices.student_id_fk GROUP BY student_id ORDER BY count(invoices.invoice_id) DESC"
         )
 
         results = cursor.fetchall()
@@ -33,7 +33,7 @@ class SearchStudent(QThread):
     def run(self):
         db = con.Conexion().conectar()
         cursor = db.cursor()
-        cursor.execute("SELECT * FROM students WHERE student_dni =?", (self.dni,))
+        cursor.execute("SELECT * FROM students WHERE student_id =?", (self.dni,))
         fila = cursor.fetchone()
         if fila:
             self.student_result.emit(True)
@@ -56,9 +56,9 @@ class Create(QThread):
             db = con.Conexion().conectar()
             cursor = db.cursor()
             cursor.execute(
-                "INSERT INTO students (student_dni, student_name, date_of_birth, grade, tutor_dni, tutor_name, tutor_email, tutor_phone, address) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                "INSERT INTO students (student_id, student_name, date_of_birth, grade, tutor_dni, tutor_name, tutor_email, tutor_phone, address) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
                 (
-                    self.student.student_dni,
+                    self.student.student_id,
                     self.student.student_name,
                     self.student.date_of_birth,
                     self.student.grade,

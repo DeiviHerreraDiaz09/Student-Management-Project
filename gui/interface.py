@@ -70,7 +70,7 @@ class MyInterface(QMainWindow, Ui_MainWindow):
         self.searchStudent.start()
 
     def on_student_search_result(self, exists):
-        student_dni = self.lineEdit_dni.text()
+        student_id = self.lineEdit_dni.text()
         student_name = self.input_student_name_2.text()
         date_of_birtht = self.dateEdit.text()
         grade = self.options_grade.currentText()
@@ -83,7 +83,7 @@ class MyInterface(QMainWindow, Ui_MainWindow):
         if exists:
             self.message.setText("El estudiante ya existe")
             self.clear_data()
-        elif len(student_dni) <= 7:
+        elif len(student_id) <= 7:
             self.message.setText("El dni debe ser mínimo de 8 caractéres")
             self.lineEdit_dni.setFocus()
         elif len(student_name) <= 5:
@@ -106,7 +106,7 @@ class MyInterface(QMainWindow, Ui_MainWindow):
             self.input_phone_2.setFocus()
         else:
             student = Student(
-                student_dni,
+                student_id,
                 student_name,
                 date_of_birtht,
                 grade,
@@ -166,8 +166,8 @@ class MyInterface(QMainWindow, Ui_MainWindow):
                 SELECT s.student_name, s.date_of_birth, s.grade, s.tutor_dni, s.tutor_name, s.tutor_email, s.address, s.tutor_phone, 
                        f.invoice_id, f.description, f.created_at, f.due_date, f.total_amount, f.status
                 FROM students s
-                LEFT JOIN invoices f ON s.student_dni = f.student_dni_fk
-                WHERE s.student_dni = ?
+                LEFT JOIN invoices f ON s.student_id = f.student_id_fk
+                WHERE s.student_id = ?
                 """,
                 (dni,),
             )

@@ -4,11 +4,11 @@ from gui.UI.login import Ui_formLogin
 from gui.main import MainWindow
 from conexion import Conexion
 from model.user import User
-from PyQt6 import QtGui  
+from PyQt6 import QtGui
+
 
 class MyInterface(QMainWindow, Ui_formLogin):
 
-    
     def __init__(self):
         super().__init__()
         self.setupUi(self)
@@ -26,8 +26,6 @@ class MyInterface(QMainWindow, Ui_formLogin):
         self.initGUI()
         self.lblMSG.setText("")
         self.show()
-
-
 
     def ingresar(self):
         if len(self.txtUser.text()) < 2:

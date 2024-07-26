@@ -1110,7 +1110,9 @@ class Ui_MainWindow(object):
         self.icon.setMinimumSize(QtCore.QSize(50, 50))
         self.icon.setMaximumSize(QtCore.QSize(50, 50))
         self.icon.setText("")
-        self.icon.setPixmap(QtGui.QPixmap(resolver_ruta("./assets/img/icons8-computer-50.png")))
+        self.icon.setPixmap(
+            QtGui.QPixmap(resolver_ruta("./assets/img/icons8-computer-50.png"))
+        )
         self.icon.setObjectName("icon")
         self.tittle_dashboard.addWidget(self.icon)
         self.tittle = QtWidgets.QLabel(parent=self.icon_complete_widget)
