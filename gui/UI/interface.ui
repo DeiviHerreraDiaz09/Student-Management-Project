@@ -92,79 +92,30 @@ background-color: #878382;
          </property>
          <widget class="QWidget" name="students_page">
           <property name="styleSheet">
-           <string notr="true"/>
+           <string notr="true">background-color:#e9f4fd;</string>
           </property>
-          <layout class="QGridLayout" name="gridLayout_3">
+          <layout class="QGridLayout" name="gridLayout_9">
            <item row="0" column="0">
-            <widget class="QTabWidget" name="principal_content">
-             <property name="font">
-              <font>
-               <family>Euphemia</family>
-               <pointsize>9</pointsize>
-              </font>
-             </property>
+            <widget class="QStackedWidget" name="content_pages">
              <property name="styleSheet">
-              <string notr="true">QTabWidget{
-background-color:#e9f4fd;
-}
+              <string notr="true">
 
-QTabWidget::pane {
-    border: 1px solid #CCCCCC;
-	border-radius:3px;
-	background-color:#e9f4fd;
-}
-
-
-QTabBar::tab {
-	width: 120px;
-    background: #E0E0E0;
-    border: 1px solid #CCCCCC;
-    padding: 3px;
-    font-family: Ehupemia;
-    font-size: 11px;
-    color: #000000;
-}
-
-QTabBar::tab:selected {
-    background: #FFFFFF;
-    border-bottom-color: #FFFFFF;
-    font-weight: bold;
-    color: #0e436c;
-}
-
-QTabBar::tab:!selected {
-    background: #E0E0E0;
-    margin-top: 2px;
-    color: #888888;
-}
-
-
-QTabBar::tab:hover {
-    background: #D0D0D0;
-    color:#0b3454;
-}
-
-
-
-</string>
+QStackedWidget::right-arrow, QStackedWidget::left-arrow {
+    width: 0;
+    height: 0;
+}</string>
              </property>
              <property name="currentIndex">
               <number>0</number>
              </property>
              <widget class="QWidget" name="ListStudents">
-              <property name="styleSheet">
-               <string notr="true">background-color:#e9f4fd;</string>
-              </property>
-              <attribute name="title">
-               <string>Lista Estudiantes</string>
-              </attribute>
-              <layout class="QGridLayout" name="gridLayout_4">
+              <layout class="QGridLayout" name="gridLayout_3">
                <item row="0" column="0">
-                <widget class="QSplitter" name="listStudentMain">
+                <widget class="QSplitter" name="splitter_3">
                  <property name="orientation">
                   <enum>Qt::Vertical</enum>
                  </property>
-                 <widget class="QSplitter" name="header_list">
+                 <widget class="QSplitter" name="splitter_2">
                   <property name="orientation">
                    <enum>Qt::Vertical</enum>
                   </property>
@@ -203,11 +154,8 @@ margin-top:12px;</string>
                     <number>0</number>
                    </property>
                   </widget>
-                  <widget class="QWidget" name="layoutWidget">
+                  <widget class="QWidget" name="">
                    <layout class="QHBoxLayout" name="options">
-                    <property name="spacing">
-                     <number>3</number>
-                    </property>
                     <item>
                      <widget class="QSplitter" name="filter">
                       <property name="orientation">
@@ -302,7 +250,7 @@ border-radius:6px;
                          <string/>
                         </property>
                         <property name="icon">
-                         <iconset resource="../../../dashboard/resources.qrc">
+                         <iconset resource="../../../../dashboard/resources.qrc">
                           <normaloff>:/icons/assets/icons/Search.svg</normaloff>:/icons/assets/icons/Search.svg</iconset>
                         </property>
                        </widget>
@@ -310,7 +258,43 @@ border-radius:6px;
                      </widget>
                     </item>
                     <item>
-                     <spacer name="horizontalSpacer_2">
+                     <widget class="QPushButton" name="button_viewStudent">
+                      <property name="minimumSize">
+                       <size>
+                        <width>90</width>
+                        <height>30</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>90</width>
+                        <height>30</height>
+                       </size>
+                      </property>
+                      <property name="font">
+                       <font>
+                        <family>Euphemia</family>
+                        <pointsize>10</pointsize>
+                        <weight>75</weight>
+                        <bold>true</bold>
+                       </font>
+                      </property>
+                      <property name="cursor">
+                       <cursorShape>PointingHandCursor</cursorShape>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">background-color:#1770b3;
+border: none;
+border-radius: 6px;
+color:white;</string>
+                      </property>
+                      <property name="text">
+                       <string>Ver más</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <spacer name="horizontalSpacer_3">
                       <property name="orientation">
                        <enum>Qt::Horizontal</enum>
                       </property>
@@ -460,7 +444,7 @@ QTableWidget::item:alternate {
                    <number>1</number>
                   </property>
                   <attribute name="horizontalHeaderVisible">
-                   <bool>false</bool>
+                   <bool>true</bool>
                   </attribute>
                   <attribute name="horizontalHeaderCascadingSectionResizes">
                    <bool>false</bool>
@@ -492,7 +476,23 @@ QTableWidget::item:alternate {
                   <row/>
                   <column>
                    <property name="text">
-                    <string>DNI</string>
+                    <string>Nombre</string>
+                   </property>
+                   <property name="textAlignment">
+                    <set>AlignCenter</set>
+                   </property>
+                  </column>
+                  <column>
+                   <property name="text">
+                    <string>Grado</string>
+                   </property>
+                   <property name="textAlignment">
+                    <set>AlignCenter</set>
+                   </property>
+                  </column>
+                  <column>
+                   <property name="text">
+                    <string>Identificación Tutor</string>
                    </property>
                    <property name="textAlignment">
                     <set>AlignCenter</set>
@@ -512,22 +512,6 @@ QTableWidget::item:alternate {
                       <blue>0</blue>
                      </color>
                     </brush>
-                   </property>
-                  </column>
-                  <column>
-                   <property name="text">
-                    <string>Nombre</string>
-                   </property>
-                   <property name="textAlignment">
-                    <set>AlignCenter</set>
-                   </property>
-                  </column>
-                  <column>
-                   <property name="text">
-                    <string>Grado</string>
-                   </property>
-                   <property name="textAlignment">
-                    <set>AlignCenter</set>
                    </property>
                   </column>
                   <column>
@@ -552,13 +536,13 @@ QTableWidget::item:alternate {
                    <property name="text">
                     <string/>
                    </property>
-                   <property name="textAlignment">
-                    <set>AlignCenter</set>
-                   </property>
                   </item>
-                  <item row="0" column="1">
+                  <item row="0" column="2">
                    <property name="text">
                     <string/>
+                   </property>
+                   <property name="textAlignment">
+                    <set>AlignCenter</set>
                    </property>
                   </item>
                  </widget>
@@ -567,13 +551,7 @@ QTableWidget::item:alternate {
               </layout>
              </widget>
              <widget class="QWidget" name="searchStudent">
-              <property name="styleSheet">
-               <string notr="true">background-color:#e9f4fd;</string>
-              </property>
-              <attribute name="title">
-               <string>Consultar Estudiante</string>
-              </attribute>
-              <layout class="QGridLayout" name="gridLayout_5">
+              <layout class="QGridLayout" name="gridLayout_13">
                <item row="0" column="0">
                 <widget class="QSplitter" name="splitter">
                  <property name="orientation">
@@ -608,141 +586,13 @@ QTableWidget::item:alternate {
                   <property name="orientation">
                    <enum>Qt::Horizontal</enum>
                   </property>
-                  <widget class="QWidget" name="search_studentWidget" native="true">
-                   <layout class="QGridLayout" name="gridLayout_7">
-                    <item row="0" column="0">
-                     <layout class="QVBoxLayout" name="search_student">
-                      <property name="spacing">
-                       <number>6</number>
-                      </property>
-                      <item>
-                       <widget class="QLabel" name="title_search">
-                        <property name="minimumSize">
-                         <size>
-                          <width>0</width>
-                          <height>30</height>
-                         </size>
-                        </property>
-                        <property name="maximumSize">
-                         <size>
-                          <width>16777215</width>
-                          <height>30</height>
-                         </size>
-                        </property>
-                        <property name="font">
-                         <font>
-                          <family>Euphemia</family>
-                          <pointsize>10</pointsize>
-                          <weight>75</weight>
-                          <bold>true</bold>
-                         </font>
-                        </property>
-                        <property name="styleSheet">
-                         <string notr="true">color: rgb(11, 52, 84);</string>
-                        </property>
-                        <property name="lineWidth">
-                         <number>6</number>
-                        </property>
-                        <property name="text">
-                         <string>Buscar por DNI</string>
-                        </property>
-                       </widget>
-                      </item>
-                      <item>
-                       <widget class="QSplitter" name="box_search">
-                        <property name="orientation">
-                         <enum>Qt::Horizontal</enum>
-                        </property>
-                        <widget class="QLineEdit" name="box_dni">
-                         <property name="font">
-                          <font>
-                           <pointsize>9</pointsize>
-                          </font>
-                         </property>
-                         <property name="styleSheet">
-                          <string notr="true">background-color: rgb(255, 255, 255);
-color: rgb(11, 52, 84);
-border:1px solid  #a8a8a8;</string>
-                         </property>
-                         <property name="placeholderText">
-                          <string>Ingrese el DNI </string>
-                         </property>
-                        </widget>
-                        <widget class="QPushButton" name="button_searchDNI">
-                         <property name="minimumSize">
-                          <size>
-                           <width>30</width>
-                           <height>30</height>
-                          </size>
-                         </property>
-                         <property name="maximumSize">
-                          <size>
-                           <width>30</width>
-                           <height>30</height>
-                          </size>
-                         </property>
-                         <property name="cursor">
-                          <cursorShape>PointingHandCursor</cursorShape>
-                         </property>
-                         <property name="styleSheet">
-                          <string notr="true">background-color:#1770b3;
-borde: none;
-border-radius:6px;
-</string>
-                         </property>
-                         <property name="text">
-                          <string/>
-                         </property>
-                         <property name="icon">
-                          <iconset resource="../../../dashboard/resources.qrc">
-                           <normaloff>:/icons/assets/icons/Search.svg</normaloff>:/icons/assets/icons/Search.svg</iconset>
-                         </property>
-                        </widget>
-                       </widget>
-                      </item>
-                      <item>
-                       <widget class="QLabel" name="message_error">
-                        <property name="minimumSize">
-                         <size>
-                          <width>0</width>
-                          <height>20</height>
-                         </size>
-                        </property>
-                        <property name="maximumSize">
-                         <size>
-                          <width>16777215</width>
-                          <height>20</height>
-                         </size>
-                        </property>
-                        <property name="font">
-                         <font>
-                          <family>Euphemia</family>
-                          <pointsize>9</pointsize>
-                          <weight>75</weight>
-                          <bold>true</bold>
-                         </font>
-                        </property>
-                        <property name="styleSheet">
-                         <string notr="true">font-family: Euphemia;
-color:red;
-</string>
-                        </property>
-                        <property name="text">
-                         <string/>
-                        </property>
-                       </widget>
-                      </item>
-                     </layout>
-                    </item>
-                   </layout>
-                  </widget>
                   <widget class="QWidget" name="info_studentWidget" native="true">
                    <property name="styleSheet">
                     <string notr="true">QLabel{
 color: rgb(11, 52, 84);
 }</string>
                    </property>
-                   <layout class="QGridLayout" name="gridLayout_6">
+                   <layout class="QGridLayout" name="gridLayout_12">
                     <item row="0" column="0">
                      <layout class="QVBoxLayout" name="info_student_2">
                       <item>
@@ -955,7 +805,7 @@ color: rgb(11, 52, 84);
                             </font>
                            </property>
                            <property name="text">
-                            <string>DNI del tutor</string>
+                            <string>Identificación del tutor</string>
                            </property>
                           </widget>
                           <widget class="QLineEdit" name="input_dni">
@@ -1121,7 +971,7 @@ border:1px solid  #a8a8a8;</string>
                          </widget>
                         </item>
                         <item>
-                         <widget class="QSplitter" name="splitter_20">
+                         <widget class="QSplitter" name="splitter_21">
                           <property name="orientation">
                            <enum>Qt::Vertical</enum>
                           </property>
@@ -1180,6 +1030,9 @@ border:1px solid  #a8a8a8;</string>
 
 QTableWidget::item {
     padding: 1px;
+ 	 background-color: #e9f4fd;
+     color: #000080; 
+	text-align:center;
 }
 
 QTableWidget::item:selected {
@@ -1201,6 +1054,9 @@ QTableWidget::item:alternate {
     background-color: #F0F0F0;
 }
 </string>
+                  </property>
+                  <property name="editTriggers">
+                   <set>QAbstractItemView::NoEditTriggers</set>
                   </property>
                   <attribute name="horizontalHeaderDefaultSectionSize">
                    <number>142</number>
@@ -1262,28 +1118,19 @@ QTableWidget::item:alternate {
               </layout>
              </widget>
              <widget class="QWidget" name="registerStudent">
-              <property name="enabled">
-               <bool>true</bool>
-              </property>
               <property name="minimumSize">
                <size>
-                <width>870</width>
+                <width>890</width>
                 <height>450</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
-                <width>870</width>
+                <width>890</width>
                 <height>450</height>
                </size>
               </property>
-              <property name="styleSheet">
-               <string notr="true"/>
-              </property>
-              <attribute name="title">
-               <string>Registrar Estudiante</string>
-              </attribute>
-              <layout class="QGridLayout" name="gridLayout_8">
+              <layout class="QGridLayout" name="gridLayout_14">
                <item row="0" column="0">
                 <layout class="QVBoxLayout" name="contentRegister">
                  <property name="topMargin">
@@ -1330,13 +1177,13 @@ QTableWidget::item:alternate {
                      <height>16777215</height>
                     </size>
                    </property>
-                   <layout class="QVBoxLayout" name="verticalLayout">
+                   <layout class="QVBoxLayout" name="verticalLayout_2">
                     <item>
                      <widget class="QSplitter" name="values">
                       <property name="orientation">
                        <enum>Qt::Vertical</enum>
                       </property>
-                      <widget class="QWidget" name="layoutWidget_2">
+                      <widget class="QWidget" name="layoutWidget_7">
                        <layout class="QHBoxLayout" name="values_part1">
                         <item>
                          <widget class="QSplitter" name="DNI">
@@ -1356,7 +1203,7 @@ QTableWidget::item:alternate {
                             <string notr="true">color: rgb(11, 52, 84);</string>
                            </property>
                            <property name="text">
-                            <string>DNI</string>
+                            <string>Id</string>
                            </property>
                           </widget>
                           <widget class="QLineEdit" name="lineEdit_dni">
@@ -1493,7 +1340,7 @@ border:1px solid  #a8a8a8;</string>
                         </item>
                        </layout>
                       </widget>
-                      <widget class="QWidget" name="layoutWidget_3">
+                      <widget class="QWidget" name="layoutWidget_8">
                        <layout class="QHBoxLayout" name="values_part2">
                         <item>
                          <widget class="QSplitter" name="gradeStudent">
@@ -1620,7 +1467,7 @@ border:1px solid  #a8a8a8;</string>
                             <string notr="true">color: rgb(11, 52, 84);</string>
                            </property>
                            <property name="text">
-                            <string>DNI del tutor</string>
+                            <string>Identificación del tutor</string>
                            </property>
                           </widget>
                           <widget class="QLineEdit" name="input_dni_2">
@@ -1650,7 +1497,7 @@ border:1px solid  #a8a8a8;</string>
                             <bool>false</bool>
                            </property>
                            <property name="placeholderText">
-                            <string>Ingrese el DNI del tutor</string>
+                            <string>Ingrese la identificación del tutor</string>
                            </property>
                           </widget>
                          </widget>
@@ -1710,7 +1557,7 @@ border:1px solid  #a8a8a8;</string>
                         </item>
                        </layout>
                       </widget>
-                      <widget class="QWidget" name="layoutWidget_4">
+                      <widget class="QWidget" name="layoutWidget_9">
                        <layout class="QHBoxLayout" name="values_part3">
                         <property name="bottomMargin">
                          <number>12</number>
@@ -1786,7 +1633,7 @@ border:1px solid  #a8a8a8;</string>
                             <string notr="true">color: rgb(11, 52, 84);</string>
                            </property>
                            <property name="text">
-                            <string>Direción</string>
+                            <string>Dirección</string>
                            </property>
                           </widget>
                           <widget class="QLineEdit" name="input_address_2">
@@ -2080,7 +1927,7 @@ font-weight:bold
             <string/>
            </property>
            <property name="pixmap">
-            <pixmap resource="../../../dashboard/resources.qrc">:/icons/assets/icons/icons8-computer-50.png</pixmap>
+            <pixmap resource="../../../../dashboard/resources.qrc">:/icons/assets/icons/icons8-computer-50.png</pixmap>
            </property>
           </widget>
          </item>
@@ -2144,7 +1991,7 @@ font-weight:bold
             <string>Estudiantes</string>
            </property>
            <property name="icon">
-            <iconset resource="../../../dashboard/resources.qrc">
+            <iconset resource="../../../../dashboard/resources.qrc">
              <normaloff>:/icons/assets/icons/profile_white.png</normaloff>
              <normalon>:/icons/assets/icons/profile.png</normalon>:/icons/assets/icons/profile_white.png</iconset>
            </property>
@@ -2176,7 +2023,7 @@ font-weight:bold
             <string>Pagos</string>
            </property>
            <property name="icon">
-            <iconset resource="../../../dashboard/resources.qrc">
+            <iconset resource="../../../../dashboard/resources.qrc">
              <normaloff>:/icons/assets/icons/icons8-transaction-96.png</normaloff>
              <normalon>:/icons/assets/icons/icons8-transaction-96-blue.png</normalon>:/icons/assets/icons/icons8-transaction-96.png</iconset>
            </property>
@@ -2208,7 +2055,7 @@ font-weight:bold
             <string>Reportes</string>
            </property>
            <property name="icon">
-            <iconset resource="../../../dashboard/resources.qrc">
+            <iconset resource="../../../../dashboard/resources.qrc">
              <normaloff>:/icons/assets/icons/icons8-report-100.png</normaloff>
              <normalon>:/icons/assets/icons/icons8-report-100-blue.png</normalon>:/icons/assets/icons/icons8-report-100.png</iconset>
            </property>
@@ -2255,7 +2102,7 @@ font-weight:bold
           <string>Salir</string>
          </property>
          <property name="icon">
-          <iconset resource="../../../dashboard/resources.qrc">
+          <iconset resource="../../../../dashboard/resources.qrc">
            <normaloff>:/icons/assets/icons/log_out_white.png</normaloff>:/icons/assets/icons/log_out_white.png</iconset>
          </property>
          <property name="iconSize">
@@ -2276,10 +2123,10 @@ font-weight:bold
   </widget>
  </widget>
  <resources>
-  <include location="../../../dashboard/resources.qrc"/>
-  <include location="../../../dashboard/resources.qrc"/>
-  <include location="../../../dashboard/resources.qrc"/>
-  <include location="../../../dashboard/resources.qrc"/>
+  <include location="../../../../dashboard/resources.qrc"/>
+  <include location="../../../../dashboard/resources.qrc"/>
+  <include location="../../../../dashboard/resources.qrc"/>
+  <include location="../../../../dashboard/resources.qrc"/>
   <include location="../../../dashboard/resources.qrc"/>
  </resources>
  <connections/>
