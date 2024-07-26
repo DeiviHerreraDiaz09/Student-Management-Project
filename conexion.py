@@ -1,6 +1,6 @@
+from datetime import datetime
 import sqlite3
 import os
-
 
 class Conexion:
     def __init__(self):
@@ -10,6 +10,7 @@ class Conexion:
             self.creartablas()
             self.crearTriggers()
             self.crearAdmin()
+            self.crearEstudiante()
         except sqlite3.Error as e:
             print(f"Error al conectar con la base de datos: {e}")
         except Exception as ex:
@@ -36,11 +37,12 @@ class Conexion:
                     student_name TEXT NOT NULL,
                     date_of_birth TEXT NOT NULL,
                     grade TEXT NOT NULL,
+                    year_progress INTEGER NOT NULL,
                     tutor_dni TEXT NOT NULL,
                     tutor_name TEXT NOT NULL,
                     address TEXT NOT NULL,
                     tutor_email TEXT NOT NULL,
-                    tutor_phone TEXT NOT NULL 
+                    tutor_phone TEXT NOT NULL
                 )
             """
             )
@@ -155,6 +157,48 @@ class Conexion:
         finally:
             cursor.close()
 
+    def crearEstudiante(self):
+        try:
+            cursor = self.con.cursor()
+            cursor.execute(
+                """
+                INSERT INTO students (
+                    student_dni,
+                    student_name,
+                    date_of_birth,
+                    grade,
+                    year_progress,
+                    tutor_dni,
+                    tutor_name,
+                    address,
+                    tutor_email,
+                    tutor_phone
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            """,
+                (
+                    "5678",  
+                    "Juan Perez", 
+                    "2010-05-15", 
+                    "1 primaria", 
+                    2023, 
+                    "8765", 
+                    "Maria Perez",  
+                    "Calle Falsa 123",  
+                    "maria.perez@example.com",  
+                    "123456789" 
+                )
+            )
+            print("Estudiante creado correctamente")
+            self.con.commit()
+        except sqlite3.IntegrityError as e:
+            print(f"Error de integridad: {e}")
+        except sqlite3.Error as e:
+            print(f"Error al insertar estudiante: {e}")
+        except Exception as ex:
+            print(f"Otro error: {ex}")
+        finally:
+            cursor.close()
+
     def actualizar_estado_facturas(self):
         try:
             cursor = self.con.cursor()
@@ -176,9 +220,51 @@ class Conexion:
         finally:
             cursor.close()
 
+    def actualizar_grado_estudiantes(self):
+        try:
+            cursor = self.con.cursor()
+            current_year = datetime.now().year
+
+            grade_mapping = {
+                "Kinder": "1 primaria",
+                "1 primaria": "2 primaria",
+                "2 primaria": "3 primaria",
+                "3 primaria": "1 secundaria",
+                "1 secundaria": "2 secundaria",
+                "2 secundaria": "3 secundaria",
+                "3 secundaria": "Graduado",
+            }
+
+            cursor.execute(
+                """
+                SELECT student_dni, grade, year_progress
+                FROM students
+                """
+            )
+
+            students = cursor.fetchall()
+
+            for student_dni, grade, year_progress in students:
+                if int(year_progress) < current_year and grade in grade_mapping:
+                    new_grade = grade_mapping[grade]
+                    cursor.execute(
+                        """
+                        UPDATE students
+                        SET grade = ?, year_progress = ?
+                        WHERE student_dni = ?
+                        """,
+                        (new_grade, current_year, student_dni),
+                    )
+
+            self.con.commit()
+            print("Grado de estudiantes actualizado correctamente")
+        except sqlite3.Error as e:
+            print(f"Error al actualizar el grado de los estudiantes: {e}")
+        finally:
+            cursor.close()
+
     def conectar(self):
         return self.con
-
 
 if __name__ == "__main__":
     conexion = Conexion()

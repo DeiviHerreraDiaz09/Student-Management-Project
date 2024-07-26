@@ -1,6 +1,6 @@
 from Services.userService import UserData
 from gui.main import MainWindow
-from DB.conexion import Conexion
+from conexion import Conexion
 from PyQt6 import uic, QtGui
 from model.user import User
 
@@ -37,6 +37,7 @@ class Login:
             self.login.lblMSG.setText("Login exitoso")
             self.conexion = Conexion()
             self.conexion.actualizar_estado_facturas()
+            self.conexion.actualizar_grado_estudiantes()
             self.main = MainWindow()
             self.login.hide()
         else:

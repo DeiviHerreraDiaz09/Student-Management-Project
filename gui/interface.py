@@ -2,7 +2,7 @@ from Services.studentService import StudentData, CreateStudent, SearchStudent
 from PyQt6.QtWidgets import QApplication, QMainWindow, QTableWidgetItem
 from gui.dashboard import Ui_MainWindow
 from model.student import Student
-import DB.conexion as con
+import conexion as con
 
 
 class MyInterface(QMainWindow, Ui_MainWindow):
@@ -35,14 +35,14 @@ class MyInterface(QMainWindow, Ui_MainWindow):
         self.student_data = StudentData()
         self.student_data.data_fetched.connect(self.update_table)
 
-        self.original_data = []  
+        self.original_data = []
         self.load_data()
 
     def load_data(self):
         self.student_data.start()
 
     def update_table(self, data):
-        self.original_data = data  
+        self.original_data = data
         self.list_student_table.setRowCount(0)
         for row_number, row_data in enumerate(data):
             self.list_student_table.insertRow(row_number)
@@ -149,10 +149,12 @@ class MyInterface(QMainWindow, Ui_MainWindow):
                             row_number, column_number, QTableWidgetItem(str(cell_data))
                         )
             else:
-                self.message_error_name.setText("No se encontraron estudiantes con ese nombre")
-                self.update_table(self.original_data) 
+                self.message_error_name.setText(
+                    "No se encontraron estudiantes con ese nombre"
+                )
+                self.update_table(self.original_data)
         else:
-            self.update_table(self.original_data)  
+            self.update_table(self.original_data)
 
     def search_student_by_dni(self):
         dni = self.box_dni.text()

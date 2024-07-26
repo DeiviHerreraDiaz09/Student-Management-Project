@@ -1,6 +1,6 @@
 from PyQt6.QtCore import QObject, pyqtSignal, QThread
 from model.user import User
-import DB.conexion as con
+import conexion as con
 
 
 class LoginThread(QThread):

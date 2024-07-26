@@ -1,6 +1,6 @@
 from PyQt6.QtCore import QObject, pyqtSignal, QThread
 from model.student import Student
-import DB.conexion as con
+import conexion as con
 
 
 class StudentData(QThread):
