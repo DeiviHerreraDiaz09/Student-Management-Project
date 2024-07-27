@@ -50,7 +50,7 @@ class MyInterface(QMainWindow, Ui_formLogin):
             self.conexion.actualizar_estado_facturas()
             self.conexion.actualizar_grado_estudiantes()
             self.main = MainWindow()
-            self.hide()
+            self.close()
         else:
             self.lblMSG.setText("Datos incorrectos")
 

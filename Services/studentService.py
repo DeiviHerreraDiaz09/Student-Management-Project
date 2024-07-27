@@ -14,7 +14,7 @@ class StudentData(QThread):
         db = con.Conexion().conectar()
         cursor = db.cursor()
         cursor.execute(
-            "SELECT student_id, student_name, grade, tutor_name, tutor_phone, count(invoices.invoice_id)FROM students INNER JOIN invoices on student_id = invoices.student_id_fk GROUP BY student_id ORDER BY count(invoices.invoice_id) DESC"
+            "SELECT student_id, student_name, grade, tutor_dni, tutor_name, tutor_phone, count(invoices.invoice_id)FROM students INNER JOIN invoices on student_id = invoices.student_id_fk GROUP BY student_id ORDER BY count(invoices.invoice_id) DESC"
         )
 
         results = cursor.fetchall()
@@ -26,14 +26,14 @@ class StudentData(QThread):
 class SearchStudent(QThread):
     student_result = pyqtSignal(bool)
 
-    def __init__(self, dni):
+    def __init__(self, student_name):
         super().__init__()
-        self.dni = dni
+        self.student_name = student_name
 
     def run(self):
         db = con.Conexion().conectar()
         cursor = db.cursor()
-        cursor.execute("SELECT * FROM students WHERE student_id =?", (self.dni,))
+        cursor.execute("SELECT * FROM students WHERE student_name LIKE ?", (self.student_name,))
         fila = cursor.fetchone()
         if fila:
             self.student_result.emit(True)
@@ -56,17 +56,18 @@ class Create(QThread):
             db = con.Conexion().conectar()
             cursor = db.cursor()
             cursor.execute(
-                "INSERT INTO students (student_id, student_name, date_of_birth, grade, tutor_dni, tutor_name, tutor_email, tutor_phone, address) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                "INSERT INTO students (student_name, date_of_birth, grade, year_progress, tutor_dni, tutor_name, tutor_email, tutor_phone, address, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
                 (
-                    self.student.student_id,
                     self.student.student_name,
                     self.student.date_of_birth,
                     self.student.grade,
+                    self.student.year_progress,
                     self.student.tutor_dni,
                     self.student.tutor_name,
                     self.student.tutor_email,
                     self.student.tutor_phone,
                     self.student.address,
+                    self.student.status,
                 ),
             )
             db.commit()

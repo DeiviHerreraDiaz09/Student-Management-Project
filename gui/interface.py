@@ -1,8 +1,10 @@
 from Services.studentService import StudentData, CreateStudent, SearchStudent
-from PyQt6.QtWidgets import QApplication, QMainWindow, QTableWidgetItem
+from PyQt6.QtWidgets import QApplication, QMainWindow, QTableWidgetItem, QPushButton
+from PyQt6 import QtGui, QtCore
 from gui.UI.dashboard import Ui_MainWindow
 from model.student import Student
 import conexion as con
+
 
 
 class MyInterface(QMainWindow, Ui_MainWindow):
@@ -10,9 +12,11 @@ class MyInterface(QMainWindow, Ui_MainWindow):
         super().__init__()
         self.setupUi(self)
         self.setWindowTitle("Interface Menu")
-        self.list_student_table.setColumnCount(6)
+        self.content.setCurrentIndex(0)
+        self.switch_to_listStudent()
+        self.list_student_table.setColumnCount(7)
         self.list_student_table.setHorizontalHeaderLabels(
-            ["DNI", "Nombre", "Grado", "Tutor", "Teléfono Tutor", "Nº Facturas"]
+            [ "Nombre", "Grado", "Identificación Tutor ", "Tutor", "Teléfono Tutor", "Nº Facturas", "Acciones"]
         )
         self.history_table.setColumnCount(6)
         self.history_table.setHorizontalHeaderLabels(
@@ -30,13 +34,15 @@ class MyInterface(QMainWindow, Ui_MainWindow):
         self.reports_2.clicked.connect(self.switch_to_reportsPage)
         self.button_add.clicked.connect(self.switch_to_registerStudent)
         self.registerButton.clicked.connect(self.save_data)
-        self.button_searchDNI.clicked.connect(self.search_student_by_dni)
         self.button_search.clicked.connect(self.search_student_by_name)
+        self.buttonBack.clicked.connect(self.switch_to_listStudent)
         self.student_data = StudentData()
         self.student_data.data_fetched.connect(self.update_table)
 
         self.original_data = []
         self.load_data()
+
+        self.student_ids = {}
 
     def load_data(self):
         self.student_data.start()
@@ -44,15 +50,38 @@ class MyInterface(QMainWindow, Ui_MainWindow):
     def update_table(self, data):
         self.original_data = data
         self.list_student_table.setRowCount(0)
+        self.student_ids = {} 
         for row_number, row_data in enumerate(data):
             self.list_student_table.insertRow(row_number)
-            for column_number, cell_data in enumerate(row_data):
+            student_id = row_data[0]  
+            self.student_ids[row_number] = student_id  
+ 
+            for column_number, cell_data in enumerate(row_data[1:]):  
                 self.list_student_table.setItem(
                     row_number, column_number, QTableWidgetItem(str(cell_data))
                 )
+            
+            button = QPushButton("Ver más")
+            button.setStyleSheet(
+                """
+                QPushButton {
+                    background-color:#1770b3;\n
+                    border: none;\n
+                    border-radius: 6px;\n
+                    color:white;\n
+                    font-family: Euphemia;\n
+                    font-size: 12px;
+                }"""
+            )
+            button.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+            button.clicked.connect(lambda _, student_id=student_id: self.student_details(student_id))
+            self.list_student_table.setCellWidget(row_number, 6, button)
+
+
 
     def switch_to_studentsPage(self):
         self.content.setCurrentIndex(0)
+        self.switch_to_listStudent()
 
     def switch_to_paymentsPage(self):
         self.content.setCurrentIndex(1)
@@ -61,36 +90,38 @@ class MyInterface(QMainWindow, Ui_MainWindow):
         self.content.setCurrentIndex(2)
 
     def switch_to_registerStudent(self):
-        self.principal_content.setCurrentIndex(2)
+        self.content_pages.setCurrentIndex(2)
+
+    def switch_to_listStudent(self):
+        self.content_pages.setCurrentIndex(0)
+
 
     def save_data(self):
-        dni = self.lineEdit_dni.text()
-        self.searchStudent = SearchStudent(dni)
+        student_name = self.input_student_name_2.text()
+        self.searchStudent = SearchStudent(student_name)
         self.searchStudent.student_result.connect(self.on_student_search_result)
         self.searchStudent.start()
 
     def on_student_search_result(self, exists):
-        student_id = self.lineEdit_dni.text()
         student_name = self.input_student_name_2.text()
-        date_of_birtht = self.dateEdit.text()
+        date_of_birth = self.dateEdit.text()
         grade = self.options_grade.currentText()
         tutor_dni = self.input_dni_2.text()
         tutor_name = self.input_tutor_name_2.text()
         tutor_email = self.input_email_2.text()
         address = self.input_address_2.text()
         tutor_phone = self.input_phone_2.text()
+        year_progress = "2024"
+        status = "Vigente"
 
         if exists:
             self.message.setText("El estudiante ya existe")
             self.clear_data()
-        elif len(student_id) <= 7:
-            self.message.setText("El dni debe ser mínimo de 8 caractéres")
-            self.lineEdit_dni.setFocus()
         elif len(student_name) <= 5:
             self.message.setText("El nombre completo es requerido")
             self.input_student_name_2.setFocus()
         elif len(tutor_dni) <= 7:
-            self.message.setText("El dni del tutor debe ser mínimo de 8 caractéres")
+            self.message.setText("El DNI del tutor debe ser mínimo de 8 caracteres")
             self.input_dni_2.setFocus()
         elif len(tutor_name) <= 5:
             self.message.setText("El nombre completo del tutor es requerido")
@@ -106,15 +137,16 @@ class MyInterface(QMainWindow, Ui_MainWindow):
             self.input_phone_2.setFocus()
         else:
             student = Student(
-                student_id,
                 student_name,
-                date_of_birtht,
+                date_of_birth,
                 grade,
+                year_progress,
                 tutor_dni,
                 tutor_name,
                 tutor_email,
                 tutor_phone,
                 address,
+                status
             )
             self.student_data = CreateStudent()
             self.student_data.create_result.connect(self.handle_create_result)
@@ -124,6 +156,7 @@ class MyInterface(QMainWindow, Ui_MainWindow):
         if success:
             self.message.clear()
             self.message_ok.setText("Se ha registrado con éxito")
+            self.switch_to_listStudent()
             self.student_data = StudentData()
             self.student_data.data_fetched.connect(self.update_table)
             self.load_data()
@@ -136,7 +169,7 @@ class MyInterface(QMainWindow, Ui_MainWindow):
         if name:
             db = con.Conexion().conectar()
             cursor = db.cursor()
-            query = "SELECT * FROM students WHERE student_name LIKE ?"
+            query = "SELECT student_id, student_name, grade, tutor_dni, tutor_name, tutor_phone, count(invoices.invoice_id)FROM students INNER JOIN invoices on student_id = invoices.student_id_fk  WHERE student_name LIKE ? GROUP BY student_id  "
             cursor.execute(query, ("%" + name + "%",))
             rows = cursor.fetchall()
             db.close()
@@ -144,10 +177,29 @@ class MyInterface(QMainWindow, Ui_MainWindow):
                 self.list_student_table.setRowCount(0)
                 for row_number, row_data in enumerate(rows):
                     self.list_student_table.insertRow(row_number)
-                    for column_number, cell_data in enumerate(row_data):
+                    student_id = row_data[0]  
+                    self.student_ids[row_number] = student_id  
+ 
+                    for column_number, cell_data in enumerate(row_data[1:]):  
                         self.list_student_table.setItem(
                             row_number, column_number, QTableWidgetItem(str(cell_data))
                         )
+                    button = QPushButton("Ver más")
+                    button.setStyleSheet(
+                        """
+                        QPushButton {
+                            background-color:#1770b3;\n
+                            border: none;\n
+                            border-radius: 6px;\n
+                            color:white;\n
+                            font-family: Euphemia;\n
+                            font-size: 12px;
+                        }"""
+                    )
+                    button.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+                    button.clicked.connect(lambda _, student_id=student_id: self.student_details(student_id))
+                    self.list_student_table.setCellWidget(row_number, 6, button)
+
             else:
                 self.message_error_name.setText(
                     "No se encontraron estudiantes con ese nombre"
@@ -155,27 +207,29 @@ class MyInterface(QMainWindow, Ui_MainWindow):
                 self.update_table(self.original_data)
         else:
             self.update_table(self.original_data)
+    
+    def student_details(self, studen_id):
+        self.content_pages.setCurrentIndex(1)
+        self.search_student_by_id(studen_id)
 
-    def search_student_by_dni(self):
-        dni = self.box_dni.text()
-        if dni:
+
+    def search_student_by_id(self, student_id):
             db = con.Conexion().conectar()
             cursor = db.cursor()
             cursor.execute(
                 """
-                SELECT s.student_name, s.date_of_birth, s.grade, s.tutor_dni, s.tutor_name, s.tutor_email, s.address, s.tutor_phone, 
+                SELECT s.student_name, s.date_of_birth, s.grade, s.tutor_dni, s.tutor_name, s.tutor_email, s.address, s.tutor_phone, s.status,
                        f.invoice_id, f.description, f.created_at, f.due_date, f.total_amount, f.status
                 FROM students s
                 LEFT JOIN invoices f ON s.student_id = f.student_id_fk
                 WHERE s.student_id = ?
                 """,
-                (dni,),
+                (student_id,),
             )
             rows = cursor.fetchall()
             db.close()
 
             if rows:
-                self.message_error.clear()
                 student = rows[0]
                 self.input_student_name.setText(student[0])
                 self.input_date.setText(student[1])
@@ -185,25 +239,22 @@ class MyInterface(QMainWindow, Ui_MainWindow):
                 self.input_email.setText(student[5])
                 self.input_address.setText(student[6])
                 self.input_phone.setText(student[7])
+                self.input_status.setText(student[8])
 
                 self.history_table.setRowCount(0)
                 for row in rows:
                     row_position = self.history_table.rowCount()
                     self.history_table.insertRow(row_position)
-                    for column_number, cell_data in enumerate(row[8:]):
+                    for column_number, cell_data in enumerate(row[9:]):
                         self.history_table.setItem(
                             row_position,
                             column_number,
                             QTableWidgetItem(str(cell_data)),
                         )
-            else:
-                self.message_error.setText("Estudiante no encontrado")
-                self.clear_data_searchStudent()
-        else:
-            self.message_error.setText("Por favor ingrese un DNI válido")
+           
+
 
     def clear_data(self):
-        self.lineEdit_dni.clear()
         self.input_student_name_2.clear()
         self.dateEdit.clear()
         self.input_dni_2.clear()
