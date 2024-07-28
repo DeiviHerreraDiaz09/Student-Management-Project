@@ -16,6 +16,7 @@ class Conexion:
             self.creartablas()
             self.crearTriggers()
             self.crearAdmin()
+            self.consultar_y_crear_facturas()
         except sqlite3.Error as e:
             print(f"Error al conectar con la base de datos: {e}")
         except Exception as ex:
@@ -233,6 +234,50 @@ class Conexion:
             print("Grado de estudiantes actualizado correctamente")
         except sqlite3.Error as e:
             print(f"Error al actualizar el grado de los estudiantes: {e}")
+        finally:
+            cursor.close()
+
+    def crear_factura(self, student_ident):
+        try:
+            cursor = self.con.cursor()
+            cursor.execute(
+                """
+                INSERT INTO invoices (description, total_amount, remaining_amount, due_date, created_at, status, student_ident_fk)
+                VALUES (?, ?, ?, date('now', '+1 month'), date('now'), ?, ?)
+                """,
+                ("Factura mensual", 100, 100, "pendiente", student_ident),
+            )
+            self.con.commit()
+            print(f"Factura creada para el estudiante {student_ident}")
+        except sqlite3.Error as e:
+            print(f"Error al crear factura: {e}")
+        finally:
+            cursor.close()
+
+    def consultar_y_crear_facturas(self):
+        try:
+            cursor = self.con.cursor()
+            cursor.execute(
+                """
+                SELECT student_ident_fk, MAX(due_date) as last_invoice_date
+                FROM invoices
+                GROUP BY student_ident_fk
+                """
+            )
+
+            students = cursor.fetchall()
+            current_date = datetime.now().date()
+
+            for student_ident, last_invoice_date in students:
+                if last_invoice_date:
+                    last_invoice_date = datetime.strptime(
+                        last_invoice_date, "%Y-%m-%d"
+                    ).date()
+                    if last_invoice_date == current_date:
+                        self.crear_factura(student_ident)
+
+        except sqlite3.Error as e:
+            print(f"Error al consultar y crear facturas: {e}")
         finally:
             cursor.close()
 

@@ -33,7 +33,9 @@ class SearchStudent(QThread):
     def run(self):
         db = con.Conexion().conectar()
         cursor = db.cursor()
-        cursor.execute("SELECT * FROM students WHERE student_ident =?", (self.student_ident,))
+        cursor.execute(
+            "SELECT * FROM students WHERE student_ident =?", (self.student_ident,)
+        )
         fila = cursor.fetchone()
         if fila:
             self.student_result.emit(True)

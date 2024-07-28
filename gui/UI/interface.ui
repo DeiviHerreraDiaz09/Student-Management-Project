@@ -107,7 +107,7 @@ font-weight:bold
             <string/>
            </property>
            <property name="pixmap">
-            <pixmap resource="../../../../Downloads/dashboard/resources.qrc">:/icons/assets/icons/icons8-computer-50.png</pixmap>
+            <pixmap>:/icons/assets/icons/icons8-computer-50.png</pixmap>
            </property>
           </widget>
          </item>
@@ -171,7 +171,7 @@ font-weight:bold
             <string>Estudiantes</string>
            </property>
            <property name="icon">
-            <iconset resource="../../../../Downloads/dashboard/resources.qrc">
+            <iconset>
              <normaloff>:/icons/assets/icons/profile_white.png</normaloff>
              <normalon>:/icons/assets/icons/profile.png</normalon>:/icons/assets/icons/profile_white.png</iconset>
            </property>
@@ -179,38 +179,6 @@ font-weight:bold
             <size>
              <width>20</width>
              <height>22</height>
-            </size>
-           </property>
-           <property name="checkable">
-            <bool>true</bool>
-           </property>
-           <property name="autoExclusive">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="payments_2">
-           <property name="font">
-            <font>
-             <family>Euphemia</family>
-             <pointsize>9</pointsize>
-             <weight>75</weight>
-             <bold>true</bold>
-            </font>
-           </property>
-           <property name="text">
-            <string>Pagos</string>
-           </property>
-           <property name="icon">
-            <iconset resource="../../../../Downloads/dashboard/resources.qrc">
-             <normaloff>:/icons/assets/icons/icons8-transaction-96.png</normaloff>
-             <normalon>:/icons/assets/icons/icons8-transaction-96-blue.png</normalon>:/icons/assets/icons/icons8-transaction-96.png</iconset>
-           </property>
-           <property name="iconSize">
-            <size>
-             <width>28</width>
-             <height>24</height>
             </size>
            </property>
            <property name="checkable">
@@ -235,7 +203,7 @@ font-weight:bold
             <string>Reportes</string>
            </property>
            <property name="icon">
-            <iconset resource="../../../../Downloads/dashboard/resources.qrc">
+            <iconset>
              <normaloff>:/icons/assets/icons/icons8-report-100.png</normaloff>
              <normalon>:/icons/assets/icons/icons8-report-100-blue.png</normalon>:/icons/assets/icons/icons8-report-100.png</iconset>
            </property>
@@ -282,7 +250,7 @@ font-weight:bold
           <string>Salir</string>
          </property>
          <property name="icon">
-          <iconset resource="../../../../Downloads/dashboard/resources.qrc">
+          <iconset>
            <normaloff>:/icons/assets/icons/log_out_white.png</normaloff>:/icons/assets/icons/log_out_white.png</iconset>
          </property>
          <property name="iconSize">
@@ -348,7 +316,7 @@ font-weight:bold
           <string notr="true">background-color: rgb(255, 255, 255);</string>
          </property>
          <property name="currentIndex">
-          <number>0</number>
+          <number>1</number>
          </property>
          <widget class="QWidget" name="students_page">
           <property name="styleSheet">
@@ -506,7 +474,7 @@ border-radius:6px;
                         <string/>
                        </property>
                        <property name="icon">
-                        <iconset resource="../../../../Downloads/dashboard/resources.qrc">
+                        <iconset>
                          <normaloff>:/icons/assets/icons/Search.svg</normaloff>:/icons/assets/icons/Search.svg</iconset>
                        </property>
                       </widget>
@@ -2275,24 +2243,630 @@ border:1px solid  #a8a8a8;</string>
           </layout>
          </widget>
          <widget class="QWidget" name="payments_page">
-          <widget class="QLabel" name="label_6">
-           <property name="geometry">
-            <rect>
-             <x>290</x>
-             <y>250</y>
-             <width>191</width>
-             <height>71</height>
-            </rect>
-           </property>
-           <property name="font">
-            <font>
-             <pointsize>20</pointsize>
-            </font>
-           </property>
-           <property name="text">
-            <string>Payments Page</string>
-           </property>
-          </widget>
+          <property name="styleSheet">
+           <string notr="true">background-color:#e9f4fd;</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_11">
+           <item row="0" column="0" alignment="Qt::AlignHCenter|Qt::AlignTop">
+            <widget class="QWidget" name="content_payment" native="true">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>500</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>500</height>
+              </size>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_10">
+              <item row="0" column="0">
+               <layout class="QVBoxLayout" name="group_form_payment">
+                <item>
+                 <layout class="QHBoxLayout" name="header_register_payment">
+                  <item>
+                   <widget class="QLabel" name="tittle_new_payment">
+                    <property name="minimumSize">
+                     <size>
+                      <width>500</width>
+                      <height>30</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>500</width>
+                      <height>16777214</height>
+                     </size>
+                    </property>
+                    <property name="font">
+                     <font>
+                      <family>Euphemia</family>
+                      <pointsize>12</pointsize>
+                      <weight>75</weight>
+                      <bold>true</bold>
+                     </font>
+                    </property>
+                    <property name="layoutDirection">
+                     <enum>Qt::LeftToRight</enum>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">color: rgb(11, 52, 84);</string>
+                    </property>
+                    <property name="text">
+                     <string>Registrar Pago</string>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignCenter</set>
+                    </property>
+                    <property name="margin">
+                     <number>10</number>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <widget class="QWidget" name="form_new_payment" native="true">
+                  <property name="minimumSize">
+                   <size>
+                    <width>850</width>
+                    <height>0</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>750</width>
+                    <height>16777215</height>
+                   </size>
+                  </property>
+                  <layout class="QGridLayout" name="gridLayout_8">
+                   <property name="topMargin">
+                    <number>20</number>
+                   </property>
+                   <item row="2" column="0">
+                    <widget class="QLabel" name="message_erro_payment">
+                     <property name="font">
+                      <font>
+                       <family>Euphemia</family>
+                       <pointsize>9</pointsize>
+                       <weight>75</weight>
+                       <bold>true</bold>
+                      </font>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">font-family: Euphemia;
+color:red;</string>
+                     </property>
+                     <property name="text">
+                      <string/>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="1" column="0" alignment="Qt::AlignHCenter">
+                    <widget class="QPushButton" name="registerButton_payment">
+                     <property name="minimumSize">
+                      <size>
+                       <width>160</width>
+                       <height>35</height>
+                      </size>
+                     </property>
+                     <property name="maximumSize">
+                      <size>
+                       <width>160</width>
+                       <height>35</height>
+                      </size>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <family>Euphemia</family>
+                       <pointsize>10</pointsize>
+                       <weight>75</weight>
+                       <bold>true</bold>
+                      </font>
+                     </property>
+                     <property name="cursor">
+                      <cursorShape>PointingHandCursor</cursorShape>
+                     </property>
+                     <property name="layoutDirection">
+                      <enum>Qt::LeftToRight</enum>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">background-color:#1770b3;
+border: none;
+border-radius: 6px;
+font-family: Euphemia;
+color:white;</string>
+                     </property>
+                     <property name="text">
+                      <string>Registrar</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="0" column="0">
+                    <layout class="QVBoxLayout" name="form_content">
+                     <item>
+                      <layout class="QHBoxLayout" name="first_part_form">
+                       <item>
+                        <widget class="QSplitter" name="student_name_invo">
+                         <property name="minimumSize">
+                          <size>
+                           <width>220</width>
+                           <height>0</height>
+                          </size>
+                         </property>
+                         <property name="orientation">
+                          <enum>Qt::Vertical</enum>
+                         </property>
+                         <widget class="QLabel" name="label_student_name_invo">
+                          <property name="font">
+                           <font>
+                            <family>Euphemia</family>
+                            <pointsize>10</pointsize>
+                            <weight>75</weight>
+                            <bold>true</bold>
+                           </font>
+                          </property>
+                          <property name="styleSheet">
+                           <string notr="true">color: rgb(11, 52, 84);</string>
+                          </property>
+                          <property name="text">
+                           <string>Nombre del estudiante</string>
+                          </property>
+                         </widget>
+                         <widget class="QLineEdit" name="input_student_name_invo">
+                          <property name="minimumSize">
+                           <size>
+                            <width>0</width>
+                            <height>35</height>
+                           </size>
+                          </property>
+                          <property name="maximumSize">
+                           <size>
+                            <width>260</width>
+                            <height>35</height>
+                           </size>
+                          </property>
+                          <property name="font">
+                           <font>
+                            <pointsize>10</pointsize>
+                           </font>
+                          </property>
+                          <property name="styleSheet">
+                           <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(11, 52, 84);
+border:1px solid  #a8a8a8;</string>
+                          </property>
+                          <property name="text">
+                           <string/>
+                          </property>
+                          <property name="readOnly">
+                           <bool>true</bool>
+                          </property>
+                          <property name="placeholderText">
+                           <string/>
+                          </property>
+                         </widget>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QSplitter" name="id_invoice">
+                         <property name="orientation">
+                          <enum>Qt::Vertical</enum>
+                         </property>
+                         <widget class="QLabel" name="label_id_invoice">
+                          <property name="font">
+                           <font>
+                            <family>Euphemia</family>
+                            <pointsize>10</pointsize>
+                            <weight>75</weight>
+                            <bold>true</bold>
+                           </font>
+                          </property>
+                          <property name="styleSheet">
+                           <string notr="true">color: rgb(11, 52, 84);</string>
+                          </property>
+                          <property name="text">
+                           <string>N°  Factura</string>
+                          </property>
+                         </widget>
+                         <widget class="QLineEdit" name="input_id_invoice">
+                          <property name="minimumSize">
+                           <size>
+                            <width>250</width>
+                            <height>35</height>
+                           </size>
+                          </property>
+                          <property name="maximumSize">
+                           <size>
+                            <width>260</width>
+                            <height>35</height>
+                           </size>
+                          </property>
+                          <property name="font">
+                           <font>
+                            <pointsize>10</pointsize>
+                           </font>
+                          </property>
+                          <property name="styleSheet">
+                           <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(11, 52, 84);
+border:1px solid  #a8a8a8;</string>
+                          </property>
+                          <property name="text">
+                           <string/>
+                          </property>
+                          <property name="readOnly">
+                           <bool>true</bool>
+                          </property>
+                          <property name="placeholderText">
+                           <string/>
+                          </property>
+                         </widget>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QSplitter" name="description">
+                         <property name="orientation">
+                          <enum>Qt::Vertical</enum>
+                         </property>
+                         <widget class="QLabel" name="label_description">
+                          <property name="font">
+                           <font>
+                            <family>Euphemia</family>
+                            <pointsize>10</pointsize>
+                            <weight>75</weight>
+                            <bold>true</bold>
+                           </font>
+                          </property>
+                          <property name="styleSheet">
+                           <string notr="true">color: rgb(11, 52, 84);</string>
+                          </property>
+                          <property name="text">
+                           <string>Descripción</string>
+                          </property>
+                         </widget>
+                         <widget class="QLineEdit" name="lineEdit_description">
+                          <property name="minimumSize">
+                           <size>
+                            <width>0</width>
+                            <height>35</height>
+                           </size>
+                          </property>
+                          <property name="maximumSize">
+                           <size>
+                            <width>16777215</width>
+                            <height>35</height>
+                           </size>
+                          </property>
+                          <property name="styleSheet">
+                           <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(11, 52, 84);
+border:1px solid  #a8a8a8;</string>
+                          </property>
+                          <property name="readOnly">
+                           <bool>true</bool>
+                          </property>
+                         </widget>
+                        </widget>
+                       </item>
+                      </layout>
+                     </item>
+                     <item>
+                      <layout class="QHBoxLayout" name="second_part_form">
+                       <item>
+                        <widget class="QSplitter" name="total_amount">
+                         <property name="minimumSize">
+                          <size>
+                           <width>220</width>
+                           <height>0</height>
+                          </size>
+                         </property>
+                         <property name="orientation">
+                          <enum>Qt::Vertical</enum>
+                         </property>
+                         <widget class="QLabel" name="label_total_amount">
+                          <property name="font">
+                           <font>
+                            <family>Euphemia</family>
+                            <pointsize>10</pointsize>
+                            <weight>75</weight>
+                            <bold>true</bold>
+                           </font>
+                          </property>
+                          <property name="styleSheet">
+                           <string notr="true">color: rgb(11, 52, 84);</string>
+                          </property>
+                          <property name="text">
+                           <string>Total a pagar</string>
+                          </property>
+                         </widget>
+                         <widget class="QLineEdit" name="lineEdit_total_amount">
+                          <property name="minimumSize">
+                           <size>
+                            <width>260</width>
+                            <height>35</height>
+                           </size>
+                          </property>
+                          <property name="maximumSize">
+                           <size>
+                            <width>260</width>
+                            <height>35</height>
+                           </size>
+                          </property>
+                          <property name="styleSheet">
+                           <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(11, 52, 84);
+border:1px solid  #a8a8a8;</string>
+                          </property>
+                          <property name="readOnly">
+                           <bool>true</bool>
+                          </property>
+                         </widget>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QSplitter" name="creation_date">
+                         <property name="minimumSize">
+                          <size>
+                           <width>220</width>
+                           <height>0</height>
+                          </size>
+                         </property>
+                         <property name="maximumSize">
+                          <size>
+                           <width>260</width>
+                           <height>16777215</height>
+                          </size>
+                         </property>
+                         <property name="orientation">
+                          <enum>Qt::Vertical</enum>
+                         </property>
+                         <widget class="QLabel" name="label_creation_date">
+                          <property name="font">
+                           <font>
+                            <family>Euphemia</family>
+                            <pointsize>10</pointsize>
+                            <weight>75</weight>
+                            <bold>true</bold>
+                           </font>
+                          </property>
+                          <property name="styleSheet">
+                           <string notr="true">color: rgb(11, 52, 84);</string>
+                          </property>
+                          <property name="text">
+                           <string>Fecha de creación</string>
+                          </property>
+                         </widget>
+                         <widget class="QLineEdit" name="input_creation_date">
+                          <property name="minimumSize">
+                           <size>
+                            <width>250</width>
+                            <height>35</height>
+                           </size>
+                          </property>
+                          <property name="maximumSize">
+                           <size>
+                            <width>260</width>
+                            <height>35</height>
+                           </size>
+                          </property>
+                          <property name="font">
+                           <font>
+                            <pointsize>10</pointsize>
+                           </font>
+                          </property>
+                          <property name="styleSheet">
+                           <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(11, 52, 84);
+border:1px solid  #a8a8a8;</string>
+                          </property>
+                          <property name="readOnly">
+                           <bool>false</bool>
+                          </property>
+                          <property name="placeholderText">
+                           <string/>
+                          </property>
+                         </widget>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QSplitter" name="expiration_date">
+                         <property name="minimumSize">
+                          <size>
+                           <width>200</width>
+                           <height>0</height>
+                          </size>
+                         </property>
+                         <property name="orientation">
+                          <enum>Qt::Vertical</enum>
+                         </property>
+                         <widget class="QLabel" name="label_expiration_date">
+                          <property name="font">
+                           <font>
+                            <family>Euphemia</family>
+                            <pointsize>10</pointsize>
+                            <weight>75</weight>
+                            <bold>true</bold>
+                           </font>
+                          </property>
+                          <property name="styleSheet">
+                           <string notr="true">color: rgb(11, 52, 84);</string>
+                          </property>
+                          <property name="text">
+                           <string>Fecha de vencimiento</string>
+                          </property>
+                         </widget>
+                         <widget class="QLineEdit" name="input_expiration_date">
+                          <property name="minimumSize">
+                           <size>
+                            <width>220</width>
+                            <height>35</height>
+                           </size>
+                          </property>
+                          <property name="maximumSize">
+                           <size>
+                            <width>16777215</width>
+                            <height>35</height>
+                           </size>
+                          </property>
+                          <property name="font">
+                           <font>
+                            <pointsize>10</pointsize>
+                           </font>
+                          </property>
+                          <property name="styleSheet">
+                           <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(11, 52, 84);
+border:1px solid  #a8a8a8;</string>
+                          </property>
+                          <property name="readOnly">
+                           <bool>true</bool>
+                          </property>
+                          <property name="placeholderText">
+                           <string/>
+                          </property>
+                         </widget>
+                        </widget>
+                       </item>
+                      </layout>
+                     </item>
+                     <item>
+                      <layout class="QHBoxLayout" name="third_part_form">
+                       <property name="bottomMargin">
+                        <number>12</number>
+                       </property>
+                       <item>
+                        <widget class="QSplitter" name="payment_method">
+                         <property name="orientation">
+                          <enum>Qt::Vertical</enum>
+                         </property>
+                         <widget class="QLabel" name="label_payment_method">
+                          <property name="font">
+                           <font>
+                            <family>Euphemia</family>
+                            <pointsize>10</pointsize>
+                            <weight>75</weight>
+                            <bold>true</bold>
+                           </font>
+                          </property>
+                          <property name="styleSheet">
+                           <string notr="true">color: rgb(11, 52, 84);</string>
+                          </property>
+                          <property name="text">
+                           <string>Método de pago</string>
+                          </property>
+                         </widget>
+                         <widget class="QComboBox" name="option_payment_method">
+                          <property name="minimumSize">
+                           <size>
+                            <width>260</width>
+                            <height>35</height>
+                           </size>
+                          </property>
+                          <property name="maximumSize">
+                           <size>
+                            <width>260</width>
+                            <height>35</height>
+                           </size>
+                          </property>
+                          <property name="styleSheet">
+                           <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(11, 52, 84);
+border:1px solid  #a8a8a8;</string>
+                          </property>
+                          <item>
+                           <property name="text">
+                            <string>Efectivo</string>
+                           </property>
+                          </item>
+                          <item>
+                           <property name="text">
+                            <string>Transacción</string>
+                           </property>
+                          </item>
+                          <item>
+                           <property name="text">
+                            <string>Abono</string>
+                           </property>
+                          </item>
+                         </widget>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QSplitter" name="amount_paid">
+                         <property name="orientation">
+                          <enum>Qt::Vertical</enum>
+                         </property>
+                         <widget class="QLabel" name="label_amount_paid">
+                          <property name="font">
+                           <font>
+                            <family>Euphemia</family>
+                            <pointsize>10</pointsize>
+                            <weight>75</weight>
+                            <bold>true</bold>
+                           </font>
+                          </property>
+                          <property name="styleSheet">
+                           <string notr="true">color: rgb(11, 52, 84);</string>
+                          </property>
+                          <property name="text">
+                           <string>Monto</string>
+                          </property>
+                         </widget>
+                         <widget class="QLineEdit" name="input_amount_paid">
+                          <property name="minimumSize">
+                           <size>
+                            <width>250</width>
+                            <height>35</height>
+                           </size>
+                          </property>
+                          <property name="maximumSize">
+                           <size>
+                            <width>260</width>
+                            <height>35</height>
+                           </size>
+                          </property>
+                          <property name="font">
+                           <font>
+                            <pointsize>10</pointsize>
+                           </font>
+                          </property>
+                          <property name="styleSheet">
+                           <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(11, 52, 84);
+border:1px solid  #a8a8a8;</string>
+                          </property>
+                          <property name="readOnly">
+                           <bool>false</bool>
+                          </property>
+                          <property name="placeholderText">
+                           <string>Ingrese el monto para pagar</string>
+                          </property>
+                         </widget>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QSplitter" name="wigdet_space">
+                         <property name="orientation">
+                          <enum>Qt::Vertical</enum>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </item>
+                    </layout>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
          </widget>
          <widget class="QWidget" name="reports">
           <widget class="QLabel" name="label_7">

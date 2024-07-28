@@ -26,7 +26,7 @@ class MyInterface(QMainWindow, Ui_MainWindow):
                 "Acciones",
             ]
         )
-        self.history_table.setColumnCount(6)
+        self.history_table.setColumnCount(7)
         self.history_table.setHorizontalHeaderLabels(
             [
                 "Nº Factura",
@@ -35,10 +35,10 @@ class MyInterface(QMainWindow, Ui_MainWindow):
                 "Fecha Vencimiento",
                 "Monto total",
                 "Estado",
+                "Acciones",
             ]
         )
         self.students_2.clicked.connect(self.switch_to_studentsPage)
-        self.payments_2.clicked.connect(self.switch_to_paymentsPage)
         self.reports_2.clicked.connect(self.switch_to_reportsPage)
         self.button_add.clicked.connect(self.switch_to_registerStudent)
         self.registerButton.clicked.connect(self.save_data)
@@ -120,18 +120,24 @@ class MyInterface(QMainWindow, Ui_MainWindow):
         tutor_email = self.input_email_2.text()
         address = self.input_address_2.text()
         tutor_phone = self.input_phone_2.text()
+        year_progress = "2024"
+        status = "Vigente"
 
         if exists:
             self.message.setText("El estudiante ya existe")
             self.clear_data()
         elif len(student_ident) <= 10:
-            self.message.setText("El identificador del estudiante debe ser mínimo de 11 caracteres")
+            self.message.setText(
+                "El identificador del estudiante debe ser mínimo de 11 caracteres"
+            )
             self.student_ident.setFocus()
         elif len(student_name) <= 5:
             self.message.setText("El nombre completo es requerido")
             self.input_student_name_2.setFocus()
         elif len(tutor_dni) <= 10:
-            self.message.setText("El identificador del tutor debe ser mínimo de 11 caracteres")
+            self.message.setText(
+                "El identificador del tutor debe ser mínimo de 11 caracteres"
+            )
             self.input_dni_2.setFocus()
         elif len(tutor_name) <= 5:
             self.message.setText("El nombre completo del tutor es requerido")
@@ -151,11 +157,13 @@ class MyInterface(QMainWindow, Ui_MainWindow):
                 student_name,
                 date_of_birtht,
                 grade,
+                year_progress,
                 tutor_dni,
                 tutor_name,
                 tutor_email,
                 tutor_phone,
                 address,
+                status,
             )
             self.student_data = CreateStudent()
             self.student_data.create_result.connect(self.handle_create_result)
@@ -165,7 +173,7 @@ class MyInterface(QMainWindow, Ui_MainWindow):
         if success:
             self.message.clear()
             self.message_ok.setText("Se ha registrado con éxito")
-            QTimer.singleShot(3000, self.clear_message_ok)
+            QTimer.singleShot(7000, self.clear_message_ok)
             self.switch_to_listStudent()
             self.student_data = StudentData()
             self.student_data.data_fetched.connect(self.update_table)
@@ -197,6 +205,7 @@ class MyInterface(QMainWindow, Ui_MainWindow):
                         self.list_student_table.setItem(
                             row_number, column_number, QTableWidgetItem(str(cell_data))
                         )
+
                     button = QPushButton("Ver más")
                     button.setStyleSheet(
                         """
@@ -236,7 +245,7 @@ class MyInterface(QMainWindow, Ui_MainWindow):
         cursor = db.cursor()
         cursor.execute(
             """
-                SELECT s.student_name, s.date_of_birth, s.grade, s.tutor_dni, s.tutor_name, s.tutor_email, s.address, s.tutor_phone, s.status,
+                SELECT s.student_name, s.date_of_birth, s.grade, s.tutor_name, s.tutor_dni, s.tutor_email, s.address, s.tutor_phone, s.status,
                        f.invoice_id, f.description, f.created_at, f.due_date, f.total_amount, f.status
                 FROM students s
                 LEFT JOIN invoices f ON s.student_ident = f.student_ident_fk
@@ -253,11 +262,11 @@ class MyInterface(QMainWindow, Ui_MainWindow):
             self.input_date.setText(student[1])
             self.input_grade.setText(student[2])
             self.input_tutor_name.setText(student[3])
-            self.input_dni.setText(student[3])
-            self.input_email.setText(student[4])
-            self.input_address.setText(student[5])
-            self.input_phone.setText(student[6])
-            self.input_status.setText(student[7])
+            self.input_dni.setText(student[4])
+            self.input_email.setText(student[5])
+            self.input_address.setText(student[6])
+            self.input_phone.setText(student[7])
+            self.input_status.setText(student[8])
 
             self.history_table.setRowCount(0)
 
@@ -267,6 +276,29 @@ class MyInterface(QMainWindow, Ui_MainWindow):
                     self.history_table.setItem(
                         row_number, column_number, QTableWidgetItem(str(cell_data))
                     )
+                
+                button = QPushButton("Ver más")
+                button.setStyleSheet(
+                    """
+                    QPushButton {
+                        background-color:#1770b3;\n
+                        border: none;\n
+                        border-radius: 6px;\n
+                        color:white;\n
+                        font-family: Euphemia;\n
+                        font-size: 12px;
+                    }"""
+                )
+                button.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+                button.clicked.connect(self.switch_to_payment)
+                self.history_table.setCellWidget(row_number, 6, button)
+
+    def switch_to_payment(self):
+        self.content.setCurrentIndex(1)
+
+    def invoice_details(self, studen_id):
+        self.content.setCurrentIndex(1)
+        self.search_invoice_by_id(studen_id)
 
     def clear_data(self):
         self.input_student_ident.clear()
