@@ -113,31 +113,25 @@ class MyInterface(QMainWindow, Ui_MainWindow):
     def on_student_search_result(self, exists):
         student_ident = self.input_student_ident.text()
         student_name = self.input_student_name_2.text()
-        date_of_birth = self.dateEdit.text()
+        date_of_birtht = self.dateEdit.text()
         grade = self.options_grade.currentText()
         tutor_dni = self.input_dni_2.text()
         tutor_name = self.input_tutor_name_2.text()
         tutor_email = self.input_email_2.text()
         address = self.input_address_2.text()
         tutor_phone = self.input_phone_2.text()
-        year_progress = "2024"
-        status = "Vigente"
 
         if exists:
-            self.message.setText("Identificador de estudiante ya existente")
+            self.message.setText("El estudiante ya existe")
             self.clear_data()
-        elif len(student_ident) <= 11:
-            self.message.setText(
-                "El identificador del estudiante debe ser mínimo de 11 caracteres"
-            )
-            self.input_student_ident.setFocus()
+        elif len(student_ident) <= 10:
+            self.message.setText("El identificador del estudiante debe ser mínimo de 11 caracteres")
+            self.student_ident.setFocus()
         elif len(student_name) <= 5:
             self.message.setText("El nombre completo es requerido")
             self.input_student_name_2.setFocus()
-        elif len(tutor_dni) <= 11:
-            self.message.setText(
-                "El identificador del tutor debe ser mínimo de 11 caracteres"
-            )
+        elif len(tutor_dni) <= 10:
+            self.message.setText("El identificador del tutor debe ser mínimo de 11 caracteres")
             self.input_dni_2.setFocus()
         elif len(tutor_name) <= 5:
             self.message.setText("El nombre completo del tutor es requerido")
@@ -155,20 +149,17 @@ class MyInterface(QMainWindow, Ui_MainWindow):
             student = Student(
                 student_ident,
                 student_name,
-                date_of_birth,
+                date_of_birtht,
                 grade,
-                year_progress,
                 tutor_dni,
                 tutor_name,
                 tutor_email,
                 tutor_phone,
                 address,
-                status,
             )
             self.student_data = CreateStudent()
             self.student_data.create_result.connect(self.handle_create_result)
             self.student_data.create_student(student)
-
 
     def handle_create_result(self, success):
         if success:
@@ -181,7 +172,6 @@ class MyInterface(QMainWindow, Ui_MainWindow):
             self.load_data()
             self.clear_data()
         else:
-            # AQUI CAMBIAR EL MENSAJE POR EL MOMENTO
             self.message.setText("Ha ocurrido un error, intente nuevamente")
 
     def clear_message_ok(self):
@@ -288,7 +278,6 @@ class MyInterface(QMainWindow, Ui_MainWindow):
         self.input_email_2.clear()
         self.input_address_2.clear()
         self.input_phone_2.clear()
-        self.message.clear()
         self.input_student_ident.setFocus()
 
 
