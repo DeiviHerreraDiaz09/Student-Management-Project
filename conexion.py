@@ -38,12 +38,12 @@ class Conexion:
             cursor.execute(
                 """
                 CREATE TABLE IF NOT EXISTS students (
-                    student_id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    student_ident TEXT PRIMARY KEY,
                     student_name TEXT NOT NULL,
                     date_of_birth TEXT NOT NULL,
                     grade TEXT NOT NULL,
-                    year_progress INTEGER NOT NULL,
                     tutor_dni TEXT NOT NULL,
+                    year_progress INTEGER NOT NULL,
                     tutor_name TEXT NOT NULL,
                     address TEXT NOT NULL,
                     tutor_email TEXT NOT NULL,
@@ -62,8 +62,8 @@ class Conexion:
                     due_date TEXT NOT NULL,
                     created_at TEXT NOT NULL,
                     status TEXT NOT NULL,
-                    student_id_fk INTEGER NOT NULL,
-                    FOREIGN KEY (student_id_fk) REFERENCES students(student_id)
+                    student_ident_fk TEXT NOT NULL,
+                    FOREIGN KEY (student_ident_fk) REFERENCES students(student_ident)
                 )
             """
             )
@@ -97,7 +97,7 @@ class Conexion:
                 AFTER INSERT ON students
                 FOR EACH ROW
                 BEGIN
-                    INSERT INTO invoices (description, total_amount, remaining_amount, due_date, created_at, status, student_id_fk)
+                    INSERT INTO invoices (description, total_amount, remaining_amount, due_date, created_at, status, student_ident_fk)
                     VALUES (
                         'Factura mensual',
                         100, 
@@ -105,7 +105,7 @@ class Conexion:
                         date('now', '+1 month'),
                         date('now'),
                         'pendiente',
-                        NEW.student_id
+                        NEW.student_ident
                     );
                 END;
             """
@@ -210,23 +210,23 @@ class Conexion:
 
             cursor.execute(
                 """
-                SELECT student_id, grade, year_progress
+                SELECT student_ident, grade, year_progress
                 FROM students
                 """
             )
 
             students = cursor.fetchall()
 
-            for student_id, grade, year_progress in students:
+            for student_ident, grade, year_progress in students:
                 if int(year_progress) < current_year and grade in grade_mapping:
                     new_grade = grade_mapping[grade]
                     cursor.execute(
                         """
                         UPDATE students
                         SET grade = ?, year_progress = ?
-                        WHERE student_id = ?
+                        WHERE student_ident = ?
                         """,
-                        (new_grade, current_year, student_id),
+                        (new_grade, current_year, student_ident),
                     )
 
             self.con.commit()

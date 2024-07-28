@@ -14,7 +14,7 @@ class StudentData(QThread):
         db = con.Conexion().conectar()
         cursor = db.cursor()
         cursor.execute(
-            "SELECT student_id, student_name, grade, tutor_dni, tutor_name, tutor_phone, count(invoices.invoice_id)FROM students INNER JOIN invoices on student_id = invoices.student_id_fk GROUP BY student_id ORDER BY count(invoices.invoice_id) DESC"
+            "SELECT student_ident, student_name, grade, tutor_dni, tutor_name, tutor_phone, count(invoices.invoice_id)FROM students INNER JOIN invoices on student_ident = invoices.student_ident_fk GROUP BY student_ident ORDER BY count(invoices.invoice_id) DESC"
         )
 
         results = cursor.fetchall()
@@ -26,14 +26,16 @@ class StudentData(QThread):
 class SearchStudent(QThread):
     student_result = pyqtSignal(bool)
 
-    def __init__(self, student_name):
+    def __init__(self, student_ident):
         super().__init__()
-        self.student_name = student_name
+        self.student_ident = student_ident
 
     def run(self):
         db = con.Conexion().conectar()
         cursor = db.cursor()
-        cursor.execute("SELECT * FROM students WHERE student_name LIKE ?", (self.student_name,))
+        cursor.execute(
+            "SELECT * FROM students WHERE student_name =  ?", (self.student_ident,)
+        )
         fila = cursor.fetchone()
         if fila:
             self.student_result.emit(True)
@@ -56,8 +58,9 @@ class Create(QThread):
             db = con.Conexion().conectar()
             cursor = db.cursor()
             cursor.execute(
-                "INSERT INTO students (student_name, date_of_birth, grade, year_progress, tutor_dni, tutor_name, tutor_email, tutor_phone, address, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                "INSERT INTO students (student_ident, student_name, date_of_birth, grade, year_progress, tutor_dni, tutor_name, tutor_email, tutor_phone, address, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
                 (
+                    self.student.student_ident,
                     self.student.student_name,
                     self.student.date_of_birth,
                     self.student.grade,
