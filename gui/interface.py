@@ -5,6 +5,7 @@ from model.student import Student
 from PyQt6.QtCore import QTimer
 from PyQt6 import QtGui, QtCore
 import conexion as con
+import datetime
 
 
 class MyInterface(QMainWindow, Ui_MainWindow):
@@ -12,8 +13,12 @@ class MyInterface(QMainWindow, Ui_MainWindow):
         super().__init__()
         self.setupUi(self)
         self.setWindowTitle("Interface Menu")
+
+        # INICIALIZACIÓN DE PANTALLA
         self.content.setCurrentIndex(0)
         self.switch_to_listStudent()
+
+        # TABLA GENERAL DE ESTUDIANTES
         self.list_student_table.setColumnCount(7)
         self.list_student_table.setHorizontalHeaderLabels(
             [
@@ -26,7 +31,9 @@ class MyInterface(QMainWindow, Ui_MainWindow):
                 "Acciones",
             ]
         )
-        self.history_table.setColumnCount(7)
+
+        # TABLA FACTURAS VINCULADAS AL ESTUDIANTE
+        self.history_table.setColumnCount(8)
         self.history_table.setHorizontalHeaderLabels(
             [
                 "Nº Factura",
@@ -34,27 +41,62 @@ class MyInterface(QMainWindow, Ui_MainWindow):
                 "Fecha Generación",
                 "Fecha Vencimiento",
                 "Monto total",
+                "Monto restante",
                 "Estado",
                 "Acciones",
             ]
         )
-        self.students_2.clicked.connect(self.switch_to_studentsPage)
+
+        # CONEXIÓN DE BOTONES A FUNCIONES
+        self.students_2.clicked.connect(self.switch_to_listStudent)
         self.reports_2.clicked.connect(self.switch_to_reportsPage)
         self.button_add.clicked.connect(self.switch_to_registerStudent)
         self.registerButton.clicked.connect(self.save_data)
         self.button_search.clicked.connect(self.search_student_by_name)
         self.buttonBack.clicked.connect(self.switch_to_listStudent)
         self.buttonBack_2.clicked.connect(self.switch_to_listStudent)
+
         self.student_data = StudentData()
         self.student_data.data_fetched.connect(self.update_table)
-
         self.original_data = []
+        self.student_ids = {}
         self.load_data()
 
-        self.student_ids = {}
+    # LISTADO DE ESTUDIANTES
+
+    def switch_to_listStudent(self):
+        self.content.setCurrentIndex(0)
+        self.content_pages.setCurrentIndex(0)
+
+    # DETALLES DE ESTUDIANTE
+
+    def switch_to_studentDetails(self, student_ident):
+        self.content.setCurrentIndex(0)
+        self.content_pages.setCurrentIndex(1)
+        self.search_student_by_id(student_ident)
+
+    # REGISTRO DE ESTUDIANTE
+
+    def switch_to_registerStudent(self):
+        self.content.setCurrentIndex(0)
+        self.content_pages.setCurrentIndex(2)
+
+    # REGISTRAR UN PAGO
+
+    def switch_to_paymentsPage(self):
+        self.content.setCurrentIndex(1)
+
+    # REPORTE DE PAGOS DIARIOS
+
+    def switch_to_reportsPage(self):
+        self.content.setCurrentIndex(2)
+
+    # LOGICA INTERNA ↓
 
     def load_data(self):
         self.student_data.start()
+
+    # INICIALIZACIÓN DE INFORMACIÓN ESTUDIANTES
 
     def update_table(self, data):
         self.original_data = data
@@ -84,25 +126,125 @@ class MyInterface(QMainWindow, Ui_MainWindow):
             )
             button.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
             button.clicked.connect(
-                lambda _, student_id=student_id: self.student_details(student_id)
+                lambda _, student_id=student_id: self.switch_to_studentDetails(
+                    student_id
+                )
             )
             self.list_student_table.setCellWidget(row_number, 6, button)
 
-    def switch_to_studentsPage(self):
-        self.content.setCurrentIndex(0)
-        self.switch_to_listStudent()
+    # FILTRAR TABLA "list_student_table" por NOMBRE
 
-    def switch_to_paymentsPage(self):
-        self.content.setCurrentIndex(1)
+    def search_student_by_name(self):
+        name = self.box.text()
+        if name:
+            db = con.Conexion().conectar()
+            cursor = db.cursor()
+            query = "SELECT student_ident, student_name, grade, tutor_dni, tutor_name, tutor_phone, count(invoices.invoice_id)FROM students INNER JOIN invoices on student_ident = invoices.student_ident_fk  WHERE student_name LIKE ? GROUP BY student_ident  "
+            cursor.execute(query, ("%" + name + "%",))
+            rows = cursor.fetchall()
+            db.close()
+            if rows:
+                self.list_student_table.setRowCount(0)
+                for row_number, row_data in enumerate(rows):
+                    self.list_student_table.insertRow(row_number)
+                    student_id = row_data[0]
+                    self.student_ids[row_number] = student_id
 
-    def switch_to_reportsPage(self):
-        self.content.setCurrentIndex(2)
+                    for column_number, cell_data in enumerate(row_data[1:]):
+                        self.list_student_table.setItem(
+                            row_number, column_number, QTableWidgetItem(str(cell_data))
+                        )
 
-    def switch_to_registerStudent(self):
-        self.content_pages.setCurrentIndex(2)
+                    button = QPushButton("Ver más")
+                    button.setStyleSheet(
+                        """
+                        QPushButton {
+                            background-color:#1770b3;\n
+                            border: none;\n
+                            border-radius: 6px;\n
+                            color:white;\n
+                            font-family: Euphemia;\n
+                            font-size: 12px;
+                        }"""
+                    )
+                    button.setCursor(
+                        QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor)
+                    )
+                    button.clicked.connect(
+                        lambda _, student_id=student_id: self.switch_to_studentDetails(
+                            student_id
+                        )
+                    )
+                    self.list_student_table.setCellWidget(row_number, 6, button)
 
-    def switch_to_listStudent(self):
-        self.content_pages.setCurrentIndex(0)
+            else:
+                self.message_error_name.setText(
+                    "No se encontraron estudiantes con ese nombre"
+                )
+                self.update_table(self.original_data)
+        else:
+            self.update_table(self.original_data)
+
+    # LOGICA PARA FILTRAR INFORMACIÓN DETALLADA DEL ESTUDIANTE
+
+    def search_student_by_id(self, student_ident):
+        db = con.Conexion().conectar()
+        cursor = db.cursor()
+        cursor.execute(
+            """
+                SELECT s.student_name, s.date_of_birth, s.grade, s.tutor_name, s.tutor_dni, s.tutor_email, s.address, s.tutor_phone, s.status,
+                       f.invoice_id, f.description, f.created_at, f.due_date, f.total_amount, f.remaining_amount, f.status
+                FROM students s
+                LEFT JOIN invoices f ON s.student_ident = f.student_ident_fk
+                WHERE s.student_ident = ?
+                """,
+            (student_ident,),
+        )
+        rows = cursor.fetchall()
+        db.close()
+
+        if rows:
+            student = rows[0]
+            self.input_student_name.setText(student[0])
+            self.input_date.setText(student[1])
+            self.input_grade.setText(student[2])
+            self.input_tutor_name.setText(student[3])
+            self.input_dni.setText(student[4])
+            self.input_email.setText(student[5])
+            self.input_address.setText(student[6])
+            self.input_phone.setText(student[7])
+            self.input_status.setText(student[8])
+
+            self.history_table.setRowCount(0)
+
+            for row_number, row_data in enumerate(rows):
+                self.history_table.insertRow(row_number)
+                for column_number, cell_data in enumerate(row_data[9:]):
+                    self.history_table.setItem(
+                        row_number, column_number, QTableWidgetItem(str(cell_data))
+                    )
+                invoice_id = row_data[9]
+                button = QPushButton("Ver más")
+                button.setStyleSheet(
+                    """
+                    QPushButton {
+                        background-color:#1770b3;\n
+                        border: none;\n
+                        border-radius: 6px;\n
+                        color:white;\n
+                        font-family: Euphemia;\n
+                        font-size: 12px;
+                    }"""
+                )
+                button.setCursor(
+                    QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor)
+                )
+                button.clicked.connect(
+                    lambda checked, id=invoice_id: self.switch_to_payment(id)
+                )
+                self.history_table.setCellWidget(row_number, 7, button)
+
+    # LOGICA REGISTRO DE ESTUDIANTES
 
     def save_data(self):
         student_ident = self.input_student_ident.text()
@@ -182,123 +324,87 @@ class MyInterface(QMainWindow, Ui_MainWindow):
         else:
             self.message.setText("Ha ocurrido un error, intente nuevamente")
 
-    def clear_message_ok(self):
-        self.message_ok.clear()
+    # INFORMACIÓN FACTURA A PAGAR
 
-    def search_student_by_name(self):
-        name = self.box.text()
-        if name:
-            db = con.Conexion().conectar()
-            cursor = db.cursor()
-            query = "SELECT student_ident, student_name, grade, tutor_dni, tutor_name, tutor_phone, count(invoices.invoice_id)FROM students INNER JOIN invoices on student_ident = invoices.student_ident_fk  WHERE student_name LIKE ? GROUP BY student_ident  "
-            cursor.execute(query, ("%" + name + "%",))
-            rows = cursor.fetchall()
-            db.close()
-            if rows:
-                self.list_student_table.setRowCount(0)
-                for row_number, row_data in enumerate(rows):
-                    self.list_student_table.insertRow(row_number)
-                    student_id = row_data[0]
-                    self.student_ids[row_number] = student_id
-
-                    for column_number, cell_data in enumerate(row_data[1:]):
-                        self.list_student_table.setItem(
-                            row_number, column_number, QTableWidgetItem(str(cell_data))
-                        )
-
-                    button = QPushButton("Ver más")
-                    button.setStyleSheet(
-                        """
-                        QPushButton {
-                            background-color:#1770b3;\n
-                            border: none;\n
-                            border-radius: 6px;\n
-                            color:white;\n
-                            font-family: Euphemia;\n
-                            font-size: 12px;
-                        }"""
-                    )
-                    button.setCursor(
-                        QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor)
-                    )
-                    button.clicked.connect(
-                        lambda _, student_id=student_id: self.student_details(
-                            student_id
-                        )
-                    )
-                    self.list_student_table.setCellWidget(row_number, 6, button)
-
-            else:
-                self.message_error_name.setText(
-                    "No se encontraron estudiantes con ese nombre"
-                )
-                self.update_table(self.original_data)
-        else:
-            self.update_table(self.original_data)
-
-    def student_details(self, studen_id):
-        self.content_pages.setCurrentIndex(1)
-        self.search_student_by_id(studen_id)
-
-    def search_student_by_id(self, student_ident):
+    def switch_to_payment(self, invoice_id):
+        self.content.setCurrentIndex(1)
         db = con.Conexion().conectar()
         cursor = db.cursor()
         cursor.execute(
             """
-                SELECT s.student_name, s.date_of_birth, s.grade, s.tutor_name, s.tutor_dni, s.tutor_email, s.address, s.tutor_phone, s.status,
-                       f.invoice_id, f.description, f.created_at, f.due_date, f.total_amount, f.status
+                SELECT s.student_name, f.invoice_id, f.description, f.remaining_amount, f.created_at, f.due_date, s.student_ident
                 FROM students s
                 LEFT JOIN invoices f ON s.student_ident = f.student_ident_fk
-                WHERE s.student_ident = ?
+                WHERE f.invoice_id = ?
                 """,
-            (student_ident,),
+            (invoice_id,),
         )
         rows = cursor.fetchall()
         db.close()
 
         if rows:
-            student = rows[0]
-            self.input_student_name.setText(student[0])
-            self.input_date.setText(student[1])
-            self.input_grade.setText(student[2])
-            self.input_tutor_name.setText(student[3])
-            self.input_dni.setText(student[4])
-            self.input_email.setText(student[5])
-            self.input_address.setText(student[6])
-            self.input_phone.setText(student[7])
-            self.input_status.setText(student[8])
+            invoice_details = rows[0]
+            self.input_student_name_invo.setText(invoice_details[0])
+            self.input_id_invoice.setText(str(invoice_details[1]))
+            self.lineEdit_description.setText(invoice_details[2])
+            self.lineEdit_total_amount.setText(str(invoice_details[3]))
+            self.input_creation_date.setText(invoice_details[4])
+            self.input_expiration_date.setText(invoice_details[5])
 
-            self.history_table.setRowCount(0)
+            self.current_invoice_id = invoice_details[1]
+            self.current_student_ident = invoice_details[6]
+            self.remaining_amount = invoice_details[3]
 
-            for row_number, row_data in enumerate(rows):
-                self.history_table.insertRow(row_number)
-                for column_number, cell_data in enumerate(row_data[9:]):
-                    self.history_table.setItem(
-                        row_number, column_number, QTableWidgetItem(str(cell_data))
-                    )
-                
-                button = QPushButton("Ver más")
-                button.setStyleSheet(
-                    """
-                    QPushButton {
-                        background-color:#1770b3;\n
-                        border: none;\n
-                        border-radius: 6px;\n
-                        color:white;\n
-                        font-family: Euphemia;\n
-                        font-size: 12px;
-                    }"""
+            try:
+                self.registerButton_payment.clicked.disconnect()
+            except TypeError:
+                pass
+
+            self.registerButton_payment.clicked.connect(
+                lambda: self.register_payment(
+                    self.current_invoice_id, self.current_student_ident
                 )
-                button.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
-                button.clicked.connect(self.switch_to_payment)
-                self.history_table.setCellWidget(row_number, 6, button)
+            )
 
-    def switch_to_payment(self):
-        self.content.setCurrentIndex(1)
+    def register_payment(self, invoice_id, student_ident):
+        payment_date = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        amount_paid = self.input_amount_paid.text()
+        payment_method = self.option_payment_method.currentText()
 
-    def invoice_details(self, studen_id):
-        self.content.setCurrentIndex(1)
-        self.search_invoice_by_id(studen_id)
+        if not amount_paid.isdigit():
+            self.message_erro_payment.setText("El monto ingresado no es válido")
+            self.message_erro_payment.show()
+            return
+
+        amount_paid = int(amount_paid)
+
+        if amount_paid > self.remaining_amount:
+            self.message_erro_payment.setText(
+                f"El monto no debe ser superior a {self.remaining_amount}"
+            )
+            self.message_erro_payment.show()
+            return
+
+        db = con.Conexion().conectar()
+        cursor = db.cursor()
+        cursor.execute(
+            """
+                INSERT INTO payments (payment_date, payment_paid, payment_method, invoice_id_fk)
+                VALUES (?, ?, ?, ?)
+                """,
+            (payment_date, amount_paid, payment_method, invoice_id),
+        )
+        db.commit()
+        db.close()
+
+        self.input_amount_paid.clear()
+        self.option_payment_method.setCurrentIndex(0)
+        self.message_erro_payment.clear()
+
+        self.switch_to_studentDetails(student_ident)
+
+    def clear_message_ok(self):
+        self.message_ok.clear()
 
     def clear_data(self):
         self.input_student_ident.clear()

@@ -117,15 +117,16 @@ class Conexion:
                 AFTER INSERT ON payments
                 FOR EACH ROW
                 BEGIN
+
                     UPDATE invoices
-                    SET description = 'Factura mensual - abonado ' || (SELECT SUM(payment_paid) FROM payments WHERE invoice_id_fk = NEW.invoice_id_fk),
-                        remaining_amount = remaining_amount - NEW.payment_paid
+                    SET remaining_amount = remaining_amount - NEW.payment_paid
                     WHERE invoice_id = NEW.invoice_id_fk;
-                    
+
+             
                     UPDATE invoices
-                    SET status = 'Pagada'
+                    SET status = 'Pagada', remaining_amount = 0
                     WHERE invoice_id = NEW.invoice_id_fk
-                    AND (SELECT SUM(payment_paid) FROM payments WHERE invoice_id_fk = NEW.invoice_id_fk) >= (SELECT total_amount FROM invoices WHERE invoice_id = NEW.invoice_id_fk);
+                    AND remaining_amount <= 0;
                 END;
             """
             )

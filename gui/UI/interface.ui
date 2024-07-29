@@ -316,7 +316,7 @@ font-weight:bold
           <string notr="true">background-color: rgb(255, 255, 255);</string>
          </property>
          <property name="currentIndex">
-          <number>1</number>
+          <number>0</number>
          </property>
          <widget class="QWidget" name="students_page">
           <property name="styleSheet">
@@ -1445,6 +1445,14 @@ QTableWidget::item:alternate {
                  <column>
                   <property name="text">
                    <string>Monto total</string>
+                  </property>
+                  <property name="textAlignment">
+                   <set>AlignCenter</set>
+                  </property>
+                 </column>
+                 <column>
+                  <property name="text">
+                   <string>Monto restante</string>
                   </property>
                   <property name="textAlignment">
                    <set>AlignCenter</set>
