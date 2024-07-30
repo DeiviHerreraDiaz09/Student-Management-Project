@@ -194,7 +194,7 @@ class MyInterface(QMainWindow, Ui_MainWindow):
         cursor.execute(
             """
                 SELECT s.student_name, s.date_of_birth, s.grade, s.tutor_name, s.tutor_dni, s.tutor_email, s.address, s.tutor_phone, s.status,
-                       f.invoice_id, f.description, f.created_at, f.due_date, f.total_amount, f.remaining_amount, f.status
+                    f.invoice_id, f.description, f.created_at, f.due_date, f.total_amount, f.remaining_amount, f.status
                 FROM students s
                 LEFT JOIN invoices f ON s.student_ident = f.student_ident_fk
                 WHERE s.student_ident = ?
@@ -225,25 +225,50 @@ class MyInterface(QMainWindow, Ui_MainWindow):
                         row_number, column_number, QTableWidgetItem(str(cell_data))
                     )
                 invoice_id = row_data[9]
-                button = QPushButton("Ver más")
-                button.setStyleSheet(
-                    """
-                    QPushButton {
-                        background-color:#1770b3;\n
-                        border: none;\n
-                        border-radius: 6px;\n
-                        color:white;\n
-                        font-family: Euphemia;\n
-                        font-size: 12px;
-                    }"""
-                )
-                button.setCursor(
-                    QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor)
-                )
-                button.clicked.connect(
-                    lambda checked, id=invoice_id: self.switch_to_payment(id)
-                )
-                self.history_table.setCellWidget(row_number, 7, button)
+                invoice_status = row_data[15]  
+
+                if invoice_status != "Pagada":
+                    button = QPushButton("Ver más")
+                    button.setStyleSheet(
+                        """
+                        QPushButton {
+                            background-color:#1770b3;\n
+                            border: none;\n
+                            border-radius: 6px;\n
+                            color:white;\n
+                            font-family: Euphemia;\n
+                            font-size: 12px;
+                        }"""
+                    )
+                    button.setCursor(
+                        QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor)
+                    )
+                    button.clicked.connect(
+                        lambda checked, id=invoice_id: self.switch_to_payment(id)
+                    )
+                    self.history_table.setCellWidget(row_number, 7, button)
+                else:
+                    details_button = QPushButton("Detalles")
+                    details_button.setStyleSheet(
+                        """
+                        QPushButton {
+                            background-color:#4caf50;\n
+                            border: none;\n
+                            border-radius: 6px;\n
+                            color:white;\n
+                            font-family: Euphemia;\n
+                            font-size: 12px;
+                        }"""
+                    )
+                    details_button.setCursor(
+                        QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor)
+                    )
+                    details_button.clicked.connect(
+                        # Modificar esta parte con la nueva seccion del historial de pagos de la factura vinculada
+                        lambda checked, id=invoice_id: self.show_invoice_details(id)
+                    )
+                    self.history_table.setCellWidget(row_number, 7, details_button)
+
 
     # LOGICA REGISTRO DE ESTUDIANTES
 
