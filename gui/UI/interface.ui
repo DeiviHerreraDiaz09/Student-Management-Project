@@ -323,7 +323,7 @@ font-weight:bold
            <string notr="true">background-color:#e9f4fd;</string>
           </property>
           <layout class="QGridLayout" name="gridLayout_9">
-           <item row="0" column="0">
+           <item row="0" column="0" alignment="Qt::AlignVCenter">
             <widget class="QStackedWidget" name="content_pages">
              <property name="styleSheet">
               <string notr="true">
@@ -334,7 +334,7 @@ QStackedWidget::right-arrow, QStackedWidget::left-arrow {
 }</string>
              </property>
              <property name="currentIndex">
-              <number>1</number>
+              <number>3</number>
              </property>
              <widget class="QWidget" name="ListStudents">
               <layout class="QGridLayout" name="gridLayout_3">
@@ -1530,7 +1530,7 @@ color:white;</string>
                      <property name="minimumSize">
                       <size>
                        <width>500</width>
-                       <height>30</height>
+                       <height>40</height>
                       </size>
                      </property>
                      <property name="maximumSize">
@@ -1565,18 +1565,39 @@ color:white;</string>
                     </widget>
                    </item>
                    <item>
-                    <widget class="QWidget" name="widget_2" native="true">
+                    <widget class="QPushButton" name="button_add_invoice">
                      <property name="minimumSize">
                       <size>
-                       <width>90</width>
-                       <height>0</height>
+                       <width>120</width>
+                       <height>30</height>
                       </size>
                      </property>
                      <property name="maximumSize">
                       <size>
-                       <width>90</width>
-                       <height>16777215</height>
+                       <width>120</width>
+                       <height>30</height>
                       </size>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <family>Euphemia</family>
+                       <pointsize>10</pointsize>
+                       <weight>75</weight>
+                       <bold>true</bold>
+                      </font>
+                     </property>
+                     <property name="cursor">
+                      <cursorShape>PointingHandCursor</cursorShape>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">background-color:#1770b3;
+font-family: Euphemia;
+border: none;
+border-radius: 6px;
+color:white;</string>
+                     </property>
+                     <property name="text">
+                      <string>Nueva Factura</string>
                      </property>
                     </widget>
                    </item>
@@ -2231,6 +2252,456 @@ border:1px solid  #a8a8a8;</string>
                            </property>
                            <property name="placeholderText">
                             <string>Ingrese el teléfono del tutor</string>
+                           </property>
+                          </widget>
+                         </widget>
+                        </item>
+                       </layout>
+                      </item>
+                     </layout>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+              </layout>
+             </widget>
+             <widget class="QWidget" name="registerInvoice">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>420</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>420</height>
+               </size>
+              </property>
+              <layout class="QGridLayout" name="gridLayout_13">
+               <item row="0" column="0">
+                <layout class="QVBoxLayout" name="verticalLayout_4">
+                 <item>
+                  <layout class="QHBoxLayout" name="horizontalLayout_5">
+                   <item>
+                    <widget class="QPushButton" name="buttonBack_3">
+                     <property name="minimumSize">
+                      <size>
+                       <width>90</width>
+                       <height>30</height>
+                      </size>
+                     </property>
+                     <property name="maximumSize">
+                      <size>
+                       <width>90</width>
+                       <height>30</height>
+                      </size>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <family>Euphemia</family>
+                       <pointsize>10</pointsize>
+                       <weight>75</weight>
+                       <bold>true</bold>
+                      </font>
+                     </property>
+                     <property name="cursor">
+                      <cursorShape>PointingHandCursor</cursorShape>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">background-color:#1770b3;
+font-family: Euphemia;
+border: none;
+border-radius: 6px;
+color:white;</string>
+                     </property>
+                     <property name="text">
+                      <string>Atrás</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="tittle_new_student_2">
+                     <property name="minimumSize">
+                      <size>
+                       <width>500</width>
+                       <height>40</height>
+                      </size>
+                     </property>
+                     <property name="maximumSize">
+                      <size>
+                       <width>500</width>
+                       <height>16777214</height>
+                      </size>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <family>Euphemia</family>
+                       <pointsize>12</pointsize>
+                       <weight>75</weight>
+                       <bold>true</bold>
+                      </font>
+                     </property>
+                     <property name="layoutDirection">
+                      <enum>Qt::LeftToRight</enum>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">color: rgb(11, 52, 84);</string>
+                     </property>
+                     <property name="text">
+                      <string>Nueva Factura</string>
+                     </property>
+                     <property name="alignment">
+                      <set>Qt::AlignCenter</set>
+                     </property>
+                     <property name="margin">
+                      <number>10</number>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QWidget" name="widget_2" native="true">
+                     <property name="minimumSize">
+                      <size>
+                       <width>90</width>
+                       <height>0</height>
+                      </size>
+                     </property>
+                     <property name="maximumSize">
+                      <size>
+                       <width>90</width>
+                       <height>16777215</height>
+                      </size>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                 <item>
+                  <widget class="QWidget" name="form_new_student_2" native="true">
+                   <property name="minimumSize">
+                    <size>
+                     <width>850</width>
+                     <height>0</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>750</width>
+                     <height>16777215</height>
+                    </size>
+                   </property>
+                   <layout class="QGridLayout" name="gridLayout_12">
+                    <property name="topMargin">
+                     <number>20</number>
+                    </property>
+                    <item row="2" column="0">
+                     <widget class="QLabel" name="message_2">
+                      <property name="font">
+                       <font>
+                        <family>Euphemia</family>
+                        <pointsize>9</pointsize>
+                        <weight>75</weight>
+                        <bold>true</bold>
+                       </font>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">font-family: Euphemia;
+color:red;</string>
+                      </property>
+                      <property name="text">
+                       <string/>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="1" column="0" alignment="Qt::AlignHCenter">
+                     <widget class="QPushButton" name="registerButton_Invoice">
+                      <property name="minimumSize">
+                       <size>
+                        <width>160</width>
+                        <height>35</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>160</width>
+                        <height>35</height>
+                       </size>
+                      </property>
+                      <property name="font">
+                       <font>
+                        <family>Euphemia</family>
+                        <pointsize>10</pointsize>
+                        <weight>75</weight>
+                        <bold>true</bold>
+                       </font>
+                      </property>
+                      <property name="cursor">
+                       <cursorShape>PointingHandCursor</cursorShape>
+                      </property>
+                      <property name="layoutDirection">
+                       <enum>Qt::LeftToRight</enum>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">background-color:#1770b3;
+border: none;
+border-radius: 6px;
+font-family: Euphemia;
+color:white;</string>
+                      </property>
+                      <property name="text">
+                       <string>Registrar</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="0" column="0">
+                     <layout class="QVBoxLayout" name="verticalLayout_6">
+                      <item>
+                       <layout class="QHBoxLayout" name="horizontalLayout_6">
+                        <item>
+                         <widget class="QSplitter" name="student_ident_invoice">
+                          <property name="minimumSize">
+                           <size>
+                            <width>220</width>
+                            <height>0</height>
+                           </size>
+                          </property>
+                          <property name="orientation">
+                           <enum>Qt::Vertical</enum>
+                          </property>
+                          <widget class="QLabel" name="label_student_ident__invoice">
+                           <property name="font">
+                            <font>
+                             <family>Euphemia</family>
+                             <pointsize>10</pointsize>
+                             <weight>75</weight>
+                             <bold>true</bold>
+                            </font>
+                           </property>
+                           <property name="styleSheet">
+                            <string notr="true">color: rgb(11, 52, 84);</string>
+                           </property>
+                           <property name="text">
+                            <string>Identificación de estudiante</string>
+                           </property>
+                          </widget>
+                          <widget class="QLineEdit" name="input_student_ident__invoice">
+                           <property name="minimumSize">
+                            <size>
+                             <width>0</width>
+                             <height>35</height>
+                            </size>
+                           </property>
+                           <property name="maximumSize">
+                            <size>
+                             <width>260</width>
+                             <height>35</height>
+                            </size>
+                           </property>
+                           <property name="font">
+                            <font>
+                             <pointsize>10</pointsize>
+                            </font>
+                           </property>
+                           <property name="styleSheet">
+                            <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(11, 52, 84);
+border:1px solid  #a8a8a8;</string>
+                           </property>
+                           <property name="text">
+                            <string/>
+                           </property>
+                           <property name="readOnly">
+                            <bool>false</bool>
+                           </property>
+                           <property name="placeholderText">
+                            <string/>
+                           </property>
+                          </widget>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QSplitter" name="student_name__invoice">
+                          <property name="orientation">
+                           <enum>Qt::Vertical</enum>
+                          </property>
+                          <widget class="QLabel" name="label_studentName__invoice">
+                           <property name="font">
+                            <font>
+                             <family>Euphemia</family>
+                             <pointsize>10</pointsize>
+                             <weight>75</weight>
+                             <bold>true</bold>
+                            </font>
+                           </property>
+                           <property name="styleSheet">
+                            <string notr="true">color: rgb(11, 52, 84);</string>
+                           </property>
+                           <property name="text">
+                            <string>Nombre del estudiante</string>
+                           </property>
+                          </widget>
+                          <widget class="QLineEdit" name="input_student_name__invoice">
+                           <property name="minimumSize">
+                            <size>
+                             <width>250</width>
+                             <height>35</height>
+                            </size>
+                           </property>
+                           <property name="maximumSize">
+                            <size>
+                             <width>260</width>
+                             <height>35</height>
+                            </size>
+                           </property>
+                           <property name="font">
+                            <font>
+                             <pointsize>10</pointsize>
+                            </font>
+                           </property>
+                           <property name="styleSheet">
+                            <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(11, 52, 84);
+border:1px solid  #a8a8a8;</string>
+                           </property>
+                           <property name="text">
+                            <string/>
+                           </property>
+                           <property name="readOnly">
+                            <bool>false</bool>
+                           </property>
+                           <property name="placeholderText">
+                            <string/>
+                           </property>
+                          </widget>
+                         </widget>
+                        </item>
+                       </layout>
+                      </item>
+                      <item>
+                       <layout class="QHBoxLayout" name="values_part2_2">
+                        <property name="bottomMargin">
+                         <number>12</number>
+                        </property>
+                        <item>
+                         <widget class="QSplitter" name="description_invoice">
+                          <property name="minimumSize">
+                           <size>
+                            <width>220</width>
+                            <height>0</height>
+                           </size>
+                          </property>
+                          <property name="orientation">
+                           <enum>Qt::Vertical</enum>
+                          </property>
+                          <widget class="QLabel" name="label_description_invoice">
+                           <property name="font">
+                            <font>
+                             <family>Euphemia</family>
+                             <pointsize>10</pointsize>
+                             <weight>75</weight>
+                             <bold>true</bold>
+                            </font>
+                           </property>
+                           <property name="styleSheet">
+                            <string notr="true">color: rgb(11, 52, 84);</string>
+                           </property>
+                           <property name="text">
+                            <string>Descripción</string>
+                           </property>
+                          </widget>
+                          <widget class="QLineEdit" name="lineEdit_description_invoice">
+                           <property name="minimumSize">
+                            <size>
+                             <width>260</width>
+                             <height>35</height>
+                            </size>
+                           </property>
+                           <property name="maximumSize">
+                            <size>
+                             <width>260</width>
+                             <height>35</height>
+                            </size>
+                           </property>
+                           <property name="font">
+                            <font>
+                             <pointsize>10</pointsize>
+                            </font>
+                           </property>
+                           <property name="styleSheet">
+                            <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(11, 52, 84);
+border:1px solid  #a8a8a8;</string>
+                           </property>
+                           <property name="placeholderText">
+                            <string>Ingrese la descripción</string>
+                           </property>
+                          </widget>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QSplitter" name="total_amount_invoice">
+                          <property name="minimumSize">
+                           <size>
+                            <width>220</width>
+                            <height>0</height>
+                           </size>
+                          </property>
+                          <property name="maximumSize">
+                           <size>
+                            <width>260</width>
+                            <height>16777215</height>
+                           </size>
+                          </property>
+                          <property name="orientation">
+                           <enum>Qt::Vertical</enum>
+                          </property>
+                          <widget class="QLabel" name="label_total_invoice">
+                           <property name="font">
+                            <font>
+                             <family>Euphemia</family>
+                             <pointsize>10</pointsize>
+                             <weight>75</weight>
+                             <bold>true</bold>
+                            </font>
+                           </property>
+                           <property name="styleSheet">
+                            <string notr="true">color: rgb(11, 52, 84);</string>
+                           </property>
+                           <property name="text">
+                            <string>Total a pagar</string>
+                           </property>
+                          </widget>
+                          <widget class="QLineEdit" name="input_total_invoice">
+                           <property name="minimumSize">
+                            <size>
+                             <width>250</width>
+                             <height>35</height>
+                            </size>
+                           </property>
+                           <property name="maximumSize">
+                            <size>
+                             <width>260</width>
+                             <height>35</height>
+                            </size>
+                           </property>
+                           <property name="font">
+                            <font>
+                             <pointsize>10</pointsize>
+                            </font>
+                           </property>
+                           <property name="styleSheet">
+                            <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(11, 52, 84);
+border:1px solid  #a8a8a8;</string>
+                           </property>
+                           <property name="readOnly">
+                            <bool>false</bool>
+                           </property>
+                           <property name="placeholderText">
+                            <string>Ingrese el monto total a pagar</string>
                            </property>
                           </widget>
                          </widget>
