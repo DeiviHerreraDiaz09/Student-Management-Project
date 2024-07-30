@@ -231,7 +231,6 @@ class Conexion:
                     )
 
             self.con.commit()
-            print("Grado de estudiantes actualizado correctamente")
         except sqlite3.Error as e:
             print(f"Error al actualizar el grado de los estudiantes: {e}")
         finally:
@@ -264,9 +263,6 @@ class Conexion:
                 ),
             )
             self.con.commit()
-            print(
-                f"Factura creada para el estudiante {student_ident} con tarifa {fee_amount}"
-            )
         except sqlite3.Error as e:
             print(f"Error al crear factura: {e}")
         finally:

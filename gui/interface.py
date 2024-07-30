@@ -5,7 +5,7 @@ from model.student import Student
 from PyQt6.QtCore import QTimer
 from PyQt6 import QtGui, QtCore
 import conexion as con
-import datetime
+from datetime import datetime, timedelta
 
 
 class MyInterface(QMainWindow, Ui_MainWindow):
@@ -74,12 +74,22 @@ class MyInterface(QMainWindow, Ui_MainWindow):
         self.content.setCurrentIndex(0)
         self.content_pages.setCurrentIndex(1)
         self.search_student_by_id(student_ident)
+        self.pushButton.clicked.connect(
+            lambda: self.switch_to_registerInvoice(student_ident)
+        )
 
     # REGISTRO DE ESTUDIANTE
 
     def switch_to_registerStudent(self):
         self.content.setCurrentIndex(0)
         self.content_pages.setCurrentIndex(2)
+
+    # REGISTRO DE FACTURAS MANUALES
+
+    def switch_to_registerInvoice(self, student_ident):
+        self.content.setCurrentIndex(0)
+        self.content_pages.setCurrentIndex(3)
+        self.search_student_by_id_for_invoice(student_ident)
 
     # REGISTRAR UN PAGO
 
@@ -225,7 +235,7 @@ class MyInterface(QMainWindow, Ui_MainWindow):
                         row_number, column_number, QTableWidgetItem(str(cell_data))
                     )
                 invoice_id = row_data[9]
-                invoice_status = row_data[15]  
+                invoice_status = row_data[15]
 
                 if invoice_status != "Pagada":
                     button = QPushButton("Ver más")
@@ -268,7 +278,6 @@ class MyInterface(QMainWindow, Ui_MainWindow):
                         lambda checked, id=invoice_id: self.show_invoice_details(id)
                     )
                     self.history_table.setCellWidget(row_number, 7, details_button)
-
 
     # LOGICA REGISTRO DE ESTUDIANTES
 
@@ -350,6 +359,80 @@ class MyInterface(QMainWindow, Ui_MainWindow):
         else:
             self.message.setText("Ha ocurrido un error, intente nuevamente")
 
+    # REGISTRO DE FACTURA MANUAL
+
+    def search_student_by_id_for_invoice(self, student_ident):
+        db = con.Conexion().conectar()
+        cursor = db.cursor()
+        cursor.execute(
+            """
+                SELECT student_ident, student_name, grade, tutor_name
+                FROM students
+                WHERE student_ident = ?
+                """,
+            (student_ident,),
+        )
+        row = cursor.fetchone()
+        db.close()
+
+        if row:
+            self.input_student_ident__invoice.setText(row[0])
+            self.input_student_name__invoice.setText(row[1])
+
+            student_ident = row[0]
+
+            try:
+                self.registerButton_Invoice.clicked.disconnect()
+            except TypeError:
+                pass
+
+            self.registerButton_Invoice.clicked.connect(
+                lambda: self.register_invoice(student_ident)
+            )
+
+            self.buttonBack_3.clicked.connect(
+                lambda: self.switch_to_studentDetails(student_ident)
+            )
+        else:
+            print("Estudiante no encontrado")
+
+    def register_invoice(self, student_ident):
+        try:
+            db = con.Conexion().conectar()
+            cursor = db.cursor()
+
+            description = self.lineEdit_description_invoice.text()
+            total_amount = self.input_total_invoice.text()
+            created_at = datetime.now().date()
+            due_date = (datetime.now() + timedelta(days=30)).date()
+
+            cursor.execute(
+                """
+                INSERT INTO invoices (description, total_amount, remaining_amount, due_date, created_at, status, student_ident_fk)
+                VALUES (?, ?, ?, ?, ?, ?, ?)
+                """,
+                (
+                    description,
+                    total_amount,
+                    total_amount,
+                    due_date,
+                    created_at,
+                    "Pendiente",
+                    student_ident,
+                ),
+            )
+
+            db.commit()
+            db.close()
+
+            self.lineEdit_description_invoice.clear()
+            self.input_total_invoice.clear()
+            print("Factura registrada exitosamente")
+            self.load_data()
+            self.switch_to_studentDetails(student_ident)
+        except Exception as e:
+            print(f"Error al registrar la factura: {e}")
+
     # INFORMACIÓN FACTURA A PAGAR
 
     def switch_to_payment(self, invoice_id):
@@ -393,7 +476,7 @@ class MyInterface(QMainWindow, Ui_MainWindow):
             )
 
     def register_payment(self, invoice_id, student_ident):
-        payment_date = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        payment_date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         amount_paid = self.input_amount_paid.text()
         payment_method = self.option_payment_method.currentText()
 
