@@ -78,6 +78,12 @@ class MyInterface(QMainWindow, Ui_MainWindow):
             lambda: self.switch_to_registerInvoice(student_ident)
         )
 
+    # DETALLES DE PAGOS
+
+    def switch_invoice_details(self, invoice_id):
+        self.content_pages.setCurrentIndex(4)
+        self.switch_invoice_details_view(invoice_id)
+
     # REGISTRO DE ESTUDIANTE
 
     def switch_to_registerStudent(self):
@@ -510,10 +516,46 @@ class MyInterface(QMainWindow, Ui_MainWindow):
         self.message_erro_payment.clear()
 
         self.switch_to_studentDetails(student_ident)
-    
-    def switch_invoice_details(self, invoice_id):
-        self.content_pages.setCurrentIndex(4)
 
+    def switch_invoice_details_view(self, invoice_id):
+        db = con.Conexion().conectar()
+        cursor = db.cursor()
+        cursor.execute(
+            """
+            SELECT s.student_name, f.invoice_id, f.description, f.total_amount, f.created_at, f.due_date, 
+                p.payment_id, p.payment_date, p.payment_paid, p.payment_method, s.student_ident
+            FROM students as s 
+            INNER JOIN invoices f on s.student_ident = f.student_ident_fk 
+            LEFT JOIN payments as p on p.invoice_id_fk = f.invoice_id 
+            WHERE f.invoice_id = ?
+            """,
+            (invoice_id,),
+        )
+
+        rows = cursor.fetchall()
+        cursor.close()
+        db.close()
+
+        if rows:
+            payments = rows[0]
+            self.input_student_name_info.setText(payments[0])
+            self.input_number_invoice.setText(str(payments[1]))
+            self.input_description_invoice.setText(payments[2])
+            self.input_total_amount.setText(str(payments[3]))
+            self.input_created_date_info.setText(payments[4])
+            self.input_finish_date.setText(payments[5])
+            student_ident = payments[10]
+            self.history_table_payment.setRowCount(0)
+
+            for row_number, row_data in enumerate(rows):
+                self.history_table_payment.insertRow(row_number)
+                for column_number, cell_data in enumerate(row_data[6:]):
+                    self.history_table_payment.setItem(
+                        row_number, column_number, QTableWidgetItem(str(cell_data))
+                    )
+        self.buttonBack_student_info.clicked.connect(
+            lambda: self.switch_to_studentDetails(student_ident)
+        )
 
     def clear_message_ok(self):
         self.message_ok.clear()
