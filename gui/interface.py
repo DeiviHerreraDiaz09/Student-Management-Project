@@ -74,7 +74,7 @@ class MyInterface(QMainWindow, Ui_MainWindow):
         self.content.setCurrentIndex(0)
         self.content_pages.setCurrentIndex(1)
         self.search_student_by_id(student_ident)
-        self.pushButton.clicked.connect(
+        self.button_add_invoice.clicked.connect(
             lambda: self.switch_to_registerInvoice(student_ident)
         )
 
@@ -274,8 +274,7 @@ class MyInterface(QMainWindow, Ui_MainWindow):
                         QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor)
                     )
                     details_button.clicked.connect(
-                        # Modificar esta parte con la nueva seccion del historial de pagos de la factura vinculada
-                        lambda checked, id=invoice_id: self.show_invoice_details(id)
+                        lambda checked, id=invoice_id: self.switch_invoice_details(id)
                     )
                     self.history_table.setCellWidget(row_number, 7, details_button)
 
@@ -511,6 +510,10 @@ class MyInterface(QMainWindow, Ui_MainWindow):
         self.message_erro_payment.clear()
 
         self.switch_to_studentDetails(student_ident)
+    
+    def switch_invoice_details(self, invoice_id):
+        self.content_pages.setCurrentIndex(4)
+
 
     def clear_message_ok(self):
         self.message_ok.clear()

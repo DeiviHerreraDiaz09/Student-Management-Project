@@ -334,7 +334,7 @@ QStackedWidget::right-arrow, QStackedWidget::left-arrow {
 }</string>
              </property>
              <property name="currentIndex">
-              <number>4</number>
+              <number>3</number>
              </property>
              <widget class="QWidget" name="ListStudents">
               <layout class="QGridLayout" name="gridLayout_3">
@@ -1346,28 +1346,53 @@ border:1px solid  #a8a8a8;</string>
                 </widget>
                </item>
                <item row="2" column="0">
-                <widget class="QLabel" name="history_tittle">
-                 <property name="font">
-                  <font>
-                   <family>Euphemia</family>
-                   <pointsize>12</pointsize>
-                   <weight>75</weight>
-                   <bold>true</bold>
-                  </font>
-                 </property>
-                 <property name="styleSheet">
-                  <string notr="true">color: rgb(11, 52, 84);</string>
-                 </property>
-                 <property name="text">
-                  <string>Historial de factutas del estudiante</string>
-                 </property>
-                 <property name="alignment">
-                  <set>Qt::AlignCenter</set>
-                 </property>
-                 <property name="margin">
-                  <number>6</number>
-                 </property>
-                </widget>
+                <layout class="QHBoxLayout" name="horizontalLayout_7">
+                 <item>
+                  <widget class="QLabel" name="message_ok_pay">
+                   <property name="font">
+                    <font>
+                     <family>Euphemia</family>
+                     <pointsize>8</pointsize>
+                    </font>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">font-family: Euphemia;
+color:green;
+</string>
+                   </property>
+                   <property name="text">
+                    <string/>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="history_tittle">
+                   <property name="font">
+                    <font>
+                     <family>Euphemia</family>
+                     <pointsize>12</pointsize>
+                     <weight>75</weight>
+                     <bold>true</bold>
+                    </font>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">color: rgb(11, 52, 84);</string>
+                   </property>
+                   <property name="text">
+                    <string>Historial de factutas del estudiante</string>
+                   </property>
+                   <property name="alignment">
+                    <set>Qt::AlignCenter</set>
+                   </property>
+                   <property name="margin">
+                    <number>6</number>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QWidget" name="widget_3" native="true"/>
+                 </item>
+                </layout>
                </item>
                <item row="3" column="0">
                 <widget class="QTableWidget" name="history_table">
@@ -2511,7 +2536,7 @@ border:1px solid  #a8a8a8;</string>
                             <string/>
                            </property>
                            <property name="readOnly">
-                            <bool>false</bool>
+                            <bool>true</bool>
                            </property>
                            <property name="placeholderText">
                             <string/>
@@ -2567,7 +2592,7 @@ border:1px solid  #a8a8a8;</string>
                             <string/>
                            </property>
                            <property name="readOnly">
-                            <bool>false</bool>
+                            <bool>true</bool>
                            </property>
                            <property name="placeholderText">
                             <string/>
@@ -2833,6 +2858,9 @@ color:white;</string>
                         <bold>true</bold>
                        </font>
                       </property>
+                      <property name="styleSheet">
+                       <string notr="true">color: rgb(11, 52, 84);</string>
+                      </property>
                       <property name="text">
                        <string>Nombre del estudiante</string>
                       </property>
@@ -2884,6 +2912,9 @@ color: rgb(11, 52, 84);
                         <bold>true</bold>
                        </font>
                       </property>
+                      <property name="styleSheet">
+                       <string notr="true">color: rgb(11, 52, 84);</string>
+                      </property>
                       <property name="text">
                        <string>N°  Factura</string>
                       </property>
@@ -2931,6 +2962,9 @@ color: rgb(11, 52, 84);
                         <weight>75</weight>
                         <bold>true</bold>
                        </font>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">color: rgb(11, 52, 84);</string>
                       </property>
                       <property name="text">
                        <string>Descripción</string>
@@ -2990,6 +3024,9 @@ color: rgb(11, 52, 84);
                         <bold>true</bold>
                        </font>
                       </property>
+                      <property name="styleSheet">
+                       <string notr="true">color: rgb(11, 52, 84);</string>
+                      </property>
                       <property name="text">
                        <string>Total a pagar</string>
                       </property>
@@ -3037,6 +3074,9 @@ color: rgb(11, 52, 84);
                         <weight>75</weight>
                         <bold>true</bold>
                        </font>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">color: rgb(11, 52, 84);</string>
                       </property>
                       <property name="text">
                        <string>Fecha de creación</string>
@@ -3086,6 +3126,9 @@ color: rgb(11, 52, 84);
                         <bold>true</bold>
                        </font>
                       </property>
+                      <property name="styleSheet">
+                       <string notr="true">color: rgb(11, 52, 84);</string>
+                      </property>
                       <property name="text">
                        <string>Fecha de vencimiento</string>
                       </property>
@@ -3125,7 +3168,7 @@ color: rgb(11, 52, 84);
                 </layout>
                </item>
                <item row="2" column="0">
-                <widget class="QLabel" name="history_tittle_pay">
+                <widget class="QLabel" name="history_tittle_pam">
                  <property name="font">
                   <font>
                    <family>Euphemia</family>
@@ -3668,7 +3711,7 @@ color: rgb(11, 52, 84);
 border:1px solid  #a8a8a8;</string>
                           </property>
                           <property name="readOnly">
-                           <bool>false</bool>
+                           <bool>true</bool>
                           </property>
                           <property name="placeholderText">
                            <string/>
