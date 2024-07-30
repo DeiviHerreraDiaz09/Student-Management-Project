@@ -1,7 +1,22 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 import sqlite3
 import sys
 import os
+
+COURSE_FEES = {
+    "Kinder": 15,
+    "1° Primaria": 30,
+    "2° Primaria": 45,
+    "3° Primaria": 60,
+    "4° Primaria": 75,
+    "5° Primaria": 90,
+    "1° Secundaria": 105,
+    "2° Secundaria": 120,
+    "3° Secundaria": 135,
+    "4° Secundaria": 150,
+    "5° Secundaria": 165,
+    "6° Secundaria": 180,
+}
 
 
 class Conexion:
@@ -17,6 +32,7 @@ class Conexion:
             self.crearTriggers()
             self.crearAdmin()
             self.consultar_y_crear_facturas()
+            self.actualizar_grado_estudiantes()
         except sqlite3.Error as e:
             print(f"Error al conectar con la base de datos: {e}")
         except Exception as ex:
@@ -94,41 +110,19 @@ class Conexion:
             cursor = self.con.cursor()
             cursor.execute(
                 """
-                CREATE TRIGGER IF NOT EXISTS invoice_trigger
-                AFTER INSERT ON students
-                FOR EACH ROW
-                BEGIN
-                    INSERT INTO invoices (description, total_amount, remaining_amount, due_date, created_at, status, student_ident_fk)
-                    VALUES (
-                        'Factura mensual',
-                        100, 
-                        100,
-                        date('now', '+1 month'),
-                        date('now'),
-                        'pendiente',
-                        NEW.student_ident
-                    );
-                END;
-            """
-            )
-            cursor.execute(
-                """
                 CREATE TRIGGER IF NOT EXISTS payment_trigger
                 AFTER INSERT ON payments
                 FOR EACH ROW
                 BEGIN
-
                     UPDATE invoices
                     SET remaining_amount = remaining_amount - NEW.payment_paid
                     WHERE invoice_id = NEW.invoice_id_fk;
 
-             
                     UPDATE invoices
                     SET status = 'Pagada', remaining_amount = 0
-                    WHERE invoice_id = NEW.invoice_id_fk
-                    AND remaining_amount <= 0;
+                    WHERE invoice_id = NEW.invoice_id_fk AND remaining_amount <= 0;
                 END;
-            """
+                """
             )
             print("Triggers creados correctamente")
             self.con.commit()
@@ -201,13 +195,18 @@ class Conexion:
             current_year = datetime.now().year
 
             grade_mapping = {
-                "Kinder": "1 primaria",
-                "1 primaria": "2 primaria",
-                "2 primaria": "3 primaria",
-                "3 primaria": "1 secundaria",
-                "1 secundaria": "2 secundaria",
-                "2 secundaria": "3 secundaria",
-                "3 secundaria": "Graduado",
+                "Kinder": "1° primaria",
+                "1° Primaria": "2° Primaria",
+                "2° Primaria": "3° Primaria",
+                "3° Primaria": "4° primaria",
+                "4° Primaria": "5° Secundaria",
+                "5° Primaria": "1° Secundaria",
+                "1° Secundaria": "2° Secundaria",
+                "2° Secundaria": "3° Secundaria",
+                "3° Secundaria": "4° Secundaria",
+                "4° Secundaria": "5° Secundaria",
+                "5° Secundaria": "6° Secundaria",
+                "6° Secundaria": "Graduado",
             }
 
             cursor.execute(
@@ -238,18 +237,36 @@ class Conexion:
         finally:
             cursor.close()
 
-    def crear_factura(self, student_ident):
+    def crear_factura(self, student_ident, grade, due_date=None):
         try:
             cursor = self.con.cursor()
+            fee_amount = COURSE_FEES.get(grade, 100)
+
+            if due_date is None:
+                due_date = datetime.now() + timedelta(days=30)
+            else:
+                due_date = datetime.strptime(due_date, "%Y-%m-%d")
+
+            due_date_str = due_date.strftime("%Y-%m-%d")
+
             cursor.execute(
                 """
                 INSERT INTO invoices (description, total_amount, remaining_amount, due_date, created_at, status, student_ident_fk)
-                VALUES (?, ?, ?, date('now', '+1 month'), date('now'), ?, ?)
+                VALUES (?, ?, ?, ?, date('now'), ?, ?)
                 """,
-                ("Factura mensual", 100, 100, "pendiente", student_ident),
+                (
+                    "Factura mensual",
+                    fee_amount,
+                    fee_amount,
+                    due_date_str,
+                    "pendiente",
+                    student_ident,
+                ),
             )
             self.con.commit()
-            print(f"Factura creada para el estudiante {student_ident}")
+            print(
+                f"Factura creada para el estudiante {student_ident} con tarifa {fee_amount}"
+            )
         except sqlite3.Error as e:
             print(f"Error al crear factura: {e}")
         finally:
@@ -260,22 +277,30 @@ class Conexion:
             cursor = self.con.cursor()
             cursor.execute(
                 """
-                SELECT student_ident_fk, MAX(due_date) as last_invoice_date
-                FROM invoices
-                GROUP BY student_ident_fk
+                SELECT s.student_ident, s.grade, MAX(i.due_date) as last_invoice_date
+                FROM students s
+                LEFT JOIN invoices i ON s.student_ident = i.student_ident_fk
+                GROUP BY s.student_ident
                 """
             )
 
             students = cursor.fetchall()
             current_date = datetime.now().date()
 
-            for student_ident, last_invoice_date in students:
+            for student_ident, grade, last_invoice_date in students:
                 if last_invoice_date:
                     last_invoice_date = datetime.strptime(
                         last_invoice_date, "%Y-%m-%d"
                     ).date()
-                    if last_invoice_date == current_date:
-                        self.crear_factura(student_ident)
+                    while last_invoice_date <= current_date:
+                        last_invoice_date += timedelta(days=30)
+                        self.crear_factura(
+                            student_ident,
+                            grade,
+                            due_date=last_invoice_date.strftime("%Y-%m-%d"),
+                        )
+                else:
+                    self.crear_factura(student_ident, grade)
 
         except sqlite3.Error as e:
             print(f"Error al consultar y crear facturas: {e}")

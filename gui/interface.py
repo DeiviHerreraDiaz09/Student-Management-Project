@@ -184,6 +184,7 @@ class MyInterface(QMainWindow, Ui_MainWindow):
                 self.update_table(self.original_data)
         else:
             self.update_table(self.original_data)
+            self.message_error_name.clear()
 
     # LOGICA PARA FILTRAR INFORMACIÓN DETALLADA DEL ESTUDIANTE
 
