@@ -334,7 +334,7 @@ QStackedWidget::right-arrow, QStackedWidget::left-arrow {
 }</string>
              </property>
              <property name="currentIndex">
-              <number>3</number>
+              <number>4</number>
              </property>
              <widget class="QWidget" name="ListStudents">
               <layout class="QGridLayout" name="gridLayout_3">
@@ -841,7 +841,7 @@ color:white;</string>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QPushButton" name="pushButton">
+                  <widget class="QPushButton" name="button_add_invoice">
                    <property name="minimumSize">
                     <size>
                      <width>120</width>
@@ -2358,6 +2358,22 @@ color:white;</string>
                      </property>
                     </widget>
                    </item>
+                   <item>
+                    <widget class="QWidget" name="widget" native="true">
+                     <property name="minimumSize">
+                      <size>
+                       <width>90</width>
+                       <height>30</height>
+                      </size>
+                     </property>
+                     <property name="maximumSize">
+                      <size>
+                       <width>90</width>
+                       <height>30</height>
+                      </size>
+                     </property>
+                    </widget>
+                   </item>
                   </layout>
                  </item>
                  <item>
@@ -2703,7 +2719,7 @@ border:1px solid  #a8a8a8;</string>
                <item row="0" column="0">
                 <layout class="QHBoxLayout" name="horizontalLayout_9">
                  <item>
-                  <widget class="QPushButton" name="buttonBack_6">
+                  <widget class="QPushButton" name="buttonBack_student_info">
                    <property name="minimumSize">
                     <size>
                      <width>90</width>
@@ -2804,11 +2820,11 @@ color:white;</string>
                     <number>8</number>
                    </property>
                    <item>
-                    <widget class="QSplitter" name="student_name_5">
+                    <widget class="QSplitter" name="student_name_info">
                      <property name="orientation">
                       <enum>Qt::Vertical</enum>
                      </property>
-                     <widget class="QLabel" name="label_studentName_5">
+                     <widget class="QLabel" name="label_studentName_info">
                       <property name="font">
                        <font>
                         <family>Euphemia</family>
@@ -2821,7 +2837,7 @@ color:white;</string>
                        <string>Nombre del estudiante</string>
                       </property>
                      </widget>
-                     <widget class="QLineEdit" name="input_student_name_5">
+                     <widget class="QLineEdit" name="input_student_name_info">
                       <property name="minimumSize">
                        <size>
                         <width>250</width>
@@ -2855,11 +2871,11 @@ color: rgb(11, 52, 84);
                     </widget>
                    </item>
                    <item>
-                    <widget class="QSplitter" name="date_student_4">
+                    <widget class="QSplitter" name="number_invoice_info">
                      <property name="orientation">
                       <enum>Qt::Vertical</enum>
                      </property>
-                     <widget class="QLabel" name="label_date_4">
+                     <widget class="QLabel" name="label_number_invoice">
                       <property name="font">
                        <font>
                         <family>Euphemia</family>
@@ -2872,7 +2888,7 @@ color: rgb(11, 52, 84);
                        <string>N°  Factura</string>
                       </property>
                      </widget>
-                     <widget class="QLineEdit" name="input_date_4">
+                     <widget class="QLineEdit" name="input_number_invoice">
                       <property name="minimumSize">
                        <size>
                         <width>0</width>
@@ -2903,11 +2919,11 @@ color: rgb(11, 52, 84);
                     </widget>
                    </item>
                    <item>
-                    <widget class="QSplitter" name="grade_student_4">
+                    <widget class="QSplitter" name="description_invoice_info">
                      <property name="orientation">
                       <enum>Qt::Vertical</enum>
                      </property>
-                     <widget class="QLabel" name="label_grade_5">
+                     <widget class="QLabel" name="label_description_invoice_2">
                       <property name="font">
                        <font>
                         <family>Euphemia</family>
@@ -2920,7 +2936,7 @@ color: rgb(11, 52, 84);
                        <string>Descripción</string>
                       </property>
                      </widget>
-                     <widget class="QLineEdit" name="input_grade_4">
+                     <widget class="QLineEdit" name="input_description_invoice">
                       <property name="minimumSize">
                        <size>
                         <width>0</width>
@@ -2957,12 +2973,15 @@ color: rgb(11, 52, 84);
                    <property name="spacing">
                     <number>8</number>
                    </property>
+                   <property name="bottomMargin">
+                    <number>12</number>
+                   </property>
                    <item>
-                    <widget class="QSplitter" name="tutor_name_5">
+                    <widget class="QSplitter" name="total_amount_info">
                      <property name="orientation">
                       <enum>Qt::Vertical</enum>
                      </property>
-                     <widget class="QLabel" name="label_tutor_name_5">
+                     <widget class="QLabel" name="label_total_amount_info">
                       <property name="font">
                        <font>
                         <family>Euphemia</family>
@@ -2975,7 +2994,7 @@ color: rgb(11, 52, 84);
                        <string>Total a pagar</string>
                       </property>
                      </widget>
-                     <widget class="QLineEdit" name="input_tutor_name_5">
+                     <widget class="QLineEdit" name="input_total_amount">
                       <property name="minimumSize">
                        <size>
                         <width>250</width>
@@ -3006,11 +3025,11 @@ color: rgb(11, 52, 84);
                     </widget>
                    </item>
                    <item>
-                    <widget class="QSplitter" name="dni_tutor_5">
+                    <widget class="QSplitter" name="created_date_info">
                      <property name="orientation">
                       <enum>Qt::Vertical</enum>
                      </property>
-                     <widget class="QLabel" name="label_dni_tutor_5">
+                     <widget class="QLabel" name="label_created_date_info">
                       <property name="font">
                        <font>
                         <family>Euphemia</family>
@@ -3020,10 +3039,10 @@ color: rgb(11, 52, 84);
                        </font>
                       </property>
                       <property name="text">
-                       <string>Identificación del tutor</string>
+                       <string>Fecha de creación</string>
                       </property>
                      </widget>
-                     <widget class="QLineEdit" name="input_dni_5">
+                     <widget class="QLineEdit" name="input_created_date_info">
                       <property name="minimumSize">
                        <size>
                         <width>0</width>
@@ -3054,11 +3073,11 @@ color: rgb(11, 52, 84);
                     </widget>
                    </item>
                    <item>
-                    <widget class="QSplitter" name="email_tutor_5">
+                    <widget class="QSplitter" name="finish_date_info">
                      <property name="orientation">
                       <enum>Qt::Vertical</enum>
                      </property>
-                     <widget class="QLabel" name="label_email_tutor_5">
+                     <widget class="QLabel" name="label_finish_date">
                       <property name="font">
                        <font>
                         <family>Euphemia</family>
@@ -3068,10 +3087,10 @@ color: rgb(11, 52, 84);
                        </font>
                       </property>
                       <property name="text">
-                       <string>Correo del tutor</string>
+                       <string>Fecha de vencimiento</string>
                       </property>
                      </widget>
-                     <widget class="QLineEdit" name="input_email_5">
+                     <widget class="QLineEdit" name="input_finish_date">
                       <property name="minimumSize">
                        <size>
                         <width>0</width>
@@ -3094,155 +3113,6 @@ color: rgb(11, 52, 84);
 border:1px solid  #a8a8a8;
 color: rgb(11, 52, 84);
 </string>
-                      </property>
-                      <property name="readOnly">
-                       <bool>true</bool>
-                      </property>
-                     </widget>
-                    </widget>
-                   </item>
-                  </layout>
-                 </item>
-                 <item>
-                  <layout class="QHBoxLayout" name="info3_4">
-                   <property name="spacing">
-                    <number>8</number>
-                   </property>
-                   <item>
-                    <widget class="QSplitter" name="addres_5">
-                     <property name="orientation">
-                      <enum>Qt::Vertical</enum>
-                     </property>
-                     <widget class="QLabel" name="label_address_5">
-                      <property name="font">
-                       <font>
-                        <family>Euphemia</family>
-                        <pointsize>10</pointsize>
-                        <weight>75</weight>
-                        <bold>true</bold>
-                       </font>
-                      </property>
-                      <property name="text">
-                       <string>Direción</string>
-                      </property>
-                     </widget>
-                     <widget class="QLineEdit" name="input_address_5">
-                      <property name="minimumSize">
-                       <size>
-                        <width>250</width>
-                        <height>30</height>
-                       </size>
-                      </property>
-                      <property name="maximumSize">
-                       <size>
-                        <width>250</width>
-                        <height>30</height>
-                       </size>
-                      </property>
-                      <property name="font">
-                       <font>
-                        <pointsize>10</pointsize>
-                       </font>
-                      </property>
-                      <property name="styleSheet">
-                       <string notr="true">background-color: rgb(255, 255, 255);
-border:1px solid  #a8a8a8;
-color: rgb(11, 52, 84);
-</string>
-                      </property>
-                      <property name="readOnly">
-                       <bool>true</bool>
-                      </property>
-                     </widget>
-                    </widget>
-                   </item>
-                   <item>
-                    <widget class="QSplitter" name="phone_tutor_5">
-                     <property name="orientation">
-                      <enum>Qt::Vertical</enum>
-                     </property>
-                     <widget class="QLabel" name="label_phone_5">
-                      <property name="font">
-                       <font>
-                        <family>Euphemia</family>
-                        <pointsize>10</pointsize>
-                        <weight>75</weight>
-                        <bold>true</bold>
-                       </font>
-                      </property>
-                      <property name="text">
-                       <string>Telefono celular del tutor</string>
-                      </property>
-                     </widget>
-                     <widget class="QLineEdit" name="input_phone_5">
-                      <property name="minimumSize">
-                       <size>
-                        <width>0</width>
-                        <height>30</height>
-                       </size>
-                      </property>
-                      <property name="maximumSize">
-                       <size>
-                        <width>16777215</width>
-                        <height>30</height>
-                       </size>
-                      </property>
-                      <property name="font">
-                       <font>
-                        <pointsize>10</pointsize>
-                       </font>
-                      </property>
-                      <property name="styleSheet">
-                       <string notr="true">background-color: rgb(255, 255, 255);
-color: rgb(11, 52, 84);
-border:1px solid  #a8a8a8;</string>
-                      </property>
-                      <property name="readOnly">
-                       <bool>true</bool>
-                      </property>
-                     </widget>
-                    </widget>
-                   </item>
-                   <item>
-                    <widget class="QSplitter" name="student_status_4">
-                     <property name="orientation">
-                      <enum>Qt::Vertical</enum>
-                     </property>
-                     <widget class="QLabel" name="label_status_4">
-                      <property name="font">
-                       <font>
-                        <family>Euphemia</family>
-                        <pointsize>10</pointsize>
-                        <weight>75</weight>
-                        <bold>true</bold>
-                       </font>
-                      </property>
-                      <property name="text">
-                       <string>Estado</string>
-                      </property>
-                     </widget>
-                     <widget class="QLineEdit" name="input_status_4">
-                      <property name="minimumSize">
-                       <size>
-                        <width>0</width>
-                        <height>30</height>
-                       </size>
-                      </property>
-                      <property name="maximumSize">
-                       <size>
-                        <width>16777215</width>
-                        <height>30</height>
-                       </size>
-                      </property>
-                      <property name="font">
-                       <font>
-                        <pointsize>10</pointsize>
-                       </font>
-                      </property>
-                      <property name="styleSheet">
-                       <string notr="true">background-color: rgb(255, 255, 255);
-color: rgb(11, 52, 84);
-border:1px solid  #a8a8a8;</string>
                       </property>
                       <property name="readOnly">
                        <bool>true</bool>
@@ -3255,7 +3125,7 @@ border:1px solid  #a8a8a8;</string>
                 </layout>
                </item>
                <item row="2" column="0">
-                <widget class="QLabel" name="history_tittle_2">
+                <widget class="QLabel" name="history_tittle_pay">
                  <property name="font">
                   <font>
                    <family>Euphemia</family>
@@ -3268,7 +3138,7 @@ border:1px solid  #a8a8a8;</string>
                   <string notr="true">color: rgb(11, 52, 84);</string>
                  </property>
                  <property name="text">
-                  <string>Historial de factutas del estudiante</string>
+                  <string>Historial de pagos</string>
                  </property>
                  <property name="alignment">
                   <set>Qt::AlignCenter</set>
@@ -3279,16 +3149,16 @@ border:1px solid  #a8a8a8;</string>
                 </widget>
                </item>
                <item row="3" column="0">
-                <widget class="QTableWidget" name="history_table_2">
+                <widget class="QTableWidget" name="history_table_payment">
                  <property name="minimumSize">
                   <size>
-                   <width>850</width>
+                   <width>762</width>
                    <height>0</height>
                   </size>
                  </property>
                  <property name="maximumSize">
                   <size>
-                   <width>850</width>
+                   <width>762</width>
                    <height>16777215</height>
                   </size>
                  </property>
@@ -3332,7 +3202,7 @@ QTableWidget::item:alternate {
                   <set>QAbstractItemView::NoEditTriggers</set>
                  </property>
                  <attribute name="horizontalHeaderDefaultSectionSize">
-                  <number>142</number>
+                  <number>190</number>
                  </attribute>
                  <attribute name="verticalHeaderVisible">
                   <bool>false</bool>
@@ -3347,7 +3217,7 @@ QTableWidget::item:alternate {
                  </column>
                  <column>
                   <property name="text">
-                   <string>Descripción</string>
+                   <string>Fecha Pago</string>
                   </property>
                   <property name="textAlignment">
                    <set>AlignCenter</set>
@@ -3355,7 +3225,7 @@ QTableWidget::item:alternate {
                  </column>
                  <column>
                   <property name="text">
-                   <string>Fecha Generación</string>
+                   <string>Monto pagado</string>
                   </property>
                   <property name="textAlignment">
                    <set>AlignCenter</set>
@@ -3363,31 +3233,7 @@ QTableWidget::item:alternate {
                  </column>
                  <column>
                   <property name="text">
-                   <string>Fecha Vencimiento</string>
-                  </property>
-                  <property name="textAlignment">
-                   <set>AlignCenter</set>
-                  </property>
-                 </column>
-                 <column>
-                  <property name="text">
-                   <string>Monto total</string>
-                  </property>
-                  <property name="textAlignment">
-                   <set>AlignCenter</set>
-                  </property>
-                 </column>
-                 <column>
-                  <property name="text">
-                   <string>Monto restante</string>
-                  </property>
-                  <property name="textAlignment">
-                   <set>AlignCenter</set>
-                  </property>
-                 </column>
-                 <column>
-                  <property name="text">
-                   <string>Estado</string>
+                   <string>Método de pago</string>
                   </property>
                   <property name="textAlignment">
                    <set>AlignCenter</set>
