@@ -177,15 +177,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout = QtWidgets.QHBoxLayout(self.header_widget)
         self.horizontalLayout.setContentsMargins(0, -1, 0, -1)
         self.horizontalLayout.setObjectName("horizontalLayout")
-        spacerItem1 = QtWidgets.QSpacerItem(
-            690,
-            20,
-            QtWidgets.QSizePolicy.Policy.Expanding,
-            QtWidgets.QSizePolicy.Policy.Minimum,
-        )
-        self.horizontalLayout.addItem(spacerItem1)
-        self.verticalLayout_5.addWidget(self.header_widget)
-        self.content = QtWidgets.QStackedWidget(parent=self.main)
+        self.content = QtWidgets.QStackedWidget(parent=self.header_widget)
         self.content.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.content.setObjectName("content")
         self.students_page = QtWidgets.QWidget()
@@ -277,13 +269,13 @@ class Ui_MainWindow(object):
         self.button_search.setIcon(icon3)
         self.button_search.setObjectName("button_search")
         self.options.addWidget(self.filter)
-        spacerItem2 = QtWidgets.QSpacerItem(
+        spacerItem1 = QtWidgets.QSpacerItem(
             328,
             21,
             QtWidgets.QSizePolicy.Policy.Expanding,
             QtWidgets.QSizePolicy.Policy.Minimum,
         )
-        self.options.addItem(spacerItem2)
+        self.options.addItem(spacerItem1)
         self.newStudent = QtWidgets.QSplitter(parent=self.layoutWidget)
         self.newStudent.setOrientation(QtCore.Qt.Orientation.Vertical)
         self.newStudent.setObjectName("newStudent")
@@ -468,6 +460,9 @@ class Ui_MainWindow(object):
         font.setBold(True)
         font.setWeight(75)
         self.button_add_invoice.setFont(font)
+        self.button_add_invoice.setCursor(
+            QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor)
+        )
         self.button_add_invoice.setStyleSheet(
             "background-color:#1770b3;\n"
             "font-family: Euphemia;\n"
@@ -1037,6 +1032,10 @@ class Ui_MainWindow(object):
             "border:1px solid  #a8a8a8;"
         )
         self.options_grade.setObjectName("options_grade")
+        self.options_grade.addItem("")
+        self.options_grade.addItem("")
+        self.options_grade.addItem("")
+        self.options_grade.addItem("")
         self.options_grade.addItem("")
         self.options_grade.addItem("")
         self.options_grade.addItem("")
@@ -1751,8 +1750,31 @@ class Ui_MainWindow(object):
         self.group_form_payment.setObjectName("group_form_payment")
         self.header_register_payment = QtWidgets.QHBoxLayout()
         self.header_register_payment.setObjectName("header_register_payment")
+        self.button_back_studentDetails = QtWidgets.QPushButton(
+            parent=self.content_payment
+        )
+        self.button_back_studentDetails.setMinimumSize(QtCore.QSize(90, 30))
+        self.button_back_studentDetails.setMaximumSize(QtCore.QSize(90, 30))
+        font = QtGui.QFont()
+        font.setFamily("Euphemia")
+        font.setPointSize(10)
+        font.setBold(True)
+        font.setWeight(75)
+        self.button_back_studentDetails.setFont(font)
+        self.button_back_studentDetails.setCursor(
+            QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor)
+        )
+        self.button_back_studentDetails.setStyleSheet(
+            "background-color:#1770b3;\n"
+            "font-family: Euphemia;\n"
+            "border: none;\n"
+            "border-radius: 6px;\n"
+            "color:white;"
+        )
+        self.button_back_studentDetails.setObjectName("button_back_studentDetails")
+        self.header_register_payment.addWidget(self.button_back_studentDetails)
         self.tittle_new_payment = QtWidgets.QLabel(parent=self.content_payment)
-        self.tittle_new_payment.setMinimumSize(QtCore.QSize(500, 30))
+        self.tittle_new_payment.setMinimumSize(QtCore.QSize(500, 45))
         self.tittle_new_payment.setMaximumSize(QtCore.QSize(500, 16777214))
         font = QtGui.QFont()
         font.setFamily("Euphemia")
@@ -1767,6 +1789,11 @@ class Ui_MainWindow(object):
         self.tittle_new_payment.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.tittle_new_payment.setObjectName("tittle_new_payment")
         self.header_register_payment.addWidget(self.tittle_new_payment)
+        self.widget_4 = QtWidgets.QWidget(parent=self.content_payment)
+        self.widget_4.setMinimumSize(QtCore.QSize(90, 30))
+        self.widget_4.setMaximumSize(QtCore.QSize(90, 30))
+        self.widget_4.setObjectName("widget_4")
+        self.header_register_payment.addWidget(self.widget_4)
         self.group_form_payment.addLayout(self.header_register_payment)
         self.form_new_payment = QtWidgets.QWidget(parent=self.content_payment)
         self.form_new_payment.setMinimumSize(QtCore.QSize(850, 0))
@@ -2070,13 +2097,21 @@ class Ui_MainWindow(object):
         self.label_7.setFont(font)
         self.label_7.setObjectName("label_7")
         self.content.addWidget(self.reports)
-        self.verticalLayout_5.addWidget(self.content)
+        self.horizontalLayout.addWidget(self.content)
+        spacerItem2 = QtWidgets.QSpacerItem(
+            690,
+            20,
+            QtWidgets.QSizePolicy.Policy.Expanding,
+            QtWidgets.QSizePolicy.Policy.Minimum,
+        )
+        self.horizontalLayout.addItem(spacerItem2)
+        self.verticalLayout_5.addWidget(self.header_widget)
         self.gridLayout.addWidget(self.main, 0, 1, 1, 1)
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
         self.content.setCurrentIndex(0)
-        self.content_pages.setCurrentIndex(3)
+        self.content_pages.setCurrentIndex(2)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -2158,18 +2193,22 @@ class Ui_MainWindow(object):
         )
         self.label_date_birth.setText(_translate("MainWindow", "Fecha de nacimiento"))
         self.label_grade_2.setText(_translate("MainWindow", "Grado"))
-        self.options_grade.setItemText(0, _translate("MainWindow", "Kinder"))
-        self.options_grade.setItemText(1, _translate("MainWindow", "1° Primaria"))
-        self.options_grade.setItemText(2, _translate("MainWindow", "2° Primaria"))
-        self.options_grade.setItemText(3, _translate("MainWindow", "3° Primaria"))
-        self.options_grade.setItemText(4, _translate("MainWindow", "4° Primaria"))
-        self.options_grade.setItemText(5, _translate("MainWindow", "5° Primaria"))
-        self.options_grade.setItemText(6, _translate("MainWindow", "1° Secundaria"))
-        self.options_grade.setItemText(7, _translate("MainWindow", "2° Secundaria"))
-        self.options_grade.setItemText(8, _translate("MainWindow", "3° Secundaria"))
-        self.options_grade.setItemText(9, _translate("MainWindow", "4° Secundaria"))
-        self.options_grade.setItemText(10, _translate("MainWindow", "5° Secundaria"))
-        self.options_grade.setItemText(11, _translate("MainWindow", "6° Secundaria"))
+        self.options_grade.setItemText(0, _translate("MainWindow", "Nido"))
+        self.options_grade.setItemText(1, _translate("MainWindow", "Pre Kinder"))
+        self.options_grade.setItemText(2, _translate("MainWindow", "Kinder"))
+        self.options_grade.setItemText(3, _translate("MainWindow", "Pre Primario"))
+        self.options_grade.setItemText(4, _translate("MainWindow", "1ero Primaria"))
+        self.options_grade.setItemText(5, _translate("MainWindow", "2do Primaria"))
+        self.options_grade.setItemText(6, _translate("MainWindow", "3ero Primaria"))
+        self.options_grade.setItemText(7, _translate("MainWindow", "4to Primaria"))
+        self.options_grade.setItemText(8, _translate("MainWindow", "5to Primaria"))
+        self.options_grade.setItemText(9, _translate("MainWindow", "6to Primaria"))
+        self.options_grade.setItemText(10, _translate("MainWindow", "1ero Secundaria"))
+        self.options_grade.setItemText(11, _translate("MainWindow", "2do Secundaria"))
+        self.options_grade.setItemText(12, _translate("MainWindow", "3ero Secundaria"))
+        self.options_grade.setItemText(13, _translate("MainWindow", "4to Secundaria"))
+        self.options_grade.setItemText(14, _translate("MainWindow", "5to Secundaria"))
+        self.options_grade.setItemText(15, _translate("MainWindow", "6to Secundaria"))
         self.label_dni_tutor_2.setText(
             _translate("MainWindow", "Identificación del tutor")
         )
@@ -2229,13 +2268,14 @@ class Ui_MainWindow(object):
         self.label_finish_date.setText(_translate("MainWindow", "Fecha de vencimiento"))
         self.history_tittle_pam.setText(_translate("MainWindow", "Historial de pagos"))
         item = self.history_table_payment.horizontalHeaderItem(0)
-        item.setText(_translate("MainWindow", "N° Factura"))
+        item.setText(_translate("MainWindow", "N° Pago"))
         item = self.history_table_payment.horizontalHeaderItem(1)
         item.setText(_translate("MainWindow", "Fecha Pago"))
         item = self.history_table_payment.horizontalHeaderItem(2)
         item.setText(_translate("MainWindow", "Monto pagado"))
         item = self.history_table_payment.horizontalHeaderItem(3)
         item.setText(_translate("MainWindow", "Método de pago"))
+        self.button_back_studentDetails.setText(_translate("MainWindow", "Atrás"))
         self.tittle_new_payment.setText(_translate("MainWindow", "Registrar Pago"))
         self.registerButton_payment.setText(_translate("MainWindow", "Registrar"))
         self.label_student_name_invo.setText(

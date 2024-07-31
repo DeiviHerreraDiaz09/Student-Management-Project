@@ -4,18 +4,22 @@ import sys
 import os
 
 COURSE_FEES = {
-    "Kinder": 15,
-    "1° Primaria": 30,
-    "2° Primaria": 45,
-    "3° Primaria": 60,
-    "4° Primaria": 75,
-    "5° Primaria": 90,
-    "1° Secundaria": 105,
-    "2° Secundaria": 120,
-    "3° Secundaria": 135,
-    "4° Secundaria": 150,
-    "5° Secundaria": 165,
-    "6° Secundaria": 180,
+    "Nido": 15,
+    "Pre Kinder": 30,
+    "Kinder": 45,
+    "Pre Primario": 60,
+    "1ero Primaria": 75,
+    "2do Primaria": 105,
+    "3ero Primaria": 120,
+    "4to Primaria": 135,
+    "5to Primaria": 150,
+    "6to Primaria": 165,
+    "1ero Secundaria": 180,
+    "2do Secundaria": 195,
+    "3ero Secundaria": 210,
+    "4to Secundaria": 225,
+    "5to Secundaria": 240,
+    "6to Secundaria": 255,
 }
 
 
@@ -33,6 +37,7 @@ class Conexion:
             self.crearAdmin()
             self.consultar_y_crear_facturas()
             self.actualizar_grado_estudiantes()
+            self.actualizar_estado_facturas()
         except sqlite3.Error as e:
             print(f"Error al conectar con la base de datos: {e}")
         except Exception as ex:
@@ -119,7 +124,7 @@ class Conexion:
                     WHERE invoice_id = NEW.invoice_id_fk;
 
                     UPDATE invoices
-                    SET status = 'Pagada', remaining_amount = 0
+                    SET status = 'Pagado', remaining_amount = 0
                     WHERE invoice_id = NEW.invoice_id_fk AND remaining_amount <= 0;
                 END;
                 """
@@ -174,8 +179,8 @@ class Conexion:
             cursor.execute(
                 """
                 UPDATE invoices
-                SET status = 'Mora'
-                WHERE status = 'pendiente'
+                SET status = 'Tardío'
+                WHERE status = 'Generado'
                 AND due_date <= date('now')
                 """
             )
@@ -195,18 +200,22 @@ class Conexion:
             current_year = datetime.now().year
 
             grade_mapping = {
-                "Kinder": "1° primaria",
-                "1° Primaria": "2° Primaria",
-                "2° Primaria": "3° Primaria",
-                "3° Primaria": "4° primaria",
-                "4° Primaria": "5° Secundaria",
-                "5° Primaria": "1° Secundaria",
-                "1° Secundaria": "2° Secundaria",
-                "2° Secundaria": "3° Secundaria",
-                "3° Secundaria": "4° Secundaria",
-                "4° Secundaria": "5° Secundaria",
-                "5° Secundaria": "6° Secundaria",
-                "6° Secundaria": "Graduado",
+                "Nido": "Pre Kinder",
+                "Pre Kinder": "Kinder",
+                "Kinder": "Pre Primario",
+                "Pre primario": "1ero Primaria",
+                "1ero Primaria": "2do Primaria",
+                "2do Primaria": "3ero Primaria",
+                "3ero Primaria": "4to Primaria",
+                "4to Primaria": "5to Primaria",
+                "5to Primaria": "6to Primaria",
+                "6to Primaria": "1ero Secundaria",
+                "1ero Secundaria": "2do Secundaria",
+                "2do Secundaria": "3ero Secundaria",
+                "3ero Secundaria": "4to Secundaria",
+                "4to Secundaria": "5to Secundaria",
+                "5to Secundaria": "6to Secundaria",
+                "6to Secundaria": "Graduado",
             }
 
             cursor.execute(
@@ -258,7 +267,7 @@ class Conexion:
                     fee_amount,
                     fee_amount,
                     due_date_str,
-                    "pendiente",
+                    "Generado",
                     student_ident,
                 ),
             )
