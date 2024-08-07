@@ -10,8 +10,9 @@ def Service_search_student_by_id_for_invoice(self, student_ident):
     cursor = db.cursor()
     cursor.execute(
         """
-                SELECT student_ident, student_name, grade, tutor_name
+                SELECT student_ident, student_name, e.grade, tutor_name
                 FROM students
+                INNER JOIN enrollments e ON student_ident = e.student_id_fk 
                 WHERE student_ident = ?
                 """,
         (student_ident,),

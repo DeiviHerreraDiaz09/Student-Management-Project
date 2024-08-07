@@ -17,7 +17,7 @@ class StudentData(QThread):
         db = con.Conexion().conectar()
         cursor = db.cursor()
         cursor.execute(
-            "SELECT student_ident, student_name, grade, tutor_dni, tutor_name, tutor_phone, count(invoices.invoice_id)FROM students INNER JOIN invoices on student_ident = invoices.student_ident_fk GROUP BY student_ident ORDER BY count(invoices.invoice_id) DESC"
+            "SELECT student_ident, student_name, enrollments.grade, tutor_dni, tutor_name, tutor_phone, count(invoices.invoice_id) FROM students INNER JOIN enrollments ON student_ident = enrollments.student_id_fk INNER JOIN invoices on invoices.student_ident_fk = students.student_ident GROUP BY student_ident ORDER BY count(invoices.invoice_id) DESC"
         )
 
         results = cursor.fetchall()
@@ -37,7 +37,7 @@ class SearchStudent(QThread):
         db = con.Conexion().conectar()
         cursor = db.cursor()
         cursor.execute(
-            "SELECT * FROM students WHERE student_ident =?", (self.student_ident,)
+            "SELECT * FROM students INNER JOIN enrollments ON student_ident = enrollments.student_id_fk WHERE student_ident =?", (self.student_ident,)
         )
         fila = cursor.fetchone()
         if fila:
@@ -109,9 +109,10 @@ def Service_search_student_by_id(self, student_ident):
     cursor = db.cursor()
     cursor.execute(
         """
-                SELECT s.student_name, s.date_of_birth, s.grade, s.tutor_name, s.tutor_dni, s.tutor_email, s.address, s.tutor_phone, s.status,
+                SELECT s.student_name, s.date_of_birth, e.grade, s.tutor_name, s.tutor_dni, s.tutor_email, s.address, s.tutor_phone, s.status,
                     f.invoice_id, f.description, f.created_at, f.due_date, f.total_amount, f.remaining_amount, f.status
                 FROM students s
+                INNER JOIN enrollments e ON student_ident = e.student_id_fk 
                 LEFT JOIN invoices f ON s.student_ident = f.student_ident_fk
                 WHERE s.student_ident = ?
                 """,
@@ -190,7 +191,7 @@ def Service_search_student_by_name(self):
     if name:
         db = con.Conexion().conectar()
         cursor = db.cursor()
-        query = "SELECT student_ident, student_name, grade, tutor_dni, tutor_name, tutor_phone, count(invoices.invoice_id)FROM students INNER JOIN invoices on student_ident = invoices.student_ident_fk  WHERE student_name LIKE ? GROUP BY student_ident  "
+        query = "SELECT student_ident, student_name, e.grade, tutor_dni, tutor_name, tutor_phone, count(invoices.invoice_id)FROM students INNER JOIN enrollments e ON student_ident = e.student_id_fk  INNER JOIN invoices on student_ident = invoices.student_ident_fk  WHERE student_name LIKE ? GROUP BY student_ident  "
         cursor.execute(query, ("%" + name + "%",))
         rows = cursor.fetchall()
         db.close()

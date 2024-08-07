@@ -71,6 +71,7 @@ class MyInterface(QMainWindow, Ui_MainWindow):
         # CONEXIÓN DE BOTONES A FUNCIONES
         self.students_2.clicked.connect(self.switch_to_listStudent)
         self.reports_2.clicked.connect(self.switch_to_reportsPage)
+        self.config.clicked.connect(self.switch_to_configPage)
         self.button_add.clicked.connect(self.switch_to_registerStudent)
         self.registerButton.clicked.connect(self.save_data)
         self.button_search.clicked.connect(self.search_student_by_name)
@@ -132,6 +133,11 @@ class MyInterface(QMainWindow, Ui_MainWindow):
     # REPORTE DE PAGOS
 
     def switch_to_reportsPage(self):
+        self.content.setCurrentIndex(3)
+
+    # CONFIGURACION
+
+    def switch_to_configPage(self):
         self.content.setCurrentIndex(2)
 
     # LOGICA INTERNA ↓
