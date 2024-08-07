@@ -87,6 +87,7 @@ class MyInterface(QMainWindow, Ui_MainWindow):
     # Método para establecer el rol de usuario
     def set_user_role(self, role):
         self.user_role = role
+        print(f"Rol del usuario establecido: {self.user_role}") 
 
     # VISTAS ↓
 
