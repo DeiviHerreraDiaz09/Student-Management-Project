@@ -34,9 +34,7 @@ class Conexion:
             self.con = sqlite3.connect(db_path)
             self.creartablas()
             # self.crearTriggers()
-            # self.crearAdmin()
-            # self.consultar_y_crear_facturas()
-            # self.actualizar_grado_estudiantes()
+            self.crearAdmin()
             # self.actualizar_estado_facturas()
         except sqlite3.Error as e:
             print(f"Error al conectar con la base de datos: {e}")
@@ -263,133 +261,14 @@ class Conexion:
                 AND due_date <= date('now')
                 """
             )
-
             self.con.commit()
             print("Estado de facturas actualizado correctamente")
 
         except sqlite3.Error as e:
             print(f"Error al actualizar el estado de las facturas: {e}")
-
         finally:
             cursor.close()
 
-    def actualizar_grado_estudiantes(self):
-        try:
-            cursor = self.con.cursor()
-            current_year = datetime.now().year
-
-            grade_mapping = {
-                "Nido": "Pre Kinder",
-                "Pre Kinder": "Kinder",
-                "Kinder": "Pre Primario",
-                "Pre primario": "1ero Primaria",
-                "1ero Primaria": "2do Primaria",
-                "2do Primaria": "3ero Primaria",
-                "3ero Primaria": "4to Primaria",
-                "4to Primaria": "5to Primaria",
-                "5to Primaria": "6to Primaria",
-                "6to Primaria": "1ero Secundaria",
-                "1ero Secundaria": "2do Secundaria",
-                "2do Secundaria": "3ero Secundaria",
-                "3ero Secundaria": "4to Secundaria",
-                "4to Secundaria": "5to Secundaria",
-                "5to Secundaria": "6to Secundaria",
-                "6to Secundaria": "Graduado",
-            }
-
-            cursor.execute(
-                """
-                SELECT student_ident, grade, year_progress
-                FROM students
-                """
-            )
-
-            students = cursor.fetchall()
-
-            for student_ident, grade, year_progress in students:
-                if int(year_progress) < current_year and grade in grade_mapping:
-                    new_grade = grade_mapping[grade]
-                    cursor.execute(
-                        """
-                        UPDATE students
-                        SET grade = ?, year_progress = ?
-                        WHERE student_ident = ?
-                        """,
-                        (new_grade, current_year, student_ident),
-                    )
-
-            self.con.commit()
-        except sqlite3.Error as e:
-            print(f"Error al actualizar el grado de los estudiantes: {e}")
-        finally:
-            cursor.close()
-
-    def crear_factura(self, student_ident, grade, due_date=None):
-        try:
-            cursor = self.con.cursor()
-            fee_amount = COURSE_FEES.get(grade, 100)
-
-            if due_date is None:
-                due_date = datetime.now() + timedelta(days=30)
-            else:
-                due_date = datetime.strptime(due_date, "%Y-%m-%d")
-
-            due_date_str = due_date.strftime("%Y-%m-%d")
-
-            cursor.execute(
-                """
-                INSERT INTO invoices (description, total_amount, remaining_amount, due_date, created_at, status, student_ident_fk)
-                VALUES (?, ?, ?, ?, date('now'), ?, ?)
-                """,
-                (
-                    "Factura mensual",
-                    fee_amount,
-                    fee_amount,
-                    due_date_str,
-                    "Generado",
-                    student_ident,
-                ),
-            )
-            self.con.commit()
-        except sqlite3.Error as e:
-            print(f"Error al crear factura: {e}")
-        finally:
-            cursor.close()
-
-    def consultar_y_crear_facturas(self):
-        try:
-            cursor = self.con.cursor()
-            cursor.execute(
-                """
-                SELECT s.student_ident, s.grade, MAX(i.due_date) as last_invoice_date
-                FROM students s
-                LEFT JOIN invoices i ON s.student_ident = i.student_ident_fk
-                GROUP BY s.student_ident
-                """
-            )
-
-            students = cursor.fetchall()
-            current_date = datetime.now().date()
-
-            for student_ident, grade, last_invoice_date in students:
-                if last_invoice_date:
-                    last_invoice_date = datetime.strptime(
-                        last_invoice_date, "%Y-%m-%d"
-                    ).date()
-                    while last_invoice_date <= current_date:
-                        last_invoice_date += timedelta(days=30)
-                        self.crear_factura(
-                            student_ident,
-                            grade,
-                            due_date=last_invoice_date.strftime("%Y-%m-%d"),
-                        )
-                else:
-                    self.crear_factura(student_ident, grade)
-
-        except sqlite3.Error as e:
-            print(f"Error al consultar y crear facturas: {e}")
-        finally:
-            cursor.close()
 
     def conectar(self):
         return self.con

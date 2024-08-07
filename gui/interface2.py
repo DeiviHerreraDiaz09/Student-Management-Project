@@ -48,7 +48,7 @@ class MyInterface(QMainWindow, Ui_formLogin):
             self.lblMSG.setText("Login exitoso")
             self.conexion = Conexion()
             self.conexion.actualizar_estado_facturas()
-            self.conexion.actualizar_grado_estudiantes()
+            # self.conexion.actualizar_grado_estudiantes()
             self.main = MainWindow()
             self.close()
         else:
