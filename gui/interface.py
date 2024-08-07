@@ -9,12 +9,17 @@ from Services.invoiceService import (
     Service_search_student_by_id_for_invoice,
 )
 from PyQt6.QtWidgets import QApplication, QMainWindow, QTableWidgetItem, QPushButton
+from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph
+from reportlab.lib.pagesizes import landscape, A4
+from reportlab.lib.styles import getSampleStyleSheet
 from gui.UI.dashboard import Ui_MainWindow
+from reportlab.lib import colors
 from PyQt6.QtCore import QTimer
 from PyQt6 import QtGui, QtCore
 import conexion as con
-from datetime import datetime
-
+import subprocess
+import tempfile
+import os
 
 class MyInterface(QMainWindow, Ui_MainWindow):
     def __init__(self):
@@ -25,7 +30,7 @@ class MyInterface(QMainWindow, Ui_MainWindow):
         # INICIALIZACIÓN DE PANTALLA
         self.content.setCurrentIndex(0)
         self.switch_to_listStudent()
-
+        self.report_dinamic_label.setText("")
         # TABLA GENERAL DE ESTUDIANTES
         self.list_student_table.setColumnCount(7)
         self.list_student_table.setHorizontalHeaderLabels(
@@ -53,6 +58,11 @@ class MyInterface(QMainWindow, Ui_MainWindow):
                 "Estado",
                 "Acciones",
             ]
+        )
+
+        self.table_reports_payments.setColumnCount(4)
+        self.table_reports_payments.setHorizontalHeaderLabels(
+            ["Identificador de pago", "Fecha de pago", "Total pago", "Método de pago"]
         )
 
         # CONEXIÓN DE BOTONES A FUNCIONES
@@ -112,7 +122,7 @@ class MyInterface(QMainWindow, Ui_MainWindow):
     def switch_to_paymentsPage(self):
         self.content.setCurrentIndex(1)
 
-    # REPORTE DE PAGOS DIARIOS
+    # REPORTE DE PAGOS
 
     def switch_to_reportsPage(self):
         self.content.setCurrentIndex(2)
@@ -229,9 +239,58 @@ class MyInterface(QMainWindow, Ui_MainWindow):
                     self.history_table_payment.setItem(
                         row_number, column_number, QTableWidgetItem(str(cell_data))
                     )
-        self.buttonBack_student_info.clicked.connect(
-            lambda: self.switch_to_studentDetails(student_ident)
-        )
+
+            self.buttonBack_student_info.clicked.connect(
+                lambda: self.switch_to_studentDetails(student_ident)
+            )
+
+            self.buttonBack_student_info_2.clicked.connect(
+                lambda: self.generate_pdf(payments, rows)
+            )
+
+    def generate_pdf(self, payments, rows):
+
+        with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as temp_pdf:
+            pdf_path = temp_pdf.name
+        doc = SimpleDocTemplate(pdf_path, pagesize=landscape(A4))
+        elements = []
+        styles = getSampleStyleSheet()
+        title_style = styles['Title']
+        normal_style = styles['BodyText']
+        elements.append(Paragraph(f"Factura de: {payments[0]}", title_style))
+        elements.append(Paragraph(f"Número de Factura: {payments[1]}", normal_style))
+        elements.append(Paragraph(f"Descripción: {payments[2]}", normal_style))
+        elements.append(Paragraph(f"Monto Total: {payments[3]}", normal_style))
+        elements.append(Paragraph(f"Fecha de Creación: {payments[4]}", normal_style))
+        elements.append(Paragraph(f"Fecha de Vencimiento: {payments[5]}", normal_style))
+
+        data = [['ID de Pago', 'Fecha', 'Monto', 'Método']]
+        for row in rows:
+            data.append([str(row[6]), row[7], str(row[8]), row[9]])
+
+        table = Table(data, colWidths=[doc.width / 4.0] * 4)
+        table.setStyle(TableStyle([
+            ('BACKGROUND', (0, 0), (-1, 0), colors.grey),
+            ('TEXTCOLOR', (0, 0), (-1, 0), colors.whitesmoke),
+            ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
+            ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
+            ('FONTSIZE', (0, 0), (-1, 0), 12),
+            ('BOTTOMPADDING', (0, 0), (-1, 0), 12),
+            ('BACKGROUND', (0, 1), (-1, -1), colors.beige),
+            ('GRID', (0, 0), (-1, -1), 1, colors.black)
+        ]))
+        elements.append(table)
+
+        doc.build(elements)
+
+        if os.name == 'posix':
+            subprocess.run(['xdg-open', pdf_path])
+        elif os.name == 'nt':
+            os.startfile(pdf_path)
+        elif os.name == 'mac':
+            subprocess.run(['open', pdf_path])
+
+        print(f"PDF generado y abierto temporalmente: {pdf_path}")
 
     def clear_message_ok(self):
         self.message_ok.clear()
@@ -248,6 +307,7 @@ class MyInterface(QMainWindow, Ui_MainWindow):
         self.input_address_2.clear()
         self.input_phone_2.clear()
         self.input_student_ident.setFocus()
+
 
 
 if __name__ == "__main__":

@@ -177,6 +177,13 @@ class Ui_MainWindow(object):
         self.horizontalLayout = QtWidgets.QHBoxLayout(self.header_widget)
         self.horizontalLayout.setContentsMargins(0, -1, 0, -1)
         self.horizontalLayout.setObjectName("horizontalLayout")
+        spacerItem1 = QtWidgets.QSpacerItem(
+            690,
+            20,
+            QtWidgets.QSizePolicy.Policy.Expanding,
+            QtWidgets.QSizePolicy.Policy.Minimum,
+        )
+        self.horizontalLayout.addItem(spacerItem1)
         self.content = QtWidgets.QStackedWidget(parent=self.header_widget)
         self.content.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.content.setObjectName("content")
@@ -269,13 +276,13 @@ class Ui_MainWindow(object):
         self.button_search.setIcon(icon3)
         self.button_search.setObjectName("button_search")
         self.options.addWidget(self.filter)
-        spacerItem1 = QtWidgets.QSpacerItem(
+        spacerItem2 = QtWidgets.QSpacerItem(
             328,
             21,
             QtWidgets.QSizePolicy.Policy.Expanding,
             QtWidgets.QSizePolicy.Policy.Minimum,
         )
-        self.options.addItem(spacerItem1)
+        self.options.addItem(spacerItem2)
         self.newStudent = QtWidgets.QSplitter(parent=self.layoutWidget)
         self.newStudent.setOrientation(QtCore.Qt.Orientation.Vertical)
         self.newStudent.setObjectName("newStudent")
@@ -1472,11 +1479,27 @@ class Ui_MainWindow(object):
         self.tittle_info_4.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.tittle_info_4.setObjectName("tittle_info_4")
         self.horizontalLayout_9.addWidget(self.tittle_info_4)
-        self.widget_5 = QtWidgets.QWidget(parent=self.listInvoice)
-        self.widget_5.setMinimumSize(QtCore.QSize(130, 0))
-        self.widget_5.setMaximumSize(QtCore.QSize(130, 16777215))
-        self.widget_5.setObjectName("widget_5")
-        self.horizontalLayout_9.addWidget(self.widget_5)
+        self.buttonBack_student_info_2 = QtWidgets.QPushButton(parent=self.listInvoice)
+        self.buttonBack_student_info_2.setMinimumSize(QtCore.QSize(90, 30))
+        self.buttonBack_student_info_2.setMaximumSize(QtCore.QSize(90, 30))
+        font = QtGui.QFont()
+        font.setFamily("Euphemia")
+        font.setPointSize(10)
+        font.setBold(True)
+        font.setWeight(75)
+        self.buttonBack_student_info_2.setFont(font)
+        self.buttonBack_student_info_2.setCursor(
+            QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor)
+        )
+        self.buttonBack_student_info_2.setStyleSheet(
+            "background-color:#1770b3;\n"
+            "font-family: Euphemia;\n"
+            "border: none;\n"
+            "border-radius: 6px;\n"
+            "color:white;"
+        )
+        self.buttonBack_student_info_2.setObjectName("buttonBack_student_info_2")
+        self.horizontalLayout_9.addWidget(self.buttonBack_student_info_2)
         self.gridLayout_14.addLayout(self.horizontalLayout_9, 0, 0, 1, 1)
         self.verticalLayout_9 = QtWidgets.QVBoxLayout()
         self.verticalLayout_9.setObjectName("verticalLayout_9")
@@ -2089,29 +2112,142 @@ class Ui_MainWindow(object):
         )
         self.content.addWidget(self.payments_page)
         self.reports = QtWidgets.QWidget()
+        self.reports.setStyleSheet("background-color:#e9f4fd;")
         self.reports.setObjectName("reports")
-        self.label_7 = QtWidgets.QLabel(parent=self.reports)
-        self.label_7.setGeometry(QtCore.QRect(290, 240, 191, 71))
+        self.table_reports_payments = QtWidgets.QTableWidget(parent=self.reports)
+        self.table_reports_payments.setGeometry(QtCore.QRect(40, 290, 821, 341))
+        self.table_reports_payments.setBaseSize(QtCore.QSize(500, 50))
+        self.table_reports_payments.setStyleSheet(
+            "QTableWidget {\n"
+            " gridline-color: black; \n"
+            "    background-color: #F9F9F9;\n"
+            "}\n"
+            "\n"
+            "QTableWidget::item {\n"
+            "    padding: 1px;\n"
+            "      background-color: #e9f4fd;\n"
+            "     color: #000080; \n"
+            "    text-align:center;\n"
+            "}\n"
+            "\n"
+            "QTableWidget::item:selected {\n"
+            "    background-color: #ddeffd;\n"
+            "    color: black; \n"
+            "}\n"
+            "\n"
+            "QHeaderView::section {\n"
+            "    background-color: #13598f; \n"
+            "    color: white; \n"
+            "    padding: 3px;\n"
+            "    border: 0.4px solid white;\n"
+            "    font-family: Euphemia;\n"
+            "    font-size: 12px;\n"
+            "font-weight:bold;\n"
+            "}\n"
+            "\n"
+            "QTableWidget::item:alternate {\n"
+            "    background-color: #F0F0F0;\n"
+            "}\n"
+            ""
+        )
+        self.table_reports_payments.setObjectName("table_reports_payments")
+        self.table_reports_payments.setColumnCount(4)
+        self.table_reports_payments.setRowCount(0)
+        item = QtWidgets.QTableWidgetItem()
+        self.table_reports_payments.setHorizontalHeaderItem(0, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.table_reports_payments.setHorizontalHeaderItem(1, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.table_reports_payments.setHorizontalHeaderItem(2, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.table_reports_payments.setHorizontalHeaderItem(3, item)
+        self.table_reports_payments.horizontalHeader().setDefaultSectionSize(210)
+        self.history_tittle_pam_2 = QtWidgets.QLabel(parent=self.reports)
+        self.history_tittle_pam_2.setGeometry(QtCore.QRect(10, 250, 861, 31))
         font = QtGui.QFont()
-        font.setPointSize(20)
-        self.label_7.setFont(font)
-        self.label_7.setObjectName("label_7")
+        font.setFamily("Euphemia")
+        font.setPointSize(12)
+        font.setBold(True)
+        font.setWeight(75)
+        self.history_tittle_pam_2.setFont(font)
+        self.history_tittle_pam_2.setStyleSheet("color: rgb(11, 52, 84);")
+        self.history_tittle_pam_2.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        self.history_tittle_pam_2.setObjectName("history_tittle_pam_2")
+        self.pushButton_month = QtWidgets.QPushButton(parent=self.reports)
+        self.pushButton_month.setGeometry(QtCore.QRect(150, 220, 75, 23))
+        self.pushButton_month.setStyleSheet(
+            "background-color:#1770b3;\n"
+            "font-family: Euphemia;\n"
+            "border: none;\n"
+            "border-radius: 6px;\n"
+            "color:white;"
+        )
+        self.pushButton_month.setObjectName("pushButton_month")
+        self.pushButton_Day = QtWidgets.QPushButton(parent=self.reports)
+        self.pushButton_Day.setGeometry(QtCore.QRect(40, 220, 75, 23))
+        self.pushButton_Day.setStyleSheet(
+            "background-color:#1770b3;\n"
+            "font-family: Euphemia;\n"
+            "border: none;\n"
+            "border-radius: 6px;\n"
+            "color:white;"
+        )
+        self.pushButton_Day.setObjectName("pushButton_Day")
+        self.label = QtWidgets.QLabel(parent=self.reports)
+        self.label.setGeometry(QtCore.QRect(10, 20, 841, 41))
+        self.label.setStyleSheet(
+            'font: 14pt "MS Shell Dlg 2";\n' "color: rgb(11, 52, 84);"
+        )
+        self.label.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        self.label.setObjectName("label")
+        self.report_dinamic_label = QtWidgets.QLabel(parent=self.reports)
+        self.report_dinamic_label.setGeometry(QtCore.QRect(590, 150, 141, 41))
+        self.report_dinamic_label.setStyleSheet(
+            'font: 14pt "MS Shell Dlg 2";\n' "color: rgb(11, 52, 84);"
+        )
+        self.report_dinamic_label.setObjectName("report_dinamic_label")
+        self.layoutWidget1 = QtWidgets.QWidget(parent=self.reports)
+        self.layoutWidget1.setGeometry(QtCore.QRect(40, 150, 362, 37))
+        self.layoutWidget1.setObjectName("layoutWidget1")
+        self.horizontalLayout_8 = QtWidgets.QHBoxLayout(self.layoutWidget1)
+        self.horizontalLayout_8.setContentsMargins(0, 0, 0, 0)
+        self.horizontalLayout_8.setObjectName("horizontalLayout_8")
+        self.history_tittle_pam_3 = QtWidgets.QLabel(parent=self.layoutWidget1)
+        font = QtGui.QFont()
+        font.setFamily("Euphemia")
+        font.setPointSize(12)
+        font.setBold(True)
+        font.setWeight(75)
+        self.history_tittle_pam_3.setFont(font)
+        self.history_tittle_pam_3.setStyleSheet("color: rgb(11, 52, 84);")
+        self.history_tittle_pam_3.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        self.history_tittle_pam_3.setObjectName("history_tittle_pam_3")
+        self.horizontalLayout_8.addWidget(self.history_tittle_pam_3)
+        self.option_payment_method_report = QtWidgets.QComboBox(
+            parent=self.layoutWidget1
+        )
+        self.option_payment_method_report.setMinimumSize(QtCore.QSize(260, 35))
+        self.option_payment_method_report.setMaximumSize(QtCore.QSize(260, 35))
+        self.option_payment_method_report.setStyleSheet(
+            "background-color: rgb(255, 255, 255);\n"
+            "color: rgb(11, 52, 84);\n"
+            "border:1px solid  #a8a8a8;"
+        )
+        self.option_payment_method_report.setObjectName("option_payment_method_report")
+        self.option_payment_method_report.addItem("")
+        self.option_payment_method_report.addItem("")
+        self.option_payment_method_report.addItem("")
+        self.option_payment_method_report.addItem("")
+        self.horizontalLayout_8.addWidget(self.option_payment_method_report)
         self.content.addWidget(self.reports)
         self.horizontalLayout.addWidget(self.content)
-        spacerItem2 = QtWidgets.QSpacerItem(
-            690,
-            20,
-            QtWidgets.QSizePolicy.Policy.Expanding,
-            QtWidgets.QSizePolicy.Policy.Minimum,
-        )
-        self.horizontalLayout.addItem(spacerItem2)
         self.verticalLayout_5.addWidget(self.header_widget)
         self.gridLayout.addWidget(self.main, 0, 1, 1, 1)
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
         self.content.setCurrentIndex(0)
-        self.content_pages.setCurrentIndex(2)
+        self.content_pages.setCurrentIndex(4)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -2254,6 +2390,7 @@ class Ui_MainWindow(object):
         self.tittle_info_4.setText(
             _translate("MainWindow", "Información de la factura")
         )
+        self.buttonBack_student_info_2.setText(_translate("MainWindow", "Imprimir"))
         self.label_studentName_info.setText(
             _translate("MainWindow", "Nombre del estudiante")
         )
@@ -2298,7 +2435,32 @@ class Ui_MainWindow(object):
         self.input_amount_paid.setPlaceholderText(
             _translate("MainWindow", "Ingrese el monto para pagar")
         )
-        self.label_7.setText(_translate("MainWindow", "Reports Page"))
+        item = self.table_reports_payments.horizontalHeaderItem(0)
+        item.setText(_translate("MainWindow", "Identificador de pago"))
+        item = self.table_reports_payments.horizontalHeaderItem(1)
+        item.setText(_translate("MainWindow", "Fecha de pago"))
+        item = self.table_reports_payments.horizontalHeaderItem(2)
+        item.setText(_translate("MainWindow", "Total pago"))
+        item = self.table_reports_payments.horizontalHeaderItem(3)
+        item.setText(_translate("MainWindow", "Método de pago"))
+        self.history_tittle_pam_2.setText(_translate("MainWindow", "Pagos realizados"))
+        self.pushButton_month.setText(_translate("MainWindow", "Mes "))
+        self.pushButton_Day.setText(_translate("MainWindow", "Diario"))
+        self.label.setText(_translate("MainWindow", "Reportes de pago"))
+        self.report_dinamic_label.setText(_translate("MainWindow", "Texto Dinamico"))
+        self.history_tittle_pam_3.setText(_translate("MainWindow", "Filtrar por"))
+        self.option_payment_method_report.setItemText(
+            0, _translate("MainWindow", "Todos los métodos")
+        )
+        self.option_payment_method_report.setItemText(
+            1, _translate("MainWindow", "Efectivo")
+        )
+        self.option_payment_method_report.setItemText(
+            2, _translate("MainWindow", "Transacción")
+        )
+        self.option_payment_method_report.setItemText(
+            3, _translate("MainWindow", "Abono")
+        )
 
 
 if __name__ == "__main__":

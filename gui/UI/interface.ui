@@ -300,7 +300,7 @@ font-weight:bold
              <string notr="true">background-color: rgb(255, 255, 255);</string>
             </property>
             <property name="currentIndex">
-             <number>0</number>
+             <number>2</number>
             </property>
             <widget class="QWidget" name="students_page">
              <property name="styleSheet">
@@ -318,7 +318,7 @@ QStackedWidget::right-arrow, QStackedWidget::left-arrow {
 }</string>
                 </property>
                 <property name="currentIndex">
-                 <number>2</number>
+                 <number>1</number>
                 </property>
                 <widget class="QWidget" name="ListStudents">
                  <layout class="QGridLayout" name="gridLayout_3">
@@ -1630,25 +1630,6 @@ color:white;</string>
                        <property name="topMargin">
                         <number>20</number>
                        </property>
-                       <item row="2" column="0">
-                        <widget class="QLabel" name="message">
-                         <property name="font">
-                          <font>
-                           <family>Euphemia</family>
-                           <pointsize>9</pointsize>
-                           <weight>75</weight>
-                           <bold>true</bold>
-                          </font>
-                         </property>
-                         <property name="styleSheet">
-                          <string notr="true">font-family: Euphemia;
-color:red;</string>
-                         </property>
-                         <property name="text">
-                          <string/>
-                         </property>
-                        </widget>
-                       </item>
                        <item row="1" column="0" alignment="Qt::AlignHCenter">
                         <widget class="QPushButton" name="registerButton">
                          <property name="minimumSize">
@@ -1686,6 +1667,25 @@ color:white;</string>
                          </property>
                          <property name="text">
                           <string>Registrar</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="2" column="0">
+                        <widget class="QLabel" name="message">
+                         <property name="font">
+                          <font>
+                           <family>Euphemia</family>
+                           <pointsize>9</pointsize>
+                           <weight>75</weight>
+                           <bold>true</bold>
+                          </font>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true">font-family: Euphemia;
+color:red;</string>
+                         </property>
+                         <property name="text">
+                          <string/>
                          </property>
                         </widget>
                        </item>
@@ -2827,18 +2827,39 @@ color:white;</string>
                      </widget>
                     </item>
                     <item>
-                     <widget class="QWidget" name="widget_5" native="true">
+                     <widget class="QPushButton" name="buttonBack_student_info_2">
                       <property name="minimumSize">
                        <size>
-                        <width>130</width>
-                        <height>0</height>
+                        <width>90</width>
+                        <height>30</height>
                        </size>
                       </property>
                       <property name="maximumSize">
                        <size>
-                        <width>130</width>
-                        <height>16777215</height>
+                        <width>90</width>
+                        <height>30</height>
                        </size>
+                      </property>
+                      <property name="font">
+                       <font>
+                        <family>Euphemia</family>
+                        <pointsize>10</pointsize>
+                        <weight>75</weight>
+                        <bold>true</bold>
+                       </font>
+                      </property>
+                      <property name="cursor">
+                       <cursorShape>PointingHandCursor</cursorShape>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">background-color:#1770b3;
+font-family: Euphemia;
+border: none;
+border-radius: 6px;
+color:white;</string>
+                      </property>
+                      <property name="text">
+                       <string>Imprimir</string>
                       </property>
                      </widget>
                     </item>
@@ -3452,46 +3473,6 @@ color:red;</string>
                         </property>
                        </widget>
                       </item>
-                      <item row="1" column="0" alignment="Qt::AlignHCenter">
-                       <widget class="QPushButton" name="registerButton_payment">
-                        <property name="minimumSize">
-                         <size>
-                          <width>160</width>
-                          <height>35</height>
-                         </size>
-                        </property>
-                        <property name="maximumSize">
-                         <size>
-                          <width>160</width>
-                          <height>35</height>
-                         </size>
-                        </property>
-                        <property name="font">
-                         <font>
-                          <family>Euphemia</family>
-                          <pointsize>10</pointsize>
-                          <weight>75</weight>
-                          <bold>true</bold>
-                         </font>
-                        </property>
-                        <property name="cursor">
-                         <cursorShape>PointingHandCursor</cursorShape>
-                        </property>
-                        <property name="layoutDirection">
-                         <enum>Qt::LeftToRight</enum>
-                        </property>
-                        <property name="styleSheet">
-                         <string notr="true">background-color:#1770b3;
-border: none;
-border-radius: 6px;
-font-family: Euphemia;
-color:white;</string>
-                        </property>
-                        <property name="text">
-                         <string>Registrar</string>
-                        </property>
-                       </widget>
-                      </item>
                       <item row="0" column="0">
                        <layout class="QVBoxLayout" name="form_content">
                         <item>
@@ -3966,6 +3947,46 @@ border:1px solid  #a8a8a8;</string>
                         </item>
                        </layout>
                       </item>
+                      <item row="1" column="0" alignment="Qt::AlignHCenter">
+                       <widget class="QPushButton" name="registerButton_payment">
+                        <property name="minimumSize">
+                         <size>
+                          <width>160</width>
+                          <height>35</height>
+                         </size>
+                        </property>
+                        <property name="maximumSize">
+                         <size>
+                          <width>160</width>
+                          <height>35</height>
+                         </size>
+                        </property>
+                        <property name="font">
+                         <font>
+                          <family>Euphemia</family>
+                          <pointsize>10</pointsize>
+                          <weight>75</weight>
+                          <bold>true</bold>
+                         </font>
+                        </property>
+                        <property name="cursor">
+                         <cursorShape>PointingHandCursor</cursorShape>
+                        </property>
+                        <property name="layoutDirection">
+                         <enum>Qt::LeftToRight</enum>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true">background-color:#1770b3;
+border: none;
+border-radius: 6px;
+font-family: Euphemia;
+color:white;</string>
+                        </property>
+                        <property name="text">
+                         <string>Registrar</string>
+                        </property>
+                       </widget>
+                      </item>
                      </layout>
                     </widget>
                    </item>
@@ -3976,24 +3997,927 @@ border:1px solid  #a8a8a8;</string>
               </item>
              </layout>
             </widget>
-            <widget class="QWidget" name="reports">
-             <widget class="QLabel" name="label_7">
+            <widget class="QWidget" name="settings">
+             <property name="styleSheet">
+              <string notr="true">background-color:#e9f4fd;</string>
+             </property>
+             <widget class="QLabel" name="tittle_header_2">
               <property name="geometry">
                <rect>
-                <x>290</x>
-                <y>240</y>
-                <width>191</width>
-                <height>71</height>
+                <x>10</x>
+                <y>10</y>
+                <width>850</width>
+                <height>50</height>
+               </rect>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>50</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>50</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <family>Euphemia</family>
+                <pointsize>12</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color: rgb(11, 52, 84);
+margin-top:12px;</string>
+              </property>
+              <property name="text">
+               <string>Configuración Software</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+              <property name="margin">
+               <number>0</number>
+              </property>
+             </widget>
+             <widget class="QLineEdit" name="input_amount_paid_2">
+              <property name="geometry">
+               <rect>
+                <x>260</x>
+                <y>260</y>
+                <width>260</width>
+                <height>35</height>
+               </rect>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>250</width>
+                <height>35</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>260</width>
+                <height>35</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <pointsize>10</pointsize>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(11, 52, 84);
+border:1px solid  #a8a8a8;</string>
+              </property>
+              <property name="readOnly">
+               <bool>false</bool>
+              </property>
+              <property name="placeholderText">
+               <string>Ingrese el Teléfono</string>
+              </property>
+             </widget>
+             <widget class="QLabel" name="label_2">
+              <property name="geometry">
+               <rect>
+                <x>20</x>
+                <y>270</y>
+                <width>231</width>
+                <height>16</height>
+               </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color: rgb(11, 52, 84);
+font: 10pt &quot;Ebrima&quot;;</string>
+              </property>
+              <property name="text">
+               <string>Teléfonos</string>
+              </property>
+             </widget>
+             <widget class="QPushButton" name="button_search_2">
+              <property name="geometry">
+               <rect>
+                <x>530</x>
+                <y>260</y>
+                <width>30</width>
+                <height>30</height>
+               </rect>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>30</width>
+                <height>30</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>30</width>
+                <height>30</height>
+               </size>
+              </property>
+              <property name="cursor">
+               <cursorShape>PointingHandCursor</cursorShape>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background-color:#1770b3;
+borde: none;
+border-radius:6px;
+</string>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="icon">
+               <iconset>
+                <normaloff>:/icons/assets/icons/Search.svg</normaloff>:/icons/assets/icons/Search.svg</iconset>
+              </property>
+             </widget>
+             <widget class="QLineEdit" name="input_amount_paid_3">
+              <property name="geometry">
+               <rect>
+                <x>260</x>
+                <y>140</y>
+                <width>260</width>
+                <height>35</height>
+               </rect>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>250</width>
+                <height>35</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>260</width>
+                <height>35</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <pointsize>10</pointsize>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(11, 52, 84);
+border:1px solid  #a8a8a8;</string>
+              </property>
+              <property name="readOnly">
+               <bool>false</bool>
+              </property>
+              <property name="placeholderText">
+               <string>Ingrese nombre de Colegio</string>
+              </property>
+             </widget>
+             <widget class="QLabel" name="label_3">
+              <property name="geometry">
+               <rect>
+                <x>20</x>
+                <y>150</y>
+                <width>231</width>
+                <height>16</height>
+               </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color: rgb(11, 52, 84);
+font: 10pt &quot;Ebrima&quot;;</string>
+              </property>
+              <property name="text">
+               <string>Nombre del colegio</string>
+              </property>
+             </widget>
+             <widget class="QPushButton" name="button_search_3">
+              <property name="geometry">
+               <rect>
+                <x>530</x>
+                <y>140</y>
+                <width>30</width>
+                <height>30</height>
+               </rect>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>30</width>
+                <height>30</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>30</width>
+                <height>30</height>
+               </size>
+              </property>
+              <property name="cursor">
+               <cursorShape>PointingHandCursor</cursorShape>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background-color:#1770b3;
+borde: none;
+border-radius:6px;
+</string>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="icon">
+               <iconset>
+                <normaloff>:/icons/assets/icons/Search.svg</normaloff>:/icons/assets/icons/Search.svg</iconset>
+              </property>
+             </widget>
+             <widget class="QLineEdit" name="input_amount_paid_4">
+              <property name="geometry">
+               <rect>
+                <x>260</x>
+                <y>200</y>
+                <width>260</width>
+                <height>35</height>
+               </rect>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>250</width>
+                <height>35</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>260</width>
+                <height>35</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <pointsize>10</pointsize>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(11, 52, 84);
+border:1px solid  #a8a8a8;</string>
+              </property>
+              <property name="readOnly">
+               <bool>false</bool>
+              </property>
+              <property name="placeholderText">
+               <string>Ingrese dirección de Colegio</string>
+              </property>
+             </widget>
+             <widget class="QPushButton" name="button_search_4">
+              <property name="geometry">
+               <rect>
+                <x>530</x>
+                <y>200</y>
+                <width>30</width>
+                <height>30</height>
+               </rect>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>30</width>
+                <height>30</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>30</width>
+                <height>30</height>
+               </size>
+              </property>
+              <property name="cursor">
+               <cursorShape>PointingHandCursor</cursorShape>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background-color:#1770b3;
+borde: none;
+border-radius:6px;
+</string>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="icon">
+               <iconset>
+                <normaloff>:/icons/assets/icons/Search.svg</normaloff>:/icons/assets/icons/Search.svg</iconset>
+              </property>
+             </widget>
+             <widget class="QLabel" name="label_4">
+              <property name="geometry">
+               <rect>
+                <x>20</x>
+                <y>210</y>
+                <width>231</width>
+                <height>16</height>
+               </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color: rgb(11, 52, 84);
+font: 10pt &quot;Ebrima&quot;;</string>
+              </property>
+              <property name="text">
+               <string>Dirección</string>
+              </property>
+             </widget>
+             <widget class="QLineEdit" name="input_amount_paid_5">
+              <property name="geometry">
+               <rect>
+                <x>260</x>
+                <y>320</y>
+                <width>260</width>
+                <height>35</height>
+               </rect>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>250</width>
+                <height>35</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>260</width>
+                <height>35</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <pointsize>10</pointsize>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(11, 52, 84);
+border:1px solid  #a8a8a8;</string>
+              </property>
+              <property name="readOnly">
+               <bool>false</bool>
+              </property>
+              <property name="placeholderText">
+               <string>Ingrese % de mora</string>
+              </property>
+             </widget>
+             <widget class="QLabel" name="label_5">
+              <property name="geometry">
+               <rect>
+                <x>20</x>
+                <y>330</y>
+                <width>231</width>
+                <height>16</height>
+               </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color: rgb(11, 52, 84);
+font: 10pt &quot;Ebrima&quot;;</string>
+              </property>
+              <property name="text">
+               <string>% de mora por pagos atrasados</string>
+              </property>
+             </widget>
+             <widget class="QPushButton" name="button_search_5">
+              <property name="geometry">
+               <rect>
+                <x>530</x>
+                <y>320</y>
+                <width>30</width>
+                <height>30</height>
+               </rect>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>30</width>
+                <height>30</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>30</width>
+                <height>30</height>
+               </size>
+              </property>
+              <property name="cursor">
+               <cursorShape>PointingHandCursor</cursorShape>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background-color:#1770b3;
+borde: none;
+border-radius:6px;
+</string>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="icon">
+               <iconset>
+                <normaloff>:/icons/assets/icons/Search.svg</normaloff>:/icons/assets/icons/Search.svg</iconset>
+              </property>
+             </widget>
+             <widget class="QPushButton" name="button_search_6">
+              <property name="geometry">
+               <rect>
+                <x>530</x>
+                <y>380</y>
+                <width>30</width>
+                <height>30</height>
+               </rect>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>30</width>
+                <height>30</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>30</width>
+                <height>30</height>
+               </size>
+              </property>
+              <property name="cursor">
+               <cursorShape>PointingHandCursor</cursorShape>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background-color:#1770b3;
+borde: none;
+border-radius:6px;
+</string>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="icon">
+               <iconset>
+                <normaloff>:/icons/assets/icons/Search.svg</normaloff>:/icons/assets/icons/Search.svg</iconset>
+              </property>
+             </widget>
+             <widget class="QLineEdit" name="input_amount_paid_6">
+              <property name="geometry">
+               <rect>
+                <x>260</x>
+                <y>380</y>
+                <width>260</width>
+                <height>35</height>
+               </rect>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>250</width>
+                <height>35</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>260</width>
+                <height>35</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <pointsize>10</pointsize>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(11, 52, 84);
+border:1px solid  #a8a8a8;</string>
+              </property>
+              <property name="readOnly">
+               <bool>false</bool>
+              </property>
+              <property name="placeholderText">
+               <string>Ingrese el NCF</string>
+              </property>
+             </widget>
+             <widget class="QLabel" name="label_6">
+              <property name="geometry">
+               <rect>
+                <x>20</x>
+                <y>390</y>
+                <width>231</width>
+                <height>16</height>
+               </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color: rgb(11, 52, 84);
+font: 10pt &quot;Ebrima&quot;;</string>
+              </property>
+              <property name="text">
+               <string>Número de Comprobante Fiscal (NCF):</string>
+              </property>
+             </widget>
+             <widget class="QLabel" name="tittle_header_3">
+              <property name="geometry">
+               <rect>
+                <x>10</x>
+                <y>70</y>
+                <width>331</width>
+                <height>50</height>
+               </rect>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>50</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>50</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <family>Euphemia</family>
+                <pointsize>12</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color: rgb(11, 52, 84);
+margin-top:12px;</string>
+              </property>
+              <property name="text">
+               <string>Configuración principal</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+              <property name="margin">
+               <number>0</number>
+              </property>
+             </widget>
+             <widget class="QLabel" name="tittle_header_4">
+              <property name="geometry">
+               <rect>
+                <x>600</x>
+                <y>70</y>
+                <width>271</width>
+                <height>50</height>
+               </rect>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>50</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>50</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <family>Euphemia</family>
+                <pointsize>12</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color: rgb(11, 52, 84);
+margin-top:12px;</string>
+              </property>
+              <property name="text">
+               <string>Configuración secundaria</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+              <property name="margin">
+               <number>0</number>
+              </property>
+             </widget>
+             <widget class="QCommandLinkButton" name="commandLinkButton">
+              <property name="geometry">
+               <rect>
+                <x>650</x>
+                <y>140</y>
+                <width>185</width>
+                <height>41</height>
+               </rect>
+              </property>
+              <property name="toolTip">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Tarifas generales para los estudiantes&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">border: 1px solid #1770b3;
+border-radius: 15px;
+</string>
+              </property>
+              <property name="text">
+               <string>Tarfias actuales</string>
+              </property>
+             </widget>
+             <widget class="QCommandLinkButton" name="commandLinkButton_2">
+              <property name="geometry">
+               <rect>
+                <x>650</x>
+                <y>200</y>
+                <width>185</width>
+                <height>41</height>
+               </rect>
+              </property>
+              <property name="toolTip">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Usuarios que tienen actual acceso al software&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">border: 1px solid #1770b3;
+border-radius: 15px;
+</string>
+              </property>
+              <property name="text">
+               <string>Usuarios actuales</string>
+              </property>
+             </widget>
+             <widget class="QCommandLinkButton" name="commandLinkButton_3">
+              <property name="geometry">
+               <rect>
+                <x>650</x>
+                <y>260</y>
+                <width>185</width>
+                <height>41</height>
+               </rect>
+              </property>
+              <property name="toolTip">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;El administrador puede supervisar acciones realizadas por otros usuarios&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">border: 1px solid #1770b3;
+border-radius: 15px;
+</string>
+              </property>
+              <property name="text">
+               <string>Monitoreamiento </string>
+              </property>
+             </widget>
+            </widget>
+            <widget class="QWidget" name="reports">
+             <property name="styleSheet">
+              <string notr="true">background-color:#e9f4fd;</string>
+             </property>
+             <widget class="QTableWidget" name="table_reports_payments">
+              <property name="geometry">
+               <rect>
+                <x>40</x>
+                <y>290</y>
+                <width>821</width>
+                <height>341</height>
+               </rect>
+              </property>
+              <property name="baseSize">
+               <size>
+                <width>500</width>
+                <height>50</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QTableWidget {
+ gridline-color: black; 
+    background-color: #F9F9F9;
+}
+
+QTableWidget::item {
+    padding: 1px;
+ 	 background-color: #e9f4fd;
+     color: #000080; 
+	text-align:center;
+}
+
+QTableWidget::item:selected {
+    background-color: #ddeffd;
+    color: black; 
+}
+
+QHeaderView::section {
+    background-color: #13598f; 
+    color: white; 
+    padding: 3px;
+    border: 0.4px solid white;
+    font-family: Euphemia;
+    font-size: 12px;
+font-weight:bold;
+}
+
+QTableWidget::item:alternate {
+    background-color: #F0F0F0;
+}
+</string>
+              </property>
+              <attribute name="horizontalHeaderDefaultSectionSize">
+               <number>210</number>
+              </attribute>
+              <column>
+               <property name="text">
+                <string>Identificador de pago</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>Fecha de pago</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>Total pago</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>Método de pago</string>
+               </property>
+              </column>
+             </widget>
+             <widget class="QLabel" name="history_tittle_pam_2">
+              <property name="geometry">
+               <rect>
+                <x>10</x>
+                <y>250</y>
+                <width>861</width>
+                <height>31</height>
                </rect>
               </property>
               <property name="font">
                <font>
-                <pointsize>20</pointsize>
+                <family>Euphemia</family>
+                <pointsize>12</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
                </font>
               </property>
-              <property name="text">
-               <string>Reports Page</string>
+              <property name="styleSheet">
+               <string notr="true">color: rgb(11, 52, 84);</string>
               </property>
+              <property name="text">
+               <string>Pagos realizados</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+              <property name="margin">
+               <number>6</number>
+              </property>
+             </widget>
+             <widget class="QPushButton" name="pushButton_month">
+              <property name="geometry">
+               <rect>
+                <x>150</x>
+                <y>220</y>
+                <width>75</width>
+                <height>23</height>
+               </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background-color:#1770b3;
+font-family: Euphemia;
+border: none;
+border-radius: 6px;
+color:white;</string>
+              </property>
+              <property name="text">
+               <string>Mes </string>
+              </property>
+             </widget>
+             <widget class="QPushButton" name="pushButton_Day">
+              <property name="geometry">
+               <rect>
+                <x>40</x>
+                <y>220</y>
+                <width>75</width>
+                <height>23</height>
+               </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background-color:#1770b3;
+font-family: Euphemia;
+border: none;
+border-radius: 6px;
+color:white;</string>
+              </property>
+              <property name="text">
+               <string>Diario</string>
+              </property>
+             </widget>
+             <widget class="QLabel" name="label">
+              <property name="geometry">
+               <rect>
+                <x>10</x>
+                <y>20</y>
+                <width>841</width>
+                <height>41</height>
+               </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">font: 14pt &quot;MS Shell Dlg 2&quot;;
+color: rgb(11, 52, 84);</string>
+              </property>
+              <property name="text">
+               <string>Reportes de pago</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+             <widget class="QLabel" name="report_dinamic_label">
+              <property name="geometry">
+               <rect>
+                <x>590</x>
+                <y>150</y>
+                <width>141</width>
+                <height>41</height>
+               </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">font: 14pt &quot;MS Shell Dlg 2&quot;;
+color: rgb(11, 52, 84);</string>
+              </property>
+              <property name="text">
+               <string>Texto Dinamico</string>
+              </property>
+             </widget>
+             <widget class="QWidget" name="layoutWidget">
+              <property name="geometry">
+               <rect>
+                <x>40</x>
+                <y>150</y>
+                <width>362</width>
+                <height>37</height>
+               </rect>
+              </property>
+              <layout class="QHBoxLayout" name="horizontalLayout_8">
+               <item>
+                <widget class="QLabel" name="history_tittle_pam_3">
+                 <property name="font">
+                  <font>
+                   <family>Euphemia</family>
+                   <pointsize>12</pointsize>
+                   <weight>75</weight>
+                   <bold>true</bold>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">color: rgb(11, 52, 84);</string>
+                 </property>
+                 <property name="text">
+                  <string>Filtrar por</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                 <property name="margin">
+                  <number>6</number>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QComboBox" name="option_payment_method_report">
+                 <property name="minimumSize">
+                  <size>
+                   <width>260</width>
+                   <height>35</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>260</width>
+                   <height>35</height>
+                  </size>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(11, 52, 84);
+border:1px solid  #a8a8a8;</string>
+                 </property>
+                 <item>
+                  <property name="text">
+                   <string>Todos los métodos</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Efectivo</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Transacción</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Abono</string>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+              </layout>
              </widget>
             </widget>
            </widget>
