@@ -151,7 +151,7 @@ class Conexion:
                     student_id_fk INTEGER NOT NULL,
                     FOREIGN KEY (rate_id_fk) REFERENCES rates(rate_id)
                     FOREIGN KEY (period_id_fk) REFERENCES periods(period_id )
-                    FOREIGN KEY (student_id_fk) REFERENCES users(user_id)
+                    FOREIGN KEY (student_id_fk) REFERENCES students(student_ident)
                 )
             """
             )
