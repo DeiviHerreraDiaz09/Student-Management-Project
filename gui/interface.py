@@ -110,6 +110,8 @@ class MyInterface(QMainWindow, Ui_MainWindow):
     def switch_to_registerStudent(self):
         self.content.setCurrentIndex(0)
         self.content_pages.setCurrentIndex(2)
+        self.showRates()
+        self.showPeriod()
 
     # REGISTRO DE FACTURAS MANUALES
 
@@ -183,6 +185,50 @@ class MyInterface(QMainWindow, Ui_MainWindow):
 
     def search_student_by_id(self, student_ident):
         Service_search_student_by_id(self, student_ident)
+    
+    # LOGICA PARA LISTAR LAS TARIFAS
+
+    def showRates(self):
+        db = con.Conexion().conectar()
+        cursor = db.cursor()
+        cursor.execute(
+            """
+            SELECT rate_id, rate_name
+            FROM rates
+            """,
+            
+        )
+
+        rows = cursor.fetchall()
+        cursor.close()
+        db.close()
+
+        if rows:
+            self.options_rate.clear() 
+            for rate_id, rate_name in rows:
+                self.options_rate.addItem(rate_name, rate_id)
+
+      
+    # LOGICA PARA LISTAR PERIODOS ESCOLARES
+
+    def showPeriod(self):
+        db = con.Conexion().conectar()
+        cursor = db.cursor()
+        cursor.execute(
+            """
+            SELECT period_id, initial_period, final_period
+            FROM periods
+            """, 
+        )
+
+        rows = cursor.fetchall()
+        cursor.close()
+        db.close()
+
+        if rows:
+            self.options_periodo.clear() 
+            for period_id, initial_period, final_period in rows:
+                self.options_periodo.addItem(str(initial_period+' - '+final_period), period_id)
 
     # LOGICA REGISTRO DE ESTUDIANTES
 

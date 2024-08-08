@@ -1,7 +1,9 @@
 from PyQt6.QtCore import QObject, pyqtSignal, QThread, QTimer
 from PyQt6.QtWidgets import QApplication, QMainWindow, QTableWidgetItem, QPushButton
 from model.student import Student
+from model.enrollment import Enrollment
 from Services.paymentService import switch_to_payment
+from Services.enrollmentService import CreateE
 from PyQt6 import QtGui, QtCore
 import conexion as con
 
@@ -61,18 +63,16 @@ class Create(QThread):
             db = con.Conexion().conectar()
             cursor = db.cursor()
             cursor.execute(
-                "INSERT INTO students (student_ident, student_name, date_of_birth, grade, year_progress, tutor_dni, tutor_name, tutor_email, tutor_phone, address, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                "INSERT INTO students (student_ident, student_name, date_of_birth, tutor_dni, tutor_name, address, tutor_email, tutor_phone, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
                 (
                     self.student.student_ident,
                     self.student.student_name,
                     self.student.date_of_birth,
-                    self.student.grade,
-                    self.student.year_progress,
                     self.student.tutor_dni,
                     self.student.tutor_name,
+                    self.student.address,
                     self.student.tutor_email,
                     self.student.tutor_phone,
-                    self.student.address,
                     self.student.status,
                 ),
             )
@@ -100,6 +100,20 @@ class CreateStudent(QObject):
     def handle_create_result(self, success):
         self.create_result.emit(success)
 
+# CREACIÓN DE INSCRIPCIÓN
+class CreateEnrollment(QObject):
+    create_result = pyqtSignal(bool)
+
+    def __init__(self):
+        super().__init__()
+
+    def create_enrollment(self, enrollment : Enrollment):
+        self.thread = CreateE(enrollment)
+        self.thread.create_result.connect(self.handle_create_result)
+        self.thread.start()
+
+    def handle_create_result(self, success):
+        self.create_result.emit(success)
 
 # SERVICIOS UNITARIOS
 
@@ -240,6 +254,8 @@ def Service_search_student_by_name(self):
 
 
 def Service_on_student_search_result(self, exists):
+    db = con.Conexion().conectar()
+    cursor = db.cursor()
     student_ident = self.input_student_ident.text()
     student_name = self.input_student_name_2.text()
     date_of_birtht = self.dateEdit.text()
@@ -249,8 +265,14 @@ def Service_on_student_search_result(self, exists):
     tutor_email = self.input_email_2.text()
     address = self.input_address_2.text()
     tutor_phone = self.input_phone_2.text()
-    year_progress = "2024"
+    enrollment_amount= self.input_incripcion.text()
+    enrollment_date = "7/08/2024"
+    rate_id_fk = int(self.options_rate.currentData())
+    period_id_fk = int(self.options_periodo.currentData())
+    student_id_fk = student_ident
     status = "Vigente"
+
+ 
 
     if exists:
         self.message.setText("El estudiante ya existe")
@@ -280,13 +302,14 @@ def Service_on_student_search_result(self, exists):
     elif len(tutor_phone) <= 9:
         self.message.setText("El teléfono del tutor es requerido")
         self.input_phone_2.setFocus()
+    elif len(enrollment_amount) <= 1:
+        self.message.setText("El valor de la inscripción es requerido")
+        self.input_incripcion.setFocus()
     else:
         student = Student(
             student_ident,
             student_name,
             date_of_birtht,
-            grade,
-            year_progress,
             tutor_dni,
             tutor_name,
             tutor_email,
@@ -294,6 +317,22 @@ def Service_on_student_search_result(self, exists):
             address,
             status,
         )
+
         self.student_data = CreateStudent()
         self.student_data.create_result.connect(self.handle_create_result)
         self.student_data.create_student(student)
+
+        cursor.execute(
+                "INSERT INTO enrollments (enrollment_date, status, grade, enrollment_amount, rate_id_fk, period_id_fk, student_id_fk ) VALUES (?, ?, ?, ?, ?, ?, ?)",
+                (
+                    enrollment_date,
+                    status,
+                    grade,
+                    int(enrollment_amount),
+                    rate_id_fk,
+                    period_id_fk,
+                    student_id_fk,
+                ),
+            )
+        db.commit()
+        db.close()
