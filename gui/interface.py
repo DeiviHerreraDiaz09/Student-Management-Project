@@ -27,6 +27,9 @@ class MyInterface(QMainWindow, Ui_MainWindow):
         self.setupUi(self)
         self.setWindowTitle("Interface Menu")
 
+        # Inicialización del rol de usuario
+        self.user_role = None
+
         # INICIALIZACIÓN DE PANTALLA
         self.content.setCurrentIndex(0)
         self.switch_to_listStudent()
@@ -80,6 +83,11 @@ class MyInterface(QMainWindow, Ui_MainWindow):
         self.original_data = []
         self.student_ids = {}
         self.load_data()
+
+    # Método para establecer el rol de usuario
+    def set_user_role(self, role):
+        self.user_role = role
+        print(f"Rol del usuario establecido: {self.user_role}") 
 
     # VISTAS ↓
 

@@ -85,7 +85,6 @@ class Conexion:
                     student_name TEXT NOT NULL,
                     date_of_birth TEXT NOT NULL,
                     tutor_dni TEXT NOT NULL,
-                    year_progress INTEGER NOT NULL,
                     tutor_name TEXT NOT NULL,
                     address TEXT NOT NULL,
                     tutor_email TEXT NOT NULL,
