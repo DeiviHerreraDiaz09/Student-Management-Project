@@ -43,14 +43,14 @@ class MyInterface(QMainWindow, Ui_formLogin):
             self.user_data.login_result.connect(self.handle_login_result)
             self.user_data.login(user)
 
-    def handle_login_result(self, success, role):
+    def handle_login_result(self, success, object):
         if success:
             self.lblMSG.setText("Login exitoso")
             self.conexion = Conexion()
             self.conexion.actualizar_estado_facturas()
-            self.role = role  
+            self.object = object
             self.main = MainWindow()
-            self.main.set_user_role(self.role)  
+            self.main.set_user_role(self.object)
             self.close()
         else:
             self.lblMSG.setText("Datos incorrectos")

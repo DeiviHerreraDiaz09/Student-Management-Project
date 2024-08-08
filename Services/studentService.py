@@ -39,7 +39,8 @@ class SearchStudent(QThread):
         db = con.Conexion().conectar()
         cursor = db.cursor()
         cursor.execute(
-            "SELECT * FROM students INNER JOIN enrollments ON student_ident = enrollments.student_id_fk WHERE student_ident =?", (self.student_ident,)
+            "SELECT * FROM students INNER JOIN enrollments ON student_ident = enrollments.student_id_fk WHERE student_ident =?",
+            (self.student_ident,),
         )
         fila = cursor.fetchone()
         if fila:
@@ -100,6 +101,7 @@ class CreateStudent(QObject):
     def handle_create_result(self, success):
         self.create_result.emit(success)
 
+
 # CREACIÓN DE INSCRIPCIÓN
 class CreateEnrollment(QObject):
     create_result = pyqtSignal(bool)
@@ -107,13 +109,14 @@ class CreateEnrollment(QObject):
     def __init__(self):
         super().__init__()
 
-    def create_enrollment(self, enrollment : Enrollment):
+    def create_enrollment(self, enrollment: Enrollment):
         self.thread = CreateE(enrollment)
         self.thread.create_result.connect(self.handle_create_result)
         self.thread.start()
 
     def handle_create_result(self, success):
         self.create_result.emit(success)
+
 
 # SERVICIOS UNITARIOS
 
@@ -265,14 +268,12 @@ def Service_on_student_search_result(self, exists):
     tutor_email = self.input_email_2.text()
     address = self.input_address_2.text()
     tutor_phone = self.input_phone_2.text()
-    enrollment_amount= self.input_incripcion.text()
+    enrollment_amount = self.input_incripcion.text()
     enrollment_date = "7/08/2024"
     rate_id_fk = int(self.options_rate.currentData())
     period_id_fk = int(self.options_periodo.currentData())
     student_id_fk = student_ident
     status = "Vigente"
-
- 
 
     if exists:
         self.message.setText("El estudiante ya existe")
@@ -323,16 +324,16 @@ def Service_on_student_search_result(self, exists):
         self.student_data.create_student(student)
 
         cursor.execute(
-                "INSERT INTO enrollments (enrollment_date, status, grade, enrollment_amount, rate_id_fk, period_id_fk, student_id_fk ) VALUES (?, ?, ?, ?, ?, ?, ?)",
-                (
-                    enrollment_date,
-                    status,
-                    grade,
-                    int(enrollment_amount),
-                    rate_id_fk,
-                    period_id_fk,
-                    student_id_fk,
-                ),
-            )
+            "INSERT INTO enrollments (enrollment_date, status, grade, enrollment_amount, rate_id_fk, period_id_fk, student_id_fk ) VALUES (?, ?, ?, ?, ?, ?, ?)",
+            (
+                enrollment_date,
+                status,
+                grade,
+                int(enrollment_amount),
+                rate_id_fk,
+                period_id_fk,
+                student_id_fk,
+            ),
+        )
         db.commit()
         db.close()

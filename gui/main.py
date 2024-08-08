@@ -8,5 +8,5 @@ class MainWindow(QMainWindow):
         self.interface = MyInterface()
         self.interface.show()
 
-    def set_user_role(self, role):
-        self.interface.set_user_role(role)
+    def set_user_role(self, object):
+        self.interface.set_user_role(object)

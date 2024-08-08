@@ -4,6 +4,7 @@ from model.enrollment import Enrollment
 from PyQt6 import QtGui, QtCore
 import conexion as con
 
+
 class CreateE(QThread):
     create_result = pyqtSignal(bool)
 
@@ -42,4 +43,3 @@ class CreateE(QThread):
         finally:
             cursor.close()
             db.close()
-

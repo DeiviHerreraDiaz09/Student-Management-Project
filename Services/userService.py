@@ -6,7 +6,7 @@ import sys
 
 
 class LoginThread(QThread):
-    login_result = pyqtSignal(bool, str)
+    login_result = pyqtSignal(bool, dict)
 
     def __init__(self, user):
         super().__init__()
@@ -16,20 +16,25 @@ class LoginThread(QThread):
         db = con.Conexion().conectar()
         cursor = db.cursor()
 
-        cursor.execute("SELECT user_id, user_name, role FROM users WHERE user_name = ? AND password = ?", (self.user._user_name, self.user._password))
+        cursor.execute(
+            "SELECT user_id, user_name, role FROM users WHERE user_name = ? AND password = ?",
+            (self.user._user_name, self.user._password),
+        )
         fila = cursor.fetchone()
-        
+
         cursor.close()
         db.close()
 
         if fila:
-            self.login_result.emit(True, fila[2])  
+            self.login_result.emit(
+                True, {"user_id": fila[0], "user_name": fila[1], "role": fila[2]}
+            )
         else:
-            self.login_result.emit(False, '')
+            self.login_result.emit(False, {})
 
 
 class UserData(QObject):
-    login_result = pyqtSignal(bool, str)
+    login_result = pyqtSignal(bool, dict)
 
     def login(self, user: User):
         self.thread = LoginThread(user)
@@ -38,7 +43,6 @@ class UserData(QObject):
 
     def handle_login_result(self, success, role):
         self.login_result.emit(success, role)
-
 
 
 def resolver_ruta(ruta_relativa):

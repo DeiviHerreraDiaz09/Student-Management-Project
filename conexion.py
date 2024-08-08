@@ -1,4 +1,5 @@
-from datetime import datetime, timedelta
+from datetime import datetime
+import conexion as con
 import sqlite3
 import sys
 import os
@@ -267,6 +268,54 @@ class Conexion:
             print(f"Error al actualizar el estado de las facturas: {e}")
         finally:
             cursor.close()
+
+    def loginService(self, user_id):
+        db = con.Conexion().conectar()
+        cursor = db.cursor()
+        try:
+            query = """
+                INSERT INTO monitoring_user (user_id_fk, monitoring_date, action)
+                VALUES (?, ?, ?)
+            """
+            cursor.execute(
+                query,
+                (
+                    user_id,
+                    datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                    "El usuario entró al sistema",
+                ),
+            )
+            db.commit()
+            print("Registro de monitoreo insertado correctamente.")
+        except Exception as e:
+            print(f"Error al insertar el registro de monitoreo: {e}")
+        finally:
+            cursor.close()
+            db.close()
+
+    def logoutService(self, user_id):
+        db = con.Conexion().conectar()
+        cursor = db.cursor()
+        try:
+            query = """
+                INSERT INTO monitoring_user (user_id_fk, monitoring_date, action)
+                VALUES (?, ?, ?)
+            """
+            cursor.execute(
+                query,
+                (
+                    user_id,
+                    datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                    "El usuario cerró sesión",
+                ),
+            )
+            db.commit()
+            print("Registro de monitoreo de cierre de sesión insertado correctamente.")
+        except Exception as e:
+            print(f"Error al insertar el registro de monitoreo: {e}")
+        finally:
+            cursor.close()
+            db.close()
 
 
     def conectar(self):

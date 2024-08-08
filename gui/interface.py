@@ -8,7 +8,7 @@ from Services.studentService import (
 from Services.invoiceService import (
     Service_search_student_by_id_for_invoice,
 )
-from PyQt6.QtWidgets import QApplication, QMainWindow, QTableWidgetItem, QPushButton
+from PyQt6.QtWidgets import QApplication, QMainWindow, QTableWidgetItem, QPushButton, QMessageBox
 from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph
 from reportlab.lib.pagesizes import landscape, A4
 from reportlab.lib.styles import getSampleStyleSheet
@@ -16,10 +16,13 @@ from gui.UI.dashboard import Ui_MainWindow
 from reportlab.lib import colors
 from PyQt6.QtCore import QTimer
 from PyQt6 import QtGui, QtCore
+from datetime import datetime
 import conexion as con
+from conexion import Conexion
 import subprocess
 import tempfile
 import os
+
 
 class MyInterface(QMainWindow, Ui_MainWindow):
     def __init__(self):
@@ -27,7 +30,6 @@ class MyInterface(QMainWindow, Ui_MainWindow):
         self.setupUi(self)
         self.setWindowTitle("Interface Menu")
 
-        # Inicialización del rol de usuario
         self.user_role = None
 
         # INICIALIZACIÓN DE PANTALLA
@@ -77,17 +79,68 @@ class MyInterface(QMainWindow, Ui_MainWindow):
         self.button_search.clicked.connect(self.search_student_by_name)
         self.buttonBack.clicked.connect(self.switch_to_listStudent)
         self.buttonBack_2.clicked.connect(self.switch_to_listStudent)
-
+        self.exit.clicked.connect(self.handleExit)
         self.student_data = StudentData()
         self.student_data.data_fetched.connect(self.update_table)
         self.original_data = []
         self.student_ids = {}
         self.load_data()
 
-    # Método para establecer el rol de usuario
-    def set_user_role(self, role):
-        self.user_role = role
-        print(f"Rol del usuario establecido: {self.user_role}") 
+    def set_user_role(self, object):
+        self.user = object
+        self.Login()
+
+    def Login(self):
+        user_id = self.user["user_id"]
+        self.conexion = Conexion()
+        self.conexion.loginService(user_id)
+
+    def Logout(self):
+        user_id = self.user["user_id"]
+        self.conexion = Conexion()
+        self.conexion.logoutService(user_id)
+
+    def closeEvent(self, event):
+        msg_box = QMessageBox(self)
+        msg_box.setWindowTitle('Cerrar Aplicación')
+        msg_box.setText("¿Estás seguro de que deseas salir?")
+        msg_box.setStandardButtons(QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No)
+        msg_box.setDefaultButton(QMessageBox.StandardButton.No)
+
+        msg_box.setStyleSheet("""
+            QLabel {
+                color: black;
+            }
+            QPushButton {
+                background-color: white;
+                color: black;
+                border: 1px solid black;
+                padding: 5px;
+            }
+            QPushButton:hover {
+                background-color: #e6e6e6;
+            }
+            QMessageBox {
+                border: 2px solid black;
+            }
+        """)
+
+        reply = msg_box.exec()
+
+        if reply == QMessageBox.StandardButton.Yes:
+            self.Logout()  
+            event.accept() 
+            self.showLogin()
+        else:
+            event.ignore()
+
+    def handleExit(self):
+        self.close()
+
+    def showLogin(self):
+        from gui.interface2 import MyInterface  
+        self.login_interface = MyInterface()  
+        self.login_interface.show()
 
     # VISTAS ↓
 
@@ -193,7 +246,7 @@ class MyInterface(QMainWindow, Ui_MainWindow):
 
     def search_student_by_id(self, student_ident):
         Service_search_student_by_id(self, student_ident)
-    
+
     # LOGICA PARA LISTAR LAS TARIFAS
 
     def showRates(self):
@@ -204,7 +257,6 @@ class MyInterface(QMainWindow, Ui_MainWindow):
             SELECT rate_id, rate_name
             FROM rates
             """,
-            
         )
 
         rows = cursor.fetchall()
@@ -212,11 +264,10 @@ class MyInterface(QMainWindow, Ui_MainWindow):
         db.close()
 
         if rows:
-            self.options_rate.clear() 
+            self.options_rate.clear()
             for rate_id, rate_name in rows:
                 self.options_rate.addItem(rate_name, rate_id)
 
-      
     # LOGICA PARA LISTAR PERIODOS ESCOLARES
 
     def showPeriod(self):
@@ -226,7 +277,7 @@ class MyInterface(QMainWindow, Ui_MainWindow):
             """
             SELECT period_id, initial_period, final_period
             FROM periods
-            """, 
+            """,
         )
 
         rows = cursor.fetchall()
@@ -234,9 +285,11 @@ class MyInterface(QMainWindow, Ui_MainWindow):
         db.close()
 
         if rows:
-            self.options_periodo.clear() 
+            self.options_periodo.clear()
             for period_id, initial_period, final_period in rows:
-                self.options_periodo.addItem(str(initial_period+' - '+final_period), period_id)
+                self.options_periodo.addItem(
+                    str(initial_period + " - " + final_period), period_id
+                )
 
     # LOGICA REGISTRO DE ESTUDIANTES
 
@@ -315,8 +368,8 @@ class MyInterface(QMainWindow, Ui_MainWindow):
         doc = SimpleDocTemplate(pdf_path, pagesize=landscape(A4))
         elements = []
         styles = getSampleStyleSheet()
-        title_style = styles['Title']
-        normal_style = styles['BodyText']
+        title_style = styles["Title"]
+        normal_style = styles["BodyText"]
         elements.append(Paragraph(f"Factura de: {payments[0]}", title_style))
         elements.append(Paragraph(f"Número de Factura: {payments[1]}", normal_style))
         elements.append(Paragraph(f"Descripción: {payments[2]}", normal_style))
@@ -324,31 +377,35 @@ class MyInterface(QMainWindow, Ui_MainWindow):
         elements.append(Paragraph(f"Fecha de Creación: {payments[4]}", normal_style))
         elements.append(Paragraph(f"Fecha de Vencimiento: {payments[5]}", normal_style))
 
-        data = [['ID de Pago', 'Fecha', 'Monto', 'Método']]
+        data = [["ID de Pago", "Fecha", "Monto", "Método"]]
         for row in rows:
             data.append([str(row[6]), row[7], str(row[8]), row[9]])
 
         table = Table(data, colWidths=[doc.width / 4.0] * 4)
-        table.setStyle(TableStyle([
-            ('BACKGROUND', (0, 0), (-1, 0), colors.grey),
-            ('TEXTCOLOR', (0, 0), (-1, 0), colors.whitesmoke),
-            ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
-            ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
-            ('FONTSIZE', (0, 0), (-1, 0), 12),
-            ('BOTTOMPADDING', (0, 0), (-1, 0), 12),
-            ('BACKGROUND', (0, 1), (-1, -1), colors.beige),
-            ('GRID', (0, 0), (-1, -1), 1, colors.black)
-        ]))
+        table.setStyle(
+            TableStyle(
+                [
+                    ("BACKGROUND", (0, 0), (-1, 0), colors.grey),
+                    ("TEXTCOLOR", (0, 0), (-1, 0), colors.whitesmoke),
+                    ("ALIGN", (0, 0), (-1, -1), "CENTER"),
+                    ("FONTNAME", (0, 0), (-1, 0), "Helvetica-Bold"),
+                    ("FONTSIZE", (0, 0), (-1, 0), 12),
+                    ("BOTTOMPADDING", (0, 0), (-1, 0), 12),
+                    ("BACKGROUND", (0, 1), (-1, -1), colors.beige),
+                    ("GRID", (0, 0), (-1, -1), 1, colors.black),
+                ]
+            )
+        )
         elements.append(table)
 
         doc.build(elements)
 
-        if os.name == 'posix':
-            subprocess.run(['xdg-open', pdf_path])
-        elif os.name == 'nt':
+        if os.name == "posix":
+            subprocess.run(["xdg-open", pdf_path])
+        elif os.name == "nt":
             os.startfile(pdf_path)
-        elif os.name == 'mac':
-            subprocess.run(['open', pdf_path])
+        elif os.name == "mac":
+            subprocess.run(["open", pdf_path])
 
         print(f"PDF generado y abierto temporalmente: {pdf_path}")
 
@@ -367,7 +424,6 @@ class MyInterface(QMainWindow, Ui_MainWindow):
         self.input_address_2.clear()
         self.input_phone_2.clear()
         self.input_student_ident.setFocus()
-
 
 
 if __name__ == "__main__":
