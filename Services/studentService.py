@@ -1,9 +1,11 @@
+from datetime import datetime, timedelta
 from PyQt6.QtCore import QObject, pyqtSignal, QThread, QTimer
 from PyQt6.QtWidgets import QApplication, QMainWindow, QTableWidgetItem, QPushButton
 from model.student import Student
 from model.enrollment import Enrollment
 from Services.paymentService import switch_to_payment
 from Services.enrollmentService import CreateE
+from Services.invoiceService import Service_register_invoice
 from PyQt6 import QtGui, QtCore
 import conexion as con
 
@@ -275,6 +277,12 @@ def Service_on_student_search_result(self, exists):
     student_id_fk = student_ident
     status = "Vigente"
 
+# DATOS FACTURA
+    description = "Factura Mensual"
+    total_amount = 200
+    created_at = datetime.now().date()
+    due_date = (datetime.now() + timedelta(days=30)).date()
+
     if exists:
         self.message.setText("El estudiante ya existe")
         self.clear_data()
@@ -335,5 +343,23 @@ def Service_on_student_search_result(self, exists):
                 student_id_fk,
             ),
         )
+
+        cursor.execute(
+             """
+                INSERT INTO invoices (description, total_amount, remaining_amount, due_date, created_at, status, student_ident_fk)
+                VALUES (?, ?, ?, ?, ?, ?, ?)
+                """,
+            (
+                description,
+                total_amount,
+                total_amount,
+                due_date,
+                created_at,
+                "Pendiente",
+                student_ident,
+            ),
+        )
+
         db.commit()
         db.close()
+

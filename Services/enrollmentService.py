@@ -24,7 +24,7 @@ class CreateE(QThread):
             db = con.Conexion().conectar()
             cursor = db.cursor()
             cursor.execute(
-                "INSERT INTO enrollments (enrollment_date , status , grade , enrollment_amount , rate_id_fk , period_id_fk , student_id_fk ) VALUES (?, ?, ?, ?, ?, ?, ?)",
+                "INSERT INTO enrollments (enrollment_date, status, grade, enrollment_amount, rate_id_fk, period_id_fk, student_id_fk ) VALUES (?, ?, ?, ?, ?, ?, ?)",
                 (
                     self.enrollment.enrollment_date,
                     self.enrollment.status,

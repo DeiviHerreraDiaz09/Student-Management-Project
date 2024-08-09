@@ -54,11 +54,11 @@ def Service_register_invoice(self, student_ident):
         due_date = (datetime.now() + timedelta(days=30)).date()
 
         if len(description) <= 10:
-            self.message.setText("Es necesario una descripción válida")
-            self.input_student_ident.setFocus()
+            self.message_2.setText("Es necesario una descripción válida")
+            self.lineEdit_description_invoice.setFocus()
         elif len(total_amount) <= 1:
-            self.message.setText("Ingrese un valor válido")
-            self.input_student_name_2.setFocus()
+            self.message_2.setText("Ingrese un valor válido")
+            self.input_total_invoice.setFocus()
         else:
             cursor.execute(
                 """
@@ -76,14 +76,14 @@ def Service_register_invoice(self, student_ident):
                 ),
             )
 
-        db.commit()
-        db.close()
+            db.commit()
+            db.close()
 
-        self.lineEdit_description_invoice.clear()
-        self.input_total_invoice.clear()
-        self.message_ok_pay.setText("Creación de factura exitosamente")
-        QTimer.singleShot(7000, self.clear_message_ok)
-        self.load_data()
-        self.switch_to_studentDetails(student_ident)
+            self.lineEdit_description_invoice.clear()
+            self.input_total_invoice.clear()
+            self.message_ok_pay.setText("Creación de factura exitosamente")
+            QTimer.singleShot(7000, self.clear_message_ok)
+            self.load_data()
+            self.switch_to_studentDetails(student_ident)
     except Exception as e:
         print(f"Error al registrar la factura: {e}")
