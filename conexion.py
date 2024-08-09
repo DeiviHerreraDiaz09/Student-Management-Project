@@ -240,7 +240,7 @@ class Conexion:
                 """
             SELECT COUNT(*) FROM periods WHERE initial_period = ? AND final_period = ?
             """,
-                ("junio 2024", "agosto 2024"),
+                ("01/01/2024", "31/12/2024"),
             )
             count = cursor.fetchone()[0]
 
@@ -249,7 +249,7 @@ class Conexion:
                     """
                 INSERT INTO periods (initial_period, final_period) VALUES (?, ?)
                 """,
-                    ("junio 2024", "agosto 2024"),
+                    ("01/01/2024", "31/12/2024"),
                 )
 
             cursor.execute(
@@ -265,7 +265,7 @@ class Conexion:
                     """
                 INSERT INTO rates (rate_name, rate_amount) VALUES (?, ?)
                 """,
-                    ("Normal", 20),
+                    ("Normal", 2000),
                 )
 
             print("periodos/tarifas cread@s correctamente")

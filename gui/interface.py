@@ -22,7 +22,6 @@ from gui.UI.dashboard import Ui_MainWindow
 from reportlab.lib import colors
 from PyQt6.QtCore import QTimer
 from PyQt6 import QtGui, QtCore
-from datetime import datetime
 import conexion as con
 from conexion import Conexion
 import subprocess
@@ -94,6 +93,9 @@ class MyInterface(QMainWindow, Ui_MainWindow):
 
     def set_user_role(self, object):
         self.user = object
+        self.user_role = self.user["role"]
+        if self.user_role != "Administrador":
+            self.config.setVisible(False)
         self.Login()
 
     def Login(self):

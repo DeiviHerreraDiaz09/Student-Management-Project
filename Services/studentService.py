@@ -8,6 +8,7 @@ from Services.enrollmentService import CreateE
 from Services.invoiceService import Service_register_invoice
 from PyQt6 import QtGui, QtCore
 import conexion as con
+import locale
 
 
 class StudentData(QThread):
@@ -271,17 +272,11 @@ def Service_on_student_search_result(self, exists):
     address = self.input_address_2.text()
     tutor_phone = self.input_phone_2.text()
     enrollment_amount = self.input_incripcion.text()
-    enrollment_date = "7/08/2024"
+    enrollment_date = datetime.now()
     rate_id_fk = int(self.options_rate.currentData())
     period_id_fk = int(self.options_periodo.currentData())
     student_id_fk = student_ident
     status = "Vigente"
-
-# DATOS FACTURA
-    description = "Factura Mensual"
-    total_amount = 200
-    created_at = datetime.now().date()
-    due_date = (datetime.now() + timedelta(days=30)).date()
 
     if exists:
         self.message.setText("El estudiante ya existe")
@@ -332,9 +327,9 @@ def Service_on_student_search_result(self, exists):
         self.student_data.create_student(student)
 
         cursor.execute(
-            "INSERT INTO enrollments (enrollment_date, status, grade, enrollment_amount, rate_id_fk, period_id_fk, student_id_fk ) VALUES (?, ?, ?, ?, ?, ?, ?)",
+            "INSERT INTO enrollments (enrollment_date, status, grade, enrollment_amount, rate_id_fk, period_id_fk, student_id_fk) VALUES (?, ?, ?, ?, ?, ?, ?)",
             (
-                enrollment_date,
+                enrollment_date.strftime("%d/%m/%Y"),
                 status,
                 grade,
                 int(enrollment_amount),
@@ -344,22 +339,71 @@ def Service_on_student_search_result(self, exists):
             ),
         )
 
+        cursor.execute("SELECT rate_amount FROM rates WHERE rate_id = ?", (rate_id_fk,))
+        rate_amount = cursor.fetchone()[0]
+
         cursor.execute(
-             """
-                INSERT INTO invoices (description, total_amount, remaining_amount, due_date, created_at, status, student_ident_fk)
-                VALUES (?, ?, ?, ?, ?, ?, ?)
-                """,
-            (
-                description,
-                total_amount,
-                total_amount,
-                due_date,
-                created_at,
-                "Pendiente",
-                student_ident,
-            ),
+            "SELECT initial_period, final_period FROM periods WHERE period_id = ?",
+            (period_id_fk,),
         )
+        period_data = cursor.fetchone()
+        final_period_str = period_data[1]
+        initial_period_str = period_data[0]
+
+        initial_period_date = datetime.strptime(initial_period_str, "%d/%m/%Y")
+        final_period_date = datetime.strptime(final_period_str, "%d/%m/%Y")
+
+        current_due_date = enrollment_date + timedelta(days=30)
+
+        while current_due_date < final_period_date:
+            description = "Factura Mensual"
+            total_amount = rate_amount
+            created_at = datetime.now().date()
+
+            cursor.execute(
+                """
+                    INSERT INTO invoices (description, total_amount, remaining_amount, due_date, created_at, status, student_ident_fk)
+                    VALUES (?, ?, ?, ?, ?, ?, ?)
+                    """,
+                (
+                    description,
+                    total_amount,
+                    total_amount,
+                    current_due_date.date(),
+                    created_at,
+                    "Pendiente",
+                    student_ident,
+                ),
+            )
+
+            current_due_date += timedelta(days=30)
+
+        if current_due_date > final_period_date:
+            remaining_days = (
+                final_period_date - (current_due_date - timedelta(days=30))
+            ).days
+            if remaining_days > 0:
+                adjusted_amount = (rate_amount / 30) * remaining_days
+                adjusted_amount = round(adjusted_amount, 2)
+
+                description = "Factura Ajustada"
+                created_at = datetime.now().date()
+
+                cursor.execute(
+                    """
+                        INSERT INTO invoices (description, total_amount, remaining_amount, due_date, created_at, status, student_ident_fk)
+                        VALUES (?, ?, ?, ?, ?, ?, ?)
+                        """,
+                    (
+                        description,
+                        adjusted_amount,
+                        adjusted_amount,
+                        final_period_date.date(),
+                        created_at,
+                        "Pendiente",
+                        student_ident,
+                    ),
+                )
 
         db.commit()
         db.close()
-
