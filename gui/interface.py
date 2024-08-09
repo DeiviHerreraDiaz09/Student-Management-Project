@@ -8,7 +8,13 @@ from Services.studentService import (
 from Services.invoiceService import (
     Service_search_student_by_id_for_invoice,
 )
-from PyQt6.QtWidgets import QApplication, QMainWindow, QTableWidgetItem, QPushButton, QMessageBox
+from PyQt6.QtWidgets import (
+    QApplication,
+    QMainWindow,
+    QTableWidgetItem,
+    QPushButton,
+    QMessageBox,
+)
 from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph
 from reportlab.lib.pagesizes import landscape, A4
 from reportlab.lib.styles import getSampleStyleSheet
@@ -102,12 +108,15 @@ class MyInterface(QMainWindow, Ui_MainWindow):
 
     def closeEvent(self, event):
         msg_box = QMessageBox(self)
-        msg_box.setWindowTitle('Cerrar Aplicación')
+        msg_box.setWindowTitle("Cerrar Aplicación")
         msg_box.setText("¿Estás seguro de que deseas salir?")
-        msg_box.setStandardButtons(QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No)
+        msg_box.setStandardButtons(
+            QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No
+        )
         msg_box.setDefaultButton(QMessageBox.StandardButton.No)
 
-        msg_box.setStyleSheet("""
+        msg_box.setStyleSheet(
+            """
             QLabel {
                 color: black;
             }
@@ -123,13 +132,14 @@ class MyInterface(QMainWindow, Ui_MainWindow):
             QMessageBox {
                 border: 2px solid black;
             }
-        """)
+        """
+        )
 
         reply = msg_box.exec()
 
         if reply == QMessageBox.StandardButton.Yes:
-            self.Logout()  
-            event.accept() 
+            self.Logout()
+            event.accept()
             self.showLogin()
         else:
             event.ignore()
@@ -138,8 +148,9 @@ class MyInterface(QMainWindow, Ui_MainWindow):
         self.close()
 
     def showLogin(self):
-        from gui.interface2 import MyInterface  
-        self.login_interface = MyInterface()  
+        from gui.interface2 import MyInterface
+
+        self.login_interface = MyInterface()
         self.login_interface.show()
 
     # VISTAS ↓

@@ -4,25 +4,6 @@ import sqlite3
 import sys
 import os
 
-COURSE_FEES = {
-    "Nido": 15,
-    "Pre Kinder": 30,
-    "Kinder": 45,
-    "Pre Primario": 60,
-    "1ero Primaria": 75,
-    "2do Primaria": 105,
-    "3ero Primaria": 120,
-    "4to Primaria": 135,
-    "5to Primaria": 150,
-    "6to Primaria": 165,
-    "1ero Secundaria": 180,
-    "2do Secundaria": 195,
-    "3ero Secundaria": 210,
-    "4to Secundaria": 225,
-    "5to Secundaria": 240,
-    "6to Secundaria": 255,
-}
-
 
 class Conexion:
     def __init__(self):
@@ -34,9 +15,10 @@ class Conexion:
             )
             self.con = sqlite3.connect(db_path)
             self.creartablas()
-            # self.crearTriggers()
+            self.crearTriggers()
             self.crearAdmin()
-            # self.actualizar_estado_facturas()
+            self.actualizar_estado_facturas()
+            self.period_rates_initial()
         except sqlite3.Error as e:
             print(f"Error al conectar con la base de datos: {e}")
         except Exception as ex:
@@ -135,7 +117,7 @@ class Conexion:
                 CREATE TABLE IF NOT EXISTS rates (
                     rate_id INTEGER PRIMARY KEY AUTOINCREMENT,
                     rate_name TEXT NOT NULL,
-                    rate_amount TEXT NOT NULL
+                    rate_amount REAL NOT NULL
                     )
             """
             )
@@ -250,6 +232,51 @@ class Conexion:
         finally:
             cursor.close()
 
+    def period_rates_initial(self):
+        try:
+            cursor = self.con.cursor()
+
+            cursor.execute(
+                """
+            SELECT COUNT(*) FROM periods WHERE initial_period = ? AND final_period = ?
+            """,
+                ("junio 2024", "agosto 2024"),
+            )
+            count = cursor.fetchone()[0]
+
+            if count == 0:
+                cursor.execute(
+                    """
+                INSERT INTO periods (initial_period, final_period) VALUES (?, ?)
+                """,
+                    ("junio 2024", "agosto 2024"),
+                )
+
+            cursor.execute(
+                """
+            SELECT COUNT(*) FROM rates WHERE rate_name = ?
+            """,
+                ("Normal",),
+            )
+            count = cursor.fetchone()[0]
+
+            if count == 0:
+                cursor.execute(
+                    """
+                INSERT INTO rates (rate_name, rate_amount) VALUES (?, ?)
+                """,
+                    ("Normal", 20),
+                )
+
+            print("periodos/tarifas cread@s correctamente")
+            self.con.commit()
+        except sqlite3.Error as e:
+            print(f"Error al cargar el periodo y la tarifa inicial")
+        except Exception as ex:
+            print(f"Otro error: {ex}")
+        finally:
+            cursor.close()
+
     def actualizar_estado_facturas(self):
         try:
             cursor = self.con.cursor()
@@ -316,7 +343,6 @@ class Conexion:
         finally:
             cursor.close()
             db.close()
-
 
     def conectar(self):
         return self.con
