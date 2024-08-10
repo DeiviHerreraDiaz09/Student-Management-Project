@@ -19,6 +19,7 @@ class Conexion:
             self.crearAdmin()
             self.actualizar_estado_facturas()
             self.period_rates_initial()
+            self.configuration_default()
         except sqlite3.Error as e:
             print(f"Error al conectar con la base de datos: {e}")
         except Exception as ex:
@@ -56,7 +57,7 @@ class Conexion:
                     school_name TEXT NOT NULL,
                     school_address TEXT NOT NULL,
                     school_phone TEXT NOT NULL,
-                    school_mora TEXT NOT NULL, 
+                    school_mora REAL NOT NULL, 
                     school_nfc TEXT NOT NULL
                 )
             """
@@ -343,6 +344,33 @@ class Conexion:
         finally:
             cursor.close()
             db.close()
+
+    def configuration_default(self):
+        try:
+            cursor = self.con.cursor()
+            cursor.execute("SELECT COUNT(*) FROM configurations")
+            count = cursor.fetchone()[0]
+
+            if count == 0:
+                cursor.execute(
+                    """
+                    INSERT INTO configurations (school_name, school_address, school_phone, school_mora, school_nfc)
+                    VALUES (?, ?, ?, ?, ?)
+                    """,
+                    (
+                        "Default School",
+                        "123 Default Address",
+                        "555-555-5555",
+                        3.75,
+                        "No NFC",
+                    ),
+                )
+                self.con.commit()
+                print("Configuración por defecto creada.")
+            else:
+                print("Configuración existente, no se necesita crear una nueva.")
+        except Exception as e:
+            print("Error al consultar o crear la configuración por defecto:", str(e))
 
     def conectar(self):
         return self.con

@@ -8,6 +8,10 @@ from Services.studentService import (
 from Services.invoiceService import (
     Service_search_student_by_id_for_invoice,
 )
+
+from Services.configurationService import configuration_optionsService, update_configurationService
+from Services.enrollmentService import showRatesService, showPeriodService
+
 from PyQt6.QtWidgets import (
     QApplication,
     QMainWindow,
@@ -85,6 +89,12 @@ class MyInterface(QMainWindow, Ui_MainWindow):
         self.buttonBack.clicked.connect(self.switch_to_listStudent)
         self.buttonBack_2.clicked.connect(self.switch_to_listStudent)
         self.exit.clicked.connect(self.handleExit)
+        self.button_search_3.clicked.connect(self.actualizar_nombre_colegio)
+        self.button_search_4.clicked.connect(self.actualizar_direccion)
+        self.button_search_2.clicked.connect(self.actualizar_telefono)
+        self.button_search_5.clicked.connect(self.actualizar_mora)
+        self.button_search_6.clicked.connect(self.actualizar_ncf)
+
         self.student_data = StudentData()
         self.student_data.data_fetched.connect(self.update_table)
         self.original_data = []
@@ -184,8 +194,8 @@ class MyInterface(QMainWindow, Ui_MainWindow):
     def switch_to_registerStudent(self):
         self.content.setCurrentIndex(0)
         self.content_pages.setCurrentIndex(2)
-        self.showRates()
-        self.showPeriod()
+        showRatesService(self)
+        showPeriodService(self)
 
     # REGISTRO DE FACTURAS MANUALES
 
@@ -208,6 +218,27 @@ class MyInterface(QMainWindow, Ui_MainWindow):
 
     def switch_to_configPage(self):
         self.content.setCurrentIndex(2)
+        configuration_optionsService(self)
+
+    def actualizar_nombre_colegio(self):
+        valor = self.input_amount_paid_3.text()
+        update_configurationService(self, "school_name", valor)
+
+    def actualizar_direccion(self):
+        valor = self.input_amount_paid_4.text()
+        update_configurationService(self, "school_address", valor)
+
+    def actualizar_telefono(self):
+        valor = self.input_amount_paid_2.text()
+        update_configurationService(self, "school_phone", valor)
+
+    def actualizar_mora(self):
+        valor = self.input_amount_paid_5.text()
+        update_configurationService(self, "school_mora", valor)
+
+    def actualizar_ncf(self):
+        valor = self.input_amount_paid_6.text()
+        update_configurationService(self, "school_nfc", valor)
 
     # LOGICA INTERNA ↓
 
@@ -259,50 +290,6 @@ class MyInterface(QMainWindow, Ui_MainWindow):
 
     def search_student_by_id(self, student_ident):
         Service_search_student_by_id(self, student_ident)
-
-    # LOGICA PARA LISTAR LAS TARIFAS
-
-    def showRates(self):
-        db = con.Conexion().conectar()
-        cursor = db.cursor()
-        cursor.execute(
-            """
-            SELECT rate_id, rate_name
-            FROM rates
-            """,
-        )
-
-        rows = cursor.fetchall()
-        cursor.close()
-        db.close()
-
-        if rows:
-            self.options_rate.clear()
-            for rate_id, rate_name in rows:
-                self.options_rate.addItem(rate_name, rate_id)
-
-    # LOGICA PARA LISTAR PERIODOS ESCOLARES
-
-    def showPeriod(self):
-        db = con.Conexion().conectar()
-        cursor = db.cursor()
-        cursor.execute(
-            """
-            SELECT period_id, initial_period, final_period
-            FROM periods
-            """,
-        )
-
-        rows = cursor.fetchall()
-        cursor.close()
-        db.close()
-
-        if rows:
-            self.options_periodo.clear()
-            for period_id, initial_period, final_period in rows:
-                self.options_periodo.addItem(
-                    str(initial_period + " - " + final_period), period_id
-                )
 
     # LOGICA REGISTRO DE ESTUDIANTES
 

@@ -2,8 +2,6 @@ import conexion as con
 from datetime import datetime
 from PyQt6.QtCore import QTimer
 
-# INFORMACIÓN FACTURA A PAGAR
-
 
 def switch_to_payment(self, invoice_id):
     self.content.setCurrentIndex(1)
