@@ -8,7 +8,7 @@ from Services.enrollmentService import CreateE
 from Services.invoiceService import Service_register_invoice
 from PyQt6 import QtGui, QtCore
 import conexion as con
-import locale
+import calendar
 
 
 class StudentData(QThread):
@@ -259,6 +259,10 @@ def Service_search_student_by_name(self):
         self.message_error_name.clear()
 
 
+import calendar  # Asegúrate de agregar esta línea
+from datetime import datetime, timedelta
+
+
 def Service_on_student_search_result(self, exists):
     db = con.Conexion().conectar()
     cursor = db.cursor()
@@ -343,67 +347,60 @@ def Service_on_student_search_result(self, exists):
         rate_amount = cursor.fetchone()[0]
 
         cursor.execute(
-            "SELECT initial_period, final_period FROM periods WHERE period_id = ?",
+            "SELECT final_period FROM periods WHERE period_id = ?",
             (period_id_fk,),
         )
-        period_data = cursor.fetchone()
-        final_period_str = period_data[1]
-        initial_period_str = period_data[0]
-
-        initial_period_date = datetime.strptime(initial_period_str, "%d/%m/%Y")
+        final_period_str = cursor.fetchone()[0]
         final_period_date = datetime.strptime(final_period_str, "%d/%m/%Y")
 
-        current_due_date = enrollment_date + timedelta(days=30)
+        current_due_date = enrollment_date
 
-        while current_due_date < final_period_date:
-            description = "Factura Mensual"
-            total_amount = rate_amount
-            created_at = datetime.now().date()
+        # Factura para el primer mes (desde la fecha de inscripción hasta el final del mes)
+        end_of_current_month = current_due_date.replace(
+            day=calendar.monthrange(current_due_date.year, current_due_date.month)[1]
+        )
+
+        cursor.execute(
+            """
+                INSERT INTO invoices (description, total_amount, remaining_amount, due_date, created_at, status, student_ident_fk)
+                VALUES (?, ?, ?, ?, ?, ?, ?)
+            """,
+            (
+                "Factura Mensual",
+                rate_amount,
+                rate_amount,
+                end_of_current_month.date(),
+                enrollment_date.date(),  # Mantiene la fecha de inscripción como fecha de creación
+                "Generado",
+                student_ident,
+            ),
+        )
+
+        # Genera facturas mensuales completas hasta el final del periodo
+        next_due_date = end_of_current_month + timedelta(days=1)
+
+        while next_due_date <= final_period_date:
+            end_of_month = next_due_date.replace(
+                day=calendar.monthrange(next_due_date.year, next_due_date.month)[1]
+            )
 
             cursor.execute(
                 """
                     INSERT INTO invoices (description, total_amount, remaining_amount, due_date, created_at, status, student_ident_fk)
                     VALUES (?, ?, ?, ?, ?, ?, ?)
-                    """,
+                """,
                 (
-                    description,
-                    total_amount,
-                    total_amount,
-                    current_due_date.date(),
-                    created_at,
-                    "Pendiente",
+                    "Factura Mensual",
+                    rate_amount,
+                    rate_amount,
+                    end_of_month.date(),
+                    next_due_date.date(),
+                    "Generado",
                     student_ident,
                 ),
             )
 
-            current_due_date += timedelta(days=30)
-
-        if current_due_date > final_period_date:
-            remaining_days = (
-                final_period_date - (current_due_date - timedelta(days=30))
-            ).days
-            if remaining_days > 0:
-                adjusted_amount = (rate_amount / 30) * remaining_days
-                adjusted_amount = round(adjusted_amount, 2)
-
-                description = "Factura Ajustada"
-                created_at = datetime.now().date()
-
-                cursor.execute(
-                    """
-                        INSERT INTO invoices (description, total_amount, remaining_amount, due_date, created_at, status, student_ident_fk)
-                        VALUES (?, ?, ?, ?, ?, ?, ?)
-                        """,
-                    (
-                        description,
-                        adjusted_amount,
-                        adjusted_amount,
-                        final_period_date.date(),
-                        created_at,
-                        "Pendiente",
-                        student_ident,
-                    ),
-                )
+            next_due_date = end_of_month + timedelta(days=1)
 
         db.commit()
         db.close()

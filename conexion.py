@@ -17,9 +17,9 @@ class Conexion:
             self.creartablas()
             self.crearTriggers()
             self.crearAdmin()
-            self.actualizar_estado_facturas()
-            self.period_rates_initial()
             self.configuration_default()
+            self.period_rates_initial()
+            self.actualizar_estado_facturas()
         except sqlite3.Error as e:
             print(f"Error al conectar con la base de datos: {e}")
         except Exception as ex:
@@ -281,19 +281,59 @@ class Conexion:
     def actualizar_estado_facturas(self):
         try:
             cursor = self.con.cursor()
+            cursor.execute("SELECT school_mora FROM configurations LIMIT 1")
+            mora = cursor.fetchone()[0]
+
+            if mora is None:
+                raise ValueError("La mora no está definida en la configuración.")
+
+            mora_decimal = mora / 100.0
+
             cursor.execute(
                 """
-                UPDATE invoices
-                SET status = 'Tardío'
+                SELECT invoice_id, total_amount, remaining_amount
+                FROM invoices
                 WHERE status = 'Generado'
                 AND due_date <= date('now')
-                """
+            """
             )
+            facturas_vencidas = cursor.fetchall()
+
+            for factura in facturas_vencidas:
+                invoice_id, total_amount, remaining_amount = factura
+
+                total_amount_con_mora = total_amount * (1 + mora_decimal)
+
+                cursor.execute(
+                    """
+                    SELECT SUM(payment_paid)
+                    FROM payments
+                    WHERE invoice_id_fk = ?
+                """,
+                    (invoice_id,),
+                )
+                pagos_realizados = cursor.fetchone()[0] or 0
+
+                restante_actual = total_amount_con_mora - pagos_realizados
+
+                cursor.execute(
+                    """
+                    UPDATE invoices
+                    SET status = 'Tardío',
+                        total_amount = ?,
+                        remaining_amount = ?
+                    WHERE invoice_id = ?
+                """,
+                    (total_amount_con_mora, restante_actual, invoice_id),
+                )
+
             self.con.commit()
             print("Estado de facturas actualizado correctamente")
 
         except sqlite3.Error as e:
             print(f"Error al actualizar el estado de las facturas: {e}")
+        except ValueError as ve:
+            print(ve)
         finally:
             cursor.close()
 

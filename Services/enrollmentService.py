@@ -44,6 +44,7 @@ class CreateE(QThread):
             cursor.close()
             db.close()
 
+
 def showRatesService(self):
     db = con.Conexion().conectar()
     cursor = db.cursor()
@@ -62,6 +63,7 @@ def showRatesService(self):
         self.options_rate.clear()
         for rate_id, rate_name in rows:
             self.options_rate.addItem(rate_name, rate_id)
+
 
 def showPeriodService(self):
     db = con.Conexion().conectar()
@@ -83,4 +85,3 @@ def showPeriodService(self):
             self.options_periodo.addItem(
                 str(initial_period + " - " + final_period), period_id
             )
-

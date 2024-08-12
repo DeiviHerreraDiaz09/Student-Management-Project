@@ -9,7 +9,10 @@ from Services.invoiceService import (
     Service_search_student_by_id_for_invoice,
 )
 
-from Services.configurationService import configuration_optionsService, update_configurationService
+from Services.configurationService import (
+    configuration_optionsService,
+    update_configurationService,
+)
 from Services.enrollmentService import showRatesService, showPeriodService
 
 from PyQt6.QtWidgets import (
