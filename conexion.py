@@ -58,7 +58,8 @@ class Conexion:
                     school_address TEXT NOT NULL,
                     school_phone TEXT NOT NULL,
                     school_mora REAL NOT NULL, 
-                    school_nfc TEXT NOT NULL
+                    school_nfc TEXT NOT NULL,
+                    school_mora_progress TEXT NOT NULL
                 )
             """
             )
@@ -82,6 +83,7 @@ class Conexion:
                 CREATE TABLE IF NOT EXISTS invoices (
                     invoice_id INTEGER PRIMARY KEY AUTOINCREMENT,
                     description TEXT NOT NULL,
+                    original_amount INTEGER NOT NULL,
                     total_amount INTEGER NOT NULL,
                     remaining_amount INTEGER NOT NULL,
                     due_date TEXT NOT NULL,
@@ -281,35 +283,55 @@ class Conexion:
     def actualizar_estado_facturas(self):
         try:
             cursor = self.con.cursor()
-            cursor.execute("SELECT school_mora FROM configurations LIMIT 1")
-            mora = cursor.fetchone()[0]
+            cursor.execute(
+                "SELECT school_mora, school_mora_progress FROM configurations LIMIT 1"
+            )
+            config = cursor.fetchone()
 
-            if mora is None:
-                raise ValueError("La mora no está definida en la configuración.")
+            mora_base = config[0]
+            mora_progress = config[1]
 
-            mora_decimal = mora / 100.0
+            if mora_base is None or mora_progress is None:
+                raise ValueError(
+                    "La mora o el progreso de la mora no están definidos en la configuración."
+                )
+
+            mora_base_decimal = mora_base / 100.0
 
             cursor.execute(
                 """
-                SELECT invoice_id, total_amount, remaining_amount
+                SELECT invoice_id, original_amount, total_amount, remaining_amount, due_date
                 FROM invoices
-                WHERE status = 'Generado'
+                WHERE (status = 'Generado' OR status = 'Tardío')
                 AND due_date <= date('now')
-            """
+                """
             )
             facturas_vencidas = cursor.fetchall()
 
             for factura in facturas_vencidas:
-                invoice_id, total_amount, remaining_amount = factura
+                (
+                    invoice_id,
+                    original_amount,
+                    total_amount,
+                    remaining_amount,
+                    due_date,
+                ) = factura
 
-                total_amount_con_mora = total_amount * (1 + mora_decimal)
+                due_date_dt = datetime.strptime(due_date, "%Y-%m-%d")
+                days_overdue = (datetime.now() - due_date_dt).days
+
+                if mora_progress == "Sí" and days_overdue > 0:
+                    mora_accumulada = mora_base_decimal + (days_overdue * 0.005)
+                    total_amount_con_mora = original_amount * (1 + mora_accumulada)
+                else:
+                    total_amount_con_mora = original_amount * (1 + mora_base_decimal)
 
                 cursor.execute(
                     """
                     SELECT SUM(payment_paid)
                     FROM payments
                     WHERE invoice_id_fk = ?
-                """,
+                    """,
                     (invoice_id,),
                 )
                 pagos_realizados = cursor.fetchone()[0] or 0
@@ -323,7 +345,7 @@ class Conexion:
                         total_amount = ?,
                         remaining_amount = ?
                     WHERE invoice_id = ?
-                """,
+                    """,
                     (total_amount_con_mora, restante_actual, invoice_id),
                 )
 
@@ -394,8 +416,8 @@ class Conexion:
             if count == 0:
                 cursor.execute(
                     """
-                    INSERT INTO configurations (school_name, school_address, school_phone, school_mora, school_nfc)
-                    VALUES (?, ?, ?, ?, ?)
+                    INSERT INTO configurations (school_name, school_address, school_phone, school_mora, school_nfc, school_mora_progress)
+                    VALUES (?, ?, ?, ?, ?, ?)
                     """,
                     (
                         "Default School",
@@ -403,6 +425,7 @@ class Conexion:
                         "555-555-5555",
                         3.75,
                         "No NFC",
+                        "Sí",
                     ),
                 )
                 self.con.commit()

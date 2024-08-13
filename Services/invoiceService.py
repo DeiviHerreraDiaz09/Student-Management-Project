@@ -62,11 +62,12 @@ def Service_register_invoice(self, student_ident):
         else:
             cursor.execute(
                 """
-                    INSERT INTO invoices (description, total_amount, remaining_amount, due_date, created_at, status, student_ident_fk)
-                    VALUES (?, ?, ?, ?, ?, ?, ?)
+                    INSERT INTO invoices (description, original_amount, total_amount, remaining_amount, due_date, created_at, status, student_ident_fk)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
                     """,
                 (
                     description,
+                    total_amount,
                     total_amount,
                     total_amount,
                     due_date,

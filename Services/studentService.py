@@ -259,10 +259,6 @@ def Service_search_student_by_name(self):
         self.message_error_name.clear()
 
 
-import calendar  # Asegúrate de agregar esta línea
-from datetime import datetime, timedelta
-
-
 def Service_on_student_search_result(self, exists):
     db = con.Conexion().conectar()
     cursor = db.cursor()
@@ -362,21 +358,21 @@ def Service_on_student_search_result(self, exists):
 
         cursor.execute(
             """
-                INSERT INTO invoices (description, total_amount, remaining_amount, due_date, created_at, status, student_ident_fk)
-                VALUES (?, ?, ?, ?, ?, ?, ?)
+                INSERT INTO invoices (description, original_amount, total_amount, remaining_amount, due_date, created_at, status, student_ident_fk)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?)
             """,
             (
                 "Factura Mensual",
                 rate_amount,
                 rate_amount,
+                rate_amount,
                 end_of_current_month.date(),
-                enrollment_date.date(),  # Mantiene la fecha de inscripción como fecha de creación
+                enrollment_date.date(),
                 "Generado",
                 student_ident,
             ),
         )
 
-        # Genera facturas mensuales completas hasta el final del periodo
         next_due_date = end_of_current_month + timedelta(days=1)
 
         while next_due_date <= final_period_date:
@@ -386,11 +382,12 @@ def Service_on_student_search_result(self, exists):
 
             cursor.execute(
                 """
-                    INSERT INTO invoices (description, total_amount, remaining_amount, due_date, created_at, status, student_ident_fk)
-                    VALUES (?, ?, ?, ?, ?, ?, ?)
+                    INSERT INTO invoices (description, original_amount, total_amount, remaining_amount, due_date, created_at, status, student_ident_fk)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
                 """,
                 (
                     "Factura Mensual",
+                    rate_amount,
                     rate_amount,
                     rate_amount,
                     end_of_month.date(),
