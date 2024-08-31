@@ -22,15 +22,23 @@ from PyQt6.QtWidgets import (
     QPushButton,
     QMessageBox,
 )
-from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph
-from reportlab.lib.pagesizes import landscape, A4
-from reportlab.lib.styles import getSampleStyleSheet
+from reportlab.platypus import (
+    SimpleDocTemplate,
+    Paragraph,
+    Spacer,
+    Table,
+    TableStyle,
+    Image,
+)
+from reportlab.lib.pagesizes import landscape, A4, A5, A7, A6, A3
+from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from gui.UI.dashboard import Ui_MainWindow
 from reportlab.lib import colors
 from PyQt6.QtCore import QTimer
 from PyQt6 import QtGui, QtCore
 import conexion as con
 from conexion import Conexion
+from datetime import datetime
 import subprocess
 import tempfile
 import os
@@ -361,45 +369,164 @@ class MyInterface(QMainWindow, Ui_MainWindow):
             )
 
             self.buttonBack_student_info_2.clicked.connect(
-                lambda: self.generate_pdf(payments, rows)
+                lambda: self.ask_for_ncf(payments, rows)
             )
 
-    def generate_pdf(self, payments, rows):
+    def ask_for_ncf(self, payments, rows):
+        db = con.Conexion().conectar()
+        cursor = db.cursor()
+        cursor.execute(
+            """
+            SELECT school_nfc, school_name, school_address, school_phone FROM configurations LIMIT 1
+            """
+        )
+        ncf_row = cursor.fetchone()
 
+        school_info = {
+            "school_name": ncf_row[1] if ncf_row else "Nombre no disponible",
+            "school_address": ncf_row[2] if ncf_row else "Dirección no disponible",
+            "school_phone": ncf_row[3] if ncf_row else "Teléfono no disponible",
+        }
+
+        cursor.close()
+        db.close()
+
+        msg_box = QMessageBox(self)
+        msg_box.setWindowTitle("Incluir NCF")
+        msg_box.setText("¿Desea incluir el NCF en el PDF?")
+        msg_box.setStandardButtons(
+            QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No
+        )
+        msg_box.setDefaultButton(QMessageBox.StandardButton.No)
+
+        msg_box.setStyleSheet(
+            """
+            QLabel {
+                color: black;
+            }
+            QPushButton {
+                background-color: white;
+                color: black;
+                border: 1px solid black;
+                padding: 5px;
+            }
+            QPushButton:hover {
+                background-color: #e6e6e6;
+            }
+            QMessageBox {
+                border: 2px solid black;
+            }
+        """
+        )
+
+        reply = msg_box.exec()
+
+        if reply == QMessageBox.StandardButton.Yes:
+            ncf = ncf_row[0] if ncf_row else "N/A"
+            self.generate_pdf(payments, rows, school_info, ncf=ncf)
+        else:
+            self.generate_pdf(payments, rows, school_info)
+
+    def generate_pdf(self, payments, rows, school_info, ncf=None):
         with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as temp_pdf:
             pdf_path = temp_pdf.name
-        doc = SimpleDocTemplate(pdf_path, pagesize=landscape(A4))
+
+        doc = SimpleDocTemplate(
+            pdf_path,
+            pagesize=landscape(A5),
+            rightMargin=10,
+            leftMargin=10,
+            topMargin=10,
+            bottomMargin=10,
+        )
         elements = []
         styles = getSampleStyleSheet()
-        title_style = styles["Title"]
-        normal_style = styles["BodyText"]
-        elements.append(Paragraph(f"Factura de: {payments[0]}", title_style))
-        elements.append(Paragraph(f"Número de Factura: {payments[1]}", normal_style))
-        elements.append(Paragraph(f"Descripción: {payments[2]}", normal_style))
-        elements.append(Paragraph(f"Monto Total: {payments[3]}", normal_style))
-        elements.append(Paragraph(f"Fecha de Creación: {payments[4]}", normal_style))
-        elements.append(Paragraph(f"Fecha de Vencimiento: {payments[5]}", normal_style))
 
-        data = [["ID de Pago", "Fecha", "Monto", "Método"]]
+        header_style = ParagraphStyle(
+            name="HeaderStyle", fontSize=10, alignment=1, spaceAfter=6
+        )
+
+        elements.append(Paragraph(f"{school_info['school_name']}", header_style))
+        elements.append(Paragraph(f"{school_info['school_address']}", styles["Normal"]))
+        elements.append(
+            Paragraph(f"Teléfono: {school_info['school_phone']}", styles["Normal"])
+        )
+        elements.append(Spacer(1, 8))
+
+        title_style = ParagraphStyle(
+            name="TitleStyle",
+            fontSize=14,
+            leading=18,
+            alignment=1,
+            spaceAfter=8,
+            textColor=colors.darkblue,
+        )
+
+        elements.append(Paragraph(f"Factura de: {payments[0]}", title_style))
+        elements.append(Spacer(1, 8))
+
+        info_table_data = [
+            ["Número de Factura:", str(payments[1])],
+            ["Descripción:", payments[2]],
+            ["Monto Total:", f"${payments[3]:,.2f}"],
+            ["Fecha de Creación:", payments[4]],
+            ["Fecha de Vencimiento:", payments[5]],
+        ]
+
+        if ncf:
+            info_table_data.append(["NCF:", ncf])
+
+        info_table = Table(info_table_data, colWidths=[doc.width / 3.0] * 2)
+        info_table.setStyle(
+            TableStyle(
+                [
+                    ("BACKGROUND", (0, 0), (-1, 0), colors.lightgrey),
+                    ("TEXTCOLOR", (0, 0), (-1, 0), colors.black),
+                    ("ALIGN", (0, 0), (-1, -1), "LEFT"),
+                    ("FONTNAME", (0, 0), (-1, 0), "Helvetica-Bold"),
+                    ("FONTSIZE", (0, 0), (-1, 0), 10),
+                    ("BOTTOMPADDING", (0, 0), (-1, 0), 8),
+                    ("BACKGROUND", (0, 1), (-1, -1), colors.whitesmoke),
+                    ("GRID", (0, 0), (-1, -1), 1, colors.black),
+                ]
+            )
+        )
+        elements.append(info_table)
+        elements.append(Spacer(1, 16))
+
+        data = [["Número de Pago", "Fecha", "Monto", "Método"]]
         for row in rows:
-            data.append([str(row[6]), row[7], str(row[8]), row[9]])
+            data.append([str(row[6]), row[7], f"${row[8]:,.2f}", row[9]])
 
         table = Table(data, colWidths=[doc.width / 4.0] * 4)
         table.setStyle(
             TableStyle(
                 [
-                    ("BACKGROUND", (0, 0), (-1, 0), colors.grey),
+                    ("BACKGROUND", (0, 0), (-1, 0), colors.darkblue),
                     ("TEXTCOLOR", (0, 0), (-1, 0), colors.whitesmoke),
                     ("ALIGN", (0, 0), (-1, -1), "CENTER"),
                     ("FONTNAME", (0, 0), (-1, 0), "Helvetica-Bold"),
-                    ("FONTSIZE", (0, 0), (-1, 0), 12),
-                    ("BOTTOMPADDING", (0, 0), (-1, 0), 12),
-                    ("BACKGROUND", (0, 1), (-1, -1), colors.beige),
+                    ("FONTSIZE", (0, 0), (-1, 0), 10),
+                    ("BOTTOMPADDING", (0, 0), (-1, 0), 8),
+                    ("BACKGROUND", (0, 1), (-1, -1), colors.lightgrey),
                     ("GRID", (0, 0), (-1, -1), 1, colors.black),
                 ]
             )
         )
         elements.append(table)
+        elements.append(Spacer(1, 16))
+
+        footer_style = ParagraphStyle(
+            name="FooterStyle", fontSize=10, alignment=1, spaceAfter=8
+        )
+
+        elements.append(Spacer(1, 16))
+        elements.append(
+            Paragraph(
+                f"Reporte generado el {datetime.now().strftime('%d/%m/%Y')}",
+                footer_style,
+            )
+        )
 
         doc.build(elements)
 
@@ -407,7 +534,7 @@ class MyInterface(QMainWindow, Ui_MainWindow):
             subprocess.run(["xdg-open", pdf_path])
         elif os.name == "nt":
             os.startfile(pdf_path)
-        elif os.name == "mac":
+        elif os.name == "darwin":
             subprocess.run(["open", pdf_path])
 
         print(f"PDF generado y abierto temporalmente: {pdf_path}")
