@@ -67,6 +67,7 @@ class MyInterface(QMainWindow, Ui_MainWindow):
                 "Tutor",
                 "Teléfono Tutor",
                 "Nº Facturas",
+                "Estado"
                 "Acciones",
             ]
         )
