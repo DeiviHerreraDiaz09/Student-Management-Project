@@ -95,19 +95,29 @@ class MyInterface(QMainWindow, Ui_MainWindow):
 
         # CONEXIÓN DE BOTONES A FUNCIONES
         self.students_2.clicked.connect(self.switch_to_listStudent)
+        self.students_3.clicked.connect(self.switch_to_listStudent)
+
         self.reports_2.clicked.connect(self.switch_to_reportsPage)
+        self.reports_3.clicked.connect(self.switch_to_reportsPage)
+
         self.config.clicked.connect(self.switch_to_configPage)
+        self.config_2.clicked.connect(self.switch_to_configPage)
+
         self.button_add.clicked.connect(self.switch_to_registerStudent)
         self.registerButton.clicked.connect(self.save_data)
         self.button_search.clicked.connect(self.search_student_by_name)
         self.buttonBack.clicked.connect(self.switch_to_listStudent)
         self.buttonBack_2.clicked.connect(self.switch_to_listStudent)
+
         self.exit.clicked.connect(self.handleExit)
+        self.exit_2.clicked.connect(self.handleExit)
+
         self.button_search_3.clicked.connect(self.actualizar_nombre_colegio)
         self.button_search_4.clicked.connect(self.actualizar_direccion)
         self.button_search_2.clicked.connect(self.actualizar_telefono)
         self.button_search_5.clicked.connect(self.actualizar_mora)
         self.button_search_6.clicked.connect(self.actualizar_ncf)
+        self.icon_complete_widget.setHidden(True)
 
         self.student_data = StudentData()
         self.student_data.data_fetched.connect(self.update_table)
