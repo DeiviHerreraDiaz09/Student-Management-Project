@@ -1,14 +1,25 @@
 from datetime import datetime, timedelta
-from PyQt6.QtCore import QObject, pyqtSignal, QThread, QTimer
-from PyQt6.QtWidgets import QApplication, QMainWindow, QTableWidgetItem, QPushButton
-from model.student import Student
-from model.enrollment import Enrollment
+from PyQt6.QtCore import QObject, pyqtSignal, QThread
+from PyQt6.QtWidgets import QTableWidgetItem, QPushButton
+from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
+from reportlab.lib.pagesizes import landscape, A5
 from Services.paymentService import switch_to_payment
+from model.enrollment import Enrollment
 from Services.enrollmentService import CreateE
-from Services.invoiceService import Service_register_invoice
+from model.student import Student
 from PyQt6 import QtGui, QtCore
+from reportlab.lib import colors
 import conexion as con
+from reportlab.platypus import (
+    SimpleDocTemplate,
+    Paragraph,
+    Spacer,
+    Table,
+    TableStyle,
+)
+import tempfile
 import calendar
+import os
 
 
 class StudentData(QThread):
@@ -22,7 +33,7 @@ class StudentData(QThread):
         db = con.Conexion().conectar()
         cursor = db.cursor()
         cursor.execute(
-            "SELECT student_ident, student_name, enrollments.grade, tutor_dni, tutor_name, tutor_phone, count(invoices.invoice_id) FROM students INNER JOIN enrollments ON student_ident = enrollments.student_id_fk INNER JOIN invoices on invoices.student_ident_fk = students.student_ident GROUP BY student_ident ORDER BY count(invoices.invoice_id) DESC"
+            "SELECT student_ident, student_name, enrollments.grade, tutor_dni, tutor_name, tutor_phone, count(invoices.invoice_id), students.status FROM students INNER JOIN enrollments ON student_ident = enrollments.student_id_fk INNER JOIN invoices on invoices.student_ident_fk = students.student_ident GROUP BY student_ident ORDER BY count(invoices.invoice_id) DESC"
         )
 
         results = cursor.fetchall()
@@ -211,7 +222,13 @@ def Service_search_student_by_name(self):
     if name:
         db = con.Conexion().conectar()
         cursor = db.cursor()
-        query = "SELECT student_ident, student_name, e.grade, tutor_dni, tutor_name, tutor_phone, count(invoices.invoice_id)FROM students INNER JOIN enrollments e ON student_ident = e.student_id_fk  INNER JOIN invoices on student_ident = invoices.student_ident_fk  WHERE student_name LIKE ? GROUP BY student_ident  "
+        query = """SELECT student_ident, student_name, e.grade, tutor_dni, tutor_name, tutor_phone, 
+                          count(invoices.invoice_id), students.status 
+                   FROM students 
+                   INNER JOIN enrollments e ON student_ident = e.student_id_fk  
+                   INNER JOIN invoices ON student_ident = invoices.student_ident_fk  
+                   WHERE student_name LIKE ? 
+                   GROUP BY student_ident"""
         cursor.execute(query, ("%" + name + "%",))
         rows = cursor.fetchall()
         db.close()
@@ -247,7 +264,7 @@ def Service_search_student_by_name(self):
                         student_id
                     )
                 )
-                self.list_student_table.setCellWidget(row_number, 6, button)
+                self.list_student_table.setCellWidget(row_number, 7, button)
 
         else:
             self.message_error_name.setText(
@@ -351,7 +368,6 @@ def Service_on_student_search_result(self, exists):
 
         current_due_date = enrollment_date
 
-        # Factura para el primer mes (desde la fecha de inscripción hasta el final del mes)
         end_of_current_month = current_due_date.replace(
             day=calendar.monthrange(current_due_date.year, current_due_date.month)[1]
         )
@@ -401,3 +417,133 @@ def Service_on_student_search_result(self, exists):
 
         db.commit()
         db.close()
+
+
+def generate_invoice_pdf(self, payments, rows, include_ncf):
+    db = con.Conexion().conectar()
+    cursor = db.cursor()
+    cursor.execute(
+        """
+            SELECT school_nfc, school_name, school_address, school_phone FROM configurations LIMIT 1
+            """
+    )
+    ncf_row = cursor.fetchone()
+    cursor.close()
+    db.close()
+
+    school_info = {
+        "school_name": ncf_row[1] if ncf_row else "Nombre no disponible",
+        "school_address": ncf_row[2] if ncf_row else "Dirección no disponible",
+        "school_phone": ncf_row[3] if ncf_row else "Teléfono no disponible",
+    }
+
+    ncf = ncf_row[0] if include_ncf and ncf_row else None
+
+    with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as temp_pdf:
+        pdf_path = temp_pdf.name
+
+    doc = SimpleDocTemplate(
+        pdf_path,
+        pagesize=landscape(A5),
+        rightMargin=10,
+        leftMargin=10,
+        topMargin=10,
+        bottomMargin=10,
+    )
+    elements = []
+    styles = getSampleStyleSheet()
+
+    header_style = ParagraphStyle(
+        name="HeaderStyle", fontSize=10, alignment=1, spaceAfter=6
+    )
+
+    elements.append(Paragraph(f"{school_info['school_name']}", header_style))
+    elements.append(Paragraph(f"{school_info['school_address']}", styles["Normal"]))
+    elements.append(
+        Paragraph(f"Teléfono: {school_info['school_phone']}", styles["Normal"])
+    )
+    elements.append(Spacer(1, 8))
+
+    title_style = ParagraphStyle(
+        name="TitleStyle",
+        fontSize=14,
+        leading=18,
+        alignment=1,
+        spaceAfter=8,
+        textColor=colors.darkblue,
+    )
+
+    elements.append(Paragraph(f"Factura de: {payments[0]}", title_style))
+    elements.append(Spacer(1, 8))
+
+    info_table_data = [
+        ["Número de Factura:", str(payments[1])],
+        ["Descripción:", payments[2]],
+        ["Monto Total:", f"${payments[3]:,.2f}"],
+        ["Fecha de Creación:", payments[4]],
+        ["Fecha de Vencimiento:", payments[5]],
+    ]
+
+    if ncf:
+        info_table_data.append(["NCF:", ncf])
+
+    info_table = Table(info_table_data, colWidths=[doc.width / 3.0] * 2)
+    info_table.setStyle(
+        TableStyle(
+            [
+                ("BACKGROUND", (0, 0), (-1, 0), colors.lightgrey),
+                ("TEXTCOLOR", (0, 0), (-1, 0), colors.black),
+                ("ALIGN", (0, 0), (-1, -1), "LEFT"),
+                ("FONTNAME", (0, 0), (-1, 0), "Helvetica-Bold"),
+                ("FONTSIZE", (0, 0), (-1, 0), 10),
+                ("BOTTOMPADDING", (0, 0), (-1, 0), 8),
+                ("BACKGROUND", (0, 1), (-1, -1), colors.whitesmoke),
+                ("GRID", (0, 0), (-1, -1), 1, colors.black),
+            ]
+        )
+    )
+    elements.append(info_table)
+    elements.append(Spacer(1, 16))
+
+    data = [["Número de Pago", "Fecha", "Monto", "Método"]]
+    for row in rows:
+        data.append([str(row[6]), row[7], f"${row[8]:,.2f}", row[9]])
+
+    table = Table(data, colWidths=[doc.width / 4.0] * 4)
+    table.setStyle(
+        TableStyle(
+            [
+                ("BACKGROUND", (0, 0), (-1, 0), colors.darkblue),
+                ("TEXTCOLOR", (0, 0), (-1, 0), colors.whitesmoke),
+                ("ALIGN", (0, 0), (-1, -1), "CENTER"),
+                ("FONTNAME", (0, 0), (-1, 0), "Helvetica-Bold"),
+                ("FONTSIZE", (0, 0), (-1, 0), 10),
+                ("BOTTOMPADDING", (0, 0), (-1, 0), 8),
+                ("BACKGROUND", (0, 1), (-1, -1), colors.lightgrey),
+                ("GRID", (0, 0), (-1, -1), 1, colors.black),
+            ]
+        )
+    )
+    elements.append(table)
+    elements.append(Spacer(1, 16))
+
+    footer_style = ParagraphStyle(
+        name="FooterStyle", fontSize=10, alignment=1, spaceAfter=8
+    )
+
+    elements.append(Spacer(1, 16))
+    elements.append(
+        Paragraph(
+            f"Reporte generado el {datetime.now().strftime('%d/%m/%Y')}",
+            footer_style,
+        )
+    )
+
+    doc.build(elements)
+
+    if os.name == "posix":
+        subprocess.run(["xdg-open", pdf_path])
+    elif os.name == "nt":
+        os.startfile(pdf_path)
+    elif os.name == "darwin":
+        subprocess.run(["open", pdf_path])

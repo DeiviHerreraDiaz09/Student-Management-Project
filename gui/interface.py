@@ -4,6 +4,7 @@ from Services.studentService import (
     Service_search_student_by_id,
     Service_search_student_by_name,
     Service_on_student_search_result,
+    generate_invoice_pdf,
 )
 from Services.invoiceService import (
     Service_search_student_by_id_for_invoice,
@@ -12,7 +13,6 @@ from Services.invoiceService import (
 from Services.configurationService import (
     configuration_optionsService,
     update_configurationService,
-    ask_for_ncf_service,
 )
 from Services.enrollmentService import showRatesService, showPeriodService
 
@@ -57,17 +57,18 @@ class MyInterface(QMainWindow, Ui_MainWindow):
         self.content.setCurrentIndex(0)
         self.switch_to_listStudent()
         self.report_dinamic_label.setText("")
+
         # TABLA GENERAL DE ESTUDIANTES
-        self.list_student_table.setColumnCount(7)
+        self.list_student_table.setColumnCount(8)
         self.list_student_table.setHorizontalHeaderLabels(
             [
                 "Nombre",
                 "Grado",
-                "Identificación Tutor ",
+                "Identificación Tutor",
                 "Tutor",
                 "Teléfono Tutor",
                 "Nº Facturas",
-                "Estado"
+                "Estado",
                 "Acciones",
             ]
         )
@@ -292,7 +293,7 @@ class MyInterface(QMainWindow, Ui_MainWindow):
                     student_id
                 )
             )
-            self.list_student_table.setCellWidget(row_number, 6, button)
+            self.list_student_table.setCellWidget(row_number, 7, button)
 
     # FILTRAR TABLA "list_student_table" por NOMBRE
 
@@ -370,11 +371,34 @@ class MyInterface(QMainWindow, Ui_MainWindow):
                 lambda: self.switch_to_studentDetails(student_ident)
             )
 
-            self.buttonBack_student_info_2.clicked.connect(
-                lambda: ask_for_ncf_service(self, payments, rows)
+            self.buttonBack_student_info_3.clicked.connect(
+                lambda: generate_invoice_pdf(self, payments, rows, include_ncf=True)
             )
 
-    def generate_pdf(self, payments, rows, school_info, ncf=None):
+            self.buttonBack_student_info_2.clicked.connect(
+                lambda: generate_invoice_pdf(self, payments, rows, include_ncf=False)
+            )
+
+    def generate_invoice_pdf(self, payments, rows, include_ncf):
+        db = con.Conexion().conectar()
+        cursor = db.cursor()
+        cursor.execute(
+            """
+            SELECT school_nfc, school_name, school_address, school_phone FROM configurations LIMIT 1
+            """
+        )
+        ncf_row = cursor.fetchone()
+        cursor.close()
+        db.close()
+
+        school_info = {
+            "school_name": ncf_row[1] if ncf_row else "Nombre no disponible",
+            "school_address": ncf_row[2] if ncf_row else "Dirección no disponible",
+            "school_phone": ncf_row[3] if ncf_row else "Teléfono no disponible",
+        }
+
+        ncf = ncf_row[0] if include_ncf and ncf_row else None
+
         with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as temp_pdf:
             pdf_path = temp_pdf.name
 
