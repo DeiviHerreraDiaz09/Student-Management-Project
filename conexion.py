@@ -400,7 +400,6 @@ class Conexion:
                 ),
             )
             db.commit()
-            print("Registro de monitoreo de cierre de sesión insertado correctamente.")
         except Exception as e:
             print(f"Error al insertar el registro de monitoreo: {e}")
         finally:

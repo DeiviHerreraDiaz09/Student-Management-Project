@@ -12,6 +12,7 @@ from Services.invoiceService import (
 from Services.configurationService import (
     configuration_optionsService,
     update_configurationService,
+    ask_for_ncf_service,
 )
 from Services.enrollmentService import showRatesService, showPeriodService
 
@@ -369,63 +370,8 @@ class MyInterface(QMainWindow, Ui_MainWindow):
             )
 
             self.buttonBack_student_info_2.clicked.connect(
-                lambda: self.ask_for_ncf(payments, rows)
+                lambda: ask_for_ncf_service(self, payments, rows)
             )
-
-    def ask_for_ncf(self, payments, rows):
-        db = con.Conexion().conectar()
-        cursor = db.cursor()
-        cursor.execute(
-            """
-            SELECT school_nfc, school_name, school_address, school_phone FROM configurations LIMIT 1
-            """
-        )
-        ncf_row = cursor.fetchone()
-
-        school_info = {
-            "school_name": ncf_row[1] if ncf_row else "Nombre no disponible",
-            "school_address": ncf_row[2] if ncf_row else "Dirección no disponible",
-            "school_phone": ncf_row[3] if ncf_row else "Teléfono no disponible",
-        }
-
-        cursor.close()
-        db.close()
-
-        msg_box = QMessageBox(self)
-        msg_box.setWindowTitle("Incluir NCF")
-        msg_box.setText("¿Desea incluir el NCF en el PDF?")
-        msg_box.setStandardButtons(
-            QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No
-        )
-        msg_box.setDefaultButton(QMessageBox.StandardButton.No)
-
-        msg_box.setStyleSheet(
-            """
-            QLabel {
-                color: black;
-            }
-            QPushButton {
-                background-color: white;
-                color: black;
-                border: 1px solid black;
-                padding: 5px;
-            }
-            QPushButton:hover {
-                background-color: #e6e6e6;
-            }
-            QMessageBox {
-                border: 2px solid black;
-            }
-        """
-        )
-
-        reply = msg_box.exec()
-
-        if reply == QMessageBox.StandardButton.Yes:
-            ncf = ncf_row[0] if ncf_row else "N/A"
-            self.generate_pdf(payments, rows, school_info, ncf=ncf)
-        else:
-            self.generate_pdf(payments, rows, school_info)
 
     def generate_pdf(self, payments, rows, school_info, ncf=None):
         with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as temp_pdf:
@@ -536,8 +482,6 @@ class MyInterface(QMainWindow, Ui_MainWindow):
             os.startfile(pdf_path)
         elif os.name == "darwin":
             subprocess.run(["open", pdf_path])
-
-        print(f"PDF generado y abierto temporalmente: {pdf_path}")
 
     def clear_message_ok(self):
         self.message_ok.clear()
