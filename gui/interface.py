@@ -203,9 +203,72 @@ class MyInterface(QMainWindow, Ui_MainWindow):
         self.content.setCurrentIndex(0)
         self.content_pages.setCurrentIndex(1)
         self.search_student_by_id(student_ident)
+
+        try:
+            self.inactButton.clicked.disconnect()
+        except TypeError:
+            pass
+
+        self.inactButton.clicked.connect(lambda: self.change_student(student_ident))
+
         self.button_add_invoice.clicked.connect(
             lambda: self.switch_to_registerInvoice(student_ident)
         )
+
+    def change_student(self, student_ident):
+
+        msg_box = QMessageBox(self)
+        msg_box.setWindowTitle("Inactivar Estudiante")
+        msg_box.setText("¿Estás seguro de que deseas inactivar al estudiante?")
+        msg_box.setStandardButtons(
+            QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No
+        )
+        msg_box.setDefaultButton(QMessageBox.StandardButton.No)
+
+        msg_box.setStyleSheet(
+            """
+            QLabel {
+                color: black;
+            }
+            QPushButton {
+                background-color: white;
+                color: black;
+                border: 1px solid black;
+                padding: 5px;
+            }
+            QPushButton:hover {
+                background-color: #e6e6e6;
+            }
+            QMessageBox {
+                border: 2px solid black;
+            }
+            """
+        )
+
+        reply = msg_box.exec()
+
+        if reply == QMessageBox.StandardButton.Yes:
+            try:
+                db = con.Conexion().conectar()
+                cursor = db.cursor()
+                cursor.execute(
+                    """
+                    UPDATE students SET status = 'No vigente' WHERE student_ident = ?
+                    """,
+                    (student_ident,),
+                )
+                db.commit()
+                self.load_data()
+                self.switch_to_listStudent()
+                print("Estudiante inactivado correctamente")
+            except Exception as e:
+                print(f"Error updating student: {e}")
+                db.rollback()
+            finally:
+                cursor.close()
+                db.close()
+        else:
+            print("Inactivación cancelada")
 
     # DETALLES DE PAGOS
 
@@ -275,6 +338,7 @@ class MyInterface(QMainWindow, Ui_MainWindow):
         self.original_data = data
         self.list_student_table.setRowCount(0)
         self.student_ids = {}
+
         for row_number, row_data in enumerate(data):
             self.list_student_table.insertRow(row_number)
             student_id = row_data[0]
@@ -285,25 +349,48 @@ class MyInterface(QMainWindow, Ui_MainWindow):
                     row_number, column_number, QTableWidgetItem(str(cell_data))
                 )
 
-            button = QPushButton("Ver más")
-            button.setStyleSheet(
-                """
-                QPushButton {
-                    background-color:#1770b3;\n
-                    border: none;\n
-                    border-radius: 6px;\n
-                    color:white;\n
-                    font-family: Euphemia;\n
-                    font-size: 12px;
-                }"""
-            )
-            button.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
-            button.clicked.connect(
-                lambda _, student_id=student_id: self.switch_to_studentDetails(
-                    student_id
+            student_status = row_data[-1]
+
+            if student_status == "Vigente":
+                button = QPushButton("Ver más")
+                button.setStyleSheet(
+                    """
+                    QPushButton {
+                        background-color:#1770b3;\n
+                        border: none;\n
+                        border-radius: 6px;\n
+                        color:white;\n
+                        font-family: Euphemia;\n
+                        font-size: 12px;
+                    }"""
                 )
-            )
+                button.clicked.connect(
+                    lambda _, student_id=student_id: self.switch_to_studentDetails(
+                        student_id
+                    )
+                )
+            else:
+                button = QPushButton("Renovar")
+                button.setStyleSheet(
+                    """
+                    QPushButton {
+                        background-color:#060270;\n
+                        border: none;\n
+                        border-radius: 6px;\n
+                        color:white;\n
+                        font-family: Euphemia;\n
+                        font-size: 12px;
+                    }"""
+                )
+                button.clicked.connect(
+                    lambda _, student_id=student_id: self.renew_student_status()
+                )
+
+            button.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
             self.list_student_table.setCellWidget(row_number, 7, button)
+
+    def renew_student_status(self):
+        print("APARTADO DE RENOVACIÓN EN PROCESO")
 
     # FILTRAR TABLA "list_student_table" por NOMBRE
 
