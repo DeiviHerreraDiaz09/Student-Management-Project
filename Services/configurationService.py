@@ -25,11 +25,11 @@ def configuration_optionsService(self):
         print("Error al cargar la configuración en la interfaz:", str(e))
 
 
-def update_configurationService(self, campo, valor):
+def update_configurationService(self, campo, valor, nombre):
     try:
         msg_box = QMessageBox()
         msg_box.setWindowTitle("Confirmación")
-        msg_box.setText(f"¿Estás seguro de que deseas actualizar el campo {campo}?")
+        msg_box.setText(f"¿Estás seguro de que deseas actualizar el campo {nombre}?")
         msg_box.setStandardButtons(
             QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No
         )
@@ -68,7 +68,7 @@ def update_configurationService(self, campo, valor):
             msg_box_success = QMessageBox()
             msg_box_success.setWindowTitle("Éxito")
             msg_box_success.setText(
-                f"El campo {campo} se ha actualizado correctamente."
+                f"El campo {nombre} se ha actualizado correctamente."
             )
 
             msg_box_success.setStyleSheet(
@@ -96,7 +96,7 @@ def update_configurationService(self, campo, valor):
             msg_box_cancel = QMessageBox()
             msg_box_cancel.setWindowTitle("Cancelado")
             msg_box_cancel.setText(
-                f"La actualización del campo {campo} ha sido cancelada."
+                f"La actualización del campo {nombre} ha sido cancelada."
             )
 
             msg_box_cancel.setStyleSheet(

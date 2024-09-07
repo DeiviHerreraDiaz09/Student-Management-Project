@@ -24,7 +24,7 @@ def switch_to_payment(self, invoice_id):
         self.input_student_name_invo.setText(invoice_details[0])
         self.input_id_invoice.setText(str(invoice_details[1]))
         self.lineEdit_description.setText(invoice_details[2])
-        self.lineEdit_total_amount.setText(str(invoice_details[3]))
+        self.lineEdit_total_amount.setText( f"${invoice_details[3]:,.2f}")
         self.input_creation_date.setText(invoice_details[4])
         self.input_expiration_date.setText(invoice_details[5])
 

@@ -113,7 +113,7 @@ background-color: rgb(255, 255, 255);
 </string>
          </property>
          <property name="currentIndex">
-          <number>0</number>
+          <number>2</number>
          </property>
          <widget class="QWidget" name="students_page">
           <property name="maximumSize">
@@ -5796,13 +5796,13 @@ font: 75 10pt &quot;Arial&quot;;</string>
                        <property name="minimumSize">
                         <size>
                          <width>220</width>
-                         <height>40</height>
+                         <height>45</height>
                         </size>
                        </property>
                        <property name="maximumSize">
                         <size>
                          <width>220</width>
-                         <height>40</height>
+                         <height>45</height>
                         </size>
                        </property>
                        <property name="frameShape">
@@ -5814,6 +5814,12 @@ font: 75 10pt &quot;Arial&quot;;</string>
                        <layout class="QGridLayout" name="gridLayout_21">
                         <item row="0" column="0">
                          <widget class="QCheckBox" name="checkBox_confirm">
+                          <property name="minimumSize">
+                           <size>
+                            <width>0</width>
+                            <height>30</height>
+                           </size>
+                          </property>
                           <property name="font">
                            <font>
                             <family>Arial</family>
@@ -5822,8 +5828,31 @@ font: 75 10pt &quot;Arial&quot;;</string>
                             <bold>true</bold>
                            </font>
                           </property>
+                          <property name="cursor">
+                           <cursorShape>PointingHandCursor</cursorShape>
+                          </property>
                           <property name="styleSheet">
-                           <string notr="true">color: black;</string>
+                           <string notr="true">
+QCheckBox{
+color: black;
+}
+QCheckBox::indicator {
+    width: 17px; /* Ancho de la casilla */
+    height: 17px; /* Altura de la casilla */
+    border: 1px solid #000000; /* Borde de la casilla */
+    border-radius: 4px; /* Bordes redondeados */
+    background-color: #ffffff; /* Color de fondo de la casilla */
+}
+
+QCheckBox::indicator:checked {
+    background-color: #0078d7; /* Color de fondo cuando está marcado */
+    border: 1px solid #0078d7; /* Borde cuando está marcado */
+}
+
+QCheckBox::indicator:unchecked {
+    background-color: #ffffff; /* Color de fondo cuando no está marcado */
+    border: 1px solid #000000; /* Borde cuando no está marcado */
+}</string>
                           </property>
                           <property name="text">
                            <string>SI</string>
@@ -5835,6 +5864,12 @@ font: 75 10pt &quot;Arial&quot;;</string>
                         </item>
                         <item row="0" column="1">
                          <widget class="QCheckBox" name="checkBox_denegate">
+                          <property name="minimumSize">
+                           <size>
+                            <width>0</width>
+                            <height>30</height>
+                           </size>
+                          </property>
                           <property name="font">
                            <font>
                             <family>Arial</family>
@@ -5843,14 +5878,40 @@ font: 75 10pt &quot;Arial&quot;;</string>
                             <bold>true</bold>
                            </font>
                           </property>
+                          <property name="cursor">
+                           <cursorShape>PointingHandCursor</cursorShape>
+                          </property>
                           <property name="styleSheet">
-                           <string notr="true">color: black;</string>
+                           <string notr="true">
+QCheckBox{
+color: black;
+}
+QCheckBox::indicator {
+    width: 17px; /* Ancho de la casilla */
+    height: 17px; /* Altura de la casilla */
+    border: 1px solid #000000; /* Borde de la casilla */
+    border-radius: 4px; /* Bordes redondeados */
+    background-color: #ffffff; /* Color de fondo de la casilla */
+}
+
+QCheckBox::indicator:checked {
+    background-color: #0078d7; /* Color de fondo cuando está marcado */
+    border: 1px solid #0078d7; /* Borde cuando está marcado */
+}
+
+QCheckBox::indicator:unchecked {
+    background-color: #ffffff; /* Color de fondo cuando no está marcado */
+    border: 1px solid #000000; /* Borde cuando no está marcado */
+}</string>
                           </property>
                           <property name="text">
                            <string>NO</string>
                           </property>
                           <property name="autoExclusive">
                            <bool>true</bool>
+                          </property>
+                          <property name="tristate">
+                           <bool>false</bool>
                           </property>
                          </widget>
                         </item>
@@ -6118,6 +6179,18 @@ font-weight:bold;</string>
                   <enum>Qt::Vertical</enum>
                  </property>
                  <widget class="QLabel" name="cost_tittle">
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>70</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>16777215</width>
+                    <height>70</height>
+                   </size>
+                  </property>
                   <property name="font">
                    <font>
                     <family>Arial</family>
@@ -6138,29 +6211,35 @@ color: rgb(11, 52, 84);</string>
                    <set>Qt::AlignCenter</set>
                   </property>
                  </widget>
-                 <widget class="QWidget" name="layoutWidget_3">
-                  <layout class="QHBoxLayout" name="horizontalLayout_9">
-                   <item alignment="Qt::AlignHCenter">
-                    <widget class="QLabel" name="report_dinamic_label">
-                     <property name="font">
-                      <font>
-                       <family>MS Shell Dlg 2</family>
-                       <pointsize>13</pointsize>
-                       <weight>50</weight>
-                       <italic>false</italic>
-                       <bold>false</bold>
-                      </font>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true">font: 13pt &quot;MS Shell Dlg 2&quot;;
+                 <widget class="QLabel" name="report_dinamic_label">
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>50</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>16777215</width>
+                    <height>50</height>
+                   </size>
+                  </property>
+                  <property name="font">
+                   <font>
+                    <family>MS Shell Dlg 2</family>
+                    <pointsize>13</pointsize>
+                    <weight>50</weight>
+                    <italic>false</italic>
+                    <bold>false</bold>
+                   </font>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">font: 13pt &quot;MS Shell Dlg 2&quot;;
 color: rgb(11, 52, 84);</string>
-                     </property>
-                     <property name="text">
-                      <string>Texto Dinamico</string>
-                     </property>
-                    </widget>
-                   </item>
-                  </layout>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
                  </widget>
                  <widget class="QWidget" name="layoutWidget_4">
                   <layout class="QHBoxLayout" name="horizontalLayout_10">
@@ -6275,7 +6354,7 @@ color:white;</string>
                      <property name="sizeHint" stdset="0">
                       <size>
                        <width>37</width>
-                       <height>16</height>
+                       <height>10</height>
                       </size>
                      </property>
                     </spacer>
@@ -6284,13 +6363,13 @@ color:white;</string>
                     <widget class="QPushButton" name="pushButton_Rgasto">
                      <property name="minimumSize">
                       <size>
-                       <width>130</width>
+                       <width>160</width>
                        <height>30</height>
                       </size>
                      </property>
                      <property name="maximumSize">
                       <size>
-                       <width>130</width>
+                       <width>160</width>
                        <height>30</height>
                       </size>
                      </property>
@@ -6319,36 +6398,34 @@ color:white;</string>
                 </widget>
                </item>
                <item row="1" column="0">
-                <layout class="QVBoxLayout" name="verticalLayout_10">
-                 <item>
-                  <widget class="QTableWidget" name="table_reports_payments">
-                   <property name="minimumSize">
-                    <size>
-                     <width>600</width>
-                     <height>0</height>
-                    </size>
-                   </property>
-                   <property name="maximumSize">
-                    <size>
-                     <width>790</width>
-                     <height>16777215</height>
-                    </size>
-                   </property>
-                   <property name="baseSize">
-                    <size>
-                     <width>500</width>
-                     <height>50</height>
-                    </size>
-                   </property>
-                   <property name="font">
-                    <font>
-                     <family>Arial</family>
-                     <weight>50</weight>
-                     <bold>false</bold>
-                    </font>
-                   </property>
-                   <property name="styleSheet">
-                    <string notr="true">QTableWidget {
+                <widget class="QTableWidget" name="table_reports_payments">
+                 <property name="minimumSize">
+                  <size>
+                   <width>780</width>
+                   <height>400</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>0</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                 <property name="baseSize">
+                  <size>
+                   <width>500</width>
+                   <height>50</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Arial</family>
+                   <weight>50</weight>
+                   <bold>false</bold>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">QTableWidget {
  gridline-color: black; 
     background-color: #F9F9F9;
 }
@@ -6379,33 +6456,31 @@ QTableWidget::item:alternate {
     background-color: #F0F0F0;
 }
 </string>
-                   </property>
-                   <attribute name="horizontalHeaderDefaultSectionSize">
-                    <number>210</number>
-                   </attribute>
-                   <column>
-                    <property name="text">
-                     <string>Identificador de gasto</string>
-                    </property>
-                   </column>
-                   <column>
-                    <property name="text">
-                     <string>Descripción</string>
-                    </property>
-                   </column>
-                   <column>
-                    <property name="text">
-                     <string>Fecha de realización</string>
-                    </property>
-                   </column>
-                   <column>
-                    <property name="text">
-                     <string>Total gasto</string>
-                    </property>
-                   </column>
-                  </widget>
-                 </item>
-                </layout>
+                 </property>
+                 <attribute name="horizontalHeaderDefaultSectionSize">
+                  <number>210</number>
+                 </attribute>
+                 <column>
+                  <property name="text">
+                   <string>Identificador de gasto</string>
+                  </property>
+                 </column>
+                 <column>
+                  <property name="text">
+                   <string>Descripción</string>
+                  </property>
+                 </column>
+                 <column>
+                  <property name="text">
+                   <string>Fecha de realización</string>
+                  </property>
+                 </column>
+                 <column>
+                  <property name="text">
+                   <string>Total gasto</string>
+                  </property>
+                 </column>
+                </widget>
                </item>
               </layout>
              </widget>

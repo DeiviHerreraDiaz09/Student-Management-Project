@@ -169,6 +169,16 @@ def Service_search_student_by_id(self, student_ident):
         for row_number, row_data in enumerate(rows):
             self.history_table.insertRow(row_number)
             for column_number, cell_data in enumerate(row_data[9:]):
+
+                if column_number == 4 or column_number == 5:
+
+                    try:
+                        cell_data = "{:,.2f}".format(int(cell_data))
+                        cell_data = f"${cell_data}" 
+                    except (ValueError, TypeError):
+                        cell_data = "$0" 
+                else:
+                    cell_data = str(cell_data)
                 self.history_table.setItem(
                     row_number, column_number, QTableWidgetItem(str(cell_data))
                 )

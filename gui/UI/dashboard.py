@@ -2679,33 +2679,78 @@ class Ui_MainWindow(object):
         self.splitter_16.setOrientation(QtCore.Qt.Orientation.Horizontal)
         self.splitter_16.setObjectName("splitter_16")
         self.frame = QtWidgets.QFrame(parent=self.splitter_16)
-        self.frame.setMinimumSize(QtCore.QSize(220, 40))
-        self.frame.setMaximumSize(QtCore.QSize(220, 40))
+        self.frame.setMinimumSize(QtCore.QSize(220, 45))
+        self.frame.setMaximumSize(QtCore.QSize(220, 45))
         self.frame.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
         self.frame.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
         self.frame.setObjectName("frame")
         self.gridLayout_21 = QtWidgets.QGridLayout(self.frame)
         self.gridLayout_21.setObjectName("gridLayout_21")
         self.checkBox_confirm = QtWidgets.QCheckBox(parent=self.frame)
+        self.checkBox_confirm.setMinimumSize(QtCore.QSize(0, 30))
         font = QtGui.QFont()
         font.setFamily("Arial")
         font.setPointSize(9)
         font.setBold(True)
         font.setWeight(75)
         self.checkBox_confirm.setFont(font)
-        self.checkBox_confirm.setStyleSheet("color: black;")
+        self.checkBox_confirm.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+        self.checkBox_confirm.setStyleSheet("\n"
+"QCheckBox{\n"
+"color: black;\n"
+"}\n"
+"QCheckBox::indicator {\n"
+"    width: 17px; /* Ancho de la casilla */\n"
+"    height: 17px; /* Altura de la casilla */\n"
+"    border: 1px solid #000000; /* Borde de la casilla */\n"
+"    border-radius: 4px; /* Bordes redondeados */\n"
+"    background-color: #ffffff; /* Color de fondo de la casilla */\n"
+"}\n"
+"\n"
+"QCheckBox::indicator:checked {\n"
+"    background-color: #0078d7; /* Color de fondo cuando está marcado */\n"
+"    border: 1px solid #0078d7; /* Borde cuando está marcado */\n"
+"}\n"
+"\n"
+"QCheckBox::indicator:unchecked {\n"
+"    background-color: #ffffff; /* Color de fondo cuando no está marcado */\n"
+"    border: 1px solid #000000; /* Borde cuando no está marcado */\n"
+"}")
         self.checkBox_confirm.setAutoExclusive(True)
         self.checkBox_confirm.setObjectName("checkBox_confirm")
         self.gridLayout_21.addWidget(self.checkBox_confirm, 0, 0, 1, 1)
         self.checkBox_denegate = QtWidgets.QCheckBox(parent=self.frame)
+        self.checkBox_denegate.setMinimumSize(QtCore.QSize(0, 30))
         font = QtGui.QFont()
         font.setFamily("Arial")
         font.setPointSize(9)
         font.setBold(True)
         font.setWeight(75)
         self.checkBox_denegate.setFont(font)
-        self.checkBox_denegate.setStyleSheet("color: black;")
+        self.checkBox_denegate.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+        self.checkBox_denegate.setStyleSheet("\n"
+"QCheckBox{\n"
+"color: black;\n"
+"}\n"
+"QCheckBox::indicator {\n"
+"    width: 17px; /* Ancho de la casilla */\n"
+"    height: 17px; /* Altura de la casilla */\n"
+"    border: 1px solid #000000; /* Borde de la casilla */\n"
+"    border-radius: 4px; /* Bordes redondeados */\n"
+"    background-color: #ffffff; /* Color de fondo de la casilla */\n"
+"}\n"
+"\n"
+"QCheckBox::indicator:checked {\n"
+"    background-color: #0078d7; /* Color de fondo cuando está marcado */\n"
+"    border: 1px solid #0078d7; /* Borde cuando está marcado */\n"
+"}\n"
+"\n"
+"QCheckBox::indicator:unchecked {\n"
+"    background-color: #ffffff; /* Color de fondo cuando no está marcado */\n"
+"    border: 1px solid #000000; /* Borde cuando no está marcado */\n"
+"}")
         self.checkBox_denegate.setAutoExclusive(True)
+        self.checkBox_denegate.setTristate(False)
         self.checkBox_denegate.setObjectName("checkBox_denegate")
         self.gridLayout_21.addWidget(self.checkBox_denegate, 0, 1, 1, 1)
         self.button_search_7 = QtWidgets.QPushButton(parent=self.splitter_16)
@@ -2813,6 +2858,8 @@ class Ui_MainWindow(object):
         self.splitter.setOrientation(QtCore.Qt.Orientation.Vertical)
         self.splitter.setObjectName("splitter")
         self.cost_tittle = QtWidgets.QLabel(parent=self.splitter)
+        self.cost_tittle.setMinimumSize(QtCore.QSize(0, 70))
+        self.cost_tittle.setMaximumSize(QtCore.QSize(16777215, 70))
         font = QtGui.QFont()
         font.setFamily("Arial")
         font.setPointSize(14)
@@ -2824,12 +2871,9 @@ class Ui_MainWindow(object):
 "color: rgb(11, 52, 84);")
         self.cost_tittle.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.cost_tittle.setObjectName("cost_tittle")
-        self.layoutWidget_3 = QtWidgets.QWidget(parent=self.splitter)
-        self.layoutWidget_3.setObjectName("layoutWidget_3")
-        self.horizontalLayout_9 = QtWidgets.QHBoxLayout(self.layoutWidget_3)
-        self.horizontalLayout_9.setContentsMargins(0, 0, 0, 0)
-        self.horizontalLayout_9.setObjectName("horizontalLayout_9")
-        self.report_dinamic_label = QtWidgets.QLabel(parent=self.layoutWidget_3)
+        self.report_dinamic_label = QtWidgets.QLabel(parent=self.splitter)
+        self.report_dinamic_label.setMinimumSize(QtCore.QSize(0, 50))
+        self.report_dinamic_label.setMaximumSize(QtCore.QSize(16777215, 50))
         font = QtGui.QFont()
         font.setFamily("MS Shell Dlg 2")
         font.setPointSize(13)
@@ -2839,8 +2883,8 @@ class Ui_MainWindow(object):
         self.report_dinamic_label.setFont(font)
         self.report_dinamic_label.setStyleSheet("font: 13pt \"MS Shell Dlg 2\";\n"
 "color: rgb(11, 52, 84);")
+        self.report_dinamic_label.setText("")
         self.report_dinamic_label.setObjectName("report_dinamic_label")
-        self.horizontalLayout_9.addWidget(self.report_dinamic_label, 0, QtCore.Qt.AlignmentFlag.AlignHCenter)
         self.layoutWidget_4 = QtWidgets.QWidget(parent=self.splitter)
         self.layoutWidget_4.setObjectName("layoutWidget_4")
         self.horizontalLayout_10 = QtWidgets.QHBoxLayout(self.layoutWidget_4)
@@ -2895,11 +2939,11 @@ class Ui_MainWindow(object):
         self.horizontalLayout_8.addWidget(self.pushButton_month)
         self.verticalLayout_11.addLayout(self.horizontalLayout_8)
         self.horizontalLayout_10.addLayout(self.verticalLayout_11)
-        spacerItem3 = QtWidgets.QSpacerItem(37, 16, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        spacerItem3 = QtWidgets.QSpacerItem(37, 10, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
         self.horizontalLayout_10.addItem(spacerItem3)
         self.pushButton_Rgasto = QtWidgets.QPushButton(parent=self.layoutWidget_4)
-        self.pushButton_Rgasto.setMinimumSize(QtCore.QSize(130, 30))
-        self.pushButton_Rgasto.setMaximumSize(QtCore.QSize(130, 30))
+        self.pushButton_Rgasto.setMinimumSize(QtCore.QSize(160, 30))
+        self.pushButton_Rgasto.setMaximumSize(QtCore.QSize(160, 30))
         font = QtGui.QFont()
         font.setFamily("Arial")
         font.setPointSize(11)
@@ -2914,11 +2958,9 @@ class Ui_MainWindow(object):
         self.pushButton_Rgasto.setObjectName("pushButton_Rgasto")
         self.horizontalLayout_10.addWidget(self.pushButton_Rgasto)
         self.gridLayout_17.addWidget(self.splitter, 0, 0, 1, 1)
-        self.verticalLayout_10 = QtWidgets.QVBoxLayout()
-        self.verticalLayout_10.setObjectName("verticalLayout_10")
         self.table_reports_payments = QtWidgets.QTableWidget(parent=self.view_cost)
-        self.table_reports_payments.setMinimumSize(QtCore.QSize(600, 0))
-        self.table_reports_payments.setMaximumSize(QtCore.QSize(790, 16777215))
+        self.table_reports_payments.setMinimumSize(QtCore.QSize(780, 400))
+        self.table_reports_payments.setMaximumSize(QtCore.QSize(0, 16777215))
         self.table_reports_payments.setBaseSize(QtCore.QSize(500, 50))
         font = QtGui.QFont()
         font.setFamily("Arial")
@@ -2968,8 +3010,7 @@ class Ui_MainWindow(object):
         item = QtWidgets.QTableWidgetItem()
         self.table_reports_payments.setHorizontalHeaderItem(3, item)
         self.table_reports_payments.horizontalHeader().setDefaultSectionSize(210)
-        self.verticalLayout_10.addWidget(self.table_reports_payments)
-        self.gridLayout_17.addLayout(self.verticalLayout_10, 1, 0, 1, 1)
+        self.gridLayout_17.addWidget(self.table_reports_payments, 1, 0, 1, 1)
         self.stackedWidget.addWidget(self.view_cost)
         self.register_cost = QtWidgets.QWidget()
         self.register_cost.setMinimumSize(QtCore.QSize(0, 500))
@@ -3433,7 +3474,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
-        self.content.setCurrentIndex(0)
+        self.content.setCurrentIndex(2)
         self.content_pages.setCurrentIndex(0)
         self.stackedWidget_2.setCurrentIndex(0)
         self.stackedWidget.setCurrentIndex(1)
@@ -3646,7 +3687,6 @@ class Ui_MainWindow(object):
         self.commandLinkButton_4.setText(_translate("MainWindow", "Periodos Escolares"))
         self.tittle_header_2.setText(_translate("MainWindow", "Configuración Software"))
         self.cost_tittle.setText(_translate("MainWindow", "Gastos"))
-        self.report_dinamic_label.setText(_translate("MainWindow", "Texto Dinamico"))
         self.label_7.setText(_translate("MainWindow", "Filtrar por"))
         self.pushButton_Day.setText(_translate("MainWindow", "Diario"))
         self.pushButton_month.setText(_translate("MainWindow", "Mes "))

@@ -326,7 +326,7 @@ class MyInterface(QMainWindow, Ui_MainWindow):
 
     def actualizar_ncf(self):
         valor = self.input_amount_paid_6.text()
-        update_configurationService(self, "school_nfc", valor)
+        update_configurationService(self, "school_nfc", valor, "school_ncf")
 
     # LOGICA INTERNA ↓
 
@@ -452,7 +452,7 @@ class MyInterface(QMainWindow, Ui_MainWindow):
             self.input_student_name_info.setText(payments[0])
             self.input_number_invoice.setText(str(payments[1]))
             self.input_description_invoice.setText(payments[2])
-            self.input_total_amount.setText(str(payments[3]))
+            self.input_total_amount.setText(f"${payments[3]:,.2f}")
             self.input_created_date_info.setText(payments[4])
             self.input_finish_date.setText(payments[5])
             student_ident = payments[10]
@@ -461,6 +461,14 @@ class MyInterface(QMainWindow, Ui_MainWindow):
             for row_number, row_data in enumerate(rows):
                 self.history_table_payment.insertRow(row_number)
                 for column_number, cell_data in enumerate(row_data[6:]):
+                    if column_number == 2:
+                        try:
+                            cell_data = "{:,.2f}".format(int(cell_data))
+                            cell_data = f"${cell_data}" 
+                        except (ValueError, TypeError):
+                            cell_data = "$0" 
+                    else:
+                        cell_data = str(cell_data)
                     self.history_table_payment.setItem(
                         row_number, column_number, QTableWidgetItem(str(cell_data))
                     )
