@@ -305,6 +305,7 @@ class MyInterface(QMainWindow, Ui_MainWindow):
 
     def switch_to_configPage(self):
         self.content.setCurrentIndex(2)
+        self.stackedWidget_2.setCurrentIndex(0)
         configuration_optionsService(self)
 
     def actualizar_nombre_colegio(self):

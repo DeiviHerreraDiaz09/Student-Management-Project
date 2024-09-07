@@ -12,15 +12,16 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1090, 700)
-        MainWindow.setMinimumSize(QtCore.QSize(0, 680))
+        MainWindow.resize(1090, 681)
+        MainWindow.setMinimumSize(QtCore.QSize(1090, 680))
         MainWindow.setMaximumSize(QtCore.QSize(1090, 700))
         MainWindow.setLayoutDirection(QtCore.Qt.LayoutDirection.LeftToRight)
-        MainWindow.setStyleSheet("\n"
-"background-color:rgb(186, 222, 250);")
+        MainWindow.setStyleSheet("font-family:Arial;\n"
+"background-color:rgb(186, 222, 250);\n"
+"letter-spacing: 0.5;")
         self.centralwidget = QtWidgets.QWidget(parent=MainWindow)
         self.centralwidget.setStyleSheet("#centralwidget{\n"
-"background-color : #FFFFFF;\n"
+"background-color:rgb(186, 222, 250);\n"
 "}\n"
 "\n"
 "#leftMenu{\n"
@@ -28,304 +29,23 @@ class Ui_MainWindow(object):
 "}")
         self.centralwidget.setObjectName("centralwidget")
         self.gridLayout_7 = QtWidgets.QGridLayout(self.centralwidget)
-        self.gridLayout_7.setContentsMargins(0, 0, 0, 0)
         self.gridLayout_7.setObjectName("gridLayout_7")
         self.header_widget = QtWidgets.QWidget(parent=self.centralwidget)
         self.header_widget.setMinimumSize(QtCore.QSize(1090, 0))
         self.header_widget.setMaximumSize(QtCore.QSize(1090, 16777215))
-        self.header_widget.setStyleSheet("background-color:rgb(186, 222, 250);")
+        self.header_widget.setStyleSheet("background-color:rgb(186, 222, 250);\n"
+"")
         self.header_widget.setObjectName("header_widget")
         self.gridLayout = QtWidgets.QGridLayout(self.header_widget)
-        self.gridLayout.setHorizontalSpacing(0)
+        self.gridLayout.setContentsMargins(0, 0, 7, 0)
+        self.gridLayout.setSpacing(0)
         self.gridLayout.setObjectName("gridLayout")
-        self.icon_complete_widget_2 = QtWidgets.QWidget(parent=self.header_widget)
-        self.icon_complete_widget_2.setMinimumSize(QtCore.QSize(80, 0))
-        self.icon_complete_widget_2.setMaximumSize(QtCore.QSize(80, 16777215))
-        self.icon_complete_widget_2.setStyleSheet("QWidget{\n"
-"background-color: rgb(31, 149, 239);\n"
-"border-top-left-radius:10px;\n"
-"border-bottom-left-radius:10px;\n"
-"}\n"
-"\n"
-"QPushButton{\n"
-"color: #FFFFFF;\n"
-"text-align: left;\n"
-"height:30px;\n"
-"border:none;\n"
-"padding-left:10px;\n"
-"border-top-left-radius:10px;\n"
-"border-bottom-left-radius:10px;\n"
-"border-top-right-radius:10px;\n"
-"border-bottom-right-radius:10px;\n"
-"}\n"
-"\n"
-"\n"
-"QLabel{\n"
-"color:#FFFFFF;\n"
-"text-align:center;\n"
-"}\n"
-"\n"
-"QPushButton:checked{\n"
-"background-color:#F5FAFE;\n"
-"color: #1F95EF;\n"
-"font-weight:bold\n"
-"}")
-        self.icon_complete_widget_2.setObjectName("icon_complete_widget_2")
-        self.gridLayout_15 = QtWidgets.QGridLayout(self.icon_complete_widget_2)
-        self.gridLayout_15.setContentsMargins(0, -1, 0, -1)
-        self.gridLayout_15.setObjectName("gridLayout_15")
-        self.menuButton_2 = QtWidgets.QPushButton(parent=self.icon_complete_widget_2)
-        self.menuButton_2.setMinimumSize(QtCore.QSize(65, 50))
-        self.menuButton_2.setMaximumSize(QtCore.QSize(65, 50))
-        self.menuButton_2.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
-        self.menuButton_2.setLayoutDirection(QtCore.Qt.LayoutDirection.RightToLeft)
-        self.menuButton_2.setStyleSheet("\n"
-"\n"
-"QPushButton:checked{\n"
-"background-color:none;\n"
-"}")
-        self.menuButton_2.setText("")
-        icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("./assets/img/icons8-computer-50.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.menuButton_2.setIcon(icon)
-        self.menuButton_2.setIconSize(QtCore.QSize(50, 50))
-        self.menuButton_2.setCheckable(True)
-        self.menuButton_2.setAutoExclusive(True)
-        self.menuButton_2.setObjectName("menuButton_2")
-        self.gridLayout_15.addWidget(self.menuButton_2, 0, 0, 1, 1)
-        self.verticalLayout_8 = QtWidgets.QVBoxLayout()
-        self.verticalLayout_8.setContentsMargins(-1, 20, -1, -1)
-        self.verticalLayout_8.setSpacing(8)
-        self.verticalLayout_8.setObjectName("verticalLayout_8")
-        self.students_3 = QtWidgets.QPushButton(parent=self.icon_complete_widget_2)
-        self.students_3.setMinimumSize(QtCore.QSize(45, 40))
-        self.students_3.setMaximumSize(QtCore.QSize(40, 40))
-        font = QtGui.QFont()
-        font.setFamily("Euphemia")
-        font.setPointSize(9)
-        font.setBold(True)
-        font.setUnderline(False)
-        font.setWeight(75)
-        font.setStrikeOut(False)
-        font.setKerning(False)
-        self.students_3.setFont(font)
-        self.students_3.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
-        self.students_3.setText("")
-        icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("./assets/img/profile_white.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        icon1.addPixmap(QtGui.QPixmap("./assets/img/profile.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.On)
-        self.students_3.setIcon(icon1)
-        self.students_3.setIconSize(QtCore.QSize(23, 24))
-        self.students_3.setCheckable(True)
-        self.students_3.setAutoExclusive(True)
-        self.students_3.setObjectName("students_3")
-        self.verticalLayout_8.addWidget(self.students_3, 0, QtCore.Qt.AlignmentFlag.AlignHCenter|QtCore.Qt.AlignmentFlag.AlignVCenter)
-        self.reports_3 = QtWidgets.QPushButton(parent=self.icon_complete_widget_2)
-        self.reports_3.setMinimumSize(QtCore.QSize(45, 40))
-        self.reports_3.setMaximumSize(QtCore.QSize(40, 40))
-        font = QtGui.QFont()
-        font.setFamily("Euphemia")
-        font.setPointSize(9)
-        font.setBold(True)
-        font.setWeight(75)
-        self.reports_3.setFont(font)
-        self.reports_3.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
-        self.reports_3.setStyleSheet("padding-right:-10px")
-        self.reports_3.setText("")
-        icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap("./assets/img/icons8-report-100.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        icon2.addPixmap(QtGui.QPixmap("./assets/img/icons8-report-100-blue.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.On)
-        self.reports_3.setIcon(icon2)
-        self.reports_3.setIconSize(QtCore.QSize(28, 30))
-        self.reports_3.setCheckable(True)
-        self.reports_3.setAutoExclusive(True)
-        self.reports_3.setObjectName("reports_3")
-        self.verticalLayout_8.addWidget(self.reports_3, 0, QtCore.Qt.AlignmentFlag.AlignHCenter)
-        self.config_2 = QtWidgets.QPushButton(parent=self.icon_complete_widget_2)
-        self.config_2.setMinimumSize(QtCore.QSize(45, 40))
-        self.config_2.setMaximumSize(QtCore.QSize(40, 40))
-        font = QtGui.QFont()
-        font.setFamily("Euphemia")
-        font.setPointSize(9)
-        font.setBold(True)
-        font.setWeight(75)
-        self.config_2.setFont(font)
-        self.config_2.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
-        self.config_2.setText("")
-        icon3 = QtGui.QIcon()
-        icon3.addPixmap(QtGui.QPixmap("./assets/img/config2.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        icon3.addPixmap(QtGui.QPixmap("./assets/img/config.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.On)
-        self.config_2.setIcon(icon3)
-        self.config_2.setIconSize(QtCore.QSize(28, 30))
-        self.config_2.setCheckable(True)
-        self.config_2.setAutoExclusive(True)
-        self.config_2.setObjectName("config_2")
-        self.verticalLayout_8.addWidget(self.config_2, 0, QtCore.Qt.AlignmentFlag.AlignHCenter)
-        self.gridLayout_15.addLayout(self.verticalLayout_8, 1, 0, 1, 1)
-        spacerItem = QtWidgets.QSpacerItem(20, 441, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
-        self.gridLayout_15.addItem(spacerItem, 2, 0, 1, 1)
-        self.exit_2 = QtWidgets.QPushButton(parent=self.icon_complete_widget_2)
-        self.exit_2.setMinimumSize(QtCore.QSize(40, 40))
-        self.exit_2.setMaximumSize(QtCore.QSize(40, 40))
-        font = QtGui.QFont()
-        font.setFamily("Euphemia")
-        font.setPointSize(9)
-        font.setBold(True)
-        font.setWeight(75)
-        self.exit_2.setFont(font)
-        self.exit_2.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
-        self.exit_2.setText("")
-        icon4 = QtGui.QIcon()
-        icon4.addPixmap(QtGui.QPixmap("./assets/img/log_out_white.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        icon4.addPixmap(QtGui.QPixmap("./assets/img/log_out.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.On)
-        self.exit_2.setIcon(icon4)
-        self.exit_2.setIconSize(QtCore.QSize(20, 20))
-        self.exit_2.setCheckable(True)
-        self.exit_2.setObjectName("exit_2")
-        self.gridLayout_15.addWidget(self.exit_2, 3, 0, 1, 1, QtCore.Qt.AlignmentFlag.AlignHCenter)
-        self.gridLayout.addWidget(self.icon_complete_widget_2, 0, 0, 1, 1)
-        self.icon_complete_widget = QtWidgets.QWidget(parent=self.header_widget)
-        self.icon_complete_widget.setMinimumSize(QtCore.QSize(190, 678))
-        self.icon_complete_widget.setMaximumSize(QtCore.QSize(190, 16777215))
-        self.icon_complete_widget.setStyleSheet("QWidget{\n"
-"background-color: rgb(31, 149, 239);\n"
-"border-top-left-radius:10px;\n"
-"border-bottom-left-radius:10px;\n"
-"}\n"
-"\n"
-"QPushButton{\n"
-"color: #FFFFFF;\n"
-"text-align: left;\n"
-"height:30px;\n"
-"border:none;\n"
-"padding-left:10px;\n"
-"border-top-left-radius:10px;\n"
-"border-bottom-left-radius:10px;\n"
-"}\n"
-"\n"
-"\n"
-"QLabel{\n"
-"color:#FFFFFF;\n"
-"text-align:center;\n"
-"}\n"
-"\n"
-"QPushButton:checked{\n"
-"background-color:#F5FAFE;\n"
-"color: #1F95EF;\n"
-"font-weight:bold\n"
-"}")
-        self.icon_complete_widget.setObjectName("icon_complete_widget")
-        self.gridLayout_2 = QtWidgets.QGridLayout(self.icon_complete_widget)
-        self.gridLayout_2.setContentsMargins(7, -1, 0, -1)
-        self.gridLayout_2.setObjectName("gridLayout_2")
-        self.tittle_dashboard = QtWidgets.QHBoxLayout()
-        self.tittle_dashboard.setSpacing(5)
-        self.tittle_dashboard.setObjectName("tittle_dashboard")
-        self.menuButton2 = QtWidgets.QPushButton(parent=self.icon_complete_widget)
-        self.menuButton2.setMinimumSize(QtCore.QSize(60, 50))
-        self.menuButton2.setMaximumSize(QtCore.QSize(60, 50))
-        self.menuButton2.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
-        self.menuButton2.setStyleSheet("\n"
-"QPushButton:checked{\n"
-"background-color:none;\n"
-"}")
-        self.menuButton2.setText("")
-        self.menuButton2.setIcon(icon)
-        self.menuButton2.setIconSize(QtCore.QSize(50, 50))
-        self.menuButton2.setCheckable(True)
-        self.menuButton2.setAutoExclusive(True)
-        self.menuButton2.setObjectName("menuButton2")
-        self.tittle_dashboard.addWidget(self.menuButton2)
-        self.tittle = QtWidgets.QLabel(parent=self.icon_complete_widget)
-        self.tittle.setMinimumSize(QtCore.QSize(120, 50))
-        self.tittle.setMaximumSize(QtCore.QSize(100, 50))
-        font = QtGui.QFont()
-        font.setFamily("Arial")
-        font.setPointSize(12)
-        font.setBold(True)
-        font.setWeight(75)
-        self.tittle.setFont(font)
-        self.tittle.setObjectName("tittle")
-        self.tittle_dashboard.addWidget(self.tittle)
-        self.gridLayout_2.addLayout(self.tittle_dashboard, 0, 0, 1, 2)
-        spacerItem1 = QtWidgets.QSpacerItem(20, 441, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
-        self.gridLayout_2.addItem(spacerItem1, 2, 1, 1, 1)
-        self.verticalLayout_7 = QtWidgets.QVBoxLayout()
-        self.verticalLayout_7.setContentsMargins(-1, 20, -1, -1)
-        self.verticalLayout_7.setObjectName("verticalLayout_7")
-        self.students_2 = QtWidgets.QPushButton(parent=self.icon_complete_widget)
-        self.students_2.setMinimumSize(QtCore.QSize(0, 40))
-        self.students_2.setMaximumSize(QtCore.QSize(16777215, 40))
-        font = QtGui.QFont()
-        font.setFamily("Arial")
-        font.setPointSize(10)
-        font.setBold(True)
-        font.setUnderline(False)
-        font.setWeight(75)
-        font.setStrikeOut(False)
-        font.setKerning(False)
-        self.students_2.setFont(font)
-        self.students_2.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
-        self.students_2.setIcon(icon1)
-        self.students_2.setIconSize(QtCore.QSize(20, 22))
-        self.students_2.setCheckable(True)
-        self.students_2.setAutoExclusive(True)
-        self.students_2.setObjectName("students_2")
-        self.verticalLayout_7.addWidget(self.students_2)
-        self.reports_2 = QtWidgets.QPushButton(parent=self.icon_complete_widget)
-        self.reports_2.setMinimumSize(QtCore.QSize(0, 40))
-        self.reports_2.setMaximumSize(QtCore.QSize(16777215, 40))
-        font = QtGui.QFont()
-        font.setFamily("Arial")
-        font.setPointSize(10)
-        font.setBold(True)
-        font.setWeight(75)
-        self.reports_2.setFont(font)
-        self.reports_2.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
-        self.reports_2.setIcon(icon2)
-        self.reports_2.setIconSize(QtCore.QSize(24, 26))
-        self.reports_2.setCheckable(True)
-        self.reports_2.setAutoExclusive(True)
-        self.reports_2.setObjectName("reports_2")
-        self.verticalLayout_7.addWidget(self.reports_2)
-        self.config = QtWidgets.QPushButton(parent=self.icon_complete_widget)
-        self.config.setMinimumSize(QtCore.QSize(0, 40))
-        self.config.setMaximumSize(QtCore.QSize(16777215, 40))
-        font = QtGui.QFont()
-        font.setFamily("Arial")
-        font.setPointSize(10)
-        font.setBold(True)
-        font.setWeight(75)
-        self.config.setFont(font)
-        self.config.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
-        self.config.setIcon(icon3)
-        self.config.setIconSize(QtCore.QSize(26, 30))
-        self.config.setCheckable(True)
-        self.config.setAutoExclusive(True)
-        self.config.setObjectName("config")
-        self.verticalLayout_7.addWidget(self.config)
-        self.gridLayout_2.addLayout(self.verticalLayout_7, 1, 0, 1, 2)
-        self.exit = QtWidgets.QPushButton(parent=self.icon_complete_widget)
-        self.exit.setMinimumSize(QtCore.QSize(0, 40))
-        self.exit.setMaximumSize(QtCore.QSize(16777215, 40))
-        font = QtGui.QFont()
-        font.setFamily("Arial")
-        font.setPointSize(10)
-        font.setBold(True)
-        font.setWeight(75)
-        self.exit.setFont(font)
-        self.exit.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
-        self.exit.setIcon(icon4)
-        self.exit.setIconSize(QtCore.QSize(20, 20))
-        self.exit.setCheckable(True)
-        self.exit.setObjectName("exit")
-        self.gridLayout_2.addWidget(self.exit, 3, 0, 1, 2)
-        self.gridLayout.addWidget(self.icon_complete_widget, 0, 1, 1, 1)
         self.content = QtWidgets.QStackedWidget(parent=self.header_widget)
         self.content.setMinimumSize(QtCore.QSize(0, 0))
         self.content.setMaximumSize(QtCore.QSize(990, 16777215))
         self.content.setSizeIncrement(QtCore.QSize(0, 0))
         self.content.setBaseSize(QtCore.QSize(0, 0))
+        self.content.setLayoutDirection(QtCore.Qt.LayoutDirection.LeftToRight)
         self.content.setStyleSheet("\n"
 "background-color: rgb(255, 255, 255);\n"
 "")
@@ -357,12 +77,18 @@ class Ui_MainWindow(object):
         self.tittle_header.setMaximumSize(QtCore.QSize(16777215, 50))
         font = QtGui.QFont()
         font.setFamily("Arial")
-        font.setPointSize(13)
+        font.setPointSize(12)
         font.setBold(True)
         font.setWeight(75)
         self.tittle_header.setFont(font)
-        self.tittle_header.setStyleSheet("color: rgb(11, 52, 84);\n"
-"margin-top:12px;")
+        self.tittle_header.setStyleSheet("\n"
+"QLabel{\n"
+"color: rgb(11, 52, 84);\n"
+"margin-top:12px;\n"
+"font-weight:bold;\n"
+"}\n"
+"")
+        self.tittle_header.setLineWidth(1)
         self.tittle_header.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.tittle_header.setObjectName("tittle_header")
         self.layoutWidget = QtWidgets.QWidget(parent=self.splitter_2)
@@ -382,7 +108,8 @@ class Ui_MainWindow(object):
         font.setBold(True)
         font.setWeight(75)
         self.filter_tittle.setFont(font)
-        self.filter_tittle.setStyleSheet("color: rgb(11, 52, 84);")
+        self.filter_tittle.setStyleSheet("color: rgb(11, 52, 84);\n"
+"font-weight:bold;")
         self.filter_tittle.setLineWidth(6)
         self.filter_tittle.setObjectName("filter_tittle")
         self.box_filter = QtWidgets.QSplitter(parent=self.filter)
@@ -393,7 +120,7 @@ class Ui_MainWindow(object):
         self.box.setMaximumSize(QtCore.QSize(230, 30))
         font = QtGui.QFont()
         font.setFamily("Arial")
-        font.setPointSize(10)
+        font.setPointSize(9)
         self.box.setFont(font)
         self.box.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "color: rgb(11, 52, 84);\n"
@@ -408,13 +135,13 @@ class Ui_MainWindow(object):
 "border-radius:6px;\n"
 "")
         self.button_search.setText("")
-        icon5 = QtGui.QIcon()
-        icon5.addPixmap(QtGui.QPixmap("./assets/img/Search.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.button_search.setIcon(icon5)
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap("./assets/img/Search.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.button_search.setIcon(icon)
         self.button_search.setObjectName("button_search")
         self.options.addWidget(self.filter)
-        spacerItem2 = QtWidgets.QSpacerItem(328, 21, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
-        self.options.addItem(spacerItem2)
+        spacerItem = QtWidgets.QSpacerItem(328, 21, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        self.options.addItem(spacerItem)
         self.newStudent = QtWidgets.QSplitter(parent=self.layoutWidget)
         self.newStudent.setOrientation(QtCore.Qt.Orientation.Vertical)
         self.newStudent.setObjectName("newStudent")
@@ -431,7 +158,8 @@ class Ui_MainWindow(object):
         self.button_add.setStyleSheet("background-color:#1770b3;\n"
 "border: none;\n"
 "border-radius: 6px;\n"
-"color:white;")
+"color:white;\n"
+"letter-spacing: 0.5px;")
         self.button_add.setObjectName("button_add")
         self.options.addWidget(self.newStudent)
         self.message_error_name = QtWidgets.QLabel(parent=self.splitter_2)
@@ -576,7 +304,8 @@ class Ui_MainWindow(object):
         font.setWeight(75)
         self.tittle_info.setFont(font)
         self.tittle_info.setLayoutDirection(QtCore.Qt.LayoutDirection.LeftToRight)
-        self.tittle_info.setStyleSheet("color: rgb(11, 52, 84);")
+        self.tittle_info.setStyleSheet("color: rgb(11, 52, 84);\n"
+"font-weight:bold;")
         self.tittle_info.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.tittle_info.setObjectName("tittle_info")
         self.horizontalLayout_2.addWidget(self.tittle_info)
@@ -642,7 +371,8 @@ class Ui_MainWindow(object):
         self.input_student_name.setMinimumSize(QtCore.QSize(250, 30))
         self.input_student_name.setMaximumSize(QtCore.QSize(250, 30))
         font = QtGui.QFont()
-        font.setPointSize(10)
+        font.setFamily("Arial")
+        font.setPointSize(9)
         self.input_student_name.setFont(font)
         self.input_student_name.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "border:1px solid  #a8a8a8;\n"
@@ -667,7 +397,8 @@ class Ui_MainWindow(object):
         self.input_date.setMinimumSize(QtCore.QSize(0, 30))
         self.input_date.setMaximumSize(QtCore.QSize(16777215, 30))
         font = QtGui.QFont()
-        font.setPointSize(10)
+        font.setFamily("Arial")
+        font.setPointSize(9)
         self.input_date.setFont(font)
         self.input_date.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "border:1px solid  #a8a8a8;\n"
@@ -691,7 +422,8 @@ class Ui_MainWindow(object):
         self.input_grade.setMinimumSize(QtCore.QSize(0, 30))
         self.input_grade.setMaximumSize(QtCore.QSize(16777215, 30))
         font = QtGui.QFont()
-        font.setPointSize(10)
+        font.setFamily("Arial")
+        font.setPointSize(9)
         self.input_grade.setFont(font)
         self.input_grade.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "border:1px solid  #a8a8a8;\n"
@@ -719,7 +451,8 @@ class Ui_MainWindow(object):
         self.input_tutor_name.setMinimumSize(QtCore.QSize(250, 30))
         self.input_tutor_name.setMaximumSize(QtCore.QSize(250, 30))
         font = QtGui.QFont()
-        font.setPointSize(10)
+        font.setFamily("Arial")
+        font.setPointSize(9)
         self.input_tutor_name.setFont(font)
         self.input_tutor_name.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "border:1px solid  #a8a8a8;\n"
@@ -743,7 +476,8 @@ class Ui_MainWindow(object):
         self.input_dni.setMinimumSize(QtCore.QSize(0, 30))
         self.input_dni.setMaximumSize(QtCore.QSize(16777215, 30))
         font = QtGui.QFont()
-        font.setPointSize(10)
+        font.setFamily("Arial")
+        font.setPointSize(9)
         self.input_dni.setFont(font)
         self.input_dni.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "border:1px solid  #a8a8a8;\n"
@@ -767,7 +501,8 @@ class Ui_MainWindow(object):
         self.input_email.setMinimumSize(QtCore.QSize(0, 30))
         self.input_email.setMaximumSize(QtCore.QSize(16777215, 30))
         font = QtGui.QFont()
-        font.setPointSize(10)
+        font.setFamily("Arial")
+        font.setPointSize(9)
         self.input_email.setFont(font)
         self.input_email.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "border:1px solid  #a8a8a8;\n"
@@ -795,7 +530,8 @@ class Ui_MainWindow(object):
         self.input_address.setMinimumSize(QtCore.QSize(250, 30))
         self.input_address.setMaximumSize(QtCore.QSize(250, 30))
         font = QtGui.QFont()
-        font.setPointSize(10)
+        font.setFamily("Arial")
+        font.setPointSize(9)
         self.input_address.setFont(font)
         self.input_address.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "border:1px solid  #a8a8a8;\n"
@@ -819,7 +555,8 @@ class Ui_MainWindow(object):
         self.input_phone.setMinimumSize(QtCore.QSize(0, 30))
         self.input_phone.setMaximumSize(QtCore.QSize(16777215, 30))
         font = QtGui.QFont()
-        font.setPointSize(10)
+        font.setFamily("Arial")
+        font.setPointSize(9)
         self.input_phone.setFont(font)
         self.input_phone.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "color: rgb(11, 52, 84);\n"
@@ -842,7 +579,8 @@ class Ui_MainWindow(object):
         self.input_status.setMinimumSize(QtCore.QSize(0, 30))
         self.input_status.setMaximumSize(QtCore.QSize(16777215, 30))
         font = QtGui.QFont()
-        font.setPointSize(10)
+        font.setFamily("Arial")
+        font.setPointSize(9)
         self.input_status.setFont(font)
         self.input_status.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "color: rgb(11, 52, 84);\n"
@@ -1021,7 +759,8 @@ class Ui_MainWindow(object):
         self.input_student_ident.setMinimumSize(QtCore.QSize(0, 35))
         self.input_student_ident.setMaximumSize(QtCore.QSize(260, 35))
         font = QtGui.QFont()
-        font.setPointSize(10)
+        font.setFamily("Arial")
+        font.setPointSize(9)
         self.input_student_ident.setFont(font)
         self.input_student_ident.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "color: rgb(11, 52, 84);\n"
@@ -1046,7 +785,8 @@ class Ui_MainWindow(object):
         self.input_student_name_2.setMinimumSize(QtCore.QSize(250, 35))
         self.input_student_name_2.setMaximumSize(QtCore.QSize(260, 35))
         font = QtGui.QFont()
-        font.setPointSize(10)
+        font.setFamily("Arial")
+        font.setPointSize(9)
         self.input_student_name_2.setFont(font)
         self.input_student_name_2.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "color: rgb(11, 52, 84);\n"
@@ -1071,7 +811,8 @@ class Ui_MainWindow(object):
         self.dateEdit.setMinimumSize(QtCore.QSize(220, 35))
         self.dateEdit.setMaximumSize(QtCore.QSize(16777215, 35))
         font = QtGui.QFont()
-        font.setPointSize(10)
+        font.setFamily("Arial")
+        font.setPointSize(9)
         self.dateEdit.setFont(font)
         self.dateEdit.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "color: rgb(11, 52, 84);\n"
@@ -1098,7 +839,8 @@ class Ui_MainWindow(object):
         self.options_grade.setMinimumSize(QtCore.QSize(220, 35))
         self.options_grade.setMaximumSize(QtCore.QSize(260, 35))
         font = QtGui.QFont()
-        font.setPointSize(10)
+        font.setFamily("Arial")
+        font.setPointSize(9)
         self.options_grade.setFont(font)
         self.options_grade.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "color: rgb(11, 52, 84);\n"
@@ -1139,7 +881,8 @@ class Ui_MainWindow(object):
         self.input_dni_2.setMinimumSize(QtCore.QSize(250, 35))
         self.input_dni_2.setMaximumSize(QtCore.QSize(260, 35))
         font = QtGui.QFont()
-        font.setPointSize(10)
+        font.setFamily("Arial")
+        font.setPointSize(9)
         self.input_dni_2.setFont(font)
         self.input_dni_2.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "color: rgb(11, 52, 84);\n"
@@ -1164,7 +907,8 @@ class Ui_MainWindow(object):
         self.input_tutor_name_2.setMinimumSize(QtCore.QSize(220, 35))
         self.input_tutor_name_2.setMaximumSize(QtCore.QSize(16777215, 35))
         font = QtGui.QFont()
-        font.setPointSize(10)
+        font.setFamily("Arial")
+        font.setPointSize(9)
         self.input_tutor_name_2.setFont(font)
         self.input_tutor_name_2.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "color: rgb(11, 52, 84);\n"
@@ -1192,7 +936,8 @@ class Ui_MainWindow(object):
         self.input_email_2.setMinimumSize(QtCore.QSize(250, 35))
         self.input_email_2.setMaximumSize(QtCore.QSize(260, 35))
         font = QtGui.QFont()
-        font.setPointSize(10)
+        font.setFamily("Arial")
+        font.setPointSize(9)
         self.input_email_2.setFont(font)
         self.input_email_2.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "color: rgb(11, 52, 84);\n"
@@ -1216,7 +961,8 @@ class Ui_MainWindow(object):
         self.input_address_2.setMinimumSize(QtCore.QSize(250, 35))
         self.input_address_2.setMaximumSize(QtCore.QSize(260, 35))
         font = QtGui.QFont()
-        font.setPointSize(10)
+        font.setFamily("Arial")
+        font.setPointSize(9)
         self.input_address_2.setFont(font)
         self.input_address_2.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "color: rgb(11, 52, 84);\n"
@@ -1240,7 +986,8 @@ class Ui_MainWindow(object):
         self.input_phone_2.setMinimumSize(QtCore.QSize(0, 35))
         self.input_phone_2.setMaximumSize(QtCore.QSize(16777215, 35))
         font = QtGui.QFont()
-        font.setPointSize(10)
+        font.setFamily("Arial")
+        font.setPointSize(9)
         self.input_phone_2.setFont(font)
         self.input_phone_2.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "color: rgb(11, 52, 84);\n"
@@ -1268,11 +1015,13 @@ class Ui_MainWindow(object):
         self.input_incripcion.setMinimumSize(QtCore.QSize(250, 35))
         self.input_incripcion.setMaximumSize(QtCore.QSize(260, 35))
         font = QtGui.QFont()
-        font.setPointSize(10)
+        font.setFamily("Arial")
+        font.setPointSize(9)
         self.input_incripcion.setFont(font)
         self.input_incripcion.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "color: rgb(11, 52, 84);\n"
 "border:1px solid  #a8a8a8;")
+        self.input_incripcion.setText("")
         self.input_incripcion.setReadOnly(False)
         self.input_incripcion.setObjectName("input_incripcion")
         self.values_part3_5.addWidget(self.inscripcion)
@@ -1291,6 +1040,10 @@ class Ui_MainWindow(object):
         self.options_rate = QtWidgets.QComboBox(parent=self.rate)
         self.options_rate.setMinimumSize(QtCore.QSize(250, 35))
         self.options_rate.setMaximumSize(QtCore.QSize(260, 35))
+        font = QtGui.QFont()
+        font.setFamily("Arial")
+        font.setPointSize(9)
+        self.options_rate.setFont(font)
         self.options_rate.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "color: rgb(11, 52, 84);\n"
 "border:1px solid  #a8a8a8;")
@@ -1311,6 +1064,10 @@ class Ui_MainWindow(object):
         self.options_periodo = QtWidgets.QComboBox(parent=self.periodo)
         self.options_periodo.setMinimumSize(QtCore.QSize(0, 35))
         self.options_periodo.setMaximumSize(QtCore.QSize(16777215, 35))
+        font = QtGui.QFont()
+        font.setFamily("Arial")
+        font.setPointSize(9)
+        self.options_periodo.setFont(font)
         self.options_periodo.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "color: rgb(11, 52, 84);\n"
 "border:1px solid  #a8a8a8;")
@@ -1388,7 +1145,8 @@ class Ui_MainWindow(object):
         font.setWeight(75)
         self.tittle_new_student_2.setFont(font)
         self.tittle_new_student_2.setLayoutDirection(QtCore.Qt.LayoutDirection.LeftToRight)
-        self.tittle_new_student_2.setStyleSheet("color: rgb(11, 52, 84);")
+        self.tittle_new_student_2.setStyleSheet("color: rgb(11, 52, 84);\n"
+"font-weight:bold;")
         self.tittle_new_student_2.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.tittle_new_student_2.setObjectName("tittle_new_student_2")
         self.horizontalLayout_5.addWidget(self.tittle_new_student_2)
@@ -1456,7 +1214,8 @@ class Ui_MainWindow(object):
         self.input_student_ident__invoice.setMinimumSize(QtCore.QSize(0, 35))
         self.input_student_ident__invoice.setMaximumSize(QtCore.QSize(260, 35))
         font = QtGui.QFont()
-        font.setPointSize(10)
+        font.setFamily("Arial")
+        font.setPointSize(9)
         self.input_student_ident__invoice.setFont(font)
         self.input_student_ident__invoice.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "color: rgb(11, 52, 84);\n"
@@ -1482,7 +1241,8 @@ class Ui_MainWindow(object):
         self.input_student_name__invoice.setMinimumSize(QtCore.QSize(250, 35))
         self.input_student_name__invoice.setMaximumSize(QtCore.QSize(260, 35))
         font = QtGui.QFont()
-        font.setPointSize(10)
+        font.setFamily("Arial")
+        font.setPointSize(9)
         self.input_student_name__invoice.setFont(font)
         self.input_student_name__invoice.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "color: rgb(11, 52, 84);\n"
@@ -1513,7 +1273,8 @@ class Ui_MainWindow(object):
         self.lineEdit_description_invoice.setMinimumSize(QtCore.QSize(260, 35))
         self.lineEdit_description_invoice.setMaximumSize(QtCore.QSize(260, 35))
         font = QtGui.QFont()
-        font.setPointSize(10)
+        font.setFamily("Arial")
+        font.setPointSize(9)
         self.lineEdit_description_invoice.setFont(font)
         self.lineEdit_description_invoice.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "color: rgb(11, 52, 84);\n"
@@ -1538,7 +1299,8 @@ class Ui_MainWindow(object):
         self.input_total_invoice.setMinimumSize(QtCore.QSize(250, 35))
         self.input_total_invoice.setMaximumSize(QtCore.QSize(260, 35))
         font = QtGui.QFont()
-        font.setPointSize(10)
+        font.setFamily("Arial")
+        font.setPointSize(9)
         self.input_total_invoice.setFont(font)
         self.input_total_invoice.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "color: rgb(11, 52, 84);\n"
@@ -1585,7 +1347,8 @@ class Ui_MainWindow(object):
         font.setWeight(75)
         self.tittle_info_4.setFont(font)
         self.tittle_info_4.setLayoutDirection(QtCore.Qt.LayoutDirection.LeftToRight)
-        self.tittle_info_4.setStyleSheet("color: rgb(11, 52, 84);")
+        self.tittle_info_4.setStyleSheet("color: rgb(11, 52, 84);\n"
+"font-weight:bold;")
         self.tittle_info_4.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.tittle_info_4.setObjectName("tittle_info_4")
         self.horizontalLayout.addWidget(self.tittle_info_4)
@@ -1645,7 +1408,8 @@ class Ui_MainWindow(object):
         self.input_student_name_info.setMinimumSize(QtCore.QSize(250, 30))
         self.input_student_name_info.setMaximumSize(QtCore.QSize(250, 30))
         font = QtGui.QFont()
-        font.setPointSize(10)
+        font.setFamily("Arial")
+        font.setPointSize(9)
         self.input_student_name_info.setFont(font)
         self.input_student_name_info.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "border:1px solid  #a8a8a8;\n"
@@ -1671,7 +1435,8 @@ class Ui_MainWindow(object):
         self.input_number_invoice.setMinimumSize(QtCore.QSize(0, 30))
         self.input_number_invoice.setMaximumSize(QtCore.QSize(16777215, 30))
         font = QtGui.QFont()
-        font.setPointSize(10)
+        font.setFamily("Arial")
+        font.setPointSize(9)
         self.input_number_invoice.setFont(font)
         self.input_number_invoice.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "border:1px solid  #a8a8a8;\n"
@@ -1696,7 +1461,8 @@ class Ui_MainWindow(object):
         self.input_description_invoice.setMinimumSize(QtCore.QSize(0, 30))
         self.input_description_invoice.setMaximumSize(QtCore.QSize(16777215, 30))
         font = QtGui.QFont()
-        font.setPointSize(10)
+        font.setFamily("Arial")
+        font.setPointSize(9)
         self.input_description_invoice.setFont(font)
         self.input_description_invoice.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "border:1px solid  #a8a8a8;\n"
@@ -1726,7 +1492,8 @@ class Ui_MainWindow(object):
         self.input_total_amount.setMinimumSize(QtCore.QSize(250, 30))
         self.input_total_amount.setMaximumSize(QtCore.QSize(250, 30))
         font = QtGui.QFont()
-        font.setPointSize(10)
+        font.setFamily("Arial")
+        font.setPointSize(9)
         self.input_total_amount.setFont(font)
         self.input_total_amount.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "border:1px solid  #a8a8a8;\n"
@@ -1751,7 +1518,8 @@ class Ui_MainWindow(object):
         self.input_created_date_info.setMinimumSize(QtCore.QSize(0, 30))
         self.input_created_date_info.setMaximumSize(QtCore.QSize(16777215, 30))
         font = QtGui.QFont()
-        font.setPointSize(10)
+        font.setFamily("Arial")
+        font.setPointSize(9)
         self.input_created_date_info.setFont(font)
         self.input_created_date_info.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "border:1px solid  #a8a8a8;\n"
@@ -1776,7 +1544,8 @@ class Ui_MainWindow(object):
         self.input_finish_date.setMinimumSize(QtCore.QSize(0, 30))
         self.input_finish_date.setMaximumSize(QtCore.QSize(16777215, 30))
         font = QtGui.QFont()
-        font.setPointSize(10)
+        font.setFamily("Arial")
+        font.setPointSize(9)
         self.input_finish_date.setFont(font)
         self.input_finish_date.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "border:1px solid  #a8a8a8;\n"
@@ -1934,7 +1703,8 @@ class Ui_MainWindow(object):
         self.input_student_ident_3.setMinimumSize(QtCore.QSize(0, 35))
         self.input_student_ident_3.setMaximumSize(QtCore.QSize(260, 35))
         font = QtGui.QFont()
-        font.setPointSize(10)
+        font.setFamily("Arial")
+        font.setPointSize(9)
         self.input_student_ident_3.setFont(font)
         self.input_student_ident_3.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "color: rgb(11, 52, 84);\n"
@@ -1960,7 +1730,8 @@ class Ui_MainWindow(object):
         self.input_student_name_5.setMinimumSize(QtCore.QSize(250, 35))
         self.input_student_name_5.setMaximumSize(QtCore.QSize(260, 35))
         font = QtGui.QFont()
-        font.setPointSize(10)
+        font.setFamily("Arial")
+        font.setPointSize(9)
         self.input_student_name_5.setFont(font)
         self.input_student_name_5.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "color: rgb(11, 52, 84);\n"
@@ -1985,6 +1756,10 @@ class Ui_MainWindow(object):
         self.lineEdit = QtWidgets.QLineEdit(parent=self.dateBirth_3)
         self.lineEdit.setMinimumSize(QtCore.QSize(0, 35))
         self.lineEdit.setMaximumSize(QtCore.QSize(16777215, 35))
+        font = QtGui.QFont()
+        font.setFamily("Arial")
+        font.setPointSize(9)
+        self.lineEdit.setFont(font)
         self.lineEdit.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "color: rgb(11, 52, 84);\n"
 "border:1px solid  #a8a8a8;")
@@ -1996,6 +1771,10 @@ class Ui_MainWindow(object):
         self.values_part2_5.setObjectName("values_part2_5")
         self.gradeStudent_3 = QtWidgets.QSplitter(parent=self.form_new_student_5)
         self.gradeStudent_3.setMinimumSize(QtCore.QSize(220, 0))
+        font = QtGui.QFont()
+        font.setFamily("Arial")
+        font.setPointSize(9)
+        self.gradeStudent_3.setFont(font)
         self.gradeStudent_3.setOrientation(QtCore.Qt.Orientation.Vertical)
         self.gradeStudent_3.setObjectName("gradeStudent_3")
         self.label_grade_5 = QtWidgets.QLabel(parent=self.gradeStudent_3)
@@ -2011,7 +1790,7 @@ class Ui_MainWindow(object):
         self.options_grade_3.setMinimumSize(QtCore.QSize(220, 35))
         self.options_grade_3.setMaximumSize(QtCore.QSize(260, 35))
         font = QtGui.QFont()
-        font.setPointSize(10)
+        font.setFamily("Arial")
         self.options_grade_3.setFont(font)
         self.options_grade_3.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "color: rgb(11, 52, 84);\n"
@@ -2052,7 +1831,8 @@ class Ui_MainWindow(object):
         self.input_dni_5.setMinimumSize(QtCore.QSize(250, 35))
         self.input_dni_5.setMaximumSize(QtCore.QSize(260, 35))
         font = QtGui.QFont()
-        font.setPointSize(10)
+        font.setFamily("Arial")
+        font.setPointSize(9)
         self.input_dni_5.setFont(font)
         self.input_dni_5.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "color: rgb(11, 52, 84);\n"
@@ -2078,7 +1858,8 @@ class Ui_MainWindow(object):
         self.input_tutor_name_5.setMinimumSize(QtCore.QSize(220, 35))
         self.input_tutor_name_5.setMaximumSize(QtCore.QSize(16777215, 35))
         font = QtGui.QFont()
-        font.setPointSize(10)
+        font.setFamily("Arial")
+        font.setPointSize(9)
         self.input_tutor_name_5.setFont(font)
         self.input_tutor_name_5.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "color: rgb(11, 52, 84);\n"
@@ -2107,7 +1888,8 @@ class Ui_MainWindow(object):
         self.input_email_7.setMinimumSize(QtCore.QSize(250, 35))
         self.input_email_7.setMaximumSize(QtCore.QSize(260, 35))
         font = QtGui.QFont()
-        font.setPointSize(10)
+        font.setFamily("Arial")
+        font.setPointSize(9)
         self.input_email_7.setFont(font)
         self.input_email_7.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "color: rgb(11, 52, 84);\n"
@@ -2132,7 +1914,8 @@ class Ui_MainWindow(object):
         self.input_address_6.setMinimumSize(QtCore.QSize(250, 35))
         self.input_address_6.setMaximumSize(QtCore.QSize(260, 35))
         font = QtGui.QFont()
-        font.setPointSize(10)
+        font.setFamily("Arial")
+        font.setPointSize(9)
         self.input_address_6.setFont(font)
         self.input_address_6.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "color: rgb(11, 52, 84);\n"
@@ -2157,7 +1940,8 @@ class Ui_MainWindow(object):
         self.input_phone_6.setMinimumSize(QtCore.QSize(0, 35))
         self.input_phone_6.setMaximumSize(QtCore.QSize(16777215, 35))
         font = QtGui.QFont()
-        font.setPointSize(10)
+        font.setFamily("Arial")
+        font.setPointSize(9)
         self.input_phone_6.setFont(font)
         self.input_phone_6.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "color: rgb(11, 52, 84);\n"
@@ -2186,7 +1970,8 @@ class Ui_MainWindow(object):
         self.input_incripcion_2.setMinimumSize(QtCore.QSize(250, 35))
         self.input_incripcion_2.setMaximumSize(QtCore.QSize(260, 35))
         font = QtGui.QFont()
-        font.setPointSize(10)
+        font.setFamily("Arial")
+        font.setPointSize(9)
         self.input_incripcion_2.setFont(font)
         self.input_incripcion_2.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "color: rgb(11, 52, 84);\n"
@@ -2209,6 +1994,10 @@ class Ui_MainWindow(object):
         self.options_rate_2 = QtWidgets.QComboBox(parent=self.rate_2)
         self.options_rate_2.setMinimumSize(QtCore.QSize(250, 35))
         self.options_rate_2.setMaximumSize(QtCore.QSize(260, 35))
+        font = QtGui.QFont()
+        font.setFamily("Arial")
+        font.setPointSize(9)
+        self.options_rate_2.setFont(font)
         self.options_rate_2.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "color: rgb(11, 52, 84);\n"
 "border:1px solid  #a8a8a8;")
@@ -2229,6 +2018,10 @@ class Ui_MainWindow(object):
         self.options_periodo_2 = QtWidgets.QComboBox(parent=self.periodo_2)
         self.options_periodo_2.setMinimumSize(QtCore.QSize(0, 35))
         self.options_periodo_2.setMaximumSize(QtCore.QSize(16777215, 35))
+        font = QtGui.QFont()
+        font.setFamily("Arial")
+        font.setPointSize(9)
+        self.options_periodo_2.setFont(font)
         self.options_periodo_2.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "color: rgb(11, 52, 84);\n"
 "border:1px solid  #a8a8a8;")
@@ -2363,7 +2156,8 @@ class Ui_MainWindow(object):
         self.input_student_name_invo.setMinimumSize(QtCore.QSize(0, 35))
         self.input_student_name_invo.setMaximumSize(QtCore.QSize(260, 35))
         font = QtGui.QFont()
-        font.setPointSize(10)
+        font.setFamily("Arial")
+        font.setPointSize(9)
         self.input_student_name_invo.setFont(font)
         self.input_student_name_invo.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "color: rgb(11, 52, 84);\n"
@@ -2389,7 +2183,8 @@ class Ui_MainWindow(object):
         self.input_id_invoice.setMinimumSize(QtCore.QSize(250, 35))
         self.input_id_invoice.setMaximumSize(QtCore.QSize(260, 35))
         font = QtGui.QFont()
-        font.setPointSize(10)
+        font.setFamily("Arial")
+        font.setPointSize(9)
         self.input_id_invoice.setFont(font)
         self.input_id_invoice.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "color: rgb(11, 52, 84);\n"
@@ -2414,6 +2209,10 @@ class Ui_MainWindow(object):
         self.lineEdit_description = QtWidgets.QLineEdit(parent=self.description)
         self.lineEdit_description.setMinimumSize(QtCore.QSize(0, 35))
         self.lineEdit_description.setMaximumSize(QtCore.QSize(16777215, 35))
+        font = QtGui.QFont()
+        font.setFamily("Arial")
+        font.setPointSize(9)
+        self.lineEdit_description.setFont(font)
         self.lineEdit_description.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "color: rgb(11, 52, 84);\n"
 "border:1px solid  #a8a8a8;")
@@ -2439,6 +2238,10 @@ class Ui_MainWindow(object):
         self.lineEdit_total_amount = QtWidgets.QLineEdit(parent=self.total_amount)
         self.lineEdit_total_amount.setMinimumSize(QtCore.QSize(260, 35))
         self.lineEdit_total_amount.setMaximumSize(QtCore.QSize(260, 35))
+        font = QtGui.QFont()
+        font.setFamily("Arial")
+        font.setPointSize(9)
+        self.lineEdit_total_amount.setFont(font)
         self.lineEdit_total_amount.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "color: rgb(11, 52, 84);\n"
 "border:1px solid  #a8a8a8;")
@@ -2463,7 +2266,8 @@ class Ui_MainWindow(object):
         self.input_creation_date.setMinimumSize(QtCore.QSize(250, 35))
         self.input_creation_date.setMaximumSize(QtCore.QSize(260, 35))
         font = QtGui.QFont()
-        font.setPointSize(10)
+        font.setFamily("Arial")
+        font.setPointSize(9)
         self.input_creation_date.setFont(font)
         self.input_creation_date.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "color: rgb(11, 52, 84);\n"
@@ -2489,7 +2293,8 @@ class Ui_MainWindow(object):
         self.input_expiration_date.setMinimumSize(QtCore.QSize(220, 35))
         self.input_expiration_date.setMaximumSize(QtCore.QSize(16777215, 35))
         font = QtGui.QFont()
-        font.setPointSize(10)
+        font.setFamily("Arial")
+        font.setPointSize(9)
         self.input_expiration_date.setFont(font)
         self.input_expiration_date.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "color: rgb(11, 52, 84);\n"
@@ -2517,6 +2322,10 @@ class Ui_MainWindow(object):
         self.option_payment_method = QtWidgets.QComboBox(parent=self.payment_method)
         self.option_payment_method.setMinimumSize(QtCore.QSize(260, 35))
         self.option_payment_method.setMaximumSize(QtCore.QSize(260, 35))
+        font = QtGui.QFont()
+        font.setFamily("Arial")
+        font.setPointSize(9)
+        self.option_payment_method.setFont(font)
         self.option_payment_method.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "color: rgb(11, 52, 84);\n"
 "border:1px solid  #a8a8a8;")
@@ -2541,7 +2350,8 @@ class Ui_MainWindow(object):
         self.input_amount_paid.setMinimumSize(QtCore.QSize(250, 35))
         self.input_amount_paid.setMaximumSize(QtCore.QSize(260, 35))
         font = QtGui.QFont()
-        font.setPointSize(10)
+        font.setFamily("Arial")
+        font.setPointSize(9)
         self.input_amount_paid.setFont(font)
         self.input_amount_paid.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "color: rgb(11, 52, 84);\n"
@@ -2582,79 +2392,70 @@ class Ui_MainWindow(object):
         self.settings.setObjectName("settings")
         self.gridLayout_27 = QtWidgets.QGridLayout(self.settings)
         self.gridLayout_27.setObjectName("gridLayout_27")
-        self.widget_5 = QtWidgets.QWidget(parent=self.settings)
-        self.widget_5.setObjectName("widget_5")
-        self.gridLayout_28 = QtWidgets.QGridLayout(self.widget_5)
-        self.gridLayout_28.setObjectName("gridLayout_28")
-        self.tittle_header_2 = QtWidgets.QLabel(parent=self.widget_5)
-        self.tittle_header_2.setMinimumSize(QtCore.QSize(0, 50))
-        self.tittle_header_2.setMaximumSize(QtCore.QSize(16777215, 50))
-        font = QtGui.QFont()
-        font.setFamily("Arial")
-        font.setPointSize(12)
-        font.setBold(True)
-        font.setWeight(75)
-        self.tittle_header_2.setFont(font)
-        self.tittle_header_2.setStyleSheet("color: rgb(11, 52, 84);\n"
-"margin-top:12px;")
-        self.tittle_header_2.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-        self.tittle_header_2.setObjectName("tittle_header_2")
-        self.gridLayout_28.addWidget(self.tittle_header_2, 0, 0, 1, 1)
+        self.stackedWidget_2 = QtWidgets.QStackedWidget(parent=self.settings)
+        self.stackedWidget_2.setObjectName("stackedWidget_2")
+        self.confi_page = QtWidgets.QWidget()
+        self.confi_page.setObjectName("confi_page")
+        self.gridLayout_22 = QtWidgets.QGridLayout(self.confi_page)
+        self.gridLayout_22.setObjectName("gridLayout_22")
         self.horizontalLayout_19 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_19.setContentsMargins(-1, -1, 10, -1)
         self.horizontalLayout_19.setObjectName("horizontalLayout_19")
-        self.tittle_header_3 = QtWidgets.QLabel(parent=self.widget_5)
-        self.tittle_header_3.setMinimumSize(QtCore.QSize(0, 50))
-        self.tittle_header_3.setMaximumSize(QtCore.QSize(16777215, 50))
-        font = QtGui.QFont()
-        font.setFamily("Arial")
-        font.setPointSize(12)
-        font.setBold(True)
-        font.setWeight(75)
-        self.tittle_header_3.setFont(font)
-        self.tittle_header_3.setStyleSheet("color: rgb(11, 52, 84);\n"
-"margin-top:12px;")
-        self.tittle_header_3.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-        self.tittle_header_3.setObjectName("tittle_header_3")
-        self.horizontalLayout_19.addWidget(self.tittle_header_3)
-        self.label_13 = QtWidgets.QLabel(parent=self.widget_5)
-        self.label_13.setText("")
-        self.label_13.setObjectName("label_13")
-        self.horizontalLayout_19.addWidget(self.label_13)
-        self.tittle_header_4 = QtWidgets.QLabel(parent=self.widget_5)
+        self.tittle_header_4 = QtWidgets.QLabel(parent=self.confi_page)
         self.tittle_header_4.setMinimumSize(QtCore.QSize(0, 50))
         self.tittle_header_4.setMaximumSize(QtCore.QSize(16777215, 50))
         font = QtGui.QFont()
         font.setFamily("Arial")
-        font.setPointSize(12)
+        font.setPointSize(11)
         font.setBold(True)
         font.setWeight(75)
         self.tittle_header_4.setFont(font)
         self.tittle_header_4.setLayoutDirection(QtCore.Qt.LayoutDirection.LeftToRight)
         self.tittle_header_4.setStyleSheet("color: rgb(11, 52, 84);\n"
-"margin-top:12px;")
+"margin-top:12px;\n"
+"font-weight:bold;")
         self.tittle_header_4.setAlignment(QtCore.Qt.AlignmentFlag.AlignRight|QtCore.Qt.AlignmentFlag.AlignTrailing|QtCore.Qt.AlignmentFlag.AlignVCenter)
         self.tittle_header_4.setObjectName("tittle_header_4")
         self.horizontalLayout_19.addWidget(self.tittle_header_4)
-        self.gridLayout_28.addLayout(self.horizontalLayout_19, 1, 0, 1, 1)
+        self.label_13 = QtWidgets.QLabel(parent=self.confi_page)
+        self.label_13.setMinimumSize(QtCore.QSize(0, 0))
+        self.label_13.setText("")
+        self.label_13.setObjectName("label_13")
+        self.horizontalLayout_19.addWidget(self.label_13)
+        self.tittle_header_3 = QtWidgets.QLabel(parent=self.confi_page)
+        self.tittle_header_3.setMinimumSize(QtCore.QSize(240, 50))
+        self.tittle_header_3.setMaximumSize(QtCore.QSize(16777215, 50))
+        font = QtGui.QFont()
+        font.setFamily("Arial")
+        font.setPointSize(11)
+        font.setBold(True)
+        font.setWeight(75)
+        self.tittle_header_3.setFont(font)
+        self.tittle_header_3.setStyleSheet("color: rgb(11, 52, 84);\n"
+"margin-top:12px;\n"
+"font-weight:bold;")
+        self.tittle_header_3.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        self.tittle_header_3.setObjectName("tittle_header_3")
+        self.horizontalLayout_19.addWidget(self.tittle_header_3, 0, QtCore.Qt.AlignmentFlag.AlignRight)
+        self.gridLayout_22.addLayout(self.horizontalLayout_19, 1, 0, 1, 2)
         self.horizontalLayout_18 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_18.setContentsMargins(20, -1, 20, -1)
         self.horizontalLayout_18.setObjectName("horizontalLayout_18")
         self.verticalLayout_15 = QtWidgets.QVBoxLayout()
         self.verticalLayout_15.setObjectName("verticalLayout_15")
-        self.splitter_9 = QtWidgets.QSplitter(parent=self.widget_5)
+        self.splitter_9 = QtWidgets.QSplitter(parent=self.confi_page)
         self.splitter_9.setOrientation(QtCore.Qt.Orientation.Horizontal)
         self.splitter_9.setObjectName("splitter_9")
         self.label_3 = QtWidgets.QLabel(parent=self.splitter_9)
         font = QtGui.QFont()
-        font.setFamily("arial")
+        font.setFamily("Arial")
         font.setPointSize(10)
         font.setBold(False)
         font.setItalic(False)
-        font.setWeight(50)
+        font.setWeight(9)
         self.label_3.setFont(font)
         self.label_3.setStyleSheet("color: rgb(11, 52, 84);\n"
-"font: 10pt \"arial\";")
+"font: 75 10pt \"Arial\";")
         self.label_3.setObjectName("label_3")
         self.splitter_4 = QtWidgets.QSplitter(parent=self.splitter_9)
         self.splitter_4.setMinimumSize(QtCore.QSize(270, 0))
@@ -2665,7 +2466,8 @@ class Ui_MainWindow(object):
         self.input_amount_paid_3.setMinimumSize(QtCore.QSize(220, 35))
         self.input_amount_paid_3.setMaximumSize(QtCore.QSize(220, 35))
         font = QtGui.QFont()
-        font.setPointSize(10)
+        font.setFamily("Arial")
+        font.setPointSize(9)
         self.input_amount_paid_3.setFont(font)
         self.input_amount_paid_3.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "color: rgb(11, 52, 84);\n"
@@ -2681,22 +2483,24 @@ class Ui_MainWindow(object):
 "border-radius:6px;\n"
 "")
         self.button_search_3.setText("")
-        self.button_search_3.setIcon(icon5)
+        icon1 = QtGui.QIcon()
+        icon1.addPixmap(QtGui.QPixmap("./assets/img/icons8-guardar-100.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.button_search_3.setIcon(icon1)
         self.button_search_3.setObjectName("button_search_3")
         self.verticalLayout_15.addWidget(self.splitter_9)
-        self.splitter_10 = QtWidgets.QSplitter(parent=self.widget_5)
+        self.splitter_10 = QtWidgets.QSplitter(parent=self.confi_page)
         self.splitter_10.setOrientation(QtCore.Qt.Orientation.Horizontal)
         self.splitter_10.setObjectName("splitter_10")
         self.label_4 = QtWidgets.QLabel(parent=self.splitter_10)
         font = QtGui.QFont()
-        font.setFamily("arial")
+        font.setFamily("Arial")
         font.setPointSize(10)
         font.setBold(False)
         font.setItalic(False)
-        font.setWeight(50)
+        font.setWeight(9)
         self.label_4.setFont(font)
         self.label_4.setStyleSheet("color: rgb(11, 52, 84);\n"
-"font: 10pt \"arial\";")
+"font: 75 10pt \"Arial\";")
         self.label_4.setObjectName("label_4")
         self.splitter_5 = QtWidgets.QSplitter(parent=self.splitter_10)
         self.splitter_5.setMinimumSize(QtCore.QSize(270, 0))
@@ -2707,7 +2511,8 @@ class Ui_MainWindow(object):
         self.input_amount_paid_4.setMinimumSize(QtCore.QSize(220, 35))
         self.input_amount_paid_4.setMaximumSize(QtCore.QSize(220, 35))
         font = QtGui.QFont()
-        font.setPointSize(10)
+        font.setFamily("Arial")
+        font.setPointSize(9)
         self.input_amount_paid_4.setFont(font)
         self.input_amount_paid_4.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "color: rgb(11, 52, 84);\n"
@@ -2723,22 +2528,22 @@ class Ui_MainWindow(object):
 "border-radius:6px;\n"
 "")
         self.button_search_4.setText("")
-        self.button_search_4.setIcon(icon5)
+        self.button_search_4.setIcon(icon1)
         self.button_search_4.setObjectName("button_search_4")
         self.verticalLayout_15.addWidget(self.splitter_10)
-        self.splitter_11 = QtWidgets.QSplitter(parent=self.widget_5)
+        self.splitter_11 = QtWidgets.QSplitter(parent=self.confi_page)
         self.splitter_11.setOrientation(QtCore.Qt.Orientation.Horizontal)
         self.splitter_11.setObjectName("splitter_11")
         self.label_2 = QtWidgets.QLabel(parent=self.splitter_11)
         font = QtGui.QFont()
-        font.setFamily("arial")
+        font.setFamily("Arial")
         font.setPointSize(10)
         font.setBold(False)
         font.setItalic(False)
-        font.setWeight(50)
+        font.setWeight(9)
         self.label_2.setFont(font)
         self.label_2.setStyleSheet("color: rgb(11, 52, 84);\n"
-"font: 10pt \"arial\";")
+"font: 75 10pt \"Arial\";")
         self.label_2.setObjectName("label_2")
         self.splitter_6 = QtWidgets.QSplitter(parent=self.splitter_11)
         self.splitter_6.setMinimumSize(QtCore.QSize(270, 0))
@@ -2749,7 +2554,8 @@ class Ui_MainWindow(object):
         self.input_amount_paid_2.setMinimumSize(QtCore.QSize(220, 35))
         self.input_amount_paid_2.setMaximumSize(QtCore.QSize(220, 35))
         font = QtGui.QFont()
-        font.setPointSize(10)
+        font.setFamily("Arial")
+        font.setPointSize(9)
         self.input_amount_paid_2.setFont(font)
         self.input_amount_paid_2.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "color: rgb(11, 52, 84);\n"
@@ -2765,22 +2571,22 @@ class Ui_MainWindow(object):
 "border-radius:6px;\n"
 "")
         self.button_search_2.setText("")
-        self.button_search_2.setIcon(icon5)
+        self.button_search_2.setIcon(icon1)
         self.button_search_2.setObjectName("button_search_2")
         self.verticalLayout_15.addWidget(self.splitter_11)
-        self.splitter_12 = QtWidgets.QSplitter(parent=self.widget_5)
+        self.splitter_12 = QtWidgets.QSplitter(parent=self.confi_page)
         self.splitter_12.setOrientation(QtCore.Qt.Orientation.Horizontal)
         self.splitter_12.setObjectName("splitter_12")
         self.label_5 = QtWidgets.QLabel(parent=self.splitter_12)
         font = QtGui.QFont()
-        font.setFamily("arial")
+        font.setFamily("Arial")
         font.setPointSize(10)
         font.setBold(False)
         font.setItalic(False)
-        font.setWeight(50)
+        font.setWeight(9)
         self.label_5.setFont(font)
         self.label_5.setStyleSheet("color: rgb(11, 52, 84);\n"
-"font: 10pt \"arial\";")
+"font: 75 10pt \"Arial\";")
         self.label_5.setObjectName("label_5")
         self.splitter_7 = QtWidgets.QSplitter(parent=self.splitter_12)
         self.splitter_7.setMinimumSize(QtCore.QSize(270, 0))
@@ -2791,7 +2597,8 @@ class Ui_MainWindow(object):
         self.input_amount_paid_5.setMinimumSize(QtCore.QSize(220, 35))
         self.input_amount_paid_5.setMaximumSize(QtCore.QSize(220, 35))
         font = QtGui.QFont()
-        font.setPointSize(10)
+        font.setFamily("Arial")
+        font.setPointSize(9)
         self.input_amount_paid_5.setFont(font)
         self.input_amount_paid_5.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "color: rgb(11, 52, 84);\n"
@@ -2807,22 +2614,22 @@ class Ui_MainWindow(object):
 "border-radius:6px;\n"
 "")
         self.button_search_5.setText("")
-        self.button_search_5.setIcon(icon5)
+        self.button_search_5.setIcon(icon1)
         self.button_search_5.setObjectName("button_search_5")
         self.verticalLayout_15.addWidget(self.splitter_12)
-        self.splitter_13 = QtWidgets.QSplitter(parent=self.widget_5)
+        self.splitter_13 = QtWidgets.QSplitter(parent=self.confi_page)
         self.splitter_13.setOrientation(QtCore.Qt.Orientation.Horizontal)
         self.splitter_13.setObjectName("splitter_13")
         self.label_6 = QtWidgets.QLabel(parent=self.splitter_13)
         font = QtGui.QFont()
-        font.setFamily("arial")
+        font.setFamily("Arial")
         font.setPointSize(10)
         font.setBold(False)
         font.setItalic(False)
-        font.setWeight(50)
+        font.setWeight(9)
         self.label_6.setFont(font)
         self.label_6.setStyleSheet("color: rgb(11, 52, 84);\n"
-"font: 10pt \"arial\";")
+"font: 75 10pt \"Arial\";")
         self.label_6.setObjectName("label_6")
         self.splitter_8 = QtWidgets.QSplitter(parent=self.splitter_13)
         self.splitter_8.setMinimumSize(QtCore.QSize(270, 0))
@@ -2833,7 +2640,8 @@ class Ui_MainWindow(object):
         self.input_amount_paid_6.setMinimumSize(QtCore.QSize(220, 35))
         self.input_amount_paid_6.setMaximumSize(QtCore.QSize(220, 35))
         font = QtGui.QFont()
-        font.setPointSize(10)
+        font.setFamily("Arial")
+        font.setPointSize(9)
         self.input_amount_paid_6.setFont(font)
         self.input_amount_paid_6.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "color: rgb(11, 52, 84);\n"
@@ -2849,13 +2657,73 @@ class Ui_MainWindow(object):
 "border-radius:6px;\n"
 "")
         self.button_search_6.setText("")
-        self.button_search_6.setIcon(icon5)
+        self.button_search_6.setIcon(icon1)
         self.button_search_6.setObjectName("button_search_6")
         self.verticalLayout_15.addWidget(self.splitter_13)
+        self.splitter_17 = QtWidgets.QSplitter(parent=self.confi_page)
+        self.splitter_17.setOrientation(QtCore.Qt.Orientation.Horizontal)
+        self.splitter_17.setObjectName("splitter_17")
+        self.label = QtWidgets.QLabel(parent=self.splitter_17)
+        font = QtGui.QFont()
+        font.setFamily("Arial")
+        font.setPointSize(10)
+        font.setBold(False)
+        font.setItalic(False)
+        font.setWeight(9)
+        self.label.setFont(font)
+        self.label.setStyleSheet("color: rgb(11, 52, 84);\n"
+"font: 75 10pt \"Arial\";")
+        self.label.setObjectName("label")
+        self.splitter_16 = QtWidgets.QSplitter(parent=self.splitter_17)
+        self.splitter_16.setMinimumSize(QtCore.QSize(270, 0))
+        self.splitter_16.setOrientation(QtCore.Qt.Orientation.Horizontal)
+        self.splitter_16.setObjectName("splitter_16")
+        self.frame = QtWidgets.QFrame(parent=self.splitter_16)
+        self.frame.setMinimumSize(QtCore.QSize(220, 40))
+        self.frame.setMaximumSize(QtCore.QSize(220, 40))
+        self.frame.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
+        self.frame.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
+        self.frame.setObjectName("frame")
+        self.gridLayout_21 = QtWidgets.QGridLayout(self.frame)
+        self.gridLayout_21.setObjectName("gridLayout_21")
+        self.checkBox_confirm = QtWidgets.QCheckBox(parent=self.frame)
+        font = QtGui.QFont()
+        font.setFamily("Arial")
+        font.setPointSize(9)
+        font.setBold(True)
+        font.setWeight(75)
+        self.checkBox_confirm.setFont(font)
+        self.checkBox_confirm.setStyleSheet("color: black;")
+        self.checkBox_confirm.setAutoExclusive(True)
+        self.checkBox_confirm.setObjectName("checkBox_confirm")
+        self.gridLayout_21.addWidget(self.checkBox_confirm, 0, 0, 1, 1)
+        self.checkBox_denegate = QtWidgets.QCheckBox(parent=self.frame)
+        font = QtGui.QFont()
+        font.setFamily("Arial")
+        font.setPointSize(9)
+        font.setBold(True)
+        font.setWeight(75)
+        self.checkBox_denegate.setFont(font)
+        self.checkBox_denegate.setStyleSheet("color: black;")
+        self.checkBox_denegate.setAutoExclusive(True)
+        self.checkBox_denegate.setObjectName("checkBox_denegate")
+        self.gridLayout_21.addWidget(self.checkBox_denegate, 0, 1, 1, 1)
+        self.button_search_7 = QtWidgets.QPushButton(parent=self.splitter_16)
+        self.button_search_7.setMinimumSize(QtCore.QSize(35, 35))
+        self.button_search_7.setMaximumSize(QtCore.QSize(30, 30))
+        self.button_search_7.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+        self.button_search_7.setStyleSheet("background-color:#1770b3;\n"
+"borde: none;\n"
+"border-radius:6px;\n"
+"")
+        self.button_search_7.setText("")
+        self.button_search_7.setIcon(icon1)
+        self.button_search_7.setObjectName("button_search_7")
+        self.verticalLayout_15.addWidget(self.splitter_17)
         self.horizontalLayout_18.addLayout(self.verticalLayout_15)
-        spacerItem3 = QtWidgets.QSpacerItem(38, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
-        self.horizontalLayout_18.addItem(spacerItem3)
-        self.splitter_15 = QtWidgets.QSplitter(parent=self.widget_5)
+        spacerItem1 = QtWidgets.QSpacerItem(38, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        self.horizontalLayout_18.addItem(spacerItem1)
+        self.splitter_15 = QtWidgets.QSplitter(parent=self.confi_page)
         self.splitter_15.setOrientation(QtCore.Qt.Orientation.Vertical)
         self.splitter_15.setObjectName("splitter_15")
         self.splitter_14 = QtWidgets.QSplitter(parent=self.splitter_15)
@@ -2894,129 +2762,161 @@ class Ui_MainWindow(object):
 "")
         self.commandLinkButton_3.setAutoDefault(False)
         self.commandLinkButton_3.setObjectName("commandLinkButton_3")
+        self.commandLinkButton_4 = QtWidgets.QCommandLinkButton(parent=self.splitter_14)
+        self.commandLinkButton_4.setMinimumSize(QtCore.QSize(200, 45))
+        self.commandLinkButton_4.setMaximumSize(QtCore.QSize(200, 45))
+        font = QtGui.QFont()
+        font.setFamily("Arial")
+        self.commandLinkButton_4.setFont(font)
+        self.commandLinkButton_4.setStyleSheet("border: 1px solid #1770b3;\n"
+"border-radius: 15px;")
+        self.commandLinkButton_4.setObjectName("commandLinkButton_4")
         self.widget_11 = QtWidgets.QWidget(parent=self.splitter_15)
         self.widget_11.setObjectName("widget_11")
         self.horizontalLayout_18.addWidget(self.splitter_15)
-        self.gridLayout_28.addLayout(self.horizontalLayout_18, 2, 0, 1, 1)
-        spacerItem4 = QtWidgets.QSpacerItem(20, 239, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
-        self.gridLayout_28.addItem(spacerItem4, 3, 0, 1, 1)
-        self.gridLayout_27.addWidget(self.widget_5, 1, 0, 1, 1)
+        self.gridLayout_22.addLayout(self.horizontalLayout_18, 2, 0, 1, 2)
+        spacerItem2 = QtWidgets.QSpacerItem(20, 235, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
+        self.gridLayout_22.addItem(spacerItem2, 3, 1, 1, 1)
+        self.tittle_header_2 = QtWidgets.QLabel(parent=self.confi_page)
+        self.tittle_header_2.setMinimumSize(QtCore.QSize(0, 50))
+        self.tittle_header_2.setMaximumSize(QtCore.QSize(16777215, 50))
+        font = QtGui.QFont()
+        font.setFamily("Arial")
+        font.setPointSize(12)
+        font.setBold(True)
+        font.setWeight(75)
+        self.tittle_header_2.setFont(font)
+        self.tittle_header_2.setStyleSheet("color: rgb(11, 52, 84);\n"
+"margin-top:12px;\n"
+"font-weight:bold;")
+        self.tittle_header_2.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        self.tittle_header_2.setObjectName("tittle_header_2")
+        self.gridLayout_22.addWidget(self.tittle_header_2, 0, 0, 1, 2)
+        self.stackedWidget_2.addWidget(self.confi_page)
+        self.page_2 = QtWidgets.QWidget()
+        self.page_2.setObjectName("page_2")
+        self.stackedWidget_2.addWidget(self.page_2)
+        self.gridLayout_27.addWidget(self.stackedWidget_2, 1, 0, 1, 1)
         self.content.addWidget(self.settings)
         self.reports = QtWidgets.QWidget()
         self.reports.setStyleSheet("background-color:#e9f4fd;")
         self.reports.setObjectName("reports")
-        self.gridLayout_17 = QtWidgets.QGridLayout(self.reports)
-        self.gridLayout_17.setContentsMargins(25, -1, 25, -1)
+        self.gridLayout_18 = QtWidgets.QGridLayout(self.reports)
+        self.gridLayout_18.setObjectName("gridLayout_18")
+        self.stackedWidget = QtWidgets.QStackedWidget(parent=self.reports)
+        self.stackedWidget.setObjectName("stackedWidget")
+        self.view_cost = QtWidgets.QWidget()
+        self.view_cost.setObjectName("view_cost")
+        self.gridLayout_17 = QtWidgets.QGridLayout(self.view_cost)
         self.gridLayout_17.setObjectName("gridLayout_17")
-        self.splitter = QtWidgets.QSplitter(parent=self.reports)
+        self.splitter = QtWidgets.QSplitter(parent=self.view_cost)
         self.splitter.setOrientation(QtCore.Qt.Orientation.Vertical)
         self.splitter.setObjectName("splitter")
-        self.label = QtWidgets.QLabel(parent=self.splitter)
+        self.cost_tittle = QtWidgets.QLabel(parent=self.splitter)
         font = QtGui.QFont()
         font.setFamily("Arial")
         font.setPointSize(14)
         font.setBold(True)
         font.setItalic(False)
         font.setWeight(75)
-        self.label.setFont(font)
-        self.label.setStyleSheet("\n"
+        self.cost_tittle.setFont(font)
+        self.cost_tittle.setStyleSheet("\n"
 "color: rgb(11, 52, 84);")
-        self.label.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-        self.label.setObjectName("label")
-        self.widget1 = QtWidgets.QWidget(parent=self.splitter)
-        self.widget1.setObjectName("widget1")
-        self.horizontalLayout_9 = QtWidgets.QHBoxLayout(self.widget1)
+        self.cost_tittle.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        self.cost_tittle.setObjectName("cost_tittle")
+        self.layoutWidget_3 = QtWidgets.QWidget(parent=self.splitter)
+        self.layoutWidget_3.setObjectName("layoutWidget_3")
+        self.horizontalLayout_9 = QtWidgets.QHBoxLayout(self.layoutWidget_3)
         self.horizontalLayout_9.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout_9.setObjectName("horizontalLayout_9")
-        self.horizontalLayout_8 = QtWidgets.QHBoxLayout()
-        self.horizontalLayout_8.setObjectName("horizontalLayout_8")
-        self.history_tittle_pam_3 = QtWidgets.QLabel(parent=self.widget1)
+        self.report_dinamic_label = QtWidgets.QLabel(parent=self.layoutWidget_3)
         font = QtGui.QFont()
-        font.setFamily("Arial")
-        font.setPointSize(12)
-        font.setBold(True)
-        font.setWeight(75)
-        self.history_tittle_pam_3.setFont(font)
-        self.history_tittle_pam_3.setStyleSheet("color: rgb(11, 52, 84);")
-        self.history_tittle_pam_3.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-        self.history_tittle_pam_3.setObjectName("history_tittle_pam_3")
-        self.horizontalLayout_8.addWidget(self.history_tittle_pam_3)
-        self.option_payment_method_report = QtWidgets.QComboBox(parent=self.widget1)
-        self.option_payment_method_report.setMinimumSize(QtCore.QSize(260, 35))
-        self.option_payment_method_report.setMaximumSize(QtCore.QSize(260, 35))
-        font = QtGui.QFont()
-        font.setFamily("Arial")
-        font.setPointSize(9)
-        self.option_payment_method_report.setFont(font)
-        self.option_payment_method_report.setStyleSheet("background-color: rgb(255, 255, 255);\n"
-"color: rgb(11, 52, 84);\n"
-"border:1px solid  #a8a8a8;")
-        self.option_payment_method_report.setObjectName("option_payment_method_report")
-        self.option_payment_method_report.addItem("")
-        self.option_payment_method_report.addItem("")
-        self.option_payment_method_report.addItem("")
-        self.option_payment_method_report.addItem("")
-        self.horizontalLayout_8.addWidget(self.option_payment_method_report)
-        self.horizontalLayout_9.addLayout(self.horizontalLayout_8)
-        self.report_dinamic_label = QtWidgets.QLabel(parent=self.widget1)
-        self.report_dinamic_label.setStyleSheet("font: 14pt \"MS Shell Dlg 2\";\n"
+        font.setFamily("MS Shell Dlg 2")
+        font.setPointSize(13)
+        font.setBold(False)
+        font.setItalic(False)
+        font.setWeight(50)
+        self.report_dinamic_label.setFont(font)
+        self.report_dinamic_label.setStyleSheet("font: 13pt \"MS Shell Dlg 2\";\n"
 "color: rgb(11, 52, 84);")
         self.report_dinamic_label.setObjectName("report_dinamic_label")
         self.horizontalLayout_9.addWidget(self.report_dinamic_label, 0, QtCore.Qt.AlignmentFlag.AlignHCenter)
-        self.widget2 = QtWidgets.QWidget(parent=self.splitter)
-        self.widget2.setObjectName("widget2")
-        self.horizontalLayout_10 = QtWidgets.QHBoxLayout(self.widget2)
+        self.layoutWidget_4 = QtWidgets.QWidget(parent=self.splitter)
+        self.layoutWidget_4.setObjectName("layoutWidget_4")
+        self.horizontalLayout_10 = QtWidgets.QHBoxLayout(self.layoutWidget_4)
         self.horizontalLayout_10.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout_10.setObjectName("horizontalLayout_10")
-        self.pushButton_Day = QtWidgets.QPushButton(parent=self.widget2)
+        self.verticalLayout_11 = QtWidgets.QVBoxLayout()
+        self.verticalLayout_11.setObjectName("verticalLayout_11")
+        self.label_7 = QtWidgets.QLabel(parent=self.layoutWidget_4)
+        self.label_7.setMinimumSize(QtCore.QSize(0, 20))
+        self.label_7.setMaximumSize(QtCore.QSize(16777215, 20))
+        font = QtGui.QFont()
+        font.setFamily("Arial")
+        font.setPointSize(10)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_7.setFont(font)
+        self.label_7.setObjectName("label_7")
+        self.verticalLayout_11.addWidget(self.label_7, 0, QtCore.Qt.AlignmentFlag.AlignHCenter)
+        self.horizontalLayout_8 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_8.setObjectName("horizontalLayout_8")
+        self.pushButton_Day = QtWidgets.QPushButton(parent=self.layoutWidget_4)
         self.pushButton_Day.setMinimumSize(QtCore.QSize(90, 25))
         self.pushButton_Day.setMaximumSize(QtCore.QSize(90, 25))
         font = QtGui.QFont()
-        font.setFamily("Euphemia")
-        font.setPointSize(10)
+        font.setFamily("Arial")
+        font.setPointSize(11)
         font.setBold(True)
         font.setWeight(75)
         self.pushButton_Day.setFont(font)
         self.pushButton_Day.setStyleSheet("background-color:#1770b3;\n"
-"font-family: Euphemia;\n"
+"font-family: Arial;\n"
 "border: none;\n"
 "border-radius: 6px;\n"
 "color:white;")
         self.pushButton_Day.setObjectName("pushButton_Day")
-        self.horizontalLayout_10.addWidget(self.pushButton_Day)
-        self.pushButton_month = QtWidgets.QPushButton(parent=self.widget2)
+        self.horizontalLayout_8.addWidget(self.pushButton_Day)
+        self.pushButton_month = QtWidgets.QPushButton(parent=self.layoutWidget_4)
         self.pushButton_month.setMinimumSize(QtCore.QSize(90, 25))
         self.pushButton_month.setMaximumSize(QtCore.QSize(90, 25))
         font = QtGui.QFont()
-        font.setFamily("Euphemia")
-        font.setPointSize(10)
+        font.setFamily("Arial")
+        font.setPointSize(11)
         font.setBold(True)
         font.setWeight(75)
         self.pushButton_month.setFont(font)
         self.pushButton_month.setStyleSheet("background-color:#1770b3;\n"
-"font-family: Euphemia;\n"
+"font-family: Arial;\n"
 "border: none;\n"
 "border-radius: 6px;\n"
 "color:white;")
         self.pushButton_month.setObjectName("pushButton_month")
-        self.horizontalLayout_10.addWidget(self.pushButton_month)
-        spacerItem5 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
-        self.horizontalLayout_10.addItem(spacerItem5)
+        self.horizontalLayout_8.addWidget(self.pushButton_month)
+        self.verticalLayout_11.addLayout(self.horizontalLayout_8)
+        self.horizontalLayout_10.addLayout(self.verticalLayout_11)
+        spacerItem3 = QtWidgets.QSpacerItem(37, 16, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        self.horizontalLayout_10.addItem(spacerItem3)
+        self.pushButton_Rgasto = QtWidgets.QPushButton(parent=self.layoutWidget_4)
+        self.pushButton_Rgasto.setMinimumSize(QtCore.QSize(130, 30))
+        self.pushButton_Rgasto.setMaximumSize(QtCore.QSize(130, 30))
+        font = QtGui.QFont()
+        font.setFamily("Arial")
+        font.setPointSize(11)
+        font.setBold(True)
+        font.setWeight(75)
+        self.pushButton_Rgasto.setFont(font)
+        self.pushButton_Rgasto.setStyleSheet("background-color:#1770b3;\n"
+"font-family: Arial;\n"
+"border: none;\n"
+"border-radius: 6px;\n"
+"color:white;")
+        self.pushButton_Rgasto.setObjectName("pushButton_Rgasto")
+        self.horizontalLayout_10.addWidget(self.pushButton_Rgasto)
         self.gridLayout_17.addWidget(self.splitter, 0, 0, 1, 1)
         self.verticalLayout_10 = QtWidgets.QVBoxLayout()
         self.verticalLayout_10.setObjectName("verticalLayout_10")
-        self.history_tittle_pam_2 = QtWidgets.QLabel(parent=self.reports)
-        font = QtGui.QFont()
-        font.setFamily("Arial")
-        font.setPointSize(13)
-        font.setBold(True)
-        font.setWeight(75)
-        self.history_tittle_pam_2.setFont(font)
-        self.history_tittle_pam_2.setStyleSheet("color: rgb(11, 52, 84);")
-        self.history_tittle_pam_2.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-        self.history_tittle_pam_2.setObjectName("history_tittle_pam_2")
-        self.verticalLayout_10.addWidget(self.history_tittle_pam_2)
-        self.table_reports_payments = QtWidgets.QTableWidget(parent=self.reports)
+        self.table_reports_payments = QtWidgets.QTableWidget(parent=self.view_cost)
         self.table_reports_payments.setMinimumSize(QtCore.QSize(600, 0))
         self.table_reports_payments.setMaximumSize(QtCore.QSize(790, 16777215))
         self.table_reports_payments.setBaseSize(QtCore.QSize(500, 50))
@@ -3070,40 +2970,494 @@ class Ui_MainWindow(object):
         self.table_reports_payments.horizontalHeader().setDefaultSectionSize(210)
         self.verticalLayout_10.addWidget(self.table_reports_payments)
         self.gridLayout_17.addLayout(self.verticalLayout_10, 1, 0, 1, 1)
+        self.stackedWidget.addWidget(self.view_cost)
+        self.register_cost = QtWidgets.QWidget()
+        self.register_cost.setMinimumSize(QtCore.QSize(0, 500))
+        self.register_cost.setMaximumSize(QtCore.QSize(16777215, 500))
+        self.register_cost.setObjectName("register_cost")
+        self.gridLayout_20 = QtWidgets.QGridLayout(self.register_cost)
+        self.gridLayout_20.setObjectName("gridLayout_20")
+        self.splitter_3 = QtWidgets.QSplitter(parent=self.register_cost)
+        self.splitter_3.setOrientation(QtCore.Qt.Orientation.Vertical)
+        self.splitter_3.setObjectName("splitter_3")
+        self.layoutWidget1 = QtWidgets.QWidget(parent=self.splitter_3)
+        self.layoutWidget1.setObjectName("layoutWidget1")
+        self.header_register_cost = QtWidgets.QHBoxLayout(self.layoutWidget1)
+        self.header_register_cost.setContentsMargins(0, 0, 0, 0)
+        self.header_register_cost.setObjectName("header_register_cost")
+        self.widget_7 = QtWidgets.QWidget(parent=self.layoutWidget1)
+        self.widget_7.setMinimumSize(QtCore.QSize(90, 0))
+        self.widget_7.setMaximumSize(QtCore.QSize(90, 16777215))
+        self.widget_7.setObjectName("widget_7")
+        self.header_register_cost.addWidget(self.widget_7)
+        self.tittle_new_cost = QtWidgets.QLabel(parent=self.layoutWidget1)
+        self.tittle_new_cost.setMinimumSize(QtCore.QSize(500, 45))
+        self.tittle_new_cost.setMaximumSize(QtCore.QSize(500, 16777214))
+        font = QtGui.QFont()
+        font.setFamily("Arial")
+        font.setPointSize(12)
+        font.setBold(True)
+        font.setWeight(75)
+        self.tittle_new_cost.setFont(font)
+        self.tittle_new_cost.setLayoutDirection(QtCore.Qt.LayoutDirection.LeftToRight)
+        self.tittle_new_cost.setStyleSheet("color: rgb(11, 52, 84);")
+        self.tittle_new_cost.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        self.tittle_new_cost.setObjectName("tittle_new_cost")
+        self.header_register_cost.addWidget(self.tittle_new_cost)
+        self.widget_6 = QtWidgets.QWidget(parent=self.layoutWidget1)
+        self.widget_6.setMinimumSize(QtCore.QSize(90, 30))
+        self.widget_6.setMaximumSize(QtCore.QSize(90, 30))
+        self.widget_6.setObjectName("widget_6")
+        self.header_register_cost.addWidget(self.widget_6)
+        self.form_new_cost = QtWidgets.QWidget(parent=self.splitter_3)
+        self.form_new_cost.setMinimumSize(QtCore.QSize(800, 0))
+        self.form_new_cost.setMaximumSize(QtCore.QSize(16777215, 16777215))
+        self.form_new_cost.setObjectName("form_new_cost")
+        self.gridLayout_19 = QtWidgets.QGridLayout(self.form_new_cost)
+        self.gridLayout_19.setContentsMargins(0, 20, 0, 0)
+        self.gridLayout_19.setObjectName("gridLayout_19")
+        self.message_erro_payment_2 = QtWidgets.QLabel(parent=self.form_new_cost)
+        font = QtGui.QFont()
+        font.setFamily("Euphemia")
+        font.setPointSize(9)
+        font.setBold(True)
+        font.setWeight(75)
+        self.message_erro_payment_2.setFont(font)
+        self.message_erro_payment_2.setStyleSheet("font-family: Euphemia;\n"
+"color:red;")
+        self.message_erro_payment_2.setText("")
+        self.message_erro_payment_2.setObjectName("message_erro_payment_2")
+        self.gridLayout_19.addWidget(self.message_erro_payment_2, 2, 0, 1, 1)
+        self.form_content_cost = QtWidgets.QVBoxLayout()
+        self.form_content_cost.setObjectName("form_content_cost")
+        self.first_part_form_2 = QtWidgets.QHBoxLayout()
+        self.first_part_form_2.setContentsMargins(-1, -1, -1, 20)
+        self.first_part_form_2.setObjectName("first_part_form_2")
+        self.description_cost = QtWidgets.QSplitter(parent=self.form_new_cost)
+        self.description_cost.setMinimumSize(QtCore.QSize(220, 0))
+        self.description_cost.setOrientation(QtCore.Qt.Orientation.Vertical)
+        self.description_cost.setObjectName("description_cost")
+        self.label_description_cost = QtWidgets.QLabel(parent=self.description_cost)
+        self.label_description_cost.setMinimumSize(QtCore.QSize(0, 30))
+        self.label_description_cost.setMaximumSize(QtCore.QSize(16777215, 30))
+        font = QtGui.QFont()
+        font.setFamily("Arial")
+        font.setPointSize(10)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_description_cost.setFont(font)
+        self.label_description_cost.setStyleSheet("color: rgb(11, 52, 84);")
+        self.label_description_cost.setObjectName("label_description_cost")
+        self.plainText_description_cost = QtWidgets.QPlainTextEdit(parent=self.description_cost)
+        self.plainText_description_cost.setMinimumSize(QtCore.QSize(0, 35))
+        self.plainText_description_cost.setMaximumSize(QtCore.QSize(16777215, 35))
+        font = QtGui.QFont()
+        font.setFamily("Arial")
+        font.setPointSize(10)
+        self.plainText_description_cost.setFont(font)
+        self.plainText_description_cost.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+"color: rgb(11, 52, 84);\n"
+"border:1px solid  #a8a8a8;")
+        self.plainText_description_cost.setCenterOnScroll(False)
+        self.plainText_description_cost.setObjectName("plainText_description_cost")
+        self.first_part_form_2.addWidget(self.description_cost)
+        self.dateCost_S = QtWidgets.QSplitter(parent=self.form_new_cost)
+        self.dateCost_S.setOrientation(QtCore.Qt.Orientation.Vertical)
+        self.dateCost_S.setObjectName("dateCost_S")
+        self.dateCost = QtWidgets.QLabel(parent=self.dateCost_S)
+        self.dateCost.setMinimumSize(QtCore.QSize(0, 30))
+        self.dateCost.setMaximumSize(QtCore.QSize(16777215, 30))
+        font = QtGui.QFont()
+        font.setFamily("Arial")
+        font.setPointSize(10)
+        font.setBold(True)
+        font.setWeight(75)
+        self.dateCost.setFont(font)
+        self.dateCost.setStyleSheet("color: rgb(11, 52, 84);")
+        self.dateCost.setObjectName("dateCost")
+        self.dateCost_2 = QtWidgets.QDateEdit(parent=self.dateCost_S)
+        self.dateCost_2.setMinimumSize(QtCore.QSize(0, 35))
+        self.dateCost_2.setMaximumSize(QtCore.QSize(16777215, 35))
+        font = QtGui.QFont()
+        font.setFamily("Arial")
+        font.setPointSize(10)
+        self.dateCost_2.setFont(font)
+        self.dateCost_2.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+"color: rgb(11, 52, 84);\n"
+"border:1px solid  #a8a8a8;")
+        self.dateCost_2.setObjectName("dateCost_2")
+        self.first_part_form_2.addWidget(self.dateCost_S)
+        self.total_cost = QtWidgets.QSplitter(parent=self.form_new_cost)
+        self.total_cost.setOrientation(QtCore.Qt.Orientation.Vertical)
+        self.total_cost.setObjectName("total_cost")
+        self.label_totalC = QtWidgets.QLabel(parent=self.total_cost)
+        self.label_totalC.setMinimumSize(QtCore.QSize(0, 30))
+        self.label_totalC.setMaximumSize(QtCore.QSize(16777215, 30))
+        font = QtGui.QFont()
+        font.setFamily("Arial")
+        font.setPointSize(10)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_totalC.setFont(font)
+        self.label_totalC.setStyleSheet("color: rgb(11, 52, 84);")
+        self.label_totalC.setObjectName("label_totalC")
+        self.lineEdit_totalC = QtWidgets.QLineEdit(parent=self.total_cost)
+        self.lineEdit_totalC.setMinimumSize(QtCore.QSize(0, 35))
+        self.lineEdit_totalC.setMaximumSize(QtCore.QSize(16777215, 35))
+        font = QtGui.QFont()
+        font.setFamily("Arial")
+        font.setPointSize(10)
+        self.lineEdit_totalC.setFont(font)
+        self.lineEdit_totalC.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+"color: rgb(11, 52, 84);\n"
+"border:1px solid  #a8a8a8;")
+        self.lineEdit_totalC.setReadOnly(False)
+        self.lineEdit_totalC.setObjectName("lineEdit_totalC")
+        self.first_part_form_2.addWidget(self.total_cost)
+        self.form_content_cost.addLayout(self.first_part_form_2)
+        self.gridLayout_19.addLayout(self.form_content_cost, 0, 0, 1, 1)
+        self.registerButton_payment_2 = QtWidgets.QPushButton(parent=self.form_new_cost)
+        self.registerButton_payment_2.setMinimumSize(QtCore.QSize(160, 35))
+        self.registerButton_payment_2.setMaximumSize(QtCore.QSize(160, 35))
+        font = QtGui.QFont()
+        font.setFamily("arial")
+        font.setPointSize(10)
+        font.setBold(True)
+        font.setWeight(75)
+        self.registerButton_payment_2.setFont(font)
+        self.registerButton_payment_2.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+        self.registerButton_payment_2.setLayoutDirection(QtCore.Qt.LayoutDirection.LeftToRight)
+        self.registerButton_payment_2.setStyleSheet("background-color:#1770b3;\n"
+"border: none;\n"
+"border-radius: 6px;\n"
+"font-family: arial;\n"
+"color:white;")
+        self.registerButton_payment_2.setObjectName("registerButton_payment_2")
+        self.gridLayout_19.addWidget(self.registerButton_payment_2, 1, 0, 1, 1, QtCore.Qt.AlignmentFlag.AlignHCenter)
+        self.gridLayout_20.addWidget(self.splitter_3, 1, 0, 1, 1, QtCore.Qt.AlignmentFlag.AlignVCenter)
+        self.button_back_cost = QtWidgets.QPushButton(parent=self.register_cost)
+        self.button_back_cost.setMinimumSize(QtCore.QSize(90, 30))
+        self.button_back_cost.setMaximumSize(QtCore.QSize(90, 30))
+        font = QtGui.QFont()
+        font.setFamily("arial")
+        font.setPointSize(10)
+        font.setBold(True)
+        font.setWeight(75)
+        self.button_back_cost.setFont(font)
+        self.button_back_cost.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+        self.button_back_cost.setStyleSheet("background-color:#1770b3;\n"
+"font-family: arial;\n"
+"border: none;\n"
+"border-radius: 6px;\n"
+"color:white;")
+        self.button_back_cost.setObjectName("button_back_cost")
+        self.gridLayout_20.addWidget(self.button_back_cost, 0, 0, 1, 1)
+        self.stackedWidget.addWidget(self.register_cost)
+        self.gridLayout_18.addWidget(self.stackedWidget, 0, 0, 1, 1)
         self.content.addWidget(self.reports)
         self.gridLayout.addWidget(self.content, 0, 2, 1, 1)
-        self.gridLayout_7.addWidget(self.header_widget, 0, 2, 1, 1)
+        self.icon_complete_widget_2 = QtWidgets.QWidget(parent=self.header_widget)
+        self.icon_complete_widget_2.setMinimumSize(QtCore.QSize(80, 0))
+        self.icon_complete_widget_2.setMaximumSize(QtCore.QSize(80, 16777215))
+        self.icon_complete_widget_2.setStyleSheet("QWidget{\n"
+"background-color: rgb(31, 149, 239);\n"
+"border-top-left-radius:10px;\n"
+"border-bottom-left-radius:10px;\n"
+"}\n"
+"\n"
+"QPushButton{\n"
+"color: #FFFFFF;\n"
+"text-align: left;\n"
+"height:30px;\n"
+"border:none;\n"
+"padding-left:10px;\n"
+"border-top-left-radius:10px;\n"
+"border-bottom-left-radius:10px;\n"
+"border-top-right-radius:10px;\n"
+"border-bottom-right-radius:10px;\n"
+"}\n"
+"\n"
+"\n"
+"QLabel{\n"
+"color:#FFFFFF;\n"
+"text-align:center;\n"
+"}\n"
+"\n"
+"QPushButton:checked{\n"
+"background-color:#F5FAFE;\n"
+"color: #1F95EF;\n"
+"font-weight:bold\n"
+"}")
+        self.icon_complete_widget_2.setObjectName("icon_complete_widget_2")
+        self.gridLayout_15 = QtWidgets.QGridLayout(self.icon_complete_widget_2)
+        self.gridLayout_15.setContentsMargins(0, -1, 0, -1)
+        self.gridLayout_15.setObjectName("gridLayout_15")
+        self.menuButton_2 = QtWidgets.QPushButton(parent=self.icon_complete_widget_2)
+        self.menuButton_2.setMinimumSize(QtCore.QSize(65, 50))
+        self.menuButton_2.setMaximumSize(QtCore.QSize(65, 50))
+        self.menuButton_2.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+        self.menuButton_2.setLayoutDirection(QtCore.Qt.LayoutDirection.RightToLeft)
+        self.menuButton_2.setStyleSheet("\n"
+"\n"
+"QPushButton:checked{\n"
+"background-color:none;\n"
+"}")
+        self.menuButton_2.setText("")
+        icon2 = QtGui.QIcon()
+        icon2.addPixmap(QtGui.QPixmap("./assets/img/icons8-computer-50.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.menuButton_2.setIcon(icon2)
+        self.menuButton_2.setIconSize(QtCore.QSize(50, 50))
+        self.menuButton_2.setCheckable(True)
+        self.menuButton_2.setAutoExclusive(True)
+        self.menuButton_2.setObjectName("menuButton_2")
+        self.gridLayout_15.addWidget(self.menuButton_2, 0, 0, 1, 1)
+        self.verticalLayout_8 = QtWidgets.QVBoxLayout()
+        self.verticalLayout_8.setContentsMargins(-1, 20, -1, -1)
+        self.verticalLayout_8.setSpacing(8)
+        self.verticalLayout_8.setObjectName("verticalLayout_8")
+        self.students_3 = QtWidgets.QPushButton(parent=self.icon_complete_widget_2)
+        self.students_3.setMinimumSize(QtCore.QSize(45, 40))
+        self.students_3.setMaximumSize(QtCore.QSize(40, 40))
+        font = QtGui.QFont()
+        font.setFamily("Arial")
+        self.students_3.setFont(font)
+        self.students_3.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+        self.students_3.setText("")
+        icon3 = QtGui.QIcon()
+        icon3.addPixmap(QtGui.QPixmap("./assets/img/profile_white.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon3.addPixmap(QtGui.QPixmap("./assets/img/profile.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.On)
+        self.students_3.setIcon(icon3)
+        self.students_3.setIconSize(QtCore.QSize(23, 24))
+        self.students_3.setCheckable(True)
+        self.students_3.setAutoExclusive(True)
+        self.students_3.setObjectName("students_3")
+        self.verticalLayout_8.addWidget(self.students_3, 0, QtCore.Qt.AlignmentFlag.AlignHCenter|QtCore.Qt.AlignmentFlag.AlignVCenter)
+        self.reports_3 = QtWidgets.QPushButton(parent=self.icon_complete_widget_2)
+        self.reports_3.setMinimumSize(QtCore.QSize(45, 40))
+        self.reports_3.setMaximumSize(QtCore.QSize(40, 40))
+        font = QtGui.QFont()
+        font.setFamily("Arial")
+        self.reports_3.setFont(font)
+        self.reports_3.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+        self.reports_3.setStyleSheet("padding-right:-10px")
+        self.reports_3.setText("")
+        icon4 = QtGui.QIcon()
+        icon4.addPixmap(QtGui.QPixmap("./assets/img/icons8-report-100.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon4.addPixmap(QtGui.QPixmap("./assets/img/icons8-report-100-blue.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.On)
+        self.reports_3.setIcon(icon4)
+        self.reports_3.setIconSize(QtCore.QSize(28, 30))
+        self.reports_3.setCheckable(True)
+        self.reports_3.setAutoExclusive(True)
+        self.reports_3.setObjectName("reports_3")
+        self.verticalLayout_8.addWidget(self.reports_3, 0, QtCore.Qt.AlignmentFlag.AlignHCenter)
+        self.config_2 = QtWidgets.QPushButton(parent=self.icon_complete_widget_2)
+        self.config_2.setMinimumSize(QtCore.QSize(45, 40))
+        self.config_2.setMaximumSize(QtCore.QSize(40, 40))
+        font = QtGui.QFont()
+        font.setFamily("Arial")
+        self.config_2.setFont(font)
+        self.config_2.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+        self.config_2.setText("")
+        icon5 = QtGui.QIcon()
+        icon5.addPixmap(QtGui.QPixmap("./assets/img/config2.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon5.addPixmap(QtGui.QPixmap("./assets/img/config.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.On)
+        self.config_2.setIcon(icon5)
+        self.config_2.setIconSize(QtCore.QSize(28, 30))
+        self.config_2.setCheckable(True)
+        self.config_2.setAutoExclusive(True)
+        self.config_2.setObjectName("config_2")
+        self.verticalLayout_8.addWidget(self.config_2, 0, QtCore.Qt.AlignmentFlag.AlignHCenter)
+        self.gridLayout_15.addLayout(self.verticalLayout_8, 1, 0, 1, 1)
+        spacerItem4 = QtWidgets.QSpacerItem(20, 441, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
+        self.gridLayout_15.addItem(spacerItem4, 2, 0, 1, 1)
+        self.exit_2 = QtWidgets.QPushButton(parent=self.icon_complete_widget_2)
+        self.exit_2.setMinimumSize(QtCore.QSize(40, 40))
+        self.exit_2.setMaximumSize(QtCore.QSize(40, 40))
+        font = QtGui.QFont()
+        font.setFamily("Arial")
+        self.exit_2.setFont(font)
+        self.exit_2.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+        self.exit_2.setText("")
+        icon6 = QtGui.QIcon()
+        icon6.addPixmap(QtGui.QPixmap("./assets/img/log_out_white.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon6.addPixmap(QtGui.QPixmap("./assets/img/log_out.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.On)
+        self.exit_2.setIcon(icon6)
+        self.exit_2.setIconSize(QtCore.QSize(20, 20))
+        self.exit_2.setCheckable(True)
+        self.exit_2.setObjectName("exit_2")
+        self.gridLayout_15.addWidget(self.exit_2, 3, 0, 1, 1, QtCore.Qt.AlignmentFlag.AlignHCenter)
+        self.gridLayout.addWidget(self.icon_complete_widget_2, 0, 0, 1, 1)
+        self.icon_complete_widget = QtWidgets.QWidget(parent=self.header_widget)
+        self.icon_complete_widget.setMinimumSize(QtCore.QSize(190, 0))
+        self.icon_complete_widget.setMaximumSize(QtCore.QSize(190, 16777215))
+        self.icon_complete_widget.setStyleSheet("QWidget{\n"
+"background-color: rgb(31, 149, 239);\n"
+"border-top-left-radius:10px;\n"
+"border-bottom-left-radius:10px;\n"
+"}\n"
+"\n"
+"QPushButton{\n"
+"color: #FFFFFF;\n"
+"text-align: left;\n"
+"height:30px;\n"
+"border:none;\n"
+"padding-left:10px;\n"
+"border-top-left-radius:10px;\n"
+"border-bottom-left-radius:10px;\n"
+"}\n"
+"\n"
+"\n"
+"QLabel{\n"
+"color:#FFFFFF;\n"
+"text-align:center;\n"
+"}\n"
+"\n"
+"QPushButton:checked{\n"
+"background-color:#F5FAFE;\n"
+"color: #1F95EF;\n"
+"font-weight:bold\n"
+"}")
+        self.icon_complete_widget.setObjectName("icon_complete_widget")
+        self.gridLayout_2 = QtWidgets.QGridLayout(self.icon_complete_widget)
+        self.gridLayout_2.setContentsMargins(7, -1, 0, -1)
+        self.gridLayout_2.setObjectName("gridLayout_2")
+        spacerItem5 = QtWidgets.QSpacerItem(20, 441, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
+        self.gridLayout_2.addItem(spacerItem5, 2, 1, 1, 1)
+        self.tittle_dashboard = QtWidgets.QHBoxLayout()
+        self.tittle_dashboard.setSpacing(5)
+        self.tittle_dashboard.setObjectName("tittle_dashboard")
+        self.menuButton2 = QtWidgets.QPushButton(parent=self.icon_complete_widget)
+        self.menuButton2.setMinimumSize(QtCore.QSize(60, 50))
+        self.menuButton2.setMaximumSize(QtCore.QSize(60, 50))
+        self.menuButton2.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+        self.menuButton2.setStyleSheet("\n"
+"QPushButton:checked{\n"
+"background-color:none;\n"
+"}")
+        self.menuButton2.setText("")
+        self.menuButton2.setIcon(icon2)
+        self.menuButton2.setIconSize(QtCore.QSize(50, 50))
+        self.menuButton2.setCheckable(True)
+        self.menuButton2.setAutoExclusive(True)
+        self.menuButton2.setObjectName("menuButton2")
+        self.tittle_dashboard.addWidget(self.menuButton2)
+        self.tittle = QtWidgets.QLabel(parent=self.icon_complete_widget)
+        self.tittle.setMinimumSize(QtCore.QSize(120, 50))
+        self.tittle.setMaximumSize(QtCore.QSize(100, 50))
+        font = QtGui.QFont()
+        font.setFamily("Arial")
+        font.setPointSize(12)
+        font.setBold(True)
+        font.setWeight(75)
+        self.tittle.setFont(font)
+        self.tittle.setStyleSheet("font-weight:bold;")
+        self.tittle.setObjectName("tittle")
+        self.tittle_dashboard.addWidget(self.tittle)
+        self.gridLayout_2.addLayout(self.tittle_dashboard, 0, 0, 1, 2)
+        self.exit = QtWidgets.QPushButton(parent=self.icon_complete_widget)
+        self.exit.setMinimumSize(QtCore.QSize(0, 40))
+        self.exit.setMaximumSize(QtCore.QSize(16777215, 40))
+        font = QtGui.QFont()
+        font.setFamily("Arial")
+        font.setPointSize(10)
+        font.setBold(True)
+        font.setWeight(75)
+        self.exit.setFont(font)
+        self.exit.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+        self.exit.setStyleSheet("font-weight:bold;")
+        self.exit.setIcon(icon6)
+        self.exit.setIconSize(QtCore.QSize(20, 20))
+        self.exit.setCheckable(True)
+        self.exit.setObjectName("exit")
+        self.gridLayout_2.addWidget(self.exit, 3, 0, 1, 2)
+        self.verticalLayout_7 = QtWidgets.QVBoxLayout()
+        self.verticalLayout_7.setContentsMargins(-1, 20, -1, -1)
+        self.verticalLayout_7.setObjectName("verticalLayout_7")
+        self.students_2 = QtWidgets.QPushButton(parent=self.icon_complete_widget)
+        self.students_2.setMinimumSize(QtCore.QSize(0, 40))
+        self.students_2.setMaximumSize(QtCore.QSize(16777215, 40))
+        font = QtGui.QFont()
+        font.setFamily("Arial")
+        font.setPointSize(10)
+        font.setBold(True)
+        font.setUnderline(False)
+        font.setWeight(75)
+        font.setStrikeOut(False)
+        font.setKerning(False)
+        self.students_2.setFont(font)
+        self.students_2.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+        self.students_2.setStyleSheet("font-weight:bold;")
+        self.students_2.setIcon(icon3)
+        self.students_2.setIconSize(QtCore.QSize(20, 22))
+        self.students_2.setCheckable(True)
+        self.students_2.setAutoExclusive(True)
+        self.students_2.setObjectName("students_2")
+        self.verticalLayout_7.addWidget(self.students_2)
+        self.reports_2 = QtWidgets.QPushButton(parent=self.icon_complete_widget)
+        self.reports_2.setMinimumSize(QtCore.QSize(0, 40))
+        self.reports_2.setMaximumSize(QtCore.QSize(16777215, 40))
+        font = QtGui.QFont()
+        font.setFamily("Arial")
+        font.setPointSize(10)
+        font.setBold(True)
+        font.setWeight(75)
+        self.reports_2.setFont(font)
+        self.reports_2.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+        self.reports_2.setStyleSheet("font-weight:bold;")
+        self.reports_2.setIcon(icon4)
+        self.reports_2.setIconSize(QtCore.QSize(24, 26))
+        self.reports_2.setCheckable(True)
+        self.reports_2.setAutoExclusive(True)
+        self.reports_2.setObjectName("reports_2")
+        self.verticalLayout_7.addWidget(self.reports_2)
+        self.config = QtWidgets.QPushButton(parent=self.icon_complete_widget)
+        self.config.setMinimumSize(QtCore.QSize(0, 40))
+        self.config.setMaximumSize(QtCore.QSize(16777215, 40))
+        font = QtGui.QFont()
+        font.setFamily("Arial")
+        font.setPointSize(10)
+        font.setBold(True)
+        font.setWeight(75)
+        self.config.setFont(font)
+        self.config.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+        self.config.setStyleSheet("font-weight:bold;")
+        self.config.setIcon(icon5)
+        self.config.setIconSize(QtCore.QSize(26, 30))
+        self.config.setCheckable(True)
+        self.config.setAutoExclusive(True)
+        self.config.setObjectName("config")
+        self.verticalLayout_7.addWidget(self.config)
+        self.gridLayout_2.addLayout(self.verticalLayout_7, 1, 0, 1, 2)
+        self.gridLayout.addWidget(self.icon_complete_widget, 0, 1, 1, 1)
+        self.gridLayout_7.addWidget(self.header_widget, 0, 0, 1, 1)
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
-        self.content.setCurrentIndex(3)
+        self.content.setCurrentIndex(0)
         self.content_pages.setCurrentIndex(0)
+        self.stackedWidget_2.setCurrentIndex(0)
+        self.stackedWidget.setCurrentIndex(1)
         self.students_3.toggled['bool'].connect(self.students_2.setChecked) # type: ignore
         self.students_2.toggled['bool'].connect(self.students_3.setChecked) # type: ignore
         self.reports_3.toggled['bool'].connect(self.reports_2.setChecked) # type: ignore
         self.reports_2.toggled['bool'].connect(self.reports_3.setChecked) # type: ignore
         self.config_2.toggled['bool'].connect(self.config.setChecked) # type: ignore
         self.config.toggled['bool'].connect(self.config_2.setChecked) # type: ignore
-        self.students_3.toggled['bool'].connect(self.icon_complete_widget.setVisible) # type: ignore
-        self.students_3.toggled['bool'].connect(self.icon_complete_widget_2.setHidden) # type: ignore
-        self.reports_3.toggled['bool'].connect(self.icon_complete_widget_2.setHidden) # type: ignore
-        self.reports_3.toggled['bool'].connect(self.icon_complete_widget.setVisible) # type: ignore
-        self.config_2.toggled['bool'].connect(self.icon_complete_widget.setVisible) # type: ignore
-        self.config_2.toggled['bool'].connect(self.icon_complete_widget_2.setHidden) # type: ignore
-        self.menuButton2.toggled['bool'].connect(self.icon_complete_widget_2.setVisible) # type: ignore
-        self.menuButton2.toggled['bool'].connect(self.icon_complete_widget.setHidden) # type: ignore
-        self.menuButton_2.toggled['bool'].connect(self.icon_complete_widget_2.setHidden) # type: ignore
-        self.menuButton_2.toggled['bool'].connect(self.icon_complete_widget.setVisible) # type: ignore
+        self.menuButton2.clicked['bool'].connect(self.icon_complete_widget_2.setVisible) # type: ignore
+        self.menuButton2.clicked['bool'].connect(self.icon_complete_widget.setHidden) # type: ignore
+        self.menuButton_2.clicked['bool'].connect(self.icon_complete_widget_2.setHidden) # type: ignore
+        self.menuButton_2.clicked['bool'].connect(self.icon_complete_widget.setVisible) # type: ignore
+        self.students_3.clicked['bool'].connect(self.icon_complete_widget_2.setHidden) # type: ignore
+        self.students_3.clicked['bool'].connect(self.icon_complete_widget.setVisible) # type: ignore
+        self.reports_3.clicked['bool'].connect(self.icon_complete_widget_2.setHidden) # type: ignore
+        self.reports_3.clicked['bool'].connect(self.icon_complete_widget.setVisible) # type: ignore
+        self.config_2.clicked['bool'].connect(self.icon_complete_widget_2.setHidden) # type: ignore
+        self.config_2.clicked['bool'].connect(self.icon_complete_widget.setVisible) # type: ignore
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.tittle.setText(_translate("MainWindow", "Bienvenido"))
-        self.students_2.setText(_translate("MainWindow", "Estudiantes"))
-        self.reports_2.setText(_translate("MainWindow", "Reportes"))
-        self.config.setText(_translate("MainWindow", "Configuración"))
-        self.exit.setText(_translate("MainWindow", "Salir"))
         self.tittle_header.setText(_translate("MainWindow", "Estudiantes registrados"))
         self.filter_tittle.setText(_translate("MainWindow", "Buscar por nombre"))
         self.box.setPlaceholderText(_translate("MainWindow", "Ingrese el nombre del estudiante"))
@@ -3204,7 +3558,7 @@ class Ui_MainWindow(object):
         self.input_total_invoice.setPlaceholderText(_translate("MainWindow", "Ingrese el monto total a pagar"))
         self.buttonBack_student_info.setText(_translate("MainWindow", "Atrás"))
         self.tittle_info_4.setText(_translate("MainWindow", "Información de la factura"))
-        self.buttonBack_student_info_3.setText(_translate("MainWindow", "Imprimir - NFC"))
+        self.buttonBack_student_info_3.setText(_translate("MainWindow", "Imprimir - NCF"))
         self.buttonBack_student_info_2.setText(_translate("MainWindow", "Imprimir"))
         self.label_studentName_info.setText(_translate("MainWindow", "Nombre del estudiante"))
         self.label_number_invoice.setText(_translate("MainWindow", "N°  Factura"))
@@ -3268,9 +3622,8 @@ class Ui_MainWindow(object):
         self.label_amount_paid.setText(_translate("MainWindow", "Monto"))
         self.input_amount_paid.setPlaceholderText(_translate("MainWindow", "Ingrese el monto para pagar"))
         self.registerButton_payment.setText(_translate("MainWindow", "Registrar"))
-        self.tittle_header_2.setText(_translate("MainWindow", "Configuración Software"))
-        self.tittle_header_3.setText(_translate("MainWindow", "Configuración principal"))
         self.tittle_header_4.setText(_translate("MainWindow", "Configuración secundaria"))
+        self.tittle_header_3.setText(_translate("MainWindow", "Configuración principal"))
         self.label_3.setText(_translate("MainWindow", "Nombre del colegio"))
         self.input_amount_paid_3.setPlaceholderText(_translate("MainWindow", "Ingrese nombre de Colegio"))
         self.label_4.setText(_translate("MainWindow", "Dirección"))
@@ -3281,30 +3634,44 @@ class Ui_MainWindow(object):
         self.input_amount_paid_5.setPlaceholderText(_translate("MainWindow", "Ingrese % de mora"))
         self.label_6.setText(_translate("MainWindow", "Número de Comprobante Fiscal (NCF):"))
         self.input_amount_paid_6.setPlaceholderText(_translate("MainWindow", "Ingrese el NCF"))
+        self.label.setText(_translate("MainWindow", "Mora Progresiva"))
+        self.checkBox_confirm.setText(_translate("MainWindow", "SI"))
+        self.checkBox_denegate.setText(_translate("MainWindow", "NO"))
         self.commandLinkButton.setToolTip(_translate("MainWindow", "<html><head/><body><p>Tarifas generales para los estudiantes</p><p><br/></p></body></html>"))
         self.commandLinkButton.setText(_translate("MainWindow", "Tarfias actuales"))
         self.commandLinkButton_2.setToolTip(_translate("MainWindow", "<html><head/><body><p>Usuarios que tienen actual acceso al software</p></body></html>"))
         self.commandLinkButton_2.setText(_translate("MainWindow", "Usuarios actuales"))
         self.commandLinkButton_3.setToolTip(_translate("MainWindow", "<html><head/><body><p>El administrador puede supervisar acciones realizadas por otros usuarios</p></body></html>"))
         self.commandLinkButton_3.setText(_translate("MainWindow", "Monitoreamiento "))
-        self.label.setText(_translate("MainWindow", "Reportes de pago"))
-        self.history_tittle_pam_3.setText(_translate("MainWindow", "Filtrar por"))
-        self.option_payment_method_report.setItemText(0, _translate("MainWindow", "Todos los métodos"))
-        self.option_payment_method_report.setItemText(1, _translate("MainWindow", "Efectivo"))
-        self.option_payment_method_report.setItemText(2, _translate("MainWindow", "Transacción"))
-        self.option_payment_method_report.setItemText(3, _translate("MainWindow", "Abono"))
+        self.commandLinkButton_4.setText(_translate("MainWindow", "Periodos Escolares"))
+        self.tittle_header_2.setText(_translate("MainWindow", "Configuración Software"))
+        self.cost_tittle.setText(_translate("MainWindow", "Gastos"))
         self.report_dinamic_label.setText(_translate("MainWindow", "Texto Dinamico"))
+        self.label_7.setText(_translate("MainWindow", "Filtrar por"))
         self.pushButton_Day.setText(_translate("MainWindow", "Diario"))
         self.pushButton_month.setText(_translate("MainWindow", "Mes "))
-        self.history_tittle_pam_2.setText(_translate("MainWindow", "Pagos realizados"))
+        self.pushButton_Rgasto.setText(_translate("MainWindow", "Registrar Gasto"))
         item = self.table_reports_payments.horizontalHeaderItem(0)
-        item.setText(_translate("MainWindow", "Identificador de pago"))
+        item.setText(_translate("MainWindow", "Identificador de gasto"))
         item = self.table_reports_payments.horizontalHeaderItem(1)
-        item.setText(_translate("MainWindow", "Fecha de pago"))
+        item.setText(_translate("MainWindow", "Descripción"))
         item = self.table_reports_payments.horizontalHeaderItem(2)
-        item.setText(_translate("MainWindow", "Total pago"))
+        item.setText(_translate("MainWindow", "Fecha de realización"))
         item = self.table_reports_payments.horizontalHeaderItem(3)
-        item.setText(_translate("MainWindow", "Método de pago"))
+        item.setText(_translate("MainWindow", "Total gasto"))
+        self.tittle_new_cost.setText(_translate("MainWindow", "Registrar Gasto"))
+        self.label_description_cost.setText(_translate("MainWindow", "Descripción"))
+        self.plainText_description_cost.setPlaceholderText(_translate("MainWindow", "Ingrese la descripción"))
+        self.dateCost.setText(_translate("MainWindow", "Fecha de realización"))
+        self.label_totalC.setText(_translate("MainWindow", "Monto Total"))
+        self.lineEdit_totalC.setPlaceholderText(_translate("MainWindow", "Ingrese el monto"))
+        self.registerButton_payment_2.setText(_translate("MainWindow", "Registrar"))
+        self.button_back_cost.setText(_translate("MainWindow", "Atrás"))
+        self.tittle.setText(_translate("MainWindow", "Bienvenido"))
+        self.exit.setText(_translate("MainWindow", "Salir"))
+        self.students_2.setText(_translate("MainWindow", "Estudiantes"))
+        self.reports_2.setText(_translate("MainWindow", "Gastos"))
+        self.config.setText(_translate("MainWindow", "Configuración"))
 
 
 if __name__ == "__main__":
