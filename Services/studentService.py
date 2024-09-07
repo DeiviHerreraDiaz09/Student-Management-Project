@@ -17,6 +17,11 @@ from reportlab.platypus import (
     Table,
     TableStyle,
 )
+from PyQt6.QtWidgets import (
+    QTableWidgetItem,
+    QPushButton,
+    QMessageBox,
+)
 import tempfile
 import calendar
 import os
@@ -547,3 +552,58 @@ def generate_invoice_pdf(self, payments, rows, include_ncf):
         os.startfile(pdf_path)
     elif os.name == "darwin":
         subprocess.run(["open", pdf_path])
+
+def change_student(self, student_ident):
+
+    msg_box = QMessageBox(self)
+    msg_box.setWindowTitle("Inactivar Estudiante")
+    msg_box.setText("¿Estás seguro de que deseas inactivar al estudiante?")
+    msg_box.setStandardButtons(
+        QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No
+    )
+    msg_box.setDefaultButton(QMessageBox.StandardButton.No)
+
+    msg_box.setStyleSheet(
+            """
+            QLabel {
+                color: black;
+            }
+            QPushButton {
+                background-color: white;
+                color: black;
+                border: 1px solid black;
+                padding: 5px;
+            }
+            QPushButton:hover {
+                background-color: #e6e6e6;
+            }
+            QMessageBox {
+                border: 2px solid black;
+            }
+            """
+    )
+
+    reply = msg_box.exec()
+
+    if reply == QMessageBox.StandardButton.Yes:
+        try:
+            db = con.Conexion().conectar()
+            cursor = db.cursor()
+            cursor.execute(
+                """
+                UPDATE students SET status = 'No vigente' WHERE student_ident = ?
+                """,
+                (student_ident,),
+            )
+            db.commit()
+            self.load_data()
+            self.switch_to_listStudent()
+            print("Estudiante inactivado correctamente")
+        except Exception as e:
+            print(f"Error updating student: {e}")
+            db.rollback()
+        finally:
+            cursor.close()
+            db.close()
+    else:
+        print("Inactivación cancelada")
