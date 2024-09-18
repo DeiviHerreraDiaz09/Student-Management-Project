@@ -5,9 +5,14 @@ from Services.studentService import (
     Service_search_student_by_name,
     Service_on_student_search_result,
     generate_invoice_pdf,
+    change_student
 )
 from Services.invoiceService import (
     Service_search_student_by_id_for_invoice,
+)
+
+from Services.expensesService import (
+    Service_register_expense
 )
 
 from Services.configurationService import (
@@ -90,15 +95,18 @@ class MyInterface(QMainWindow, Ui_MainWindow):
 
         self.table_reports_payments.setColumnCount(4)
         self.table_reports_payments.setHorizontalHeaderLabels(
-            ["Identificador de pago", "Fecha de pago", "Total pago", "Método de pago"]
+            ["Identificador de gasto", "Descripción", "Fecha de realización", "Total gasto"]
         )
 
         # CONEXIÓN DE BOTONES A FUNCIONES
         self.students_2.clicked.connect(self.switch_to_listStudent)
         self.students_3.clicked.connect(self.switch_to_listStudent)
 
-        self.reports_2.clicked.connect(self.switch_to_reportsPage)
-        self.reports_3.clicked.connect(self.switch_to_reportsPage)
+        self.reports_2.clicked.connect(self.switch_to_expensesPage)
+        self.reports_3.clicked.connect(self.switch_to_expensesPage)
+
+        self.pushButton_Rgasto.clicked.connect(self.switch_to_Registerexpenses)
+        self.button_back_cost.clicked.connect(self.switch_to_expensesPage)
 
         self.config.clicked.connect(self.switch_to_configPage)
         self.config_2.clicked.connect(self.switch_to_configPage)
@@ -214,66 +222,11 @@ class MyInterface(QMainWindow, Ui_MainWindow):
         except TypeError:
             pass
 
-        self.inactButton.clicked.connect(lambda: self.change_student(student_ident))
+        self.inactButton.clicked.connect(lambda: change_student(self, student_ident))
 
         self.button_add_invoice.clicked.connect(
             lambda: self.switch_to_registerInvoice(student_ident)
         )
-
-    def change_student(self, student_ident):
-
-        msg_box = QMessageBox(self)
-        msg_box.setWindowTitle("Inactivar Estudiante")
-        msg_box.setText("¿Estás seguro de que deseas inactivar al estudiante?")
-        msg_box.setStandardButtons(
-            QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No
-        )
-        msg_box.setDefaultButton(QMessageBox.StandardButton.No)
-
-        msg_box.setStyleSheet(
-            """
-            QLabel {
-                color: black;
-            }
-            QPushButton {
-                background-color: white;
-                color: black;
-                border: 1px solid black;
-                padding: 5px;
-            }
-            QPushButton:hover {
-                background-color: #e6e6e6;
-            }
-            QMessageBox {
-                border: 2px solid black;
-            }
-            """
-        )
-
-        reply = msg_box.exec()
-
-        if reply == QMessageBox.StandardButton.Yes:
-            try:
-                db = con.Conexion().conectar()
-                cursor = db.cursor()
-                cursor.execute(
-                    """
-                    UPDATE students SET status = 'No vigente' WHERE student_ident = ?
-                    """,
-                    (student_ident,),
-                )
-                db.commit()
-                self.load_data()
-                self.switch_to_listStudent()
-                print("Estudiante inactivado correctamente")
-            except Exception as e:
-                print(f"Error updating student: {e}")
-                db.rollback()
-            finally:
-                cursor.close()
-                db.close()
-        else:
-            print("Inactivación cancelada")
 
     # DETALLES DE PAGOS
 
@@ -301,10 +254,16 @@ class MyInterface(QMainWindow, Ui_MainWindow):
     def switch_to_paymentsPage(self):
         self.content.setCurrentIndex(1)
 
-    # REPORTE DE PAGOS
+    # GASTOS
 
-    def switch_to_reportsPage(self):
+    def switch_to_expensesPage(self):
         self.content.setCurrentIndex(3)
+        self.stackedWidget.setCurrentIndex(0)
+
+    def switch_to_Registerexpenses(self):
+        self.content.setCurrentIndex(3)
+        self.stackedWidget.setCurrentIndex(1)
+        self.registerButton_payment_2.clicked.connect(lambda: Service_register_expense(self))
 
     # CONFIGURACION
 
