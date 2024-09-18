@@ -2774,48 +2774,48 @@ class Ui_MainWindow(object):
         self.splitter_14 = QtWidgets.QSplitter(parent=self.splitter_15)
         self.splitter_14.setOrientation(QtCore.Qt.Orientation.Vertical)
         self.splitter_14.setObjectName("splitter_14")
-        self.commandLinkButton = QtWidgets.QCommandLinkButton(parent=self.splitter_14)
-        self.commandLinkButton.setMinimumSize(QtCore.QSize(200, 45))
-        self.commandLinkButton.setMaximumSize(QtCore.QSize(200, 45))
+        self.commandLinkButton_tarifas = QtWidgets.QCommandLinkButton(parent=self.splitter_14)
+        self.commandLinkButton_tarifas.setMinimumSize(QtCore.QSize(200, 45))
+        self.commandLinkButton_tarifas.setMaximumSize(QtCore.QSize(200, 45))
         font = QtGui.QFont()
         font.setFamily("Arial")
-        self.commandLinkButton.setFont(font)
-        self.commandLinkButton.setLayoutDirection(QtCore.Qt.LayoutDirection.LeftToRight)
-        self.commandLinkButton.setStyleSheet("border: 1px solid #1770b3;\n"
+        self.commandLinkButton_tarifas.setFont(font)
+        self.commandLinkButton_tarifas.setLayoutDirection(QtCore.Qt.LayoutDirection.LeftToRight)
+        self.commandLinkButton_tarifas.setStyleSheet("border: 1px solid #1770b3;\n"
 "border-radius: 15px;\n"
 "")
-        self.commandLinkButton.setObjectName("commandLinkButton")
-        self.commandLinkButton_2 = QtWidgets.QCommandLinkButton(parent=self.splitter_14)
-        self.commandLinkButton_2.setMinimumSize(QtCore.QSize(200, 45))
-        self.commandLinkButton_2.setMaximumSize(QtCore.QSize(200, 45))
+        self.commandLinkButton_tarifas.setObjectName("commandLinkButton_tarifas")
+        self.commandLinkButton_users = QtWidgets.QCommandLinkButton(parent=self.splitter_14)
+        self.commandLinkButton_users.setMinimumSize(QtCore.QSize(200, 45))
+        self.commandLinkButton_users.setMaximumSize(QtCore.QSize(200, 45))
         font = QtGui.QFont()
         font.setFamily("Arial")
-        self.commandLinkButton_2.setFont(font)
-        self.commandLinkButton_2.setStyleSheet("border: 1px solid #1770b3;\n"
+        self.commandLinkButton_users.setFont(font)
+        self.commandLinkButton_users.setStyleSheet("border: 1px solid #1770b3;\n"
 "border-radius: 15px;\n"
 "")
-        self.commandLinkButton_2.setObjectName("commandLinkButton_2")
-        self.commandLinkButton_3 = QtWidgets.QCommandLinkButton(parent=self.splitter_14)
-        self.commandLinkButton_3.setMinimumSize(QtCore.QSize(200, 45))
-        self.commandLinkButton_3.setMaximumSize(QtCore.QSize(200, 45))
+        self.commandLinkButton_users.setObjectName("commandLinkButton_users")
+        self.commandLinkButton_monit = QtWidgets.QCommandLinkButton(parent=self.splitter_14)
+        self.commandLinkButton_monit.setMinimumSize(QtCore.QSize(200, 45))
+        self.commandLinkButton_monit.setMaximumSize(QtCore.QSize(200, 45))
         font = QtGui.QFont()
         font.setFamily("Arial")
-        self.commandLinkButton_3.setFont(font)
-        self.commandLinkButton_3.setStyleSheet("border: 1px solid #1770b3;\n"
+        self.commandLinkButton_monit.setFont(font)
+        self.commandLinkButton_monit.setStyleSheet("border: 1px solid #1770b3;\n"
 "border-radius: 15px;\n"
 "\n"
 "")
-        self.commandLinkButton_3.setAutoDefault(False)
-        self.commandLinkButton_3.setObjectName("commandLinkButton_3")
-        self.commandLinkButton_4 = QtWidgets.QCommandLinkButton(parent=self.splitter_14)
-        self.commandLinkButton_4.setMinimumSize(QtCore.QSize(200, 45))
-        self.commandLinkButton_4.setMaximumSize(QtCore.QSize(200, 45))
+        self.commandLinkButton_monit.setAutoDefault(False)
+        self.commandLinkButton_monit.setObjectName("commandLinkButton_monit")
+        self.commandLinkButton_periods = QtWidgets.QCommandLinkButton(parent=self.splitter_14)
+        self.commandLinkButton_periods.setMinimumSize(QtCore.QSize(200, 45))
+        self.commandLinkButton_periods.setMaximumSize(QtCore.QSize(200, 45))
         font = QtGui.QFont()
         font.setFamily("Arial")
-        self.commandLinkButton_4.setFont(font)
-        self.commandLinkButton_4.setStyleSheet("border: 1px solid #1770b3;\n"
+        self.commandLinkButton_periods.setFont(font)
+        self.commandLinkButton_periods.setStyleSheet("border: 1px solid #1770b3;\n"
 "border-radius: 15px;")
-        self.commandLinkButton_4.setObjectName("commandLinkButton_4")
+        self.commandLinkButton_periods.setObjectName("commandLinkButton_periods")
         self.widget_11 = QtWidgets.QWidget(parent=self.splitter_15)
         self.widget_11.setObjectName("widget_11")
         self.horizontalLayout_18.addWidget(self.splitter_15)
@@ -2838,9 +2838,412 @@ class Ui_MainWindow(object):
         self.tittle_header_2.setObjectName("tittle_header_2")
         self.gridLayout_22.addWidget(self.tittle_header_2, 0, 0, 1, 2)
         self.stackedWidget_2.addWidget(self.confi_page)
-        self.page_2 = QtWidgets.QWidget()
-        self.page_2.setObjectName("page_2")
-        self.stackedWidget_2.addWidget(self.page_2)
+        self.tarifas_page = QtWidgets.QWidget()
+        self.tarifas_page.setObjectName("tarifas_page")
+        self.gridLayout_24 = QtWidgets.QGridLayout(self.tarifas_page)
+        self.gridLayout_24.setObjectName("gridLayout_24")
+        self.splitter_19 = QtWidgets.QSplitter(parent=self.tarifas_page)
+        self.splitter_19.setOrientation(QtCore.Qt.Orientation.Vertical)
+        self.splitter_19.setObjectName("splitter_19")
+        self.cost_tittle_3 = QtWidgets.QLabel(parent=self.splitter_19)
+        self.cost_tittle_3.setMinimumSize(QtCore.QSize(0, 70))
+        self.cost_tittle_3.setMaximumSize(QtCore.QSize(16777215, 70))
+        font = QtGui.QFont()
+        font.setFamily("Arial")
+        font.setPointSize(14)
+        font.setBold(True)
+        font.setItalic(False)
+        font.setWeight(75)
+        self.cost_tittle_3.setFont(font)
+        self.cost_tittle_3.setStyleSheet("\n"
+"color: rgb(11, 52, 84);")
+        self.cost_tittle_3.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        self.cost_tittle_3.setObjectName("cost_tittle_3")
+        self.layoutWidget_3 = QtWidgets.QWidget(parent=self.splitter_19)
+        self.layoutWidget_3.setObjectName("layoutWidget_3")
+        self.options_3 = QtWidgets.QHBoxLayout(self.layoutWidget_3)
+        self.options_3.setContentsMargins(0, 0, 0, 0)
+        self.options_3.setObjectName("options_3")
+        self.filter_3 = QtWidgets.QSplitter(parent=self.layoutWidget_3)
+        self.filter_3.setOrientation(QtCore.Qt.Orientation.Vertical)
+        self.filter_3.setObjectName("filter_3")
+        self.box_filter_3 = QtWidgets.QSplitter(parent=self.filter_3)
+        self.box_filter_3.setOrientation(QtCore.Qt.Orientation.Horizontal)
+        self.box_filter_3.setObjectName("box_filter_3")
+        self.options_3.addWidget(self.filter_3)
+        spacerItem3 = QtWidgets.QSpacerItem(328, 21, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        self.options_3.addItem(spacerItem3)
+        self.nuevaTarifa = QtWidgets.QSplitter(parent=self.layoutWidget_3)
+        self.nuevaTarifa.setOrientation(QtCore.Qt.Orientation.Vertical)
+        self.nuevaTarifa.setObjectName("nuevaTarifa")
+        self.button_add_tarifa = QtWidgets.QPushButton(parent=self.nuevaTarifa)
+        self.button_add_tarifa.setMinimumSize(QtCore.QSize(130, 30))
+        self.button_add_tarifa.setMaximumSize(QtCore.QSize(130, 30))
+        font = QtGui.QFont()
+        font.setFamily("Arial")
+        font.setPointSize(10)
+        font.setBold(True)
+        font.setWeight(75)
+        self.button_add_tarifa.setFont(font)
+        self.button_add_tarifa.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+        self.button_add_tarifa.setStyleSheet("background-color:#1770b3;\n"
+"border: none;\n"
+"border-radius: 6px;\n"
+"color:white;\n"
+"letter-spacing: 0.5px;")
+        self.button_add_tarifa.setObjectName("button_add_tarifa")
+        self.options_3.addWidget(self.nuevaTarifa)
+        self.gridLayout_24.addWidget(self.splitter_19, 0, 0, 1, 1)
+        self.table_tarifas = QtWidgets.QTableWidget(parent=self.tarifas_page)
+        self.table_tarifas.setMinimumSize(QtCore.QSize(753, 360))
+        self.table_tarifas.setMaximumSize(QtCore.QSize(0, 16777215))
+        self.table_tarifas.setStyleSheet("QTableWidget {\n"
+" gridline-color: black; \n"
+"    background-color: #F9F9F9;\n"
+"}\n"
+"\n"
+"QTableWidget::item {\n"
+"    padding: 1px;\n"
+"      background-color: #e9f4fd;\n"
+"     color: #000080; \n"
+"    text-align:center;\n"
+"}\n"
+"\n"
+"QTableWidget::item:selected {\n"
+"    background-color: #ddeffd;\n"
+"    color: black; \n"
+"}\n"
+"\n"
+"QHeaderView::section {\n"
+"    background-color: #13598f; \n"
+"    color: white; \n"
+"    padding: 3px;\n"
+"    border: 0.4px solid white;\n"
+"    font-family: Arial;\n"
+"    font-size: 13px;\n"
+"font-weight:bold;\n"
+"}\n"
+"\n"
+"QTableWidget::item:alternate {\n"
+"    background-color: #F0F0F0;\n"
+"}\n"
+"")
+        self.table_tarifas.setObjectName("table_tarifas")
+        self.table_tarifas.setColumnCount(3)
+        self.table_tarifas.setRowCount(0)
+        item = QtWidgets.QTableWidgetItem()
+        self.table_tarifas.setHorizontalHeaderItem(0, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.table_tarifas.setHorizontalHeaderItem(1, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.table_tarifas.setHorizontalHeaderItem(2, item)
+        self.table_tarifas.horizontalHeader().setDefaultSectionSize(251)
+        self.gridLayout_24.addWidget(self.table_tarifas, 1, 0, 1, 1)
+        self.stackedWidget_2.addWidget(self.tarifas_page)
+        self.users_page = QtWidgets.QWidget()
+        self.users_page.setObjectName("users_page")
+        self.gridLayout_23 = QtWidgets.QGridLayout(self.users_page)
+        self.gridLayout_23.setObjectName("gridLayout_23")
+        self.splitter_18 = QtWidgets.QSplitter(parent=self.users_page)
+        self.splitter_18.setOrientation(QtCore.Qt.Orientation.Vertical)
+        self.splitter_18.setObjectName("splitter_18")
+        self.cost_tittle_2 = QtWidgets.QLabel(parent=self.splitter_18)
+        self.cost_tittle_2.setMinimumSize(QtCore.QSize(0, 70))
+        self.cost_tittle_2.setMaximumSize(QtCore.QSize(16777215, 70))
+        font = QtGui.QFont()
+        font.setFamily("Arial")
+        font.setPointSize(14)
+        font.setBold(True)
+        font.setItalic(False)
+        font.setWeight(75)
+        self.cost_tittle_2.setFont(font)
+        self.cost_tittle_2.setStyleSheet("\n"
+"color: rgb(11, 52, 84);")
+        self.cost_tittle_2.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        self.cost_tittle_2.setObjectName("cost_tittle_2")
+        self.layoutWidget_2 = QtWidgets.QWidget(parent=self.splitter_18)
+        self.layoutWidget_2.setObjectName("layoutWidget_2")
+        self.options_2 = QtWidgets.QHBoxLayout(self.layoutWidget_2)
+        self.options_2.setContentsMargins(0, 0, 0, 0)
+        self.options_2.setObjectName("options_2")
+        self.filter_2 = QtWidgets.QSplitter(parent=self.layoutWidget_2)
+        self.filter_2.setOrientation(QtCore.Qt.Orientation.Vertical)
+        self.filter_2.setObjectName("filter_2")
+        self.filter_tittle_2 = QtWidgets.QLabel(parent=self.filter_2)
+        self.filter_tittle_2.setMinimumSize(QtCore.QSize(0, 30))
+        self.filter_tittle_2.setMaximumSize(QtCore.QSize(16777215, 30))
+        font = QtGui.QFont()
+        font.setFamily("Arial")
+        font.setPointSize(10)
+        font.setBold(True)
+        font.setWeight(75)
+        self.filter_tittle_2.setFont(font)
+        self.filter_tittle_2.setStyleSheet("color: rgb(11, 52, 84);\n"
+"font-weight:bold;")
+        self.filter_tittle_2.setLineWidth(6)
+        self.filter_tittle_2.setObjectName("filter_tittle_2")
+        self.box_filter_2 = QtWidgets.QSplitter(parent=self.filter_2)
+        self.box_filter_2.setOrientation(QtCore.Qt.Orientation.Horizontal)
+        self.box_filter_2.setObjectName("box_filter_2")
+        self.box_search_user = QtWidgets.QLineEdit(parent=self.box_filter_2)
+        self.box_search_user.setMinimumSize(QtCore.QSize(230, 30))
+        self.box_search_user.setMaximumSize(QtCore.QSize(230, 30))
+        font = QtGui.QFont()
+        font.setFamily("Arial")
+        font.setPointSize(9)
+        self.box_search_user.setFont(font)
+        self.box_search_user.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+"color: rgb(11, 52, 84);\n"
+"border:1px solid  #a8a8a8;")
+        self.box_search_user.setObjectName("box_search_user")
+        self.button_search_user = QtWidgets.QPushButton(parent=self.box_filter_2)
+        self.button_search_user.setMinimumSize(QtCore.QSize(30, 30))
+        self.button_search_user.setMaximumSize(QtCore.QSize(30, 30))
+        self.button_search_user.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+        self.button_search_user.setStyleSheet("background-color:#1770b3;\n"
+"borde: none;\n"
+"border-radius:6px;\n"
+"")
+        self.button_search_user.setText("")
+        self.button_search_user.setIcon(icon)
+        self.button_search_user.setObjectName("button_search_user")
+        self.options_2.addWidget(self.filter_2)
+        spacerItem4 = QtWidgets.QSpacerItem(328, 21, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        self.options_2.addItem(spacerItem4)
+        self.newUser = QtWidgets.QSplitter(parent=self.layoutWidget_2)
+        self.newUser.setOrientation(QtCore.Qt.Orientation.Vertical)
+        self.newUser.setObjectName("newUser")
+        self.button_add_user = QtWidgets.QPushButton(parent=self.newUser)
+        self.button_add_user.setMinimumSize(QtCore.QSize(130, 30))
+        self.button_add_user.setMaximumSize(QtCore.QSize(130, 30))
+        font = QtGui.QFont()
+        font.setFamily("Arial")
+        font.setPointSize(10)
+        font.setBold(True)
+        font.setWeight(75)
+        self.button_add_user.setFont(font)
+        self.button_add_user.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+        self.button_add_user.setStyleSheet("background-color:#1770b3;\n"
+"border: none;\n"
+"border-radius: 6px;\n"
+"color:white;\n"
+"letter-spacing: 0.5px;")
+        self.button_add_user.setObjectName("button_add_user")
+        self.options_2.addWidget(self.newUser)
+        self.gridLayout_23.addWidget(self.splitter_18, 0, 0, 1, 1)
+        self.table_users = QtWidgets.QTableWidget(parent=self.users_page)
+        self.table_users.setMinimumSize(QtCore.QSize(753, 390))
+        self.table_users.setMaximumSize(QtCore.QSize(0, 16777215))
+        self.table_users.setStyleSheet("QTableWidget {\n"
+" gridline-color: black; \n"
+"    background-color: #F9F9F9;\n"
+"}\n"
+"\n"
+"QTableWidget::item {\n"
+"    padding: 1px;\n"
+"      background-color: #e9f4fd;\n"
+"     color: #000080; \n"
+"    text-align:center;\n"
+"}\n"
+"\n"
+"QTableWidget::item:selected {\n"
+"    background-color: #ddeffd;\n"
+"    color: black; \n"
+"}\n"
+"\n"
+"QHeaderView::section {\n"
+"    background-color: #13598f; \n"
+"    color: white; \n"
+"    padding: 3px;\n"
+"    border: 0.4px solid white;\n"
+"    font-family: Arial;\n"
+"    font-size: 13px;\n"
+"font-weight:bold;\n"
+"}\n"
+"\n"
+"QTableWidget::item:alternate {\n"
+"    background-color: #F0F0F0;\n"
+"}\n"
+"")
+        self.table_users.setObjectName("table_users")
+        self.table_users.setColumnCount(3)
+        self.table_users.setRowCount(0)
+        item = QtWidgets.QTableWidgetItem()
+        self.table_users.setHorizontalHeaderItem(0, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.table_users.setHorizontalHeaderItem(1, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.table_users.setHorizontalHeaderItem(2, item)
+        self.table_users.horizontalHeader().setDefaultSectionSize(251)
+        self.gridLayout_23.addWidget(self.table_users, 1, 0, 1, 1)
+        self.stackedWidget_2.addWidget(self.users_page)
+        self.monitoriamento_page = QtWidgets.QWidget()
+        self.monitoriamento_page.setObjectName("monitoriamento_page")
+        self.gridLayout_25 = QtWidgets.QGridLayout(self.monitoriamento_page)
+        self.gridLayout_25.setObjectName("gridLayout_25")
+        self.cost_tittle_4 = QtWidgets.QLabel(parent=self.monitoriamento_page)
+        self.cost_tittle_4.setMinimumSize(QtCore.QSize(0, 90))
+        self.cost_tittle_4.setMaximumSize(QtCore.QSize(16777215, 70))
+        font = QtGui.QFont()
+        font.setFamily("Arial")
+        font.setPointSize(14)
+        font.setBold(True)
+        font.setItalic(False)
+        font.setWeight(75)
+        self.cost_tittle_4.setFont(font)
+        self.cost_tittle_4.setStyleSheet("\n"
+"color: rgb(11, 52, 84);")
+        self.cost_tittle_4.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        self.cost_tittle_4.setObjectName("cost_tittle_4")
+        self.gridLayout_25.addWidget(self.cost_tittle_4, 0, 0, 1, 1)
+        self.table_monitoriamento = QtWidgets.QTableWidget(parent=self.monitoriamento_page)
+        self.table_monitoriamento.setMinimumSize(QtCore.QSize(753, 360))
+        self.table_monitoriamento.setMaximumSize(QtCore.QSize(0, 16777215))
+        self.table_monitoriamento.setStyleSheet("QTableWidget {\n"
+" gridline-color: black; \n"
+"    background-color: #F9F9F9;\n"
+"}\n"
+"\n"
+"QTableWidget::item {\n"
+"    padding: 1px;\n"
+"      background-color: #e9f4fd;\n"
+"     color: #000080; \n"
+"    text-align:center;\n"
+"}\n"
+"\n"
+"QTableWidget::item:selected {\n"
+"    background-color: #ddeffd;\n"
+"    color: black; \n"
+"}\n"
+"\n"
+"QHeaderView::section {\n"
+"    background-color: #13598f; \n"
+"    color: white; \n"
+"    padding: 3px;\n"
+"    border: 0.4px solid white;\n"
+"    font-family: Arial;\n"
+"    font-size: 13px;\n"
+"font-weight:bold;\n"
+"}\n"
+"\n"
+"QTableWidget::item:alternate {\n"
+"    background-color: #F0F0F0;\n"
+"}\n"
+"")
+        self.table_monitoriamento.setObjectName("table_monitoriamento")
+        self.table_monitoriamento.setColumnCount(3)
+        self.table_monitoriamento.setRowCount(0)
+        item = QtWidgets.QTableWidgetItem()
+        self.table_monitoriamento.setHorizontalHeaderItem(0, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.table_monitoriamento.setHorizontalHeaderItem(1, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.table_monitoriamento.setHorizontalHeaderItem(2, item)
+        self.table_monitoriamento.horizontalHeader().setDefaultSectionSize(251)
+        self.gridLayout_25.addWidget(self.table_monitoriamento, 1, 0, 1, 1)
+        self.stackedWidget_2.addWidget(self.monitoriamento_page)
+        self.periodos_page = QtWidgets.QWidget()
+        self.periodos_page.setObjectName("periodos_page")
+        self.gridLayout_26 = QtWidgets.QGridLayout(self.periodos_page)
+        self.gridLayout_26.setObjectName("gridLayout_26")
+        self.splitter_20 = QtWidgets.QSplitter(parent=self.periodos_page)
+        self.splitter_20.setOrientation(QtCore.Qt.Orientation.Vertical)
+        self.splitter_20.setObjectName("splitter_20")
+        self.cost_tittle_5 = QtWidgets.QLabel(parent=self.splitter_20)
+        self.cost_tittle_5.setMinimumSize(QtCore.QSize(0, 70))
+        self.cost_tittle_5.setMaximumSize(QtCore.QSize(16777215, 70))
+        font = QtGui.QFont()
+        font.setFamily("Arial")
+        font.setPointSize(14)
+        font.setBold(True)
+        font.setItalic(False)
+        font.setWeight(75)
+        self.cost_tittle_5.setFont(font)
+        self.cost_tittle_5.setStyleSheet("\n"
+"color: rgb(11, 52, 84);")
+        self.cost_tittle_5.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        self.cost_tittle_5.setObjectName("cost_tittle_5")
+        self.layoutWidget_5 = QtWidgets.QWidget(parent=self.splitter_20)
+        self.layoutWidget_5.setObjectName("layoutWidget_5")
+        self.options_4 = QtWidgets.QHBoxLayout(self.layoutWidget_5)
+        self.options_4.setContentsMargins(0, 0, 0, 0)
+        self.options_4.setObjectName("options_4")
+        self.filter_4 = QtWidgets.QSplitter(parent=self.layoutWidget_5)
+        self.filter_4.setOrientation(QtCore.Qt.Orientation.Vertical)
+        self.filter_4.setObjectName("filter_4")
+        self.box_filter_4 = QtWidgets.QSplitter(parent=self.filter_4)
+        self.box_filter_4.setOrientation(QtCore.Qt.Orientation.Horizontal)
+        self.box_filter_4.setObjectName("box_filter_4")
+        self.options_4.addWidget(self.filter_4)
+        spacerItem5 = QtWidgets.QSpacerItem(328, 21, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        self.options_4.addItem(spacerItem5)
+        self.newPeriodo = QtWidgets.QSplitter(parent=self.layoutWidget_5)
+        self.newPeriodo.setOrientation(QtCore.Qt.Orientation.Vertical)
+        self.newPeriodo.setObjectName("newPeriodo")
+        self.button_add_periodo = QtWidgets.QPushButton(parent=self.newPeriodo)
+        self.button_add_periodo.setMinimumSize(QtCore.QSize(130, 30))
+        self.button_add_periodo.setMaximumSize(QtCore.QSize(130, 30))
+        font = QtGui.QFont()
+        font.setFamily("Arial")
+        font.setPointSize(10)
+        font.setBold(True)
+        font.setWeight(75)
+        self.button_add_periodo.setFont(font)
+        self.button_add_periodo.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+        self.button_add_periodo.setStyleSheet("background-color:#1770b3;\n"
+"border: none;\n"
+"border-radius: 6px;\n"
+"color:white;\n"
+"letter-spacing: 0.5px;")
+        self.button_add_periodo.setObjectName("button_add_periodo")
+        self.options_4.addWidget(self.newPeriodo)
+        self.gridLayout_26.addWidget(self.splitter_20, 0, 0, 1, 1)
+        self.table_periodo = QtWidgets.QTableWidget(parent=self.periodos_page)
+        self.table_periodo.setMinimumSize(QtCore.QSize(753, 380))
+        self.table_periodo.setMaximumSize(QtCore.QSize(0, 16777215))
+        self.table_periodo.setStyleSheet("QTableWidget {\n"
+" gridline-color: black; \n"
+"    background-color: #F9F9F9;\n"
+"}\n"
+"\n"
+"QTableWidget::item {\n"
+"    padding: 1px;\n"
+"      background-color: #e9f4fd;\n"
+"     color: #000080; \n"
+"    text-align:center;\n"
+"}\n"
+"\n"
+"QTableWidget::item:selected {\n"
+"    background-color: #ddeffd;\n"
+"    color: black; \n"
+"}\n"
+"\n"
+"QHeaderView::section {\n"
+"    background-color: #13598f; \n"
+"    color: white; \n"
+"    padding: 3px;\n"
+"    border: 0.4px solid white;\n"
+"    font-family: Arial;\n"
+"    font-size: 13px;\n"
+"font-weight:bold;\n"
+"}\n"
+"\n"
+"QTableWidget::item:alternate {\n"
+"    background-color: #F0F0F0;\n"
+"}\n"
+"")
+        self.table_periodo.setObjectName("table_periodo")
+        self.table_periodo.setColumnCount(3)
+        self.table_periodo.setRowCount(0)
+        item = QtWidgets.QTableWidgetItem()
+        self.table_periodo.setHorizontalHeaderItem(0, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.table_periodo.setHorizontalHeaderItem(1, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.table_periodo.setHorizontalHeaderItem(2, item)
+        self.table_periodo.horizontalHeader().setDefaultSectionSize(251)
+        self.gridLayout_26.addWidget(self.table_periodo, 1, 0, 1, 1)
+        self.stackedWidget_2.addWidget(self.periodos_page)
         self.gridLayout_27.addWidget(self.stackedWidget_2, 1, 0, 1, 1)
         self.content.addWidget(self.settings)
         self.reports = QtWidgets.QWidget()
@@ -2939,8 +3342,8 @@ class Ui_MainWindow(object):
         self.horizontalLayout_8.addWidget(self.pushButton_month)
         self.verticalLayout_11.addLayout(self.horizontalLayout_8)
         self.horizontalLayout_10.addLayout(self.verticalLayout_11)
-        spacerItem3 = QtWidgets.QSpacerItem(37, 10, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
-        self.horizontalLayout_10.addItem(spacerItem3)
+        spacerItem6 = QtWidgets.QSpacerItem(37, 10, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        self.horizontalLayout_10.addItem(spacerItem6)
         self.pushButton_Rgasto = QtWidgets.QPushButton(parent=self.layoutWidget_4)
         self.pushButton_Rgasto.setMinimumSize(QtCore.QSize(160, 30))
         self.pushButton_Rgasto.setMaximumSize(QtCore.QSize(160, 30))
@@ -3309,8 +3712,8 @@ class Ui_MainWindow(object):
         self.config_2.setObjectName("config_2")
         self.verticalLayout_8.addWidget(self.config_2, 0, QtCore.Qt.AlignmentFlag.AlignHCenter)
         self.gridLayout_15.addLayout(self.verticalLayout_8, 1, 0, 1, 1)
-        spacerItem4 = QtWidgets.QSpacerItem(20, 441, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
-        self.gridLayout_15.addItem(spacerItem4, 2, 0, 1, 1)
+        spacerItem7 = QtWidgets.QSpacerItem(20, 441, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
+        self.gridLayout_15.addItem(spacerItem7, 2, 0, 1, 1)
         self.exit_2 = QtWidgets.QPushButton(parent=self.icon_complete_widget_2)
         self.exit_2.setMinimumSize(QtCore.QSize(40, 40))
         self.exit_2.setMaximumSize(QtCore.QSize(40, 40))
@@ -3362,8 +3765,8 @@ class Ui_MainWindow(object):
         self.gridLayout_2 = QtWidgets.QGridLayout(self.icon_complete_widget)
         self.gridLayout_2.setContentsMargins(7, -1, 0, -1)
         self.gridLayout_2.setObjectName("gridLayout_2")
-        spacerItem5 = QtWidgets.QSpacerItem(20, 441, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
-        self.gridLayout_2.addItem(spacerItem5, 2, 1, 1, 1)
+        spacerItem8 = QtWidgets.QSpacerItem(20, 441, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
+        self.gridLayout_2.addItem(spacerItem8, 2, 1, 1, 1)
         self.tittle_dashboard = QtWidgets.QHBoxLayout()
         self.tittle_dashboard.setSpacing(5)
         self.tittle_dashboard.setObjectName("tittle_dashboard")
@@ -3475,9 +3878,9 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
         self.content.setCurrentIndex(2)
-        self.content_pages.setCurrentIndex(0)
+        self.content_pages.setCurrentIndex(4)
         self.stackedWidget_2.setCurrentIndex(0)
-        self.stackedWidget.setCurrentIndex(1)
+        self.stackedWidget.setCurrentIndex(0)
         self.students_3.toggled['bool'].connect(self.students_2.setChecked) # type: ignore
         self.students_2.toggled['bool'].connect(self.students_3.setChecked) # type: ignore
         self.reports_3.toggled['bool'].connect(self.reports_2.setChecked) # type: ignore
@@ -3678,14 +4081,47 @@ class Ui_MainWindow(object):
         self.label.setText(_translate("MainWindow", "Mora Progresiva"))
         self.checkBox_confirm.setText(_translate("MainWindow", "SI"))
         self.checkBox_denegate.setText(_translate("MainWindow", "NO"))
-        self.commandLinkButton.setToolTip(_translate("MainWindow", "<html><head/><body><p>Tarifas generales para los estudiantes</p><p><br/></p></body></html>"))
-        self.commandLinkButton.setText(_translate("MainWindow", "Tarfias actuales"))
-        self.commandLinkButton_2.setToolTip(_translate("MainWindow", "<html><head/><body><p>Usuarios que tienen actual acceso al software</p></body></html>"))
-        self.commandLinkButton_2.setText(_translate("MainWindow", "Usuarios actuales"))
-        self.commandLinkButton_3.setToolTip(_translate("MainWindow", "<html><head/><body><p>El administrador puede supervisar acciones realizadas por otros usuarios</p></body></html>"))
-        self.commandLinkButton_3.setText(_translate("MainWindow", "Monitoreamiento "))
-        self.commandLinkButton_4.setText(_translate("MainWindow", "Periodos Escolares"))
+        self.commandLinkButton_tarifas.setToolTip(_translate("MainWindow", "<html><head/><body><p>Tarifas generales para los estudiantes</p><p><br/></p></body></html>"))
+        self.commandLinkButton_tarifas.setText(_translate("MainWindow", "Tarfias actuales"))
+        self.commandLinkButton_users.setToolTip(_translate("MainWindow", "<html><head/><body><p>Usuarios que tienen actual acceso al software</p></body></html>"))
+        self.commandLinkButton_users.setText(_translate("MainWindow", "Usuarios actuales"))
+        self.commandLinkButton_monit.setToolTip(_translate("MainWindow", "<html><head/><body><p>El administrador puede supervisar acciones realizadas por otros usuarios</p></body></html>"))
+        self.commandLinkButton_monit.setText(_translate("MainWindow", "Monitoreamiento "))
+        self.commandLinkButton_periods.setText(_translate("MainWindow", "Periodos Escolares"))
         self.tittle_header_2.setText(_translate("MainWindow", "Configuración Software"))
+        self.cost_tittle_3.setText(_translate("MainWindow", "Tarifas Actuales"))
+        self.button_add_tarifa.setText(_translate("MainWindow", "Nueva Tarifa"))
+        item = self.table_tarifas.horizontalHeaderItem(0)
+        item.setText(_translate("MainWindow", "Nombre"))
+        item = self.table_tarifas.horizontalHeaderItem(1)
+        item.setText(_translate("MainWindow", "Valor"))
+        item = self.table_tarifas.horizontalHeaderItem(2)
+        item.setText(_translate("MainWindow", "Acciones"))
+        self.cost_tittle_2.setText(_translate("MainWindow", "Usuarios"))
+        self.filter_tittle_2.setText(_translate("MainWindow", "Buscar usuario"))
+        self.box_search_user.setPlaceholderText(_translate("MainWindow", "Ingrese el nombre de usuario"))
+        self.button_add_user.setText(_translate("MainWindow", "Nuevo usuario"))
+        item = self.table_users.horizontalHeaderItem(0)
+        item.setText(_translate("MainWindow", "Nombre de Usuario"))
+        item = self.table_users.horizontalHeaderItem(1)
+        item.setText(_translate("MainWindow", "Correo Electrónico"))
+        item = self.table_users.horizontalHeaderItem(2)
+        item.setText(_translate("MainWindow", "Rol"))
+        self.cost_tittle_4.setText(_translate("MainWindow", "Montoreamiento"))
+        item = self.table_monitoriamento.horizontalHeaderItem(0)
+        item.setText(_translate("MainWindow", "Usuario"))
+        item = self.table_monitoriamento.horizontalHeaderItem(1)
+        item.setText(_translate("MainWindow", "Fecha"))
+        item = self.table_monitoriamento.horizontalHeaderItem(2)
+        item.setText(_translate("MainWindow", "Acción"))
+        self.cost_tittle_5.setText(_translate("MainWindow", "Periodos Escolares"))
+        self.button_add_periodo.setText(_translate("MainWindow", "Agregar Periodo"))
+        item = self.table_periodo.horizontalHeaderItem(0)
+        item.setText(_translate("MainWindow", "Fecha Inicio"))
+        item = self.table_periodo.horizontalHeaderItem(1)
+        item.setText(_translate("MainWindow", "Fecha Fin"))
+        item = self.table_periodo.horizontalHeaderItem(2)
+        item.setText(_translate("MainWindow", "Acciones"))
         self.cost_tittle.setText(_translate("MainWindow", "Gastos"))
         self.label_7.setText(_translate("MainWindow", "Filtrar por"))
         self.pushButton_Day.setText(_translate("MainWindow", "Diario"))

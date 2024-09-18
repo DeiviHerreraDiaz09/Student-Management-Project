@@ -143,7 +143,7 @@ QStackedWidget::right-arrow, QStackedWidget::left-arrow {
 }</string>
              </property>
              <property name="currentIndex">
-              <number>0</number>
+              <number>4</number>
              </property>
              <widget class="QWidget" name="ListStudents">
               <layout class="QGridLayout" name="gridLayout_3">
@@ -5974,7 +5974,7 @@ border-radius:6px;
                     <property name="orientation">
                      <enum>Qt::Vertical</enum>
                     </property>
-                    <widget class="QCommandLinkButton" name="commandLinkButton">
+                    <widget class="QCommandLinkButton" name="commandLinkButton_tarifas">
                      <property name="minimumSize">
                       <size>
                        <width>200</width>
@@ -6007,7 +6007,7 @@ border-radius: 15px;
                       <string>Tarfias actuales</string>
                      </property>
                     </widget>
-                    <widget class="QCommandLinkButton" name="commandLinkButton_2">
+                    <widget class="QCommandLinkButton" name="commandLinkButton_users">
                      <property name="minimumSize">
                       <size>
                        <width>200</width>
@@ -6037,7 +6037,7 @@ border-radius: 15px;
                       <string>Usuarios actuales</string>
                      </property>
                     </widget>
-                    <widget class="QCommandLinkButton" name="commandLinkButton_3">
+                    <widget class="QCommandLinkButton" name="commandLinkButton_monit">
                      <property name="minimumSize">
                       <size>
                        <width>200</width>
@@ -6071,7 +6071,7 @@ border-radius: 15px;
                       <bool>false</bool>
                      </property>
                     </widget>
-                    <widget class="QCommandLinkButton" name="commandLinkButton_4">
+                    <widget class="QCommandLinkButton" name="commandLinkButton_periods">
                      <property name="minimumSize">
                       <size>
                        <width>200</width>
@@ -6156,7 +6156,748 @@ font-weight:bold;</string>
                </item>
               </layout>
              </widget>
-             <widget class="QWidget" name="page_2"/>
+             <widget class="QWidget" name="tarifas_page">
+              <layout class="QGridLayout" name="gridLayout_24">
+               <item row="0" column="0">
+                <widget class="QSplitter" name="splitter_19">
+                 <property name="orientation">
+                  <enum>Qt::Vertical</enum>
+                 </property>
+                 <widget class="QLabel" name="cost_tittle_3">
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>70</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>16777215</width>
+                    <height>70</height>
+                   </size>
+                  </property>
+                  <property name="font">
+                   <font>
+                    <family>Arial</family>
+                    <pointsize>14</pointsize>
+                    <weight>75</weight>
+                    <italic>false</italic>
+                    <bold>true</bold>
+                   </font>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">
+color: rgb(11, 52, 84);</string>
+                  </property>
+                  <property name="text">
+                   <string>Tarifas Actuales</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignCenter</set>
+                  </property>
+                 </widget>
+                 <widget class="QWidget" name="layoutWidget_3">
+                  <layout class="QHBoxLayout" name="options_3">
+                   <item>
+                    <widget class="QSplitter" name="filter_3">
+                     <property name="orientation">
+                      <enum>Qt::Vertical</enum>
+                     </property>
+                     <widget class="QSplitter" name="box_filter_3">
+                      <property name="orientation">
+                       <enum>Qt::Horizontal</enum>
+                      </property>
+                     </widget>
+                    </widget>
+                   </item>
+                   <item>
+                    <spacer name="horizontalSpacer_6">
+                     <property name="orientation">
+                      <enum>Qt::Horizontal</enum>
+                     </property>
+                     <property name="sizeHint" stdset="0">
+                      <size>
+                       <width>328</width>
+                       <height>21</height>
+                      </size>
+                     </property>
+                    </spacer>
+                   </item>
+                   <item>
+                    <widget class="QSplitter" name="nuevaTarifa">
+                     <property name="orientation">
+                      <enum>Qt::Vertical</enum>
+                     </property>
+                     <widget class="QPushButton" name="button_add_tarifa">
+                      <property name="minimumSize">
+                       <size>
+                        <width>130</width>
+                        <height>30</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>130</width>
+                        <height>30</height>
+                       </size>
+                      </property>
+                      <property name="font">
+                       <font>
+                        <family>Arial</family>
+                        <pointsize>10</pointsize>
+                        <weight>75</weight>
+                        <bold>true</bold>
+                       </font>
+                      </property>
+                      <property name="cursor">
+                       <cursorShape>PointingHandCursor</cursorShape>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">background-color:#1770b3;
+border: none;
+border-radius: 6px;
+color:white;
+letter-spacing: 0.5px;</string>
+                      </property>
+                      <property name="text">
+                       <string>Nueva Tarifa</string>
+                      </property>
+                     </widget>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                </widget>
+               </item>
+               <item row="1" column="0">
+                <widget class="QTableWidget" name="table_tarifas">
+                 <property name="minimumSize">
+                  <size>
+                   <width>753</width>
+                   <height>360</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>0</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">QTableWidget {
+ gridline-color: black; 
+    background-color: #F9F9F9;
+}
+
+QTableWidget::item {
+    padding: 1px;
+ 	 background-color: #e9f4fd;
+     color: #000080; 
+	text-align:center;
+}
+
+QTableWidget::item:selected {
+    background-color: #ddeffd;
+    color: black; 
+}
+
+QHeaderView::section {
+    background-color: #13598f; 
+    color: white; 
+    padding: 3px;
+    border: 0.4px solid white;
+    font-family: Arial;
+    font-size: 13px;
+font-weight:bold;
+}
+
+QTableWidget::item:alternate {
+    background-color: #F0F0F0;
+}
+</string>
+                 </property>
+                 <attribute name="horizontalHeaderDefaultSectionSize">
+                  <number>251</number>
+                 </attribute>
+                 <column>
+                  <property name="text">
+                   <string>Nombre</string>
+                  </property>
+                 </column>
+                 <column>
+                  <property name="text">
+                   <string>Valor</string>
+                  </property>
+                 </column>
+                 <column>
+                  <property name="text">
+                   <string>Acciones</string>
+                  </property>
+                 </column>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+             <widget class="QWidget" name="users_page">
+              <layout class="QGridLayout" name="gridLayout_23">
+               <item row="0" column="0">
+                <widget class="QSplitter" name="splitter_18">
+                 <property name="orientation">
+                  <enum>Qt::Vertical</enum>
+                 </property>
+                 <widget class="QLabel" name="cost_tittle_2">
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>70</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>16777215</width>
+                    <height>70</height>
+                   </size>
+                  </property>
+                  <property name="font">
+                   <font>
+                    <family>Arial</family>
+                    <pointsize>14</pointsize>
+                    <weight>75</weight>
+                    <italic>false</italic>
+                    <bold>true</bold>
+                   </font>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">
+color: rgb(11, 52, 84);</string>
+                  </property>
+                  <property name="text">
+                   <string>Usuarios</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignCenter</set>
+                  </property>
+                 </widget>
+                 <widget class="QWidget" name="layoutWidget_2">
+                  <layout class="QHBoxLayout" name="options_2">
+                   <item>
+                    <widget class="QSplitter" name="filter_2">
+                     <property name="orientation">
+                      <enum>Qt::Vertical</enum>
+                     </property>
+                     <widget class="QLabel" name="filter_tittle_2">
+                      <property name="minimumSize">
+                       <size>
+                        <width>0</width>
+                        <height>30</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>16777215</width>
+                        <height>30</height>
+                       </size>
+                      </property>
+                      <property name="font">
+                       <font>
+                        <family>Arial</family>
+                        <pointsize>10</pointsize>
+                        <weight>75</weight>
+                        <bold>true</bold>
+                       </font>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">color: rgb(11, 52, 84);
+font-weight:bold;</string>
+                      </property>
+                      <property name="lineWidth">
+                       <number>6</number>
+                      </property>
+                      <property name="text">
+                       <string>Buscar usuario</string>
+                      </property>
+                     </widget>
+                     <widget class="QSplitter" name="box_filter_2">
+                      <property name="orientation">
+                       <enum>Qt::Horizontal</enum>
+                      </property>
+                      <widget class="QLineEdit" name="box_search_user">
+                       <property name="minimumSize">
+                        <size>
+                         <width>230</width>
+                         <height>30</height>
+                        </size>
+                       </property>
+                       <property name="maximumSize">
+                        <size>
+                         <width>230</width>
+                         <height>30</height>
+                        </size>
+                       </property>
+                       <property name="font">
+                        <font>
+                         <family>Arial</family>
+                         <pointsize>9</pointsize>
+                        </font>
+                       </property>
+                       <property name="styleSheet">
+                        <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(11, 52, 84);
+border:1px solid  #a8a8a8;</string>
+                       </property>
+                       <property name="placeholderText">
+                        <string>Ingrese el nombre de usuario</string>
+                       </property>
+                      </widget>
+                      <widget class="QPushButton" name="button_search_user">
+                       <property name="minimumSize">
+                        <size>
+                         <width>30</width>
+                         <height>30</height>
+                        </size>
+                       </property>
+                       <property name="maximumSize">
+                        <size>
+                         <width>30</width>
+                         <height>30</height>
+                        </size>
+                       </property>
+                       <property name="cursor">
+                        <cursorShape>PointingHandCursor</cursorShape>
+                       </property>
+                       <property name="styleSheet">
+                        <string notr="true">background-color:#1770b3;
+borde: none;
+border-radius:6px;
+</string>
+                       </property>
+                       <property name="text">
+                        <string/>
+                       </property>
+                       <property name="icon">
+                        <iconset resource="../../../../dashboard/resources.qrc">
+                         <normaloff>:/icons/assets/icons/Search.svg</normaloff>:/icons/assets/icons/Search.svg</iconset>
+                       </property>
+                      </widget>
+                     </widget>
+                    </widget>
+                   </item>
+                   <item>
+                    <spacer name="horizontalSpacer_4">
+                     <property name="orientation">
+                      <enum>Qt::Horizontal</enum>
+                     </property>
+                     <property name="sizeHint" stdset="0">
+                      <size>
+                       <width>328</width>
+                       <height>21</height>
+                      </size>
+                     </property>
+                    </spacer>
+                   </item>
+                   <item>
+                    <widget class="QSplitter" name="newUser">
+                     <property name="orientation">
+                      <enum>Qt::Vertical</enum>
+                     </property>
+                     <widget class="QPushButton" name="button_add_user">
+                      <property name="minimumSize">
+                       <size>
+                        <width>130</width>
+                        <height>30</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>130</width>
+                        <height>30</height>
+                       </size>
+                      </property>
+                      <property name="font">
+                       <font>
+                        <family>Arial</family>
+                        <pointsize>10</pointsize>
+                        <weight>75</weight>
+                        <bold>true</bold>
+                       </font>
+                      </property>
+                      <property name="cursor">
+                       <cursorShape>PointingHandCursor</cursorShape>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">background-color:#1770b3;
+border: none;
+border-radius: 6px;
+color:white;
+letter-spacing: 0.5px;</string>
+                      </property>
+                      <property name="text">
+                       <string>Nuevo usuario</string>
+                      </property>
+                     </widget>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                </widget>
+               </item>
+               <item row="1" column="0">
+                <widget class="QTableWidget" name="table_users">
+                 <property name="minimumSize">
+                  <size>
+                   <width>753</width>
+                   <height>390</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>0</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">QTableWidget {
+ gridline-color: black; 
+    background-color: #F9F9F9;
+}
+
+QTableWidget::item {
+    padding: 1px;
+ 	 background-color: #e9f4fd;
+     color: #000080; 
+	text-align:center;
+}
+
+QTableWidget::item:selected {
+    background-color: #ddeffd;
+    color: black; 
+}
+
+QHeaderView::section {
+    background-color: #13598f; 
+    color: white; 
+    padding: 3px;
+    border: 0.4px solid white;
+    font-family: Arial;
+    font-size: 13px;
+font-weight:bold;
+}
+
+QTableWidget::item:alternate {
+    background-color: #F0F0F0;
+}
+</string>
+                 </property>
+                 <attribute name="horizontalHeaderDefaultSectionSize">
+                  <number>251</number>
+                 </attribute>
+                 <column>
+                  <property name="text">
+                   <string>Nombre de Usuario</string>
+                  </property>
+                 </column>
+                 <column>
+                  <property name="text">
+                   <string>Correo Electrónico</string>
+                  </property>
+                 </column>
+                 <column>
+                  <property name="text">
+                   <string>Rol</string>
+                  </property>
+                 </column>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+             <widget class="QWidget" name="monitoriamento_page">
+              <layout class="QGridLayout" name="gridLayout_25">
+               <item row="0" column="0">
+                <widget class="QLabel" name="cost_tittle_4">
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>90</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>16777215</width>
+                   <height>70</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Arial</family>
+                   <pointsize>14</pointsize>
+                   <weight>75</weight>
+                   <italic>false</italic>
+                   <bold>true</bold>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">
+color: rgb(11, 52, 84);</string>
+                 </property>
+                 <property name="text">
+                  <string>Montoreamiento</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="0">
+                <widget class="QTableWidget" name="table_monitoriamento">
+                 <property name="minimumSize">
+                  <size>
+                   <width>753</width>
+                   <height>360</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>0</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">QTableWidget {
+ gridline-color: black; 
+    background-color: #F9F9F9;
+}
+
+QTableWidget::item {
+    padding: 1px;
+ 	 background-color: #e9f4fd;
+     color: #000080; 
+	text-align:center;
+}
+
+QTableWidget::item:selected {
+    background-color: #ddeffd;
+    color: black; 
+}
+
+QHeaderView::section {
+    background-color: #13598f; 
+    color: white; 
+    padding: 3px;
+    border: 0.4px solid white;
+    font-family: Arial;
+    font-size: 13px;
+font-weight:bold;
+}
+
+QTableWidget::item:alternate {
+    background-color: #F0F0F0;
+}
+</string>
+                 </property>
+                 <attribute name="horizontalHeaderDefaultSectionSize">
+                  <number>251</number>
+                 </attribute>
+                 <column>
+                  <property name="text">
+                   <string>Usuario</string>
+                  </property>
+                 </column>
+                 <column>
+                  <property name="text">
+                   <string>Fecha</string>
+                  </property>
+                 </column>
+                 <column>
+                  <property name="text">
+                   <string>Acción</string>
+                  </property>
+                 </column>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+             <widget class="QWidget" name="periodos_page">
+              <layout class="QGridLayout" name="gridLayout_26">
+               <item row="0" column="0">
+                <widget class="QSplitter" name="splitter_20">
+                 <property name="orientation">
+                  <enum>Qt::Vertical</enum>
+                 </property>
+                 <widget class="QLabel" name="cost_tittle_5">
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>70</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>16777215</width>
+                    <height>70</height>
+                   </size>
+                  </property>
+                  <property name="font">
+                   <font>
+                    <family>Arial</family>
+                    <pointsize>14</pointsize>
+                    <weight>75</weight>
+                    <italic>false</italic>
+                    <bold>true</bold>
+                   </font>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">
+color: rgb(11, 52, 84);</string>
+                  </property>
+                  <property name="text">
+                   <string>Periodos Escolares</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignCenter</set>
+                  </property>
+                 </widget>
+                 <widget class="QWidget" name="layoutWidget_5">
+                  <layout class="QHBoxLayout" name="options_4">
+                   <item>
+                    <widget class="QSplitter" name="filter_4">
+                     <property name="orientation">
+                      <enum>Qt::Vertical</enum>
+                     </property>
+                     <widget class="QSplitter" name="box_filter_4">
+                      <property name="orientation">
+                       <enum>Qt::Horizontal</enum>
+                      </property>
+                     </widget>
+                    </widget>
+                   </item>
+                   <item>
+                    <spacer name="horizontalSpacer_7">
+                     <property name="orientation">
+                      <enum>Qt::Horizontal</enum>
+                     </property>
+                     <property name="sizeHint" stdset="0">
+                      <size>
+                       <width>328</width>
+                       <height>21</height>
+                      </size>
+                     </property>
+                    </spacer>
+                   </item>
+                   <item>
+                    <widget class="QSplitter" name="newPeriodo">
+                     <property name="orientation">
+                      <enum>Qt::Vertical</enum>
+                     </property>
+                     <widget class="QPushButton" name="button_add_periodo">
+                      <property name="minimumSize">
+                       <size>
+                        <width>130</width>
+                        <height>30</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>130</width>
+                        <height>30</height>
+                       </size>
+                      </property>
+                      <property name="font">
+                       <font>
+                        <family>Arial</family>
+                        <pointsize>10</pointsize>
+                        <weight>75</weight>
+                        <bold>true</bold>
+                       </font>
+                      </property>
+                      <property name="cursor">
+                       <cursorShape>PointingHandCursor</cursorShape>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">background-color:#1770b3;
+border: none;
+border-radius: 6px;
+color:white;
+letter-spacing: 0.5px;</string>
+                      </property>
+                      <property name="text">
+                       <string>Agregar Periodo</string>
+                      </property>
+                     </widget>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                </widget>
+               </item>
+               <item row="1" column="0">
+                <widget class="QTableWidget" name="table_periodo">
+                 <property name="minimumSize">
+                  <size>
+                   <width>753</width>
+                   <height>380</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>0</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">QTableWidget {
+ gridline-color: black; 
+    background-color: #F9F9F9;
+}
+
+QTableWidget::item {
+    padding: 1px;
+ 	 background-color: #e9f4fd;
+     color: #000080; 
+	text-align:center;
+}
+
+QTableWidget::item:selected {
+    background-color: #ddeffd;
+    color: black; 
+}
+
+QHeaderView::section {
+    background-color: #13598f; 
+    color: white; 
+    padding: 3px;
+    border: 0.4px solid white;
+    font-family: Arial;
+    font-size: 13px;
+font-weight:bold;
+}
+
+QTableWidget::item:alternate {
+    background-color: #F0F0F0;
+}
+</string>
+                 </property>
+                 <attribute name="horizontalHeaderDefaultSectionSize">
+                  <number>251</number>
+                 </attribute>
+                 <column>
+                  <property name="text">
+                   <string>Fecha Inicio</string>
+                  </property>
+                 </column>
+                 <column>
+                  <property name="text">
+                   <string>Fecha Fin</string>
+                  </property>
+                 </column>
+                 <column>
+                  <property name="text">
+                   <string>Acciones</string>
+                  </property>
+                 </column>
+                </widget>
+               </item>
+              </layout>
+             </widget>
             </widget>
            </item>
           </layout>
@@ -6169,7 +6910,7 @@ font-weight:bold;</string>
            <item row="0" column="0">
             <widget class="QStackedWidget" name="stackedWidget">
              <property name="currentIndex">
-              <number>1</number>
+              <number>0</number>
              </property>
              <widget class="QWidget" name="view_cost">
               <layout class="QGridLayout" name="gridLayout_17">

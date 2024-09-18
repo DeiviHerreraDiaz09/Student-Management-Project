@@ -103,6 +103,11 @@ class MyInterface(QMainWindow, Ui_MainWindow):
         self.config.clicked.connect(self.switch_to_configPage)
         self.config_2.clicked.connect(self.switch_to_configPage)
 
+        self.commandLinkButton_tarifas.clicked.connect(self.switch_to_rate)
+        self.commandLinkButton_users.clicked.connect(self.switch_to_user)
+        self.commandLinkButton_monit.clicked.connect(self.switch_to_monit)
+        self.commandLinkButton_periods.clicked.connect(self.switch_to_periods)
+
         self.button_add.clicked.connect(self.switch_to_registerStudent)
         self.registerButton.clicked.connect(self.save_data)
         self.button_search.clicked.connect(self.search_student_by_name)
@@ -307,6 +312,23 @@ class MyInterface(QMainWindow, Ui_MainWindow):
         self.content.setCurrentIndex(2)
         self.stackedWidget_2.setCurrentIndex(0)
         configuration_optionsService(self)
+    
+    def switch_to_rate(self):
+        self.content.setCurrentIndex(2)
+        self.stackedWidget_2.setCurrentIndex(1)
+    
+    def switch_to_user(self):
+        self.content.setCurrentIndex(2)
+        self.stackedWidget_2.setCurrentIndex(2)
+
+    def switch_to_monit(self):
+            self.content.setCurrentIndex(2)
+            self.stackedWidget_2.setCurrentIndex(3)
+
+    def switch_to_periods(self):
+            self.content.setCurrentIndex(2)
+            self.stackedWidget_2.setCurrentIndex(4)
+
 
     def actualizar_nombre_colegio(self):
         valor = self.input_amount_paid_3.text()
