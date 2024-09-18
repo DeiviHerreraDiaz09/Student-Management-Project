@@ -5131,7 +5131,7 @@ color:white;</string>
            <item row="1" column="0">
             <widget class="QStackedWidget" name="stackedWidget_2">
              <property name="currentIndex">
-              <number>0</number>
+              <number>3</number>
              </property>
              <widget class="QWidget" name="confi_page">
               <layout class="QGridLayout" name="gridLayout_22">
@@ -6640,7 +6640,7 @@ QTableWidget::item:alternate {
 color: rgb(11, 52, 84);</string>
                  </property>
                  <property name="text">
-                  <string>Montoreamiento</string>
+                  <string>Monitoreamiento</string>
                  </property>
                  <property name="alignment">
                   <set>Qt::AlignCenter</set>

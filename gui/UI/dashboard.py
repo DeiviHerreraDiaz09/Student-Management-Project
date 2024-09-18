@@ -3879,7 +3879,7 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         self.content.setCurrentIndex(2)
         self.content_pages.setCurrentIndex(4)
-        self.stackedWidget_2.setCurrentIndex(0)
+        self.stackedWidget_2.setCurrentIndex(3)
         self.stackedWidget.setCurrentIndex(0)
         self.students_3.toggled['bool'].connect(self.students_2.setChecked) # type: ignore
         self.students_2.toggled['bool'].connect(self.students_3.setChecked) # type: ignore
@@ -4107,7 +4107,7 @@ class Ui_MainWindow(object):
         item.setText(_translate("MainWindow", "Correo Electrónico"))
         item = self.table_users.horizontalHeaderItem(2)
         item.setText(_translate("MainWindow", "Rol"))
-        self.cost_tittle_4.setText(_translate("MainWindow", "Montoreamiento"))
+        self.cost_tittle_4.setText(_translate("MainWindow", "Monitoreamiento"))
         item = self.table_monitoriamento.horizontalHeaderItem(0)
         item.setText(_translate("MainWindow", "Usuario"))
         item = self.table_monitoriamento.horizontalHeaderItem(1)
